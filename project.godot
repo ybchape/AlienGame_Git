@@ -14,6 +14,14 @@ config/name="AlienGame"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Asset/icon.svg"
 
+[autoload]
+
+GameManager="*uid://duweayaxlsq5q"
+
+[global_group]
+
+enemigos=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
