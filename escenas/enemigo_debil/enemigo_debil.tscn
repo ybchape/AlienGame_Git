@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dny24yox1owcc"]
+
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Asset/icon.svg" id="1_3mvyd"]
+[ext_resource type="Script" uid="uid://cuxqljrpi4gbp" path="res://escenas/enemigo_debil/collision_shape_2d.gd" id="2_85yvu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_85yvu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3mvyd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrmih"]
+size = Vector2(128, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bphnh"]
+size = Vector2(137, 136)
+
+[node name="enemigo_debil" type="CharacterBody2D" unique_id=2137432433]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=551396991]
+sprite_frames = SubResource("SpriteFrames_85yvu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595174343]
+shape = SubResource("RectangleShape2D_wrmih")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1864288977]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=152318019]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_bphnh")
+script = ExtResource("2_85yvu")
