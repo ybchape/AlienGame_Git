@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://7cglwi67baqw"]
 
-[ext_resource type="Texture2D" uid="uid://lme48mxc050m" path="res://Assets/parallax-space-backgound.png" id="1_afc6g"]
-[ext_resource type="Texture2D" uid="uid://jsljcb7hbalh" path="res://Assets/parallax-space-big-planet.png" id="2_iupgd"]
-[ext_resource type="Texture2D" uid="uid://dwaflbpdtc46r" path="res://Assets/parallax-space-far-planets.png" id="3_lhnnm"]
-[ext_resource type="Texture2D" uid="uid://db6ug8c5vqqx0" path="res://Assets/parallax-space-ring-planet.png" id="4_hgi0t"]
-[ext_resource type="Texture2D" uid="uid://crjvbte26dwl7" path="res://Assets/parallax-space-stars.png" id="5_5e3jd"]
-[ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://Assets/Dungeon_Tileset.png" id="6_1xgag"]
+[ext_resource type="Texture2D" uid="uid://lme48mxc050m" path="res://Assets/parallax-space-backgound.png" id="1_kbm13"]
+[ext_resource type="Texture2D" uid="uid://jsljcb7hbalh" path="res://Assets/parallax-space-big-planet.png" id="2_urrwd"]
+[ext_resource type="Texture2D" uid="uid://dwaflbpdtc46r" path="res://Assets/parallax-space-far-planets.png" id="3_i38m2"]
+[ext_resource type="Texture2D" uid="uid://db6ug8c5vqqx0" path="res://Assets/parallax-space-ring-planet.png" id="4_p0q1u"]
+[ext_resource type="Texture2D" uid="uid://crjvbte26dwl7" path="res://Assets/parallax-space-stars.png" id="5_vgffm"]
+[ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://Assets/Dungeon_Tileset.png" id="6_g8nn0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
-texture = ExtResource("1_afc6g")
+texture = ExtResource("1_kbm13")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -181,7 +181,7 @@ texture = ExtResource("1_afc6g")
 16:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_34kg7"]
-texture = ExtResource("2_iupgd")
+texture = ExtResource("2_urrwd")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -209,7 +209,7 @@ texture = ExtResource("2_iupgd")
 4:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sskua"]
-texture = ExtResource("3_lhnnm")
+texture = ExtResource("3_i38m2")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -231,7 +231,7 @@ texture = ExtResource("3_lhnnm")
 15:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_el456"]
-texture = ExtResource("4_hgi0t")
+texture = ExtResource("4_p0q1u")
 1:0/0 = 0
 2:0/0 = 0
 0:1/0 = 0
@@ -252,7 +252,7 @@ texture = ExtResource("4_hgi0t")
 2:6/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kw5jj"]
-texture = ExtResource("5_5e3jd")
+texture = ExtResource("5_vgffm")
 11:0/0 = 0
 6:1/0 = 0
 12:1/0 = 0
@@ -313,7 +313,7 @@ sources/3 = SubResource("TileSetAtlasSource_el456")
 sources/4 = SubResource("TileSetAtlasSource_kw5jj")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nwgaw"]
-texture = ExtResource("5_5e3jd")
+texture = ExtResource("5_vgffm")
 11:0/0 = 0
 6:1/0 = 0
 12:1/0 = 0
@@ -367,7 +367,7 @@ texture = ExtResource("5_5e3jd")
 16:9/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3aicl"]
-texture = ExtResource("4_hgi0t")
+texture = ExtResource("4_p0q1u")
 1:0/0 = 0
 2:0/0 = 0
 0:1/0 = 0
@@ -388,7 +388,7 @@ texture = ExtResource("4_hgi0t")
 2:6/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ecv3s"]
-texture = ExtResource("3_lhnnm")
+texture = ExtResource("3_i38m2")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -410,7 +410,7 @@ texture = ExtResource("3_lhnnm")
 15:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a5wfb"]
-texture = ExtResource("2_iupgd")
+texture = ExtResource("2_urrwd")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -444,7 +444,7 @@ sources/2 = SubResource("TileSetAtlasSource_ecv3s")
 sources/3 = SubResource("TileSetAtlasSource_a5wfb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfy2d"]
-texture = ExtResource("6_1xgag")
+texture = ExtResource("6_g8nn0")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.2590103, -8, -8, -8, 8, 8, 8, 8, -8, -8, -8)
 1:0/0 = 0
@@ -575,7 +575,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wfy2d")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_afc6g"]
-texture = ExtResource("6_1xgag")
+texture = ExtResource("6_g8nn0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
