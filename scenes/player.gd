@@ -17,7 +17,7 @@ func handle_movement(_delta: float) -> void:
 	var _direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func handle_interaction() -> void:
-	if Input.is_action_just_pressed("break"): 
+	if Input.is_action_just_pressed("break_block"): 
 		break_block()
 
 func break_block() -> void:

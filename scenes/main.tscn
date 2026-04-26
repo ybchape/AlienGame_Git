@@ -5,6 +5,7 @@
 
 [node name="Node2D" type="Node2D" unique_id=1627897141]
 
-[node name="player" parent="." unique_id=479222579 instance=ExtResource("1_0wfyh")]
+[node name="plataforma" parent="." unique_id=176134920 instance=ExtResource("2_sugp2")]
 
-[node name="plataforma" parent="player" unique_id=176134920 instance=ExtResource("2_sugp2")]
+[node name="player" parent="." unique_id=479222579 instance=ExtResource("1_0wfyh")]
+position = Vector2(328, 513)
