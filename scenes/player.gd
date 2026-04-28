@@ -1,24 +1,16 @@
 extends CharacterBody2D
 
-@export_group("Movimiento")
-@export var walk_speed := 260.0
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-@export_group("Interacción")
-@export var break_distance := 50.0 # distancia para romper bloque
+var speed = 100.0
+var last_direction = "down"
+
 
 func _physics_process(delta: float) -> void:
-	handle_movement(delta)
-	handle_interaction()
+	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	print (input_direction)
+	velocity = input_direction * speed
 	move_and_slide()
-
- # it is not currently in use
-func handle_movement(_delta: float) -> void: 
-	# obtener dirección en x e y
-	var _direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-
-func handle_interaction() -> void:
-	if Input.is_action_just_pressed("break_block"): 
-		break_block()
-
-func break_block() -> void:
-	print("trying to break block") 
+	
+func update_animation(state):
+	animated_sprite.play(state + "_" + last_direction)
