@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkwthhd883vod"
-path="res://.godot/imported/pinkbat_spritesheet.png-702750a2a28f76e709fd1c51ec95949a.ctex"
+path="res://.godot/imported/pinkbat_spritesheet.png-55c986529222f71a3e245b007052a2ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_spritesheet.png"
-dest_files=["res://.godot/imported/pinkbat_spritesheet.png-702750a2a28f76e709fd1c51ec95949a.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_spritesheet.png"
+dest_files=["res://.godot/imported/pinkbat_spritesheet.png-55c986529222f71a3e245b007052a2ef.ctex"]
 
 [params]
 

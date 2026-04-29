@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnema7muahjru"
-path="res://.godot/imported/char_shielded_static_up.png-ad3b27ddd6cb828e8e69b6372250d714.ctex"
+path="res://.godot/imported/char_shielded_static_up.png-0c35ea9ce2cbc216bb8055271a74caf2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_shielded_static_up.png"
-dest_files=["res://.godot/imported/char_shielded_static_up.png-ad3b27ddd6cb828e8e69b6372250d714.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_shielded_static_up.png"
+dest_files=["res://.godot/imported/char_shielded_static_up.png-0c35ea9ce2cbc216bb8055271a74caf2.ctex"]
 
 [params]
 

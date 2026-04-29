@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bowxwk3gkta4f"
-path="res://.godot/imported/char_climbing_up_after_anim_strip_3.png-a29a3ecfcb3b0025cd7d871d174daa45.ctex"
+path="res://.godot/imported/char_climbing_up_after_anim_strip_3.png-7b15fa0db60162392858b4d02da21685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_climbing_up_after_anim_strip_3.png"
-dest_files=["res://.godot/imported/char_climbing_up_after_anim_strip_3.png-a29a3ecfcb3b0025cd7d871d174daa45.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_climbing_up_after_anim_strip_3.png"
+dest_files=["res://.godot/imported/char_climbing_up_after_anim_strip_3.png-7b15fa0db60162392858b4d02da21685.ctex"]
 
 [params]
 

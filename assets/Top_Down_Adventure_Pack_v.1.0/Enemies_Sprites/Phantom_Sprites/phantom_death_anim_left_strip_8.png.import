@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cedwwb8nwtfyt"
-path="res://.godot/imported/phantom_death_anim_left_strip_8.png-51bcaf8cf24356d966baa22a09551b5f.ctex"
+path="res://.godot/imported/phantom_death_anim_left_strip_8.png-910079669f129267937346c7fe4ed19b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_left_strip_8.png"
-dest_files=["res://.godot/imported/phantom_death_anim_left_strip_8.png-51bcaf8cf24356d966baa22a09551b5f.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_left_strip_8.png"
+dest_files=["res://.godot/imported/phantom_death_anim_left_strip_8.png-910079669f129267937346c7fe4ed19b.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bg12eodfcc28b"
-path="res://.godot/imported/crystal_item_anim_collected_strip_5.png-4a78ad1b21b8dd3f661b24864c389a57.ctex"
+path="res://.godot/imported/crystal_item_anim_collected_strip_5.png-94632e9de756dec1b441ea85bacc495f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/crystal_item_anim_collected_strip_5.png"
-dest_files=["res://.godot/imported/crystal_item_anim_collected_strip_5.png-4a78ad1b21b8dd3f661b24864c389a57.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/crystal_item_anim_collected_strip_5.png"
+dest_files=["res://.godot/imported/crystal_item_anim_collected_strip_5.png-94632e9de756dec1b441ea85bacc495f.ctex"]
 
 [params]
 

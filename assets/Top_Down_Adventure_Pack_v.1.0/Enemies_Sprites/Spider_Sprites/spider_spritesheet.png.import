@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dahpjxlthp7u8"
-path="res://.godot/imported/spider_spritesheet.png-d9703e790f397d737edd71bcbbeb1793.ctex"
+path="res://.godot/imported/spider_spritesheet.png-d346629280eafaa89c4287c4f3165094.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_spritesheet.png"
-dest_files=["res://.godot/imported/spider_spritesheet.png-d9703e790f397d737edd71bcbbeb1793.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_spritesheet.png"
+dest_files=["res://.godot/imported/spider_spritesheet.png-d346629280eafaa89c4287c4f3165094.ctex"]
 
 [params]
 

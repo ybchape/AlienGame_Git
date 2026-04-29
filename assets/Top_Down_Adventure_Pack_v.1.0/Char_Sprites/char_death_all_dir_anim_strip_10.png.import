@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2ii0wtn3kwyi"
-path="res://.godot/imported/char_death_all_dir_anim_strip_10.png-6bcbc6022c65ba472ae2d930125b7914.ctex"
+path="res://.godot/imported/char_death_all_dir_anim_strip_10.png-e3f0152c59bb75c82f2dd7f3e66ef8cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_death_all_dir_anim_strip_10.png"
-dest_files=["res://.godot/imported/char_death_all_dir_anim_strip_10.png-6bcbc6022c65ba472ae2d930125b7914.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_death_all_dir_anim_strip_10.png"
+dest_files=["res://.godot/imported/char_death_all_dir_anim_strip_10.png-e3f0152c59bb75c82f2dd7f3e66ef8cf.ctex"]
 
 [params]
 

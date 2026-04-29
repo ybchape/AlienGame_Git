@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2s3gsdmtjop2"
-path="res://.godot/imported/char_hit_right_anim_strip_3.png-cf8c1ee9e0e74f581ea13d22996a23cb.ctex"
+path="res://.godot/imported/char_hit_right_anim_strip_3.png-db6bfe31d7cebb189e72faebd2f441a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_hit_right_anim_strip_3.png"
-dest_files=["res://.godot/imported/char_hit_right_anim_strip_3.png-cf8c1ee9e0e74f581ea13d22996a23cb.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_hit_right_anim_strip_3.png"
+dest_files=["res://.godot/imported/char_hit_right_anim_strip_3.png-db6bfe31d7cebb189e72faebd2f441a7.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4hfl0oxwrk0e"
-path="res://.godot/imported/pinkslime_run_anim_anim_all_dir_strip_6.png-449bde32ab5e922aa45079c3a77e52ca.ctex"
+path="res://.godot/imported/pinkslime_run_anim_anim_all_dir_strip_6.png-7965f8dc2e8329ddc2958c1022194fa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_run_anim_anim_all_dir_strip_6.png"
-dest_files=["res://.godot/imported/pinkslime_run_anim_anim_all_dir_strip_6.png-449bde32ab5e922aa45079c3a77e52ca.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_run_anim_anim_all_dir_strip_6.png"
+dest_files=["res://.godot/imported/pinkslime_run_anim_anim_all_dir_strip_6.png-7965f8dc2e8329ddc2958c1022194fa2.ctex"]
 
 [params]
 
