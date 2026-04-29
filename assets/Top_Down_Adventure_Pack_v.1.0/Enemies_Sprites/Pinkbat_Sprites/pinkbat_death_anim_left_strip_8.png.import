@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxmvfd6mgyfw3"
-path="res://.godot/imported/pinkbat_death_anim_left_strip_8.png-f7b9c68ad4a53e0e133ff8610bfb3db3.ctex"
+path="res://.godot/imported/pinkbat_death_anim_left_strip_8.png-c6fe30ce6104dab864022539912d5e20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png"
-dest_files=["res://.godot/imported/pinkbat_death_anim_left_strip_8.png-f7b9c68ad4a53e0e133ff8610bfb3db3.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png"
+dest_files=["res://.godot/imported/pinkbat_death_anim_left_strip_8.png-c6fe30ce6104dab864022539912d5e20.ctex"]
 
 [params]
 

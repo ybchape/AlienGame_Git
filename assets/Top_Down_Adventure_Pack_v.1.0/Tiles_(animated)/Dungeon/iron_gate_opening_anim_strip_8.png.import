@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vdgus1qetvxf"
-path="res://.godot/imported/iron_gate_opening_anim_strip_8.png-6d31406426d548bef47bfbb01eb27078.ctex"
+path="res://.godot/imported/iron_gate_opening_anim_strip_8.png-aa05679082622ad7d170ca7f0e0dacde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png"
-dest_files=["res://.godot/imported/iron_gate_opening_anim_strip_8.png-6d31406426d548bef47bfbb01eb27078.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png"
+dest_files=["res://.godot/imported/iron_gate_opening_anim_strip_8.png-aa05679082622ad7d170ca7f0e0dacde.ctex"]
 
 [params]
 

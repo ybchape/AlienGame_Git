@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d26a7xirw5mel"
-path="res://.godot/imported/phantom_hit_anim_right_strip_4.png-ef4c4b560a41a66dfe0c229118321c88.ctex"
+path="res://.godot/imported/phantom_hit_anim_right_strip_4.png-f4c318a8980d8b0e184bbe20c85239e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_right_strip_4.png"
-dest_files=["res://.godot/imported/phantom_hit_anim_right_strip_4.png-ef4c4b560a41a66dfe0c229118321c88.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_right_strip_4.png"
+dest_files=["res://.godot/imported/phantom_hit_anim_right_strip_4.png-f4c318a8980d8b0e184bbe20c85239e0.ctex"]
 
 [params]
 

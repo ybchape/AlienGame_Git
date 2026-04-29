@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq414sdn7nmwb"
-path="res://.godot/imported/edge_water_tile_anim_strip_8.png-b42382b7aeddea9680e7093b53c52b81.ctex"
+path="res://.godot/imported/edge_water_tile_anim_strip_8.png-9924779a21f0f2957a99a58658dfe047.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Overworld/edge_water_tile_anim_strip_8.png"
-dest_files=["res://.godot/imported/edge_water_tile_anim_strip_8.png-b42382b7aeddea9680e7093b53c52b81.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Overworld/edge_water_tile_anim_strip_8.png"
+dest_files=["res://.godot/imported/edge_water_tile_anim_strip_8.png-9924779a21f0f2957a99a58658dfe047.ctex"]
 
 [params]
 

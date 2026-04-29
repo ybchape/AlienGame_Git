@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csgstfpvvk0m2"
-path="res://.godot/imported/char_attack_down_anim_strip_6.png-b5f0238815783f4422881f55c075d0a7.ctex"
+path="res://.godot/imported/char_attack_down_anim_strip_6.png-c10074d301e85e9059b8fe72f0a675d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_attack_down_anim_strip_6.png"
-dest_files=["res://.godot/imported/char_attack_down_anim_strip_6.png-b5f0238815783f4422881f55c075d0a7.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_attack_down_anim_strip_6.png"
+dest_files=["res://.godot/imported/char_attack_down_anim_strip_6.png-c10074d301e85e9059b8fe72f0a675d1.ctex"]
 
 [params]
 

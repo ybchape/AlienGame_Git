@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvwi6t826gn22"
-path="res://.godot/imported/bomb_going_up_anim_strip_4.png-804512f1f85ad228cdb7eaac63cf93ed.ctex"
+path="res://.godot/imported/bomb_going_up_anim_strip_4.png-8fa1fbfe9442403e1bb498a8741b4e3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_up_anim_strip_4.png"
-dest_files=["res://.godot/imported/bomb_going_up_anim_strip_4.png-804512f1f85ad228cdb7eaac63cf93ed.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_up_anim_strip_4.png"
+dest_files=["res://.godot/imported/bomb_going_up_anim_strip_4.png-8fa1fbfe9442403e1bb498a8741b4e3a.ctex"]
 
 [params]
 

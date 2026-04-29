@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0b00sqaqifpo"
-path="res://.godot/imported/regia_waterplant_tile_anim_strip_8.png-0f61d23b83553c8273da3e514d3e2a93.ctex"
+path="res://.godot/imported/regia_waterplant_tile_anim_strip_8.png-0bc210023af5fcaf3dcb5bcc168d0caf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Overworld/regia_waterplant_tile_anim_strip_8.png"
-dest_files=["res://.godot/imported/regia_waterplant_tile_anim_strip_8.png-0f61d23b83553c8273da3e514d3e2a93.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Overworld/regia_waterplant_tile_anim_strip_8.png"
+dest_files=["res://.godot/imported/regia_waterplant_tile_anim_strip_8.png-0bc210023af5fcaf3dcb5bcc168d0caf.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjsir7xbwnc3e"
-path="res://.godot/imported/spikes_tile_trap_anim_strip_12.png-d5fdab172fb658c60e6b6373fb12d458.ctex"
+path="res://.godot/imported/spikes_tile_trap_anim_strip_12.png-565f03d504407096fba4cd3e0b4ded5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/spikes_tile_trap_anim_strip_12.png"
-dest_files=["res://.godot/imported/spikes_tile_trap_anim_strip_12.png-d5fdab172fb658c60e6b6373fb12d458.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/spikes_tile_trap_anim_strip_12.png"
+dest_files=["res://.godot/imported/spikes_tile_trap_anim_strip_12.png-565f03d504407096fba4cd3e0b4ded5b.ctex"]
 
 [params]
 

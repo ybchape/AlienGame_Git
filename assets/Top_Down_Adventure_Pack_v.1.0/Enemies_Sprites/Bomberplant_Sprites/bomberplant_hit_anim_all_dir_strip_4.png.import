@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cywguc81l6v3w"
-path="res://.godot/imported/bomberplant_hit_anim_all_dir_strip_4.png-ed6e01f1ac54da73a4b8e5d9ea986187.ctex"
+path="res://.godot/imported/bomberplant_hit_anim_all_dir_strip_4.png-38bc4111da8d211c7c1053efb6209d4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_hit_anim_all_dir_strip_4.png"
-dest_files=["res://.godot/imported/bomberplant_hit_anim_all_dir_strip_4.png-ed6e01f1ac54da73a4b8e5d9ea986187.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_hit_anim_all_dir_strip_4.png"
+dest_files=["res://.godot/imported/bomberplant_hit_anim_all_dir_strip_4.png-38bc4111da8d211c7c1053efb6209d4d.ctex"]
 
 [params]
 

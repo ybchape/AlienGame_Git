@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfygasp0xx7cf"
-path="res://.godot/imported/phantom_spritesheet.png-7117e725c4fd281d8b430c9fc7de10aa.ctex"
+path="res://.godot/imported/phantom_spritesheet.png-42573c20faf5457560c3240f1114349e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_spritesheet.png"
-dest_files=["res://.godot/imported/phantom_spritesheet.png-7117e725c4fd281d8b430c9fc7de10aa.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_spritesheet.png"
+dest_files=["res://.godot/imported/phantom_spritesheet.png-42573c20faf5457560c3240f1114349e.ctex"]
 
 [params]
 

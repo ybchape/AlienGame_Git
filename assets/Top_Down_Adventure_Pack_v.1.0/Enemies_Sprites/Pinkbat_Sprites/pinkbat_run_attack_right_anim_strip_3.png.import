@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj6egxbbwskyd"
-path="res://.godot/imported/pinkbat_run_attack_right_anim_strip_3.png-fead3a45a6cf6b222bb1e7c06caee21c.ctex"
+path="res://.godot/imported/pinkbat_run_attack_right_anim_strip_3.png-94ab41c668e96bbb07badebd97b00be3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png"
-dest_files=["res://.godot/imported/pinkbat_run_attack_right_anim_strip_3.png-fead3a45a6cf6b222bb1e7c06caee21c.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png"
+dest_files=["res://.godot/imported/pinkbat_run_attack_right_anim_strip_3.png-94ab41c668e96bbb07badebd97b00be3.ctex"]
 
 [params]
 

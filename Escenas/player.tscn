@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bfxewwyabvp3t"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ohiiw"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="2_knqkl"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_left_anim_strip_6.png" id="3_ul4kv"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png" id="4_oba5i"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png" id="5_y717v"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_down_anim_strip_6.png" id="6_vwnoe"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_left_anim_strip_6.png" id="7_r84g6"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_right_anim_strip_6.png" id="8_m87nl"]
-[ext_resource type="Texture2D" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_up_anim_strip_6.png" id="9_2eo5y"]
+[ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://scripts/player.gd" id="1_ohiiw"]
+[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="2_knqkl"]
+[ext_resource type="Texture2D" uid="uid://irs2xxt00y0i" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_left_anim_strip_6.png" id="3_ul4kv"]
+[ext_resource type="Texture2D" uid="uid://cegwn7ej2thx3" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png" id="4_oba5i"]
+[ext_resource type="Texture2D" uid="uid://ddeovexc4t7vr" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png" id="5_y717v"]
+[ext_resource type="Texture2D" uid="uid://d4fb1la4scvyf" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_down_anim_strip_6.png" id="6_vwnoe"]
+[ext_resource type="Texture2D" uid="uid://dyjiji7ii1m5p" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_left_anim_strip_6.png" id="7_r84g6"]
+[ext_resource type="Texture2D" uid="uid://c1dmo7doc86w2" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_right_anim_strip_6.png" id="8_m87nl"]
+[ext_resource type="Texture2D" uid="uid://dsq4ot3xjbnnw" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_up_anim_strip_6.png" id="9_2eo5y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_knqkl")
@@ -393,7 +393,6 @@ animations = [{
 size = Vector2(8, 12)
 
 [node name="player" type="CharacterBody2D" unique_id=479222579]
-position = Vector2(89, 48)
 script = ExtResource("1_ohiiw")
 metadata/_edit_group_ = true
 

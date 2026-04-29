@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds2y256smohs7"
-path="res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-203b4b3984dc9d1f73021df01a2574b6.ctex"
+path="res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-54d2fe92f3d7c38731e6c616ca792f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spinner_Sprites/spinner_run_attack_anim_all_dir_strip_8.png"
-dest_files=["res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-203b4b3984dc9d1f73021df01a2574b6.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spinner_Sprites/spinner_run_attack_anim_all_dir_strip_8.png"
+dest_files=["res://.godot/imported/spinner_run_attack_anim_all_dir_strip_8.png-54d2fe92f3d7c38731e6c616ca792f5b.ctex"]
 
 [params]
 

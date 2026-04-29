@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dx54n1s3rb7ky"
-path="res://.godot/imported/spider_death_anim_all_dir_strip_8.png-66e19bcb442531e253b3ff1fc3ca1704.ctex"
+path="res://.godot/imported/spider_death_anim_all_dir_strip_8.png-58f4746c65f4447197538b015801210b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png"
-dest_files=["res://.godot/imported/spider_death_anim_all_dir_strip_8.png-66e19bcb442531e253b3ff1fc3ca1704.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png"
+dest_files=["res://.godot/imported/spider_death_anim_all_dir_strip_8.png-58f4746c65f4447197538b015801210b.ctex"]
 
 [params]
 

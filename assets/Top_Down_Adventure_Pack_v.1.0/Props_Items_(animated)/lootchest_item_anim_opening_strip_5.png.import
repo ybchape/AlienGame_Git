@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cam24jx5eqt8b"
-path="res://.godot/imported/lootchest_item_anim_opening_strip_5.png-6766bbf793882ffc4b69cb08f7b08836.ctex"
+path="res://.godot/imported/lootchest_item_anim_opening_strip_5.png-a3bc8a9e25fd58ef50b5e0042c33913f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/lootchest_item_anim_opening_strip_5.png"
-dest_files=["res://.godot/imported/lootchest_item_anim_opening_strip_5.png-6766bbf793882ffc4b69cb08f7b08836.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/lootchest_item_anim_opening_strip_5.png"
+dest_files=["res://.godot/imported/lootchest_item_anim_opening_strip_5.png-a3bc8a9e25fd58ef50b5e0042c33913f.ctex"]
 
 [params]
 

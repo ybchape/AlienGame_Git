@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnryd4i7pjyk8"
-path="res://.godot/imported/health_hud.png-23d9c17c2eebcae593cd78dc0658c6f8.ctex"
+path="res://.godot/imported/health_hud.png-e189428a6a21713fa4cef1bde6b375bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Hud_Ui/health_hud.png"
-dest_files=["res://.godot/imported/health_hud.png-23d9c17c2eebcae593cd78dc0658c6f8.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Hud_Ui/health_hud.png"
+dest_files=["res://.godot/imported/health_hud.png-e189428a6a21713fa4cef1bde6b375bd.ctex"]
 
 [params]
 

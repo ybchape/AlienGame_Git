@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv7e5141i2bpb"
-path="res://.godot/imported/bomb_explosion_anim_strip_8.png-a5151e7ae06eec2288e75594cb942e19.ctex"
+path="res://.godot/imported/bomb_explosion_anim_strip_8.png-a8037af842716327db574b2ff7b19efa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_explosion_anim_strip_8.png"
-dest_files=["res://.godot/imported/bomb_explosion_anim_strip_8.png-a5151e7ae06eec2288e75594cb942e19.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_explosion_anim_strip_8.png"
+dest_files=["res://.godot/imported/bomb_explosion_anim_strip_8.png-a8037af842716327db574b2ff7b19efa.ctex"]
 
 [params]
 

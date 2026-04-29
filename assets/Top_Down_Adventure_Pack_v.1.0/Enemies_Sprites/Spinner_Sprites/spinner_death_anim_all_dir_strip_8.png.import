@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2tnggrv1vfyl"
-path="res://.godot/imported/spinner_death_anim_all_dir_strip_8.png-86bda67822d386d384150c1e31dbd991.ctex"
+path="res://.godot/imported/spinner_death_anim_all_dir_strip_8.png-842531f4d0f0864eb40ad8a7ca7869d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spinner_Sprites/spinner_death_anim_all_dir_strip_8.png"
-dest_files=["res://.godot/imported/spinner_death_anim_all_dir_strip_8.png-86bda67822d386d384150c1e31dbd991.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spinner_Sprites/spinner_death_anim_all_dir_strip_8.png"
+dest_files=["res://.godot/imported/spinner_death_anim_all_dir_strip_8.png-842531f4d0f0864eb40ad8a7ca7869d8.ctex"]
 
 [params]
 
