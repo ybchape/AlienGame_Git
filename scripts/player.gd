@@ -5,7 +5,6 @@ var speed = 70.0
 var last_direction = "down"
 var is_digging = false # variable para cavar
 
-
 func _physics_process(_delta: float) -> void:
 	if not is_digging:
 		get_input()

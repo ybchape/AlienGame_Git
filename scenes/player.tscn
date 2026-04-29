@@ -393,6 +393,7 @@ animations = [{
 size = Vector2(8, 12)
 
 [node name="player" type="CharacterBody2D" unique_id=479222579]
+position = Vector2(89, 48)
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
 
