@@ -13,7 +13,15 @@ config_version=5
 config/name="AlienGame"
 run/main_scene="uid://ddiw74mjgull7"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Asset/icon.svg"
+
+[autoload]
+
+GameManager="*uid://duweayaxlsq5q"
+
+[global_group]
+
+enemigos=""
 
 [display]
 
