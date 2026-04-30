@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lme48mxc050m"
-path="res://.godot/imported/parallax-space-backgound.png-0a5ac8bacd9f691269f0d16ef2696037.ctex"
+path="res://.godot/imported/parallax-space-backgound.png-42a2a444137c768dec9810cc863cb748.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/parallax-space-backgound.png"
-dest_files=["res://.godot/imported/parallax-space-backgound.png-0a5ac8bacd9f691269f0d16ef2696037.ctex"]
+source_file="res://assets/parallax-space-backgound.png"
+dest_files=["res://.godot/imported/parallax-space-backgound.png-42a2a444137c768dec9810cc863cb748.ctex"]
 
 [params]
 
