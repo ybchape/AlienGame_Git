@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://df0wos767uxby"]
+
+[node name="escena_combate" type="Control" unique_id=1821735990]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1630362063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1107.0
+offset_bottom = 606.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)

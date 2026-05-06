@@ -14,6 +14,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "player": 
+		_preparar_combate()
+
 #"Lenamos" de datos el autoload can los datos del enemigo
 func _preparar_combate():
 	GameManager.enemigo_actual_datos = {
@@ -24,7 +28,8 @@ func _preparar_combate():
 		"textura": preload("res://Assets/icon.svg")
 	}
 	#Cambio a la escena de combate
-	#get_tree().change_scene_to_file()
+	get_tree().change_scene_to_file("res://Escenas/escena_combate/escena_combate.tscn")
+
 func _otorgar_recompensa():
 # Reducimos el frenesí biológico obligatoriamente al ganar
 	GameManager.actualizar_frenesi(-reduccion_frenesi)
