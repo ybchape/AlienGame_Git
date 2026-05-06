@@ -13,17 +13,36 @@ func actualizar_frenesi(valor):
 	
  # Funcion global para cavar/romper bloques
 func romper_bloque(player_position: Vector2, direccion: String):
-	var espacio = get_tree().current_scene
-	# Busca objetos del grupo "bloques"
-	for bloque in espacio.get_tree().get_nodes_in_group("bloques"):
-		# Si hay uno cerca del player a menos de 20 px lo elimina e imprime bloque roto.
-		var distancia = bloque.global_position.distance_to(player_position)
-		if distancia < 20:
-			print ("Bloque roto")
+
+# Calcula posición del player + 16px a la direccfion indicada y busca un bloque ahi
+	var offset = Vector2.ZERO
+	var distancia_cavar = 16 # 16px
+
+	match direccion:
+		"up":
+			offset = Vector2(0, -distancia_cavar)
+
+		"down":
+			offset = Vector2(0, distancia_cavar)
+
+		"left":
+			offset = Vector2(-distancia_cavar, 0)
+
+		"right":
+			offset = Vector2(distancia_cavar, 0)
+
+	var punto_objetivo = player_position + offset
+
+	print("Buscando bloque en:", punto_objetivo)
+
+	for bloque in get_tree().get_nodes_in_group("bloques"):
+
+		var distancia = bloque.global_position.distance_to(punto_objetivo)
+
+		if distancia < 8:
+			print("Bloque roto hacia:", direccion)
 			bloque.queue_free()
 			return
-		print ("No hay bloque cerca")
 
-	#print("Player cavando desde:", player_position)
-	#print ("Dirección", direccion)
+	print("No hay bloque en esa dirección")
 	
