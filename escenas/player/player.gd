@@ -47,8 +47,8 @@ func _unhandled_key_input(event: InputEvent):
 func ejecutar_cavar():
 	print("Intentando cavar hacia:", last_direction)
 	# llamamos al autoload de chape. No funciona porque no mergeamos a main y aca no sta declarada la func romper_bloque
-	#if GameManager:
-		#GameManager.romper_bloque(global_position, last_direction)
+	if GameManager:
+		GameManager.romper_bloque(global_position, last_direction)
 
 # update animations. Si state es "idle" y last_direction = "down", se reproduce la anim. "idle_down"
 func update_animation(state):
