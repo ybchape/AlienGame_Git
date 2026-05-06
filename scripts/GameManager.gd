@@ -33,3 +33,13 @@ func romper_bloque(player_position: Vector2, direccion: String):
 	print("Player cavando desde:", player_position)
 	print ("Dirección", direccion)
 	
+	# Agregar carta cuando se necesite
+func agregar_carta(nueva_carta: Dictionary):
+	mazo_jugador.append(nueva_carta)
+	print("Nueva carta añadida al mazo.")
+
+#Eminimar carta cuando se necesite
+func eliminar_carta(indice: int):
+	if mazo_jugador.size() > 5: # Regla de diseño: no quedarse sin cartas
+		mazo_jugador.remove_at(indice)
+		print("Carta eliminada del mazo.")

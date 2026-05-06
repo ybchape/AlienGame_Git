@@ -17,9 +17,11 @@ func _process(delta: float) -> void:
 #"Lenamos" de datos el autoload can los datos del enemigo
 func _preparar_combate():
 	GameManager.enemigo_actual_datos = {
+		"nombre": "Enemigo Debil",
 		"vida": vida_maxima, 
 		"frenesi": reduccion_frenesi,
-		"tipo": "debil"
+		"Daño_fijo": 5,
+		"textura": preload("res://Assets/icon.svg")
 	}
 	#Cambio a la escena de combate
 	#get_tree().change_scene_to_file()
