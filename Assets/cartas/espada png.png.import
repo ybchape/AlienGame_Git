@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by7pu1pjumalm"
-path="res://.godot/imported/Golpe de Chatarra.jpg-f44420e8c29937c53f1b8c30650b9aa1.ctex"
+uid="uid://hqp2bigt0ywe"
+path="res://.godot/imported/espada png.png-5acc4cb11e195aee2da203fc073de00a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Golpe de Chatarra.jpg"
-dest_files=["res://.godot/imported/Golpe de Chatarra.jpg-f44420e8c29937c53f1b8c30650b9aa1.ctex"]
+source_file="res://Assets/cartas/espada png.png"
+dest_files=["res://.godot/imported/espada png.png-5acc4cb11e195aee2da203fc073de00a.ctex"]
 
 [params]
 

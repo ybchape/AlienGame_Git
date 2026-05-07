@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by7pu1pjumalm"
-path="res://.godot/imported/Golpe de Chatarra.jpg-f44420e8c29937c53f1b8c30650b9aa1.ctex"
+uid="uid://ddeetmyx2jxm8"
+path="res://.godot/imported/circulo azul.jpg-e0cbeecc48e65aedc35d0934b3caf20a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Golpe de Chatarra.jpg"
-dest_files=["res://.godot/imported/Golpe de Chatarra.jpg-f44420e8c29937c53f1b8c30650b9aa1.ctex"]
+source_file="res://Assets/cartas/circulo azul.jpg"
+dest_files=["res://.godot/imported/circulo azul.jpg-e0cbeecc48e65aedc35d0934b3caf20a.ctex"]
 
 [params]
 
