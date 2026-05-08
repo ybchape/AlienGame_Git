@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddeovexc4t7vr"
-path="res://.godot/imported/char_idle_up_anim_strip_6.png-375a97af3aebadbe595e4bbb60440db0.ctex"
+uid="uid://bm6opcy5f1cai"
+path="res://.godot/imported/escudo.jpg-a28b160aa1de144b56f7257d16df5485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png"
-dest_files=["res://.godot/imported/char_idle_up_anim_strip_6.png-375a97af3aebadbe595e4bbb60440db0.ctex"]
+source_file="res://Assets/cartas/escudo.jpg"
+dest_files=["res://.godot/imported/escudo.jpg-a28b160aa1de144b56f7257d16df5485.ctex"]
 
 [params]
 

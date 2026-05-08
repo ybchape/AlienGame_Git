@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddeovexc4t7vr"
-path="res://.godot/imported/char_idle_up_anim_strip_6.png-375a97af3aebadbe595e4bbb60440db0.ctex"
+uid="uid://co2esj2dck6bv"
+path="res://.godot/imported/Instinto de Presa.jpg-8f130476810a899ffcb7580d314bd49b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png"
-dest_files=["res://.godot/imported/char_idle_up_anim_strip_6.png-375a97af3aebadbe595e4bbb60440db0.ctex"]
+source_file="res://Assets/cartas/Instinto de Presa.jpg"
+dest_files=["res://.godot/imported/Instinto de Presa.jpg-8f130476810a899ffcb7580d314bd49b.ctex"]
 
 [params]
 
