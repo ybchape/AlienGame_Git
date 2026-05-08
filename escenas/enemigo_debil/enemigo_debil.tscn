@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dny24yox1owcc"]
 
-[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="1_3mvyd"]
-[ext_resource type="Script" uid="uid://csq3b7bsc37po" path="res://Escenas/enemigo_debil/enemigo_debil.gd" id="2_85yvu"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://assets/icon.svg" id="1_3mvyd"]
+[ext_resource type="Script" uid="uid://csq3b7bsc37po" path="res://escenas/enemigo_debil/enemigo_debil.gd" id="2_85yvu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_85yvu"]
 animations = [{
@@ -36,5 +36,3 @@ shape = SubResource("RectangleShape2D_wrmih")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=152318019]
 position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_bphnh")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
