@@ -25,11 +25,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 #"Lenamos" de datos el autoload can los datos del enemigo
 func _preparar_combate():
 	GameManager.enemigo_actual_datos = {
-		"nombre": "Enemigo Debil",
 		"tipo_enemigo":"debil",
 		"vida": vida_maxima, 
 		"frenesi": reduccion_frenesi,
 		"Daño_fijo": 10,
+		"daño_poder": 25,
 		"textura": preload("res://Assets/icon.svg")
 	}
 	#Cambio a la escena de combate

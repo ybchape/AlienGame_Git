@@ -133,10 +133,26 @@ func turno_del_enemigo():
 			if decision == 0:
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El enemigo débil ataca por: ", dano_enemigo)
-			else:
+			elif decision == 1:
 				escudo_enemigo_actual += 7
 				print("El enemigo débil se protege.")
-				
+			else: 
+				#Ejecuta el poder
+				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
+				print("El enemigo débil usa Poder por: ", dano_enemigo)
+		
+		"medio":
+			# IA DEL ENEMIGO MEDIO
+			if decision == 0:
+				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
+				print("El enemigo medio ataca por: ", dano_enemigo)
+			elif decision == 1:
+				escudo_enemigo_actual += 12 # Se pone más escudo que el débil
+				print("El enemigo medio se protege.")
+			else:
+				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
+				print("El enemigo medio usa Poder por: ", dano_enemigo)
+		
 		"jefe":
 			# IA DEL JEFE (Ataques especiales)
 			if decision == 0:
@@ -179,20 +195,20 @@ func turno_del_enemigo():
 func planear_proxima_accion():
 	# Leemos el tipo de enemigo (por defecto "debil")
 	var tipo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
-	
-	if tipo == "debil":
-		proxima_accion_enemigo = randi() % 2 # 0 o 1
-	elif tipo == "jefe":
-		proxima_accion_enemigo = randi() % 3 # 0, 1 o 2
+	# Ahora TODOS (débil, medio, jefe) eligen entre 3 opciones
+	# 0 = Ataque Normal, 1 = Escudo, 2 = Poder
+	proxima_accion_enemigo = randi() % 3 
 		
 	# Mostramos la intención visualmente con Emojis
 	if proxima_accion_enemigo == 0:
 		var dano = GameManager.enemigo_actual_datos["Daño_fijo"]
 		label_intencion.text = "⚔️ Atacará (" + str(dano) + ")"
 	elif proxima_accion_enemigo == 1:
-		label_intencion.text = "🛡️ Se defenderá"
+		label_intencion.text = "🛡️"
 	else:
-		label_intencion.text = "⚠️ ¡Ataque Especial!"
+		# Buscamos el daño de poder
+		var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
+		label_intencion.text = "🔥 (" + str(dano_poder) + ")"
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")

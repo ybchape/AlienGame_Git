@@ -80,7 +80,7 @@ color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)
 position = Vector2(206.00002, 131.00002)
 scale = Vector2(9.71875, 10.406251)
 sprite_frames = SubResource("SpriteFrames_43djd")
-frame_progress = 0.72690934
+frame_progress = 0.11214228
 
 [node name="SpriteEnemigo" type="Sprite2D" parent="." unique_id=1687600007]
 position = Vector2(893, 144)

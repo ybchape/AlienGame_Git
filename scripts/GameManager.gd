@@ -9,6 +9,9 @@ var vida_jugador: int = 80
 func _ready() -> void:
 	pass # Replace with function body.
 
+# --- LÍMITES DEL MAZO ---
+const MAZO_MINIMO = 5
+const MAZO_MAXIMO = 15
 #El mazo inicial que va a tener el jugador
 var mazo_jugador = [
 	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 6, "escudo": 0, "roba": 0},
@@ -19,7 +22,7 @@ var mazo_jugador = [
 	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
 	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
 	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
-	{"nombre": "Instinto de Presa", "tipo": "Ataque", "coste": 2, "daño": 10, "escudo": 0, "roba": 0},
+	{"nombre": "Instinto de Presa", "tipo": "Poder", "coste": 2, "daño": 10, "escudo": 0, "roba": 0},
 	{"nombre": "Análisis de Bioma", "tipo": "Capacidad", "coste": 0, "daño": 0, "escudo": 0, "roba": 1}
 ]
 
@@ -35,11 +38,16 @@ func romper_bloque(player_position: Vector2, direccion: String):
 	
 	# Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: Dictionary):
-	mazo_jugador.append(nueva_carta)
-	print("Nueva carta añadida al mazo.")
+	if mazo_jugador.size() < MAZO_MAXIMO:
+		mazo_jugador.append(nueva_carta)
+		print("Nueva carta añadida al mazo. Total actual: ", mazo_jugador.size())
+	else:
+		print("Mazo lleno. Alcanzaste el límite máximo de ", MAZO_MAXIMO, " cartas.")
 
 #Eminimar carta cuando se necesite
 func eliminar_carta(indice: int):
-	if mazo_jugador.size() > 5: # Regla de diseño: no quedarse sin cartas
+	if mazo_jugador.size() > MAZO_MINIMO:
 		mazo_jugador.remove_at(indice)
-		print("Carta eliminada del mazo.")
+		print("Carta eliminada del mazo. Total actual: ", mazo_jugador.size())
+	else:
+		print("Acción bloqueada: Tu mazo no puede tener menos de ", MAZO_MINIMO, " cartas.")
