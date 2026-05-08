@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hqp2bigt0ywe"
-path="res://.godot/imported/espada png.png-5acc4cb11e195aee2da203fc073de00a.ctex"
+path="res://.godot/imported/espada png.png-5969c18c7b43012f22e0fc061b2db507.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/espada png.png"
-dest_files=["res://.godot/imported/espada png.png-5acc4cb11e195aee2da203fc073de00a.ctex"]
+source_file="res://assets/cartas/espada png.png"
+dest_files=["res://.godot/imported/espada png.png-5969c18c7b43012f22e0fc061b2db507.ctex"]
 
 [params]
 

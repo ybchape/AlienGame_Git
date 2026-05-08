@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddiw74mjgull7"]
 
-[ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://escenas/player/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://Escenas/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://ddeovexc4t7vr" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://d4fb1la4scvyf" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_down_anim_strip_6.png" id="4_smehm"]
