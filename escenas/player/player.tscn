@@ -390,7 +390,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(8, 12)
+size = Vector2(7, 10)
 
 [node name="player" type="CharacterBody2D" unique_id=479222579]
 script = ExtResource("1_g2els")
@@ -404,3 +404,6 @@ autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=202754488]
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1189716133]
+target_position = Vector2(0, 16)

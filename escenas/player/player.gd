@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ray = $RayCast2D # Nodo para calcular la distancia de los bloques en base al rayo que tiene (flecha)
 
 var speed = 70.0
 var last_direction = "down"
@@ -45,10 +46,21 @@ func _unhandled_key_input(event: InputEvent):
 
 # Conectar esta función con el autoload del mapa
 func ejecutar_cavar():
-	print("Intentando cavar hacia:", last_direction)
-	# llamamos al autoload de chape. No funciona porque no mergeamos a main y aca no sta declarada la func romper_bloque
-	#if GameManager:
-		#GameManager.romper_bloque(global_position, last_direction)
+
+	match last_direction:
+		#update de hacia donde apunta el rayo antes de romper el bloque segun hacia donde mire el pj
+		"up": ray.target_position = Vector2(0, -10)
+		"down": ray.target_position = Vector2(0, 10)
+		"left": ray.target_position = Vector2(-10, 0)
+		"right": ray.target_position = Vector2(10, 0)
+
+	ray.force_raycast_update() 
+
+	if ray.is_colliding():
+		var objeto = ray.get_collider()
+		if objeto.is_in_group("bloques"):
+			objeto.queue_free()
+			print("Bloque roto con nodo raycast")
 
 # update animations. Si state es "idle" y last_direction = "down", se reproduce la anim. "idle_down"
 func update_animation(state):
