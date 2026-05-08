@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqwp4s75vtwib"]
 
-[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://Escenas/carta/carta_ui.gd" id="1_06qds"]
+[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://escenas/carta/carta_ui.gd" id="1_06qds"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hpuhu"]
 load_path = "res://.godot/imported/cata.jpg-046eb10ab38b8a94721202ef53e60931.ctex"

@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://db6ug8c5vqqx0" path="res://assets/parallax-space-ring-planet.png" id="4_ictn0"]
 [ext_resource type="Texture2D" uid="uid://crjvbte26dwl7" path="res://assets/parallax-space-stars.png" id="5_pt7cf"]
 [ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://assets/Dungeon_Tileset.png" id="6_sv3hn"]
-[ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
-[ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
+[ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://escenas/player/player.tscn" id="7_htiw2"]
+[ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
