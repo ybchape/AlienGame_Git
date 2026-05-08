@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://assets/Dungeon_Tileset.png" id="6_sv3hn"]
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
+
 [ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://escenas/block.tscn" id="9_asb8d"]
+
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
