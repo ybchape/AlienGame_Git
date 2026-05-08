@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-#"Lenamos" de datos el autoload can los datos del enemigo
+#Lenamos de datos el autoload can los datos del enemigo
 func _preparar_combate():
 	GameManager.enemigo_actual_datos = {
 		"vida": vida_maxima, 

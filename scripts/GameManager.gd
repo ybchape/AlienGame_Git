@@ -39,7 +39,7 @@ func romper_bloque(player_position: Vector2, direccion: String):
 
 		var distancia = bloque.global_position.distance_to(punto_objetivo)
 
-		if distancia < 8:
+		if distancia < 12:
 			print("Bloque roto hacia:", direccion)
 			bloque.queue_free()
 			return
