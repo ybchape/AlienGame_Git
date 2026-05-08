@@ -14,7 +14,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-#Lenamos de datos el autoload can los datos del enemigo
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("ALERTA: Algo tocó el Area2D. Nombre del objeto: ", body.name)
 	if body.name == "player": 
