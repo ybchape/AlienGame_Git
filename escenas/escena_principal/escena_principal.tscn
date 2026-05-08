@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://7cglwi67baqw"]
 
+test-romper-bloques
 [ext_resource type="Texture2D" uid="uid://lme48mxc050m" path="res://assets/parallax-space-backgound.png" id="1_px6n3"]
 [ext_resource type="Texture2D" uid="uid://jsljcb7hbalh" path="res://assets/parallax-space-big-planet.png" id="2_e307b"]
 [ext_resource type="Texture2D" uid="uid://dwaflbpdtc46r" path="res://assets/parallax-space-far-planets.png" id="3_asb8d"]
@@ -9,6 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
 [ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://escenas/block.tscn" id="9_asb8d"]
+
+[ext_resource type="Texture2D" uid="uid://lme48mxc050m" path="res://Assets/parallax-space-backgound.png" id="1_px6n3"]
+[ext_resource type="Texture2D" uid="uid://jsljcb7hbalh" path="res://Assets/parallax-space-big-planet.png" id="2_e307b"]
+[ext_resource type="Texture2D" uid="uid://dwaflbpdtc46r" path="res://Assets/parallax-space-far-planets.png" id="3_asb8d"]
+[ext_resource type="Texture2D" uid="uid://db6ug8c5vqqx0" path="res://Assets/parallax-space-ring-planet.png" id="4_ictn0"]
+[ext_resource type="Texture2D" uid="uid://crjvbte26dwl7" path="res://Assets/parallax-space-stars.png" id="5_pt7cf"]
+[ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://Assets/Dungeon_Tileset.png" id="6_sv3hn"]
+[ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
+[ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
+ main
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
