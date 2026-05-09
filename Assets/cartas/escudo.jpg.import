@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm6opcy5f1cai"
-path="res://.godot/imported/escudo.jpg-818d39ea40d757176994694bf1c44a09.ctex"
+path="res://.godot/imported/escudo.jpg-a28b160aa1de144b56f7257d16df5485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cartas/escudo.jpg"
-dest_files=["res://.godot/imported/escudo.jpg-818d39ea40d757176994694bf1c44a09.ctex"]
+source_file="res://Assets/cartas/escudo.jpg"
+dest_files=["res://.godot/imported/escudo.jpg-a28b160aa1de144b56f7257d16df5485.ctex"]
 
 [params]
 

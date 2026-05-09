@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crjvbte26dwl7"
-path="res://.godot/imported/parallax-space-stars.png-5a18c9aaec1801c8a9e2e682cc2fe17a.ctex"
+path="res://.godot/imported/parallax-space-stars.png-7ae17bde07017b9d62e9a8c02b04164c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/parallax-space-stars.png"
-dest_files=["res://.godot/imported/parallax-space-stars.png-5a18c9aaec1801c8a9e2e682cc2fe17a.ctex"]
+source_file="res://Assets/parallax-space-stars.png"
+dest_files=["res://.godot/imported/parallax-space-stars.png-7ae17bde07017b9d62e9a8c02b04164c.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cegwn7ej2thx3"
-path="res://.godot/imported/char_idle_right_anim_strip_6.png-eead7888a848ae8882a1fbdcba918a27.ctex"
+path="res://.godot/imported/char_idle_right_anim_strip_6.png-fac55ddeadb474d88d1665879c844f61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png"
-dest_files=["res://.godot/imported/char_idle_right_anim_strip_6.png-eead7888a848ae8882a1fbdcba918a27.ctex"]
+source_file="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png"
+dest_files=["res://.godot/imported/char_idle_right_anim_strip_6.png-fac55ddeadb474d88d1665879c844f61.ctex"]
 
 [params]
 
