@@ -30,10 +30,10 @@ func _preparar_combate():
 		"frenesi": reduccion_frenesi,
 		"Daño_fijo": 10,
 		"daño_poder": 25,
-		"textura": preload("res://Assets/icon.svg")
+		"textura": preload("res://assets/icon.svg")
 	}
 	#Cambio a la escena de combate
-	get_tree().change_scene_to_file("res://Escenas/escena_combate/escena_combate.tscn")
+	get_tree().change_scene_to_file("res://escenas/escena_combate/escena_combate.tscn")
 
 func _otorgar_recompensa():
 # Reducimos el frenesí biológico obligatoriamente al ganar

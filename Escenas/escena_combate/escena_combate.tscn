@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://df0wos767uxby"]
 
-[ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
-[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
-[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="2_6mo4l"]
-[ext_resource type="Texture2D" uid="uid://bbpamkhluff5" path="res://Assets/cartas/circulo rojo.jpg" id="4_61bmk"]
-[ext_resource type="Texture2D" uid="uid://ddeetmyx2jxm8" path="res://Assets/cartas/circulo azul.jpg" id="5_7gp4f"]
+[ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
+[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://assets/icon.svg" id="2_6mo4l"]
+[ext_resource type="Texture2D" uid="uid://bbpamkhluff5" path="res://assets/cartas/circulo rojo.jpg" id="4_61bmk"]
+[ext_resource type="Texture2D" uid="uid://ddeetmyx2jxm8" path="res://assets/cartas/circulo azul.jpg" id="5_7gp4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q732s"]
 atlas = ExtResource("1_j4tvv")

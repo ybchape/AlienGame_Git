@@ -1,5 +1,5 @@
 extends Control
-var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
+var molde_carta = preload("res://escenas/carta/carta_ui.tscn")
 @onready var mano_visual = $ManoCartas
 @onready var label_energia = $LabelEnergia
 @onready var barra_vida_enemigo = $BarraVidaEnemigo
@@ -88,7 +88,7 @@ func _jugar_carta(nodo, datos):
 		
 		if barra_vida_enemigo.value <= 0:
 			print("Victoria")
-			get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+			get_tree().change_scene_to_file("res://escenas/escena_principal/escena_principal.tscn")
 	else:
 		print("Energía insuficiente")
 		nodo.volver_a_mano()
@@ -182,7 +182,7 @@ func turno_del_enemigo():
 				GameManager.vida_jugador = 80 # Resetea la vida para la próxima partida
 				
 				# Cambiá esta ruta por la de tu menú o nivel 1
-				get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn") 
+				get_tree().change_scene_to_file("res://escenas/escena_principal/escena_principal.tscn") 
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
 
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
