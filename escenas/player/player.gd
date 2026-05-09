@@ -65,3 +65,4 @@ func ejecutar_cavar():
 # update animations. Si state es "idle" y last_direction = "down", se reproduce la anim. "idle_down"
 func update_animation(state):
 	animated_sprite.play(state + "_" + last_direction)
+	#basta, estoy cansada! y triste :c

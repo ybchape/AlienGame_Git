@@ -762,28 +762,28 @@ position = Vector2(190, 441)
 position = Vector2(128, 180.00003)
 
 [node name="Block" parent="." unique_id=626792140 instance=ExtResource("9_asb8d")]
-position = Vector2(136, 368)
+position = Vector2(102, 367)
 
 [node name="Block2" parent="." unique_id=809481566 instance=ExtResource("9_asb8d")]
-position = Vector2(152, 400)
+position = Vector2(164, 414)
 
 [node name="Block3" parent="." unique_id=1261413245 instance=ExtResource("9_asb8d")]
-position = Vector2(152, 384)
+position = Vector2(177, 364)
 
 [node name="Block4" parent="." unique_id=105028653 instance=ExtResource("9_asb8d")]
 position = Vector2(152, 368)
 
 [node name="Block5" parent="." unique_id=414303027 instance=ExtResource("9_asb8d")]
-position = Vector2(168, 384)
+position = Vector2(196, 385)
 
 [node name="Block6" parent="." unique_id=1196699730 instance=ExtResource("9_asb8d")]
-position = Vector2(136, 400)
+position = Vector2(129, 421)
 
 [node name="Block7" parent="." unique_id=1841421502 instance=ExtResource("9_asb8d")]
-position = Vector2(168, 400)
+position = Vector2(200, 415)
 
 [node name="Block8" parent="." unique_id=1667541019 instance=ExtResource("9_asb8d")]
-position = Vector2(168, 368)
+position = Vector2(200, 366)
 
 [node name="Block9" parent="." unique_id=211741795 instance=ExtResource("9_asb8d")]
-position = Vector2(136, 384)
+position = Vector2(126, 379)
