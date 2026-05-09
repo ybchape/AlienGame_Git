@@ -1,15 +1,13 @@
 [gd_scene format=3 uid="uid://bqwp4s75vtwib"]
 
-[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://Escenas/carta/carta_ui.gd" id="1_06qds"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hpuhu"]
-load_path = "res://.godot/imported/cata.jpg-046eb10ab38b8a94721202ef53e60931.ctex"
+[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://escenas/carta/carta_ui.gd" id="1_06qds"]
+[ext_resource type="Texture2D" uid="uid://dfh1w24isbmdn" path="res://assets/cartas/Análisis de Bioma.jpg" id="1_32oac"]
 
 [node name="CartaUI" type="TextureButton" unique_id=168635153]
 custom_minimum_size = Vector2(100, 140)
 offset_right = 190.0
 offset_bottom = 265.0
-texture_normal = SubResource("CompressedTexture2D_hpuhu")
+texture_normal = ExtResource("1_32oac")
 script = ExtResource("1_06qds")
 
 [node name="Titulo" type="Label" parent="." unique_id=552010089]
