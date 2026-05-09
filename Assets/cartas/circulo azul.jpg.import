@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddeetmyx2jxm8"
-path="res://.godot/imported/circulo azul.jpg-e0cbeecc48e65aedc35d0934b3caf20a.ctex"
+path="res://.godot/imported/circulo azul.jpg-5824a7c2413a84445cd0063099b6412d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/circulo azul.jpg"
-dest_files=["res://.godot/imported/circulo azul.jpg-e0cbeecc48e65aedc35d0934b3caf20a.ctex"]
+source_file="res://assets/cartas/circulo azul.jpg"
+dest_files=["res://.godot/imported/circulo azul.jpg-5824a7c2413a84445cd0063099b6412d.ctex"]
 
 [params]
 
