@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
 [ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/block.tscn" id="9_asb8d"]
+[ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="10_o0x7m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -785,3 +786,5 @@ position = Vector2(218, 433)
 
 [node name="Block9" parent="." unique_id=756574962 instance=ExtResource("9_asb8d")]
 position = Vector2(217, 380)
+
+[node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("10_o0x7m")]
