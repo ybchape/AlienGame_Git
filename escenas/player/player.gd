@@ -25,6 +25,7 @@ func get_input():
 			update_animation("idle")
 
 	else:
+		GameManager.actualizar_frenesi(0.02) #Aumenta el frenesi al explorar, se detiene cuando está quieto
 	# lógica de direcciones de movimiento
 		if abs (input_direction.x) > abs(input_direction.y):
 			# Movimiento horizontal

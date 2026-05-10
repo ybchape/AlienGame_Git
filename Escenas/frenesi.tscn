@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://okin73svatw4" path="res://Assets/barra/barra roja 2.0.png" id="1_0x586"]
 [ext_resource type="Texture2D" uid="uid://komc1s2c4jw3" path="res://Assets/barra/borde barra.png" id="2_hkt45"]
 [ext_resource type="Texture2D" uid="uid://c1iq5bq1020cb" path="res://Assets/barra/barra verde.png" id="3_cwi3s"]
+[ext_resource type="Script" uid="uid://bogrx05mwf1mc" path="res://Escenas/texture_progress_bar.gd" id="4_hkt45"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1166767327]
 
@@ -12,3 +13,4 @@ offset_bottom = 40.0
 texture_under = ExtResource("1_0x586")
 texture_over = ExtResource("2_hkt45")
 texture_progress = ExtResource("3_cwi3s")
+script = ExtResource("4_hkt45")
