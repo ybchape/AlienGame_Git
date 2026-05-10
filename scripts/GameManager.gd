@@ -1,7 +1,9 @@
 extends Node
 #Guarda los datos del enemigo que tocaste para que la pantalla de combate sepa qué mostrar
+
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
+var frenesi_maximo: float = 100.0
 var vida_jugador: int = 80
 
 
@@ -27,9 +29,17 @@ var mazo_jugador = [
 ]
 
 # Función para que cualquier objeto pueda alterar el frenesí
-func actualizar_frenesi(valor):
-	frenesi_actual = clamp(frenesi_actual + valor, 0, 100)
+func actualizar_frenesi(cantidad: float):
+	frenesi_actual += cantidad
+	frenesi_actual = clamp(frenesi_actual, 0, frenesi_maximo)
 	print("Frenesí biológico en: ", frenesi_actual)
+	
+	if frenesi_actual >= frenesi_maximo:
+		morir_por_frenesi()
+		
+func morir_por_frenesi():
+	print("El virus de descontroló")
+	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
 
 	# Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: Dictionary):
