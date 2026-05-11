@@ -397,6 +397,13 @@ size = Vector2(7, 10)
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=340361256]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_top = 0
+limit_right = 1087
+limit_bottom = 650
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=141873817]
 scale = Vector2(0.9375006, 1.2187494)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
