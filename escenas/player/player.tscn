@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dsq4ot3xjbnnw" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_up_anim_strip_6.png" id="7_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://dyjiji7ii1m5p" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_left_anim_strip_6.png" id="7_ur7pv"]
 [ext_resource type="Texture2D" uid="uid://c1dmo7doc86w2" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_right_anim_strip_6.png" id="8_y4r1p"]
+
 [ext_resource type="Texture2D" uid="uid://c4bqxkehcnba5" path="res://Assets/Circulo blanco.png" id="10_f0w31"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -393,7 +395,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(7, 10)
 
-[node name="player" type="CharacterBody2D" unique_id=479222579]
+[node name="player" type="CharacterBody2D" unique_id=479222579 groups=["player"]]
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
 
