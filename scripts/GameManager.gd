@@ -3,6 +3,11 @@ extends Node
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
 var vida_jugador: int = 80
+
+var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
+var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
+var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta 
+
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
@@ -67,6 +72,7 @@ func procesar_eleccion(id_evento, opcion):
 	# Reanuda el juego
 	get_tree().paused = false
 # ACA TERMINA EL CODIGO DE CORI!!!!!#
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
