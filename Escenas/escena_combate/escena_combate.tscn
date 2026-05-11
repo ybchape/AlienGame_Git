@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://df0wos767uxby"]
 
-[ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
-[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
-[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://assets/icon.svg" id="2_6mo4l"]
-[ext_resource type="Texture2D" uid="uid://bbpamkhluff5" path="res://assets/cartas/circulo rojo.jpg" id="4_61bmk"]
-[ext_resource type="Texture2D" uid="uid://ddeetmyx2jxm8" path="res://assets/cartas/circulo azul.jpg" id="5_7gp4f"]
+[ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
+[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="2_6mo4l"]
+[ext_resource type="Texture2D" uid="uid://bbpamkhluff5" path="res://Assets/cartas/circulo rojo.jpg" id="4_61bmk"]
+[ext_resource type="Texture2D" uid="uid://ddeetmyx2jxm8" path="res://Assets/cartas/circulo azul.jpg" id="5_7gp4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q732s"]
 atlas = ExtResource("1_j4tvv")
@@ -105,10 +105,10 @@ text = "Energia 3"
 
 [node name="ManoCartas" type="HBoxContainer" parent="." unique_id=488136199]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 291.0
-offset_right = 1146.0
-offset_bottom = 645.0
+offset_left = 11.0
+offset_top = 302.0
+offset_right = 1148.0
+offset_bottom = 647.0
 
 [node name="Button" type="Button" parent="." unique_id=908103992]
 layout_mode = 0
@@ -179,4 +179,28 @@ offset_top = 85.0
 offset_right = 753.0
 offset_bottom = 108.0
 
+[node name="CapaFinal" type="CanvasLayer" parent="." unique_id=1700847043]
+
+[node name="Panel" type="Panel" parent="CapaFinal" unique_id=1114242252]
+visible = false
+offset_right = 1170.0
+offset_bottom = 678.0
+
+[node name="Label" type="Label" parent="CapaFinal/Panel" unique_id=1185618341]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 142.0
+offset_right = 816.0
+offset_bottom = 372.0
+
+[node name="Continuar" type="Button" parent="CapaFinal/Panel" unique_id=1182068289]
+layout_mode = 0
+offset_left = 861.0
+offset_top = 486.0
+offset_right = 1085.0
+offset_bottom = 586.0
+theme_override_font_sizes/font_size = 39
+text = "Continuar"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]

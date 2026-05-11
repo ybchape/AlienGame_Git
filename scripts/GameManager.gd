@@ -4,6 +4,9 @@ var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
 var vida_jugador: int = 80
 
+var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
+
+var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

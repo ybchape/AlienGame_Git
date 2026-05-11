@@ -7,7 +7,10 @@ var reduccion_frenesi = 10
 func _ready() -> void:
 	# Lo metemos en un grupo para que el jugador lo identifique al chocar
 	add_to_group("enemigos")
-	pass # Replace with function body.
+	
+	# NUEVO: Si mi nombre ya está en la lista de vencidos, desaparezco del mapa
+	if name in GameManager.enemigos_derrotados:
+		queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +20,9 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("ALERTA: Algo tocó el Area2D. Nombre del objeto: ", body.name)
 	if body.name == "player": 
+		# GUARDAMOS LA POSICIÓN: memoriza dónde está el jugador ahora mismo
+		GameManager.posicion_jugador_en_mapa = body.global_position
+		
 		print("¡ÉXITO! Reconoció al jugador. Pasando a escena de combate...")
 		call_deferred("_preparar_combate")
 	else:
@@ -25,6 +31,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 #"Lenamos" de datos el autoload can los datos del enemigo
 func _preparar_combate():
 	GameManager.enemigo_actual_datos = {
+		"nombre_en_escena": name,# GUARDAMOS EL NOMBRE para saber a quién borrar luego
 		"tipo_enemigo":"debil",
 		"vida": vida_maxima, 
 		"frenesi": reduccion_frenesi,
