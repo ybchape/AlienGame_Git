@@ -10,7 +10,15 @@ var eventos_disponibles = [
 		"texto": "Encuentras una cápsula antigua. ¿Qué extraes?",
 		"op_a_txt": "Tanque (Curar 20PV)",
 		"op_b_txt": "Escudo (Nueva Carta)",
-		"id": "Oxígeno"
+		"id": "oxigeno"
+	},
+	{
+		"titulo": "Radiación Extraña",
+		"texto": "Una grieta espacial emite partículas brillantes sobre tu traje.",
+		"op_a_txt": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
+		"op_b_txt": "Usar Escudo: Bloqueas la radiación pero gastas una carga de energía.",
+		"id": "radiacion"
+
 	},
 	{
 		"titulo": "Radiación Alienígena",
@@ -20,16 +28,24 @@ var eventos_disponibles = [
 		"id": "radiacion"
 	}
 ]
+var eventos_pendientes = []
+
 # Función para abrir la ventana nueva
 func abrir_ventana_evento():
-		var evento_aleatorio = eventos_disponibles.pick_random()
+	# Si la lista de eventos pendientes está vacía, se recarga con todos los eventos
+	if eventos_pendientes.is_empty():
+		eventos_pendientes = eventos_disponibles.duplicate()
+		# Mezclar la lista para que el orden cambie cada vez que se terminen
+		eventos_pendientes.shuffle()
 
-		# load scene the ui 
-		var interfaz = load (direccion de la carpeta)
-		get_tree().root_add_child(interfaz)
-		interfaz.configurar(evento_aleatorio)
-		
-		# pausa el juego para que el jugador pueda leer tranquilo
+	# Saca el último evento de la lista, así no se repite 
+	var evento_aleatorio = eventos_pendientes.pop_back()
+
+	# Carga la interfaz
+	var interfaz = load("res://Escenas/ventana_evento.tscn").instantiate()
+	get_tree().root.add_child(interfaz)
+	interfaz.configurar(evento_aleatorio)
+	
 	get_tree().paused = true
 
 # Función para procesar la elección del jugador
@@ -47,7 +63,7 @@ func procesar_eleccion(id_evento, opcion):
 				actualizar_frenesi(20)
 			else:
 				vida_jugador += 5
-	
+
 	# Reanuda el juego
 	get_tree().paused = false
 # ACA TERMINA EL CODIGO DE CORI!!!!!#
@@ -128,4 +144,3 @@ func romper_bloque(player_position: Vector2, direccion: String):
 			return
 
 	print("No hay bloque en esa dirección")
-	

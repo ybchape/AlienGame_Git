@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mu084")
 }],
-"loop": true,
+"loop": false,
 "name": &"chest_open",
 "speed": 5.0
 }]
@@ -95,8 +95,6 @@ script = ExtResource("1_hbvpm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1511081726]
 sprite_frames = SubResource("SpriteFrames_hfv6o")
 animation = &"chest_open"
-frame = 1
-frame_progress = 0.062101748
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=272920234]
 position = Vector2(-8, 6)

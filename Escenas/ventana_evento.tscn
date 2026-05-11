@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://nm0nir20bxx2"]
 
-[ext_resource type="Script" uid="uid://b0gp7c0x78n0t" path="res://Escenas/venatana_evento.gd" id="1_bo0fj"]
+[ext_resource type="Script" uid="uid://b0gp7c0x78n0t" path="res://Escenas/ventana_evento.gd" id="1_skbjx"]
 
 [node name="VentanaEvento" type="CanvasLayer" unique_id=67165807]
 process_mode = 3
-script = ExtResource("1_bo0fj")
+script = ExtResource("1_skbjx")
 
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
 offset_right = 1153.0
