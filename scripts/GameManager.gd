@@ -3,7 +3,54 @@ extends Node
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
 var vida_jugador: int = 80
+# ACA EMPIEZA EL CODIGO DE CORI!!!!!#
+var eventos_disponibles = [
+	{
+		"titulo": "Suministros de Oxígeno",
+		"texto": "Encuentras una cápsula antigua. ¿Qué extraes?",
+		"op_a_txt": "Tanque (Curar 20PV)",
+		"op_b_txt": "Escudo (Nueva Carta)",
+		"id": "Oxígeno"
+	},
+	{
+		"titulo": "Radiación Alienígena",
+		"texto": "Un brillo extraño emana de este contenedor.",
+		"op_a_txt": "Mutar (+20 Frenesí)",
+		"op_b_txt": "Analizar (+5 PV)",
+		"id": "radiacion"
+	}
+]
+# Función para abrir la ventana nueva
+func abrir_ventana_evento():
+		var evento_aleatorio = eventos_disponibles.pick_random()
 
+		# load scene the ui 
+		var interfaz = load (direccion de la carpeta)
+		get_tree().root_add_child(interfaz)
+		interfaz.configurar(evento_aleatorio)
+		
+		# pausa el juego para que el jugador pueda leer tranquilo
+	get_tree().paused = true
+
+# Función para procesar la elección del jugador
+func procesar_eleccion(id_evento, opcion):
+	match id_evento:
+		"oxigeno":
+			if opcion == "A":
+				vida_jugador += 20
+				print("Vida curada. Total: ", vida_jugador)
+			else:
+				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0})
+		
+		"radiacion":
+			if opcion == "A":
+				actualizar_frenesi(20)
+			else:
+				vida_jugador += 5
+	
+	# Reanuda el juego
+	get_tree().paused = false
+# ACA TERMINA EL CODIGO DE CORI!!!!!#
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
