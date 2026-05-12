@@ -1,12 +1,86 @@
 extends Node
 #Guarda los datos del enemigo que tocaste para que la pantalla de combate sepa qué mostrar
+
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
+var frenesi_maximo: float = 100.0
 var vida_jugador: int = 80
+
 
 var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
 
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
+
+var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
+var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
+var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta 
+
+# ACA EMPIEZA EL CODIGO DE CORI!!!!!#
+var eventos_disponibles = [
+	{
+		"titulo": "Suministros de Oxígeno",
+		"texto": "Encuentras una cápsula antigua. ¿Qué extraes?",
+		"op_a_txt": "Tanque (Curar 20PV)",
+		"op_b_txt": "Escudo (Nueva Carta)",
+		"id": "oxigeno"
+	},
+	{
+		"titulo": "Radiación Extraña",
+		"texto": "Una grieta espacial emite partículas brillantes sobre tu traje.",
+		"op_a_txt": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
+		"op_b_txt": "Usar Escudo: Bloqueas la radiación pero gastas una carga de energía.",
+		"id": "radiacion"
+
+	},
+	{
+		"titulo": "Radiación Alienígena",
+		"texto": "Un brillo extraño emana de este contenedor.",
+		"op_a_txt": "Mutar (+20 Frenesí)",
+		"op_b_txt": "Analizar (+5 PV)",
+		"id": "radiacion"
+	}
+]
+var eventos_pendientes = []
+
+# Función para abrir la ventana nueva
+func abrir_ventana_evento():
+	# Si la lista de eventos pendientes está vacía, se recarga con todos los eventos
+	if eventos_pendientes.is_empty():
+		eventos_pendientes = eventos_disponibles.duplicate()
+		# Mezclar la lista para que el orden cambie cada vez que se terminen
+		eventos_pendientes.shuffle()
+
+	# Saca el último evento de la lista, así no se repite 
+	var evento_aleatorio = eventos_pendientes.pop_back()
+
+	# Carga la interfaz
+	var interfaz = load("res://Escenas/ventana_evento.tscn").instantiate()
+	get_tree().root.add_child(interfaz)
+	interfaz.configurar(evento_aleatorio)
+	
+	get_tree().paused = true
+
+# Función para procesar la elección del jugador
+func procesar_eleccion(id_evento, opcion):
+	match id_evento:
+		"oxigeno":
+			if opcion == "A":
+				vida_jugador += 20
+				print("Vida curada. Total: ", vida_jugador)
+			else:
+				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0})
+		
+		"radiacion":
+			if opcion == "A":
+				actualizar_frenesi(20)
+			else:
+				vida_jugador += 5
+
+	# Reanuda el juego
+	get_tree().paused = false
+# ACA TERMINA EL CODIGO DE CORI!!!!!#
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,9 +104,17 @@ var mazo_jugador = [
 ]
 
 # Función para que cualquier objeto pueda alterar el frenesí
-func actualizar_frenesi(valor):
-	frenesi_actual = clamp(frenesi_actual + valor, 0, 100)
+func actualizar_frenesi(cantidad: float):
+	frenesi_actual += cantidad
+	frenesi_actual = clamp(frenesi_actual, 0, frenesi_maximo)
 	print("Frenesí biológico en: ", frenesi_actual)
+	
+	if frenesi_actual >= frenesi_maximo:
+		morir_por_frenesi()
+		
+func morir_por_frenesi():
+	print("El virus de descontroló")
+	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
 
 	# Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: Dictionary):
@@ -84,4 +166,3 @@ func romper_bloque(player_position: Vector2, direccion: String):
 			return
 
 	print("No hay bloque en esa dirección")
-	
