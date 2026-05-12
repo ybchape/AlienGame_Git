@@ -393,7 +393,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(7, 10)
 
-[node name="player" type="CharacterBody2D" unique_id=479222579]
+[node name="player" type="CharacterBody2D" unique_id=479222579 groups=["player"]]
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
 
