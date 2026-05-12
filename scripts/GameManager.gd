@@ -6,6 +6,11 @@ var frenesi_actual: float = 0.0
 var frenesi_maximo: float = 100.0
 var vida_jugador: int = 80
 
+
+var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
+
+var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
+
 var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
 var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
 var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta 
@@ -74,6 +79,7 @@ func procesar_eleccion(id_evento, opcion):
 	# Reanuda el juego
 	get_tree().paused = false
 # ACA TERMINA EL CODIGO DE CORI!!!!!#
+
 
 
 # Called when the node enters the scene tree for the first time.
