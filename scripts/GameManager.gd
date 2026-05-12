@@ -1,10 +1,13 @@
 extends Node
 #Guarda los datos del enemigo que tocaste para que la pantalla de combate sepa qué mostrar
-
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
-var frenesi_maximo: float = 100.0
 var vida_jugador: int = 80
+
+
+var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
+
+var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 
 var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
 var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
@@ -76,6 +79,7 @@ func procesar_eleccion(id_evento, opcion):
 # ACA TERMINA EL CODIGO DE CORI!!!!!#
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -98,17 +102,9 @@ var mazo_jugador = [
 ]
 
 # Función para que cualquier objeto pueda alterar el frenesí
-func actualizar_frenesi(cantidad: float):
-	frenesi_actual += cantidad
-	frenesi_actual = clamp(frenesi_actual, 0, frenesi_maximo)
+func actualizar_frenesi(valor):
+	frenesi_actual = clamp(frenesi_actual + valor, 0, 100)
 	print("Frenesí biológico en: ", frenesi_actual)
-	
-	if frenesi_actual >= frenesi_maximo:
-		morir_por_frenesi()
-		
-func morir_por_frenesi():
-	print("El virus de descontroló")
-	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
 
 	# Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: Dictionary):
@@ -160,3 +156,4 @@ func romper_bloque(player_position: Vector2, direccion: String):
 			return
 
 	print("No hay bloque en esa dirección")
+	
