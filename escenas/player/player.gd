@@ -6,13 +6,6 @@ var speed = 70.0
 var last_direction = "down"
 var is_digging = false # variable para cavar
 
-#Chape
-func _ready() -> void:
-	# Si venimos de ganar un combate, el GameManager tendrá nuestra última posición
-	if GameManager.posicion_jugador_en_mapa != Vector2.ZERO:
-		global_position = GameManager.posicion_jugador_en_mapa
-#-------------------------------------------------------
-
 func _physics_process(_delta: float) -> void:
 	if not is_digging:
 		get_input()
