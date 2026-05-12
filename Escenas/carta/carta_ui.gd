@@ -3,8 +3,7 @@ extends TextureButton
 var datos_carta = {}
 var arrastrando = false
 var mouse_offset = Vector2.ZERO
-var mi_lugar_en_la_mano = 0
-var posicion_global_inicial = Vector2.ZERO # NUEVO: Para recordar la coordenada exacta
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,55 +20,41 @@ func configurar(datos: Dictionary):
 		texture_normal = load(ruta)
 	else:
 		print("Falta el arte para: ", datos["nombre"])
-		
-		
 # Esta función de Godot detecta todo lo que haces con el mouse sobre el botón
 func _gui_input(event: InputEvent) -> void:
 	# 1. Detectar el clic izquierdo
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			# 1. Antes de moverla, memorizamos qué lugar ocupa en la mano
-			mi_lugar_en_la_mano = get_index()
-			# 2. Memorizamos la coordenada en la pantalla antes de moverla
-			posicion_global_inicial = global_position
-			
 			# EMPEZAR A ARRASTRAR
 			arrastrando = true
+			# Guardamos la distancia entre el mouse y la esquina de la carta para que no salte
 			mouse_offset = global_position - get_global_mouse_position()
 			top_level = true 
 			z_index = 10
-			
-			# Esto evita que la carta "salte" antes de que el mouse se mueva.
-			global_position = get_global_mouse_position() + mouse_offset
-			
 		else:
 			# SOLTAR EL CLIC
 			arrastrando = false
 			z_index = 0
-			
-			if global_position.y < 200: 
+			if global_position.y < 350: 
 				get_parent().get_parent()._jugar_carta(self, datos_carta)
 			else:
 				volver_a_mano()
-
+			
+			# Si soltamos la carta en la mitad de arriba de la pantalla (ej Y menor a 350)
+			if global_position.y < 350: 
+				# Le avisamos a la escena de combate que queremos jugarla
+				get_parent().get_parent()._jugar_carta(self, datos_carta)
+			else:
+				# Si la soltamos muy abajo, se arrepiente y vuelve a la mano
+				volver_a_mano()
 	if event is InputEventMouseMotion and arrastrando:
+		# Sumamos el offset para que el arrastre sea fluido y desde donde hiciste clic
 		global_position = get_global_mouse_position() + mouse_offset
 
 # Función para que la carta vuelva a su lugar
 func volver_a_mano():
-	# 1. Hacemos la animación MIENTRAS la carta sigue libre
-	var tween = create_tween()
-	# Viaja a la coordenada que memorizó en 0.2 segundos de forma suave
-	tween.tween_property(self, "global_position", posicion_global_inicial, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	
-	# 2. Le decimos al código que espere a que termine la animación
-	await tween.finished
-	
-	# 3. EL TRUCO INFALIBLE: Una vez que llegó, ejecutamos lo que ya funciona 
-	# para que el contenedor la absorba y la trabe en su lugar.
-	top_level = false
-	var mano = get_parent()
-	if mano: # Verificamos que la mano exista por las dudas
-		mano.remove_child(self)
-		mano.add_child(self)
-		mano.move_child(self, mi_lugar_en_la_mano)
+	top_level = false # Al volver a pegarse, el HBoxContainer la reacomoda sola automáticamente
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

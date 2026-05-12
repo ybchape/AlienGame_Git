@@ -11,13 +11,6 @@ var molde_carta = preload("res://escenas/carta/carta_ui.tscn")
 @onready var label_escudo_enemigo = $LabelEscudoEnemigo
 @onready var label_intencion = $LabelIntencion
 
-#Pantalla de victoria/derrota
-@onready var panel_final = $CapaFinal/Panel # Asegurate que la ruta sea correcta
-@onready var label_resultado = $CapaFinal/Panel/Label
-@onready var boton_final = $CapaFinal/Panel/Continuar
-
-var victoria = false
-
 var energia_actual = 3
 var mazo_principal = [] 
 var mano_actual = []
@@ -25,7 +18,6 @@ var mazo_descarte = []
 var escudo_actual = 0
 var escudo_enemigo_actual = 0
 var proxima_accion_enemigo = 0
-var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -88,11 +80,6 @@ func _jugar_carta(nodo, datos):
 		# 2. Aplicar ESCUDO a ti misma
 		if datos.has("escudo") and datos["escudo"] > 0:
 			escudo_actual += datos["escudo"]
-			
-		# 3. NUEVO: Habilidad de ROBAR cartas
-		if datos.has("roba") and datos["roba"] > 0:
-			print("Usaste una habilidad. Robando ", datos["roba"], " carta(s) extra.")
-			repartir_cartas(datos["roba"]) # Llama a la función que ya tenés para sacar del mazo
 		
 		# La carta jugada va al descarte
 		mazo_descarte.append(datos)
@@ -101,13 +88,12 @@ func _jugar_carta(nodo, datos):
 		
 		if barra_vida_enemigo.value <= 0:
 			print("Victoria")
-			mostrar_resultado(true) # Llamamos al panel en lugar de cambiar de escena
+			get_tree().change_scene_to_file("res://escenas/escena_principal/escena_principal.tscn")
 	else:
 		print("Energía insuficiente")
 		nodo.volver_a_mano()
 
 func terminar_turno():
-	es_turno_jugador = false # Cerramos el candado del boton
 	# 1. Las cartas que sobraron en la mano van al descarte
 	for carta in mano_visual.get_children():
 		mazo_descarte.append(carta.datos_carta)
@@ -193,7 +179,10 @@ func turno_del_enemigo():
 			# --- ACÁ AGREGAMOS LA CONDICIÓN DE DERROTA ---
 			if GameManager.vida_jugador <= 0:
 				print("¡Derrota! Tu vida llegó a 0.")
-				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
+				GameManager.vida_jugador = 80 # Resetea la vida para la próxima partida
+				
+				# Cambiá esta ruta por la de tu menú o nivel 1
+				get_tree().change_scene_to_file("res://escenas/escena_principal/escena_principal.tscn") 
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
 
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
@@ -223,7 +212,6 @@ func planear_proxima_accion():
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
-	es_turno_jugador = true # Abrimos el candado
 	
 	# 1. Los escudos viejos se limpian (regla de Slay the Spire)
 	escudo_actual = 0
@@ -238,37 +226,4 @@ func iniciar_nuevo_turno_jugador():
 	actualizar_ui()
 
 func _on_button_pressed() -> void:
-	if es_turno_jugador: # Solo funciona si es tu turno
-		terminar_turno()
-
-
-# Pantalla de victoria/Derrota
-func mostrar_resultado(gano: bool):
-	victoria = gano
-	panel_final.visible = true
-
-	if gano:
-		
-		# ANOTAMOS AL ENEMIGO EN LA LISTA NEGRA
-		var nombre_enemigo = GameManager.enemigo_actual_datos.get("nombre_en_escena", "")
-		if nombre_enemigo != "" and not nombre_enemigo in GameManager.enemigos_derrotados:
-			GameManager.enemigos_derrotados.append(nombre_enemigo)
-		
-		label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
-		boton_final.text = "Volver al Mapa"
-	else:
-		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
-		boton_final.text = "Reintentar desde el Inicio"
-
-# CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
-
-func _on_button_final_pressed() -> void:
-	if victoria:
-		# Si ganó: vuelve al mapa (GameManager mantiene la vida actual)
-		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
-	else:
-		# Si perdió: reinicia vida y vuelve al inicio
-		GameManager.vida_jugador = 80 
-		# Reseteamos la posición para que aparezca en el spawn inicial
-		GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
-		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	terminar_turno()
