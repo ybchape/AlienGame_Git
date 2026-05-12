@@ -8,12 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://Assets/Dungeon_Tileset.png" id="6_sv3hn"]
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
-
-
-[ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/bloque/block.tscn" id="9_asb8d"]
-[ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="10_o0x7m"]
-[ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="11_ueh2r"]
-
+[ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/block.tscn" id="9_asb8d"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="10_o0x7m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -790,3 +786,7 @@ position = Vector2(218, 433)
 
 [node name="Block9" parent="." unique_id=756574962 instance=ExtResource("9_asb8d")]
 position = Vector2(221, 378)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=509820298]
+position = Vector2(652, 373)
+texture = ExtResource("10_o0x7m")
