@@ -17,6 +17,14 @@ func _physics_process(_delta: float) -> void:
 	if not is_digging:
 		get_input()
 		move_and_slide()
+		
+		# LÓGICA DE LA VISIÓN PROGRESIVA 
+		# Se verifica si se está desplazando
+		if velocity != Vector2.ZERO:
+			if GameManager.radio_vision_actual < GameManager.vision_maxima:
+				GameManager.radio_vision_actual += GameManager.velocidad_crecimiento
+				# Se actualiza el nodo PointLight2D 
+				$PointLight2D.texture_scale = GameManager.radio_vision_actual
 	else:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -32,6 +40,7 @@ func get_input():
 			update_animation("idle")
 
 	else:
+		GameManager.actualizar_frenesi(0.02) #Aumenta el frenesi al explorar, se detiene cuando está quieto
 	# lógica de direcciones de movimiento
 		if abs (input_direction.x) > abs(input_direction.y):
 			# Movimiento horizontal
