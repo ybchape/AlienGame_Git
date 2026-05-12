@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://ddiw74mjgull7"]
 
-[ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://Escenas/player/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="2_g2els"]
-[ext_resource type="Texture2D" uid="uid://ddeovexc4t7vr" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png" id="3_fjrip"]
-[ext_resource type="Texture2D" uid="uid://d4fb1la4scvyf" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_down_anim_strip_6.png" id="4_smehm"]
-[ext_resource type="Texture2D" uid="uid://irs2xxt00y0i" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_left_anim_strip_6.png" id="5_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://cegwn7ej2thx3" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png" id="6_y4r1p"]
-[ext_resource type="Texture2D" uid="uid://dsq4ot3xjbnnw" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_up_anim_strip_6.png" id="7_d2wvv"]
-[ext_resource type="Texture2D" uid="uid://dyjiji7ii1m5p" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_left_anim_strip_6.png" id="7_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://c1dmo7doc86w2" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_right_anim_strip_6.png" id="8_y4r1p"]
-
-[ext_resource type="Texture2D" uid="uid://c4bqxkehcnba5" path="res://Assets/Circulo blanco.png" id="10_f0w31"]
-
+[ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://escenas/player/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://ddeovexc4t7vr" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_up_anim_strip_6.png" id="3_fjrip"]
+[ext_resource type="Texture2D" uid="uid://d4fb1la4scvyf" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_down_anim_strip_6.png" id="4_smehm"]
+[ext_resource type="Texture2D" uid="uid://irs2xxt00y0i" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_left_anim_strip_6.png" id="5_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://cegwn7ej2thx3" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_right_anim_strip_6.png" id="6_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://dsq4ot3xjbnnw" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_up_anim_strip_6.png" id="7_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://dyjiji7ii1m5p" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_left_anim_strip_6.png" id="7_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://c1dmo7doc86w2" path="res://assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_run_right_anim_strip_6.png" id="8_y4r1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -395,16 +392,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(7, 10)
 
-[node name="player" type="CharacterBody2D" unique_id=479222579 groups=["player"]]
+[node name="player" type="CharacterBody2D" unique_id=479222579]
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=340361256]
-zoom = Vector2(2.5, 2.5)
-limit_left = 0
-limit_top = 0
-limit_right = 1087
-limit_bottom = 650
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=141873817]
 scale = Vector2(0.9375006, 1.2187494)
@@ -417,7 +407,3 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1189716133]
 target_position = Vector2(0, 16)
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1153157120]
-shadow_enabled = true
-texture = ExtResource("10_f0w31")

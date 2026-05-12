@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cf3giiwnho6qi" path="res://Assets/Dungeon_Tileset.png" id="6_sv3hn"]
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
-
+[ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/block.tscn" id="9_asb8d"]
 
 [sub_resource type="GDScript" id="GDScript_81nay"]
 script/source = "extends Node2D
@@ -23,11 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
-
-[ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/bloque/block.tscn" id="9_asb8d"]
-[ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="10_o0x7m"]
-[ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="11_ueh2r"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -804,18 +799,4 @@ position = Vector2(190, 406)
 position = Vector2(218, 433)
 
 [node name="Block9" parent="." unique_id=756574962 instance=ExtResource("9_asb8d")]
-position = Vector2(217, 380)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
-color = Color(0.0060222126, 0.0056541427, 0.004727708, 1)
-
-[node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
-position = Vector2(108, 368)
-
-[node name="CofreEvento2" parent="." unique_id=300009697 instance=ExtResource("10_o0x7m")]
-position = Vector2(256, 189)
-
-[node name="CofreEvento3" parent="." unique_id=741794274 instance=ExtResource("10_o0x7m")]
-position = Vector2(475, 120)
-
-[node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("11_ueh2r")]
+position = Vector2(221, 378)
