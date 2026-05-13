@@ -580,6 +580,8 @@ texture = ExtResource("6_sv3hn")
 
 [sub_resource type="TileSet" id="TileSet_6txvi"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "es_rompible"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_wfy2d")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_afc6g"]
@@ -689,9 +691,12 @@ texture = ExtResource("6_sv3hn")
 texture = ExtResource("7_3vxs2")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_iupgd"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "es_rompible"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_afc6g")
 sources/1 = SubResource("TileSetAtlasSource_sqmix")
 
@@ -756,6 +761,7 @@ visible = false
 position = Vector2(217, 380)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
+visible = false
 color = Color(0.0060222126, 0.0056541427, 0.004727708, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]

@@ -83,10 +83,13 @@ func ejecutar_cavar():
 			
 			# Convertimos posición global a celda del mapa
 			var celda = objeto.local_to_map(objeto.to_local(pos_ajustada))
-			
+			#  Obtenemos los datos del tile en esa celda
+			var data = objeto.get_cell_tile_data(celda)
+			#  Si existe el tile y tiene la propiedad "es_rompible" en true, lo borramos
+			if data and data.get_custom_data("es_rompible"):
 			# Borramos la celda (-1 elimina el tile)
-			objeto.set_cell(celda, -1)
-			print("Celda eliminada en: ", celda)
+				objeto.set_cell(celda, -1)
+				print("Celda eliminada en: ", celda)
 
 # update animations. Si state es "idle" y last_direction = "down", se reproduce la anim. "idle_down"
 func update_animation(state):
