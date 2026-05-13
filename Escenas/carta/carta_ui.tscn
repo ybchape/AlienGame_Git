@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqwp4s75vtwib"]
 
-[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://escenas/carta/carta_ui.gd" id="1_06qds"]
-[ext_resource type="Texture2D" uid="uid://dfh1w24isbmdn" path="res://assets/cartas/Análisis de Bioma.jpg" id="1_32oac"]
+[ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://Escenas/carta/carta_ui.gd" id="1_06qds"]
+[ext_resource type="Texture2D" uid="uid://dfh1w24isbmdn" path="res://Assets/cartas/Análisis de Bioma.jpg" id="1_32oac"]
 
 [node name="CartaUI" type="TextureButton" unique_id=168635153]
 custom_minimum_size = Vector2(100, 140)
