@@ -685,9 +685,6 @@ texture = ExtResource("6_sv3hn")
 [sub_resource type="TileSet" id="TileSet_iupgd"]
 sources/0 = SubResource("TileSetAtlasSource_afc6g")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnnm"]
-size = Vector2(13, 11.5)
-
 [node name="Escena Principal" type="Node2D" unique_id=1789830397]
 
 [node name="Fondo" type="TileMapLayer" parent="." unique_id=1154688059]
@@ -703,57 +700,8 @@ tile_map_data = PackedByteArray("AAADACUAAAAAAAIAAAADACYAAAAAAAMAAAAEACUAAAAIAAA
 tile_set = SubResource("TileSet_6txvi")
 
 [node name="Objetos" type="TileMapLayer" parent="." unique_id=1698543035]
-tile_map_data = PackedByteArray("AAAHABwAAAAEAAgAAAANAA4AAAAEAAgAAAAcAAIAAAAEAAgAAAAmAA8AAAAEAAgAAAA0ABsAAAAEAAgAAAAtACYAAAAEAAgAAAAcACMAAAAEAAgAAAA=")
+tile_map_data = PackedByteArray("AAAHABwAAAACAAIAAAANAA4AAAACAAIAAAAcAAIAAAACAAIAAAAmAA8AAAACAAIAAAA0ABsAAAACAAIAAAAtACYAAAACAAIAAAAcACMAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_iupgd")
-
-[node name="Evento1" type="StaticBody2D" parent="." unique_id=1157701070]
-position = Vector2(123, 458)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento1" unique_id=274806048]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento2" type="StaticBody2D" parent="." unique_id=576688655]
-position = Vector2(219, 234)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento2" unique_id=1709186820]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento3" type="StaticBody2D" parent="." unique_id=94959019]
-position = Vector2(459, 42)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento3" unique_id=902353178]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento4" type="StaticBody2D" parent="." unique_id=2112367364]
-position = Vector2(619, 249)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento4" unique_id=201001783]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento5" type="StaticBody2D" parent="." unique_id=809168263]
-position = Vector2(843, 441)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento5" unique_id=2101901791]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento6" type="StaticBody2D" parent="." unique_id=547338689]
-position = Vector2(731, 617)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento6" unique_id=307335792]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
-
-[node name="Evento7" type="StaticBody2D" parent="." unique_id=1199598649]
-position = Vector2(459, 570)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Evento7" unique_id=825975988]
-position = Vector2(-3, -1.75)
-shape = SubResource("RectangleShape2D_lhnnm")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
 position = Vector2(190, 441)
