@@ -82,7 +82,7 @@ func procesar_eleccion(id_evento, opcion):
 				print ("Combatiendo con -1 enegia")
 
 		# Evento: "Radiación Alienígena"
-		"radicion_2":
+		"radiacion_2":
 			if opcion == "A":
 				# +20 frenesi
 				frenesi_actual = clamp(frenesi_actual + 20,0,frenesi_maximo)
