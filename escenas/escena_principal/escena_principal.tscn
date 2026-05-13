@@ -789,6 +789,7 @@ position = Vector2(218, 433)
 position = Vector2(217, 380)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
+visible = false
 color = Color(0.0060222126, 0.0056541427, 0.004727708, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
