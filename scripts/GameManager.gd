@@ -14,6 +14,8 @@ var vida_maxima: int = 100 #new variable eventos
 var penalizacion_escudo: int = 0 # var para el efecto de escudo en los eventos
 var bonus_doble_dano = false
 var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
+var esta_en_descontrol = false
+
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
@@ -103,15 +105,15 @@ const MAZO_MINIMO = 5
 const MAZO_MAXIMO = 15
 #El mazo inicial que va a tener el jugador
 var mazo_jugador = [
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 6, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 6, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 6, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 6, "escudo": 0, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0},
-	{"nombre": "Instinto de Presa", "tipo": "Poder", "coste": 2, "daño": 10, "escudo": 0, "roba": 0},
+	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
+	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
+	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
+	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
+	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
+	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
+	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
+	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
+	{"nombre": "Instinto de Presa", "tipo": "Poder", "coste": 2, "daño": 25, "escudo": 0, "roba": 0},
 	{"nombre": "Análisis de Bioma", "tipo": "Capacidad", "coste": 0, "daño": 0, "escudo": 0, "roba": 1}
 ]
 
@@ -119,6 +121,9 @@ var mazo_jugador = [
 func actualizar_frenesi(cantidad: float):
 	frenesi_actual += cantidad
 	frenesi_actual = clamp(frenesi_actual, 0, frenesi_maximo)
+	#Le avisa al juego si entraste en modo Descontrol(frenesi)
+	esta_en_descontrol = (frenesi_actual >= frenesi_maximo)
+	
 	print("Frenesí biológico en: ", frenesi_actual)
 	
 	if frenesi_actual >= frenesi_maximo:

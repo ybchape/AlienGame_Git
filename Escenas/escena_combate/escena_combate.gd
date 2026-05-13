@@ -78,8 +78,18 @@ func repartir_cartas(cantidad):
 		robar_una_carta()
 
 func _jugar_carta(nodo, datos):
-	if energia_actual >= datos["coste"]:
-		energia_actual -= datos["coste"]
+	#Calculamos el costo de la carta
+	var coste_real = datos["coste"]
+	
+	#Si la barra está llena y es una carta de Ataque, es gratis
+	if GameManager.esta_en_descontrol and datos.get("tipo") == "Ataque":
+		coste_real = 0
+		print("¡Frenesí Biológico! Ataque a coste 0.")
+	
+	# Cambiamos datos["coste"] por coste_real en la validación y resta
+	if energia_actual >= coste_real:
+		energia_actual -= coste_real
+		
 		# 1. Aplicar DAÑO al enemigo
 		if datos.has("daño") and datos["daño"] > 0:
 			var dano_a_realizar = datos["daño"]
@@ -241,6 +251,14 @@ func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
 	es_turno_jugador = true # Abrimos el candado
 	
+	# riesgo del frenesi (pierdo vida)
+	if GameManager.esta_en_descontrol:
+		GameManager.vida_jugador -= 5
+		print("El virus te consume: -5 PV. Vida restante: ", GameManager.vida_jugador)
+		if GameManager.vida_jugador <=0:
+			mostrar_resultado(false)
+			return
+	
 	# 1. Los escudos viejos se limpian (regla de Slay the Spire)
 	escudo_actual = 0
 	
@@ -266,6 +284,12 @@ func mostrar_resultado(gano: bool):
 	panel_final.visible = true
 
 	if gano:
+		# Recuperamos vida
+		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 15,0, GameManager.vida_maxima)
+		
+		#Redusimos el frenesi
+		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
+		GameManager.actualizar_frenesi(-reduccion)
 		
 		# ANOTAMOS AL ENEMIGO EN LA LISTA NEGRA
 		var nombre_enemigo = GameManager.enemigo_actual_datos.get("nombre_en_escena", "")
@@ -278,8 +302,9 @@ func mostrar_resultado(gano: bool):
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"
 
-# CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
+	actualizar_ui()
 
+# CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
 func _on_button_final_pressed() -> void:
 	if victoria:
 		# Si ganó: vuelve al mapa (GameManager mantiene la vida actual)
