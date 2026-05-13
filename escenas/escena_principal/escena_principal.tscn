@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://0ovtlw6jb4fj" path="res://Assets/texture_16px 385.png" id="7_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://ddiw74mjgull7" path="res://Escenas/player/player.tscn" id="7_htiw2"]
 [ext_resource type="PackedScene" uid="uid://dny24yox1owcc" path="res://Escenas/enemigo_debil/enemigo_debil.tscn" id="8_e307b"]
-[ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/bloque/block.tscn" id="9_asb8d"]
 [ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="10_o0x7m"]
 [ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="11_ueh2r"]
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
@@ -727,42 +726,6 @@ position = Vector2(85, 602)
 
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(128, 180.00003)
-
-[node name="Block" parent="." unique_id=626792140 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(191, 378)
-
-[node name="Block2" parent="." unique_id=1763973629 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(218, 433)
-
-[node name="Block3" parent="." unique_id=1362217273 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(156, 384)
-
-[node name="Block4" parent="." unique_id=44079826 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(158, 431)
-
-[node name="Block5" parent="." unique_id=1314554774 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(217, 407)
-
-[node name="Block6" parent="." unique_id=974019516 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(157, 406)
-
-[node name="Block7" parent="." unique_id=831629010 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(190, 406)
-
-[node name="Block8" parent="." unique_id=15592769 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(218, 433)
-
-[node name="Block9" parent="." unique_id=756574962 instance=ExtResource("9_asb8d")]
-visible = false
-position = Vector2(217, 380)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
 visible = false
