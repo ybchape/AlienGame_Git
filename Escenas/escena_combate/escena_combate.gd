@@ -29,6 +29,9 @@ var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# --- AVISAMOS AL JUEGO QUE EMPEZÓ EL COMBATE ---
+	GameManager.en_combate = true
+	
 	# aplica eventos
 	# penalizacion de energia
 	energia_actual = 3 - GameManager.penalizacion_energia
@@ -306,6 +309,8 @@ func mostrar_resultado(gano: bool):
 
 # CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
 func _on_button_final_pressed() -> void:
+	# Apagamos el interruptor antes de salir
+	GameManager.en_combate = false
 	if victoria:
 		# Si ganó: vuelve al mapa (GameManager mantiene la vida actual)
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
