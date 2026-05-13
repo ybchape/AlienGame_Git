@@ -4,13 +4,16 @@ extends Node
 var enemigo_actual_datos = {}
 var frenesi_actual: float = 0.0
 var frenesi_maximo: float = 100.0
-var vida_jugador: int = 80
+var vida_jugador: int = 100
 var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
 var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
 var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta 
 var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
-
+var vida_maxima: int = 100 #new variable eventos
+var penalizacion_escudo: int = 0 # var para el efecto de escudo en los eventos
+var bonus_doble_dano = false
+var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
@@ -24,8 +27,8 @@ var eventos_disponibles = [
 		"titulo": "Radiación Extraña",
 		"texto": "Una grieta espacial emite partículas brillantes sobre tu traje.",
 		"op_a_txt": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
-		"op_b_txt": "Usar Escudo: Bloqueas la radiación pero gastas una carga de energía.",
-		"id": "radiacion"
+		"op_b_txt": "Usar Escudo: Bloqueas la radiación (siguente ataque) pero gastas una carga de energía.",
+		"id": "radiacion_1"
 
 	},
 	{
@@ -33,7 +36,7 @@ var eventos_disponibles = [
 		"texto": "Un brillo extraño emana de este contenedor.",
 		"op_a_txt": "Mutar (+20 Frenesí)",
 		"op_b_txt": "Analizar (+5 PV)",
-		"id": "radiacion"
+		"id": "radiacion_2"
 	}
 ]
 var eventos_pendientes = []
@@ -59,18 +62,33 @@ func abrir_ventana_evento():
 # Función para procesar la elección del jugador
 func procesar_eleccion(id_evento, opcion):
 	match id_evento:
+		#Evento: "Suministros de Oxígeno"
 		"oxigeno":
 			if opcion == "A":
-				vida_jugador += 20
+				# clamp que limita el valor entre 0 y la vida maxima
+				vida_jugador = clamp(vida_jugador + 20,0, vida_jugador)
 				print("Vida curada. Total: ", vida_jugador)
 			else:
 				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0})
-		
-		"radiacion":
+		# Evento: "Radiación Extraña"
+		"radiacion_1":
 			if opcion == "A":
-				actualizar_frenesi(20)
+				# ademas del daño doble, aplica penalizacion de escudo
+				bonus_doble_dano = true
+				penalizacion_escudo = 5
+				print ("Evento:  Se aplica el doble dano y la penalizacion de escudo -5")
 			else:
-				vida_jugador += 5
+				penalizacion_energia = 1
+				print ("Combatiendo con -1 enegia")
+
+		# Evento: "Radiación Alienígena"
+		"radiacion_2":
+			if opcion == "A":
+				# +20 frenesi
+				frenesi_actual = clamp(frenesi_actual + 20,0,frenesi_maximo)
+			else:
+				# +5 vida
+				vida_jugador = clamp(vida_jugador + 5,0,vida_maxima)
 
 	# Reanuda el juego
 	get_tree().paused = false

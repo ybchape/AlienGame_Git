@@ -29,6 +29,12 @@ var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# aplica eventos
+	# penalizacion de energia
+	energia_actual = 3 - GameManager.penalizacion_energia
+	# reset energia a 3
+	GameManager.penalizacion_energia = 0
+	
 	# 1. Cargar datos del enemigo
 	sprite_enemigo.texture = GameManager.enemigo_actual_datos["textura"]
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
@@ -77,6 +83,11 @@ func _jugar_carta(nodo, datos):
 		# 1. Aplicar DAÑO al enemigo
 		if datos.has("daño") and datos["daño"] > 0:
 			var dano_a_realizar = datos["daño"]
+			# efecto de evento doble daño
+			if GameManager.bonus_doble_dano:
+				dano_a_realizar*= 2 #aplica el multiplicador de daño x2
+				GameManager.bonus_doble_dano = false
+				print ("Doble daño aplicado y agotado")
 			
 			if escudo_enemigo_actual >= dano_a_realizar:
 				escudo_enemigo_actual -= dano_a_realizar # El escudo absorbe todo
@@ -87,9 +98,11 @@ func _jugar_carta(nodo, datos):
 		
 		# 2. Aplicar ESCUDO a ti misma
 		if datos.has("escudo") and datos["escudo"] > 0:
-			escudo_actual += datos["escudo"]
+			# efecto evento penalizacion de escudo
+			var escudo_final = datos["escudo"] - GameManager.penalizacion_escudo
+			escudo_actual += max(0,escudo_final) # max(0) evita que el escudo quede en negativo
 			
-		# 3. NUEVO: Habilidad de ROBAR cartas
+		# 3. Habilidad de ROBAR cartas
 		if datos.has("roba") and datos["roba"] > 0:
 			print("Usaste una habilidad. Robando ", datos["roba"], " carta(s) extra.")
 			repartir_cartas(datos["roba"]) # Llama a la función que ya tenés para sacar del mazo
@@ -195,7 +208,10 @@ func turno_del_enemigo():
 				print("¡Derrota! Tu vida llegó a 0.")
 				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
-
+				# reset de escudo para los eventos
+			if GameManager.penalizacion_escudo >0: 
+				GameManager.penalizacion_escudo = 0
+ 
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
 	planear_proxima_accion()
 	
@@ -241,9 +257,11 @@ func _on_button_pressed() -> void:
 	if es_turno_jugador: # Solo funciona si es tu turno
 		terminar_turno()
 
-
 # Pantalla de victoria/Derrota
 func mostrar_resultado(gano: bool):
+	# reset de eventos
+	GameManager.penalizacion_escudo = 0
+	GameManager.bonus_doble_dano = false
 	victoria = gano
 	panel_final.visible = true
 
