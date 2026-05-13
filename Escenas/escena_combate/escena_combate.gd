@@ -40,7 +40,7 @@ func _ready() -> void:
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]
 	
-	barra_vida_jugador.max_value = 80 
+	barra_vida_jugador.max_value = GameManager.vida_maxima 
 	barra_vida_jugador.value = GameManager.vida_jugador
 	
 	# 2. Preparar mano (Mezclar y Robar 5)
@@ -78,8 +78,18 @@ func repartir_cartas(cantidad):
 		robar_una_carta()
 
 func _jugar_carta(nodo, datos):
-	if energia_actual >= datos["coste"]:
-		energia_actual -= datos["coste"]
+	#Calculamos el costo de la carta
+	var coste_real = datos["coste"]
+	
+	#Si la barra está llena y es una carta de Ataque, es gratis
+	if GameManager.esta_en_descontrol and datos.get("tipo") == "Ataque":
+		coste_real = 0
+		print("¡Frenesí Biológico! Ataque a coste 0.")
+	
+	# Cambiamos datos["coste"] por coste_real en la validación y resta
+	if energia_actual >= coste_real:
+		energia_actual -= coste_real
+		
 		# 1. Aplicar DAÑO al enemigo
 		if datos.has("daño") and datos["daño"] > 0:
 			var dano_a_realizar = datos["daño"]
@@ -209,8 +219,8 @@ func turno_del_enemigo():
 				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
 				# reset de escudo para los eventos
-			if GameManager.penalizacion_escudo >0: 
-				GameManager.penalizacion_escudo = 0
+		if GameManager.penalizacion_escudo >0: 
+			GameManager.penalizacion_escudo = 0
  
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
 	planear_proxima_accion()
@@ -241,6 +251,14 @@ func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
 	es_turno_jugador = true # Abrimos el candado
 	
+	# riesgo del frenesi (pierdo vida)
+	if GameManager.esta_en_descontrol:
+		GameManager.vida_jugador -= 5
+		print("El virus te consume: -5 PV. Vida restante: ", GameManager.vida_jugador)
+		if GameManager.vida_jugador <=0:
+			mostrar_resultado(false)
+			return
+	
 	# 1. Los escudos viejos se limpian (regla de Slay the Spire)
 	escudo_actual = 0
 	
@@ -266,6 +284,12 @@ func mostrar_resultado(gano: bool):
 	panel_final.visible = true
 
 	if gano:
+		# Recuperamos vida
+		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 15,0, GameManager.vida_maxima)
+		
+		#Redusimos el frenesi
+		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
+		GameManager.actualizar_frenesi(-reduccion)
 		
 		# ANOTAMOS AL ENEMIGO EN LA LISTA NEGRA
 		var nombre_enemigo = GameManager.enemigo_actual_datos.get("nombre_en_escena", "")
@@ -278,15 +302,16 @@ func mostrar_resultado(gano: bool):
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"
 
-# CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
+	actualizar_ui()
 
+# CONECTÁ EL BOTÓN DEL PANEL A ESTA FUNCIÓN:
 func _on_button_final_pressed() -> void:
 	if victoria:
 		# Si ganó: vuelve al mapa (GameManager mantiene la vida actual)
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
-		GameManager.vida_jugador = 80 
+		GameManager.vida_jugador = GameManager.vida_maxima
 		# Reseteamos la posición para que aparezca en el spawn inicial
 		GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")

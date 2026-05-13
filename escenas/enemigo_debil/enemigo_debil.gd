@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var vida_maxima = 50
-var reduccion_frenesi = 10
+var vida_maxima = 100
+var reduccion_frenesi = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,8 +35,8 @@ func _preparar_combate():
 		"tipo_enemigo":"debil",
 		"vida": vida_maxima, 
 		"frenesi": reduccion_frenesi,
-		"Daño_fijo": 10,
-		"daño_poder": 25,
+		"Daño_fijo": 8,
+		"daño_poder": 15,
 		"textura": preload("res://assets/icon.svg")
 	}
 	#Cambio a la escena de combate

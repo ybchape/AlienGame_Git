@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="2_6mo4l"]
 [ext_resource type="Texture2D" uid="uid://bbpamkhluff5" path="res://Assets/cartas/circulo rojo.jpg" id="4_61bmk"]
 [ext_resource type="Texture2D" uid="uid://ddeetmyx2jxm8" path="res://Assets/cartas/circulo azul.jpg" id="5_7gp4f"]
+[ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="6_ql2e5"]
 [ext_resource type="Texture2D" uid="uid://d0c13ypdt04ge" path="res://Assets/Pepe3.png" id="7_ql2e5"]
 [ext_resource type="Texture2D" uid="uid://dx0t3tw7jsrlo" path="res://Assets/Pepe2.png" id="8_43djd"]
 [ext_resource type="Texture2D" uid="uid://cb3jjbnbg7gnl" path="res://Assets/Pepe1.png" id="8_i8q3o"]
@@ -160,19 +161,6 @@ offset_top = 41.0
 offset_right = 867.0
 offset_bottom = 64.0
 
-[node name="BarraVidaJugador" type="TextureProgressBar" parent="." unique_id=121549279]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 229.0
-offset_right = 280.0
-offset_bottom = 269.0
-nine_patch_stretch = true
-stretch_margin_right = 4
-stretch_margin_bottom = 3
-texture_under = ExtResource("8_i8q3o")
-texture_over = ExtResource("7_ql2e5")
-texture_progress = ExtResource("8_43djd")
-
 [node name="LabelIntencion" type="Label" parent="." unique_id=653673964]
 layout_mode = 0
 offset_left = 713.0
@@ -193,6 +181,18 @@ stretch_margin_bottom = 3
 texture_under = ExtResource("8_i8q3o")
 texture_over = ExtResource("7_ql2e5")
 texture_progress = ExtResource("8_43djd")
+
+[node name="BarraVidaJugador" parent="." unique_id=1267389558 instance=ExtResource("6_ql2e5")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.178
+anchor_top = 0.384
+anchor_right = 0.178
+anchor_bottom = 0.384
+offset_left = -75.056
+offset_top = -19.832
+offset_right = 74.944
+offset_bottom = 20.168
 
 [node name="CapaFinal" type="CanvasLayer" parent="." unique_id=1700847043]
 

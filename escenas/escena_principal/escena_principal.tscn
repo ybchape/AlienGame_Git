@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cvvqr23yykwp7" path="res://Escenas/bloque/block.tscn" id="9_asb8d"]
 [ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="10_o0x7m"]
 [ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="11_ueh2r"]
+[ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
+[ext_resource type="Script" uid="uid://c5a6jio1uu4km" path="res://Escenas/escena_combate/barra_vida_jugador.gd" id="13_3vxs2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -750,3 +752,12 @@ position = Vector2(256, 189)
 position = Vector2(475, 120)
 
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("11_ueh2r")]
+
+[node name="barra_vida" type="CanvasLayer" parent="." unique_id=592275829]
+
+[node name="BarraVidaJugador" parent="barra_vida" unique_id=1267389558 instance=ExtResource("12_lrpe2")]
+offset_left = 17.0
+offset_top = 41.0
+offset_right = 167.0
+offset_bottom = 81.0
+script = ExtResource("13_3vxs2")
