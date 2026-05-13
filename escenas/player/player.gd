@@ -74,9 +74,19 @@ func ejecutar_cavar():
 
 	if ray.is_colliding():
 		var objeto = ray.get_collider()
-		if objeto.is_in_group("bloques"):
-			objeto.queue_free()
-			print("Bloque roto con nodo raycast")
+		#El bloque es parte del TileMapLayer 
+		if objeto is TileMapLayer:
+			var col_point = ray.get_collision_point()
+			var dir = (ray.target_position).normalized()
+			# Empujamos el punto de detección dentro del bloque
+			var pos_ajustada = col_point + (dir * 4) 
+			
+			# Convertimos posición global a celda del mapa
+			var celda = objeto.local_to_map(objeto.to_local(pos_ajustada))
+			
+			# Borramos la celda (-1 elimina el tile)
+			objeto.set_cell(celda, -1)
+			print("Celda eliminada en: ", celda)
 
 # update animations. Si state es "idle" y last_direction = "down", se reproduce la anim. "idle_down"
 func update_animation(state):
