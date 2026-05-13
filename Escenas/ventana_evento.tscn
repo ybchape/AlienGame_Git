@@ -17,7 +17,7 @@ offset_right = 651.0
 offset_bottom = 131.0
 text = "Suministros de Oxígeno"
 
-[node name="Descricpion" type="Label" parent="." unique_id=1928107382]
+[node name="Descripcion" type="Label" parent="." unique_id=1928107382]
 offset_left = 369.0
 offset_top = 192.0
 offset_right = 733.0
