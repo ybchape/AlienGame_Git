@@ -40,7 +40,7 @@ func _ready() -> void:
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]
 	
-	barra_vida_jugador.max_value = 80 
+	barra_vida_jugador.max_value = GameManager.vida_maxima 
 	barra_vida_jugador.value = GameManager.vida_jugador
 	
 	# 2. Preparar mano (Mezclar y Robar 5)
@@ -219,8 +219,8 @@ func turno_del_enemigo():
 				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
 				# reset de escudo para los eventos
-			if GameManager.penalizacion_escudo >0: 
-				GameManager.penalizacion_escudo = 0
+		if GameManager.penalizacion_escudo >0: 
+			GameManager.penalizacion_escudo = 0
  
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
 	planear_proxima_accion()
@@ -311,7 +311,7 @@ func _on_button_final_pressed() -> void:
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
-		GameManager.vida_jugador = 80 
+		GameManager.vida_jugador = GameManager.vida_maxima
 		# Reseteamos la posición para que aparezca en el spawn inicial
 		GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
