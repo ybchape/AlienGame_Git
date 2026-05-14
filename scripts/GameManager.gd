@@ -76,7 +76,7 @@ func procesar_eleccion(id_evento, opcion):
 				vida_jugador = clamp(vida_jugador + 20,0, vida_jugador)
 				print("Vida curada. Total: ", vida_jugador)
 			else:
-				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0})
+				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 10, "roba": 0})
 		# Evento: "Radiación Extraña"
 		"radiacion_1":
 			if opcion == "A":
