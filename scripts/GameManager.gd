@@ -15,6 +15,8 @@ var penalizacion_escudo: int = 0 # var para el efecto de escudo en los eventos
 var bonus_doble_dano = false
 var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
 var esta_en_descontrol = false
+var tiempo_dano_frenesi: float = 0.0
+var en_combate: bool = false
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
@@ -126,9 +128,6 @@ func actualizar_frenesi(cantidad: float):
 	
 	print("Frenesí biológico en: ", frenesi_actual)
 	
-	if frenesi_actual >= frenesi_maximo:
-		morir_por_frenesi()
-		
 func morir_por_frenesi():
 	print("El virus de descontroló")
 	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
@@ -183,3 +182,37 @@ func romper_bloque(player_position: Vector2, direccion: String):
 			return
 
 	print("No hay bloque en esa dirección")
+	
+func _process(delta: float) -> void:
+	# Lógica para perder vida en el mapa poco a poco si el frenesí está al máximo
+	if esta_en_descontrol and not get_tree().paused and not en_combate:
+		tiempo_dano_frenesi += delta
+		
+		# Cada 2 segundos en el mapa, pierdes 5 de vida (podés ajustar estos números)
+		if tiempo_dano_frenesi >= 2.0: 
+			vida_jugador -= 5
+			tiempo_dano_frenesi = 0.0
+			print("El virus te daña mientras exploras. Vida actual: ", vida_jugador)
+			
+			if vida_jugador <= 0:
+				morir_definitivamente()
+
+func morir_definitivamente():
+	print("¡Has muerto! Tus sistemas colapsaron.")
+	
+	# 1. RESETEAMOS TODAS LAS VARIABLES GLOBALES PARA EVITAR BUGS Y BUCLES
+	vida_jugador = vida_maxima
+	frenesi_actual = 0.0
+	esta_en_descontrol = false
+	tiempo_dano_frenesi = 0.0
+	penalizacion_escudo = 0
+	penalizacion_energia = 0
+	bonus_doble_dano = false
+	en_combate = false
+	posicion_jugador_en_mapa = Vector2.ZERO
+	
+	# 2. Despausamos por si moriste por un evento
+	get_tree().paused = false
+	
+	# 3. Recargamos la escena principal (Volvés a aparecer en el inicio)
+	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
