@@ -18,6 +18,9 @@ var esta_en_descontrol = false
 var tiempo_dano_frenesi: float = 0.0
 var en_combate: bool = false
 
+var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
+var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
+
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
@@ -73,7 +76,7 @@ func procesar_eleccion(id_evento, opcion):
 				vida_jugador = clamp(vida_jugador + 20,0, vida_jugador)
 				print("Vida curada. Total: ", vida_jugador)
 			else:
-				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 5, "roba": 0})
+				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 10, "roba": 0})
 		# Evento: "Radiación Extraña"
 		"radiacion_1":
 			if opcion == "A":
@@ -210,7 +213,7 @@ func morir_definitivamente():
 	bonus_doble_dano = false
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
-	
+	GameManager.eventos_completados = []
 	# 2. Despausamos por si moriste por un evento
 	get_tree().paused = false
 	

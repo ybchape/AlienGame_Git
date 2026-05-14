@@ -87,6 +87,9 @@ func ejecutar_cavar():
 			var data = objeto.get_cell_tile_data(celda)
 			#  Si existe el tile y tiene la propiedad "es_rompible" en true, lo borramos
 			if data and data.get_custom_data("es_rompible"):
+				# ANOTAMOS LA CELDA EN EL CEREBRO GLOBAL
+				if not celda in GameManager.bloques_destruidos:
+					GameManager.bloques_destruidos.append(celda)
 			# Borramos la celda (-1 elimina el tile)
 				objeto.set_cell(celda, -1)
 				print("Celda eliminada en: ", celda)
