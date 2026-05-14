@@ -1,31 +1,44 @@
 [gd_scene format=3 uid="uid://bqwp4s75vtwib"]
 
 [ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://Escenas/carta/carta_ui.gd" id="1_06qds"]
-[ext_resource type="Texture2D" uid="uid://dfh1w24isbmdn" path="res://Assets/cartas/Análisis de Bioma.jpg" id="1_32oac"]
+[ext_resource type="Texture2D" uid="uid://c0tsfmbbw80o0" path="res://Assets/cartas/Instinto de Presa.png" id="1_slt1n"]
 
 [node name="CartaUI" type="TextureButton" unique_id=168635153]
 custom_minimum_size = Vector2(100, 140)
-offset_right = 190.0
-offset_bottom = 265.0
-texture_normal = ExtResource("1_32oac")
+offset_right = 120.0
+offset_bottom = 160.0
+texture_normal = ExtResource("1_slt1n")
+stretch_mode = 0
 script = ExtResource("1_06qds")
 
 [node name="Titulo" type="Label" parent="." unique_id=552010089]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 48.0
-offset_right = 159.0
-offset_bottom = 82.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18800001
+anchor_top = 0.86500007
+anchor_right = 0.18800001
+anchor_bottom = 0.86500007
+offset_left = 0.03999901
+offset_top = -14.925018
+offset_right = 105.04
+offset_bottom = 15.074982
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Titulo"
+theme_override_font_sizes/font_size = 20
+text = "Capacidad"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="." unique_id=1854865593]
-layout_mode = 0
-offset_left = 126.0
-offset_top = 12.0
-offset_right = 178.0
-offset_bottom = 35.0
-theme_override_colors/font_color = Color(0.99607843, 0, 0, 1)
-text = "Costo"
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87600005
+anchor_top = 0.098000005
+anchor_right = 0.87600005
+anchor_bottom = 0.098000005
+offset_left = -4.9200134
+offset_top = -9.010002
+offset_right = 5.0799866
+offset_bottom = 7.989998
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 13
+text = "2"
+horizontal_alignment = 1

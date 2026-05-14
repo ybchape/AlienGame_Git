@@ -100,11 +100,18 @@ offset_bottom = 55.0
 text = "Energia 3"
 
 [node name="ManoCartas" type="HBoxContainer" parent="." unique_id=488136199]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 302.0
-offset_right = 1148.0
-offset_bottom = 647.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -217.0
+offset_right = 301.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Button" type="Button" parent="." unique_id=908103992]
 layout_mode = 0
@@ -115,11 +122,15 @@ offset_bottom = 273.0
 text = "Terminar turno"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1753712282]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 211.0
-offset_right = 88.0
-offset_bottom = 282.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = 85.0
+offset_right = 117.0
+offset_bottom = 156.0
+grow_vertical = 2
 texture = ExtResource("4_61bmk")
 
 [node name="LabelMazo" type="Label" parent="TextureRect" unique_id=553544548]
@@ -131,10 +142,10 @@ offset_bottom = 48.0
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=916427663]
 layout_mode = 0
-offset_left = 1033.0
-offset_top = 200.0
-offset_right = 1137.0
-offset_bottom = 271.0
+offset_left = 1004.0
+offset_top = 396.0
+offset_right = 1108.0
+offset_bottom = 467.0
 texture = ExtResource("5_7gp4f")
 
 [node name="LabelDescarte" type="Label" parent="TextureRect2" unique_id=882443210]

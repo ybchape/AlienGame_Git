@@ -1,4 +1,7 @@
 extends TextureButton
+@onready var label_nombre = $Titulo
+@onready var label_coste =$Label
+
 
 var datos_carta = {}
 var arrastrando = false
@@ -13,9 +16,13 @@ func _ready() -> void:
 func configurar(datos: Dictionary):
 	# 'datos' es el diccionario que viene del GameManager
 	datos_carta = datos 
+	# Escribimos el título y el coste
+	label_nombre.text = str(datos["tipo"])
+	label_coste.text = str(datos["coste"])
+	
 	# El nombre que pusiste en el diccionario (ej: "Golpe de Chatarra")
 	# debe ser igual al nombre del archivo en tu carpeta de Arte.
-	var ruta = "res://assets/cartas/" + datos["nombre"] + ".jpg"
+	var ruta = "res://assets/cartas/" + datos["nombre"] + ".png"
 	if FileAccess.file_exists(ruta):
 		# Godot carga la misma imagen para todas las cartas que tengan ese nombre
 		texture_normal = load(ruta)
