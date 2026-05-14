@@ -23,6 +23,8 @@ var escena_combate: Node = null #para que funcione close combate con esta var
 var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
 var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
 
+var total_enemigos_en_mapa: int = 8
+
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
@@ -216,11 +218,12 @@ func morir_definitivamente():
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
 	GameManager.eventos_completados = []
+	GameManager.bloques_destruidos = []
 	# 2. Despausamos por si moriste por un evento
 	get_tree().paused = false
 	
-	# 3. Recargamos la escena principal (Volvés a aparecer en el inicio)
-	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	# 3. Recargamos la escena GameOver (Volvés a aparecer en el inicio)
+	get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]
