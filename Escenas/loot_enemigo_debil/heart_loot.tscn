@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://l2ffwp67nhws"]
+
+[ext_resource type="Script" uid="uid://d0ifx315cbdvi" path="res://Escenas/loot_enemigo_debil/heart_loot.gd" id="1_gb16k"]
+[ext_resource type="Texture2D" uid="uid://dj3akhn1x7ikj" path="res://Assets/heart_asset.png" id="2_j7o0r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lc1at"]
+radius = 4.1231055
+
+[node name="Heart" type="Area2D" unique_id=1310414262]
+script = ExtResource("1_gb16k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1566064639]
+scale = Vector2(0.6875, 0.75)
+texture = ExtResource("2_j7o0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659227980]
+shape = SubResource("CircleShape2D_lc1at")

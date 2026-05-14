@@ -312,8 +312,8 @@ func _on_button_final_pressed() -> void:
 	# Apagamos el interruptor antes de salir
 	GameManager.en_combate = false
 	if victoria:
-		# Si ganó: vuelve al mapa (GameManager mantiene la vida actual)
-		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+		# genera el loot + cierra combate
+		GameManager.finalizar_combate(true)
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
 		GameManager.vida_jugador = GameManager.vida_maxima

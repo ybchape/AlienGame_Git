@@ -37,7 +37,8 @@ func _preparar_combate():
 		"frenesi": reduccion_frenesi,
 		"Daño_fijo": 8,
 		"daño_poder": 15,
-		"textura": preload("res://assets/icon.svg")
+		"textura": preload("res://assets/icon.svg"),
+		"posicion": global_position # guarda la posicion del enemigo	
 	}
 	#Cambio a la escena de combate
 	get_tree().change_scene_to_file("res://escenas/escena_combate/escena_combate.tscn")
