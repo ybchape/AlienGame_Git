@@ -213,7 +213,7 @@ func morir_definitivamente():
 	bonus_doble_dano = false
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
-	
+	GameManager.eventos_completados = []
 	# 2. Despausamos por si moriste por un evento
 	get_tree().paused = false
 	
