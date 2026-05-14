@@ -299,8 +299,13 @@ func mostrar_resultado(gano: bool):
 		if nombre_enemigo != "" and not nombre_enemigo in GameManager.enemigos_derrotados:
 			GameManager.enemigos_derrotados.append(nombre_enemigo)
 		
-		label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
-		boton_final.text = "Volver al Mapa"
+		#Chequeamos si ganamos el juego
+		if GameManager.enemigos_derrotados.size() >= GameManager.total_enemigos_en_mapa:
+			label_resultado.text = "¡VICTORIA TOTAL! \n Eliminaste la amenaza del mapa."
+			boton_final.text = "Volver a Jugar"
+		else:
+			label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
+			boton_final.text = "Volver al Mapa"
 	else:
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"
@@ -312,11 +317,27 @@ func _on_button_final_pressed() -> void:
 	# Apagamos el interruptor antes de salir
 	GameManager.en_combate = false
 	if victoria:
-		# genera el loot + cierra combate
-		GameManager.finalizar_combate(true)
+		if GameManager.enemigos_derrotados.size() >= GameManager.total_enemigos_en_mapa:
+			GameManager.vida_jugador = GameManager.vida_maxima
+			GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
+			GameManager.enemigos_derrotados.clear() # Limpiamos la lista negra
+			GameManager.bloques_destruidos.clear() 
+			GameManager.eventos_completados.clear()
+			get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+		
+		else:
+			# genera el loot + cierra combate
+			GameManager.finalizar_combate(true)
+			
+			
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
 		GameManager.vida_jugador = GameManager.vida_maxima
+		GameManager.frenesi_actual = 0.0
+		GameManager.esta_en_descontrol = false
+		GameManager.bloques_destruidos.clear()
+		GameManager.eventos_completados.clear()
+		GameManager.enemigos_derrotados.clear()
 		# Reseteamos la posición para que aparezca en el spawn inicial
 		GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
