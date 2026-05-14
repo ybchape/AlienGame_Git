@@ -288,7 +288,7 @@ func mostrar_resultado(gano: bool):
 
 	if gano:
 		# Recuperamos vida
-		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 15,0, GameManager.vida_maxima)
+		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 8,0, GameManager.vida_maxima)
 		
 		#Redusimos el frenesi
 		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
