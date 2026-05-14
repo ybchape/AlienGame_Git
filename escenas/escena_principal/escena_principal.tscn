@@ -725,7 +725,7 @@ tile_set = SubResource("TileSet_iupgd")
 position = Vector2(85, 602)
 
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
-position = Vector2(128, 180.00003)
+position = Vector2(132, 201)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
 visible = false
@@ -750,3 +750,30 @@ offset_top = 41.0
 offset_right = 167.0
 offset_bottom = 81.0
 script = ExtResource("13_3vxs2")
+
+[node name="enemigo_debil2" parent="." unique_id=1639336850 instance=ExtResource("8_e307b")]
+position = Vector2(175, 545)
+
+[node name="enemigo_debil3" parent="." unique_id=8341714 instance=ExtResource("8_e307b")]
+position = Vector2(183, 435)
+
+[node name="enemigo_debil4" parent="." unique_id=1627579231 instance=ExtResource("8_e307b")]
+position = Vector2(619.00006, 199)
+
+[node name="enemigo_debil5" parent="." unique_id=995730149 instance=ExtResource("8_e307b")]
+position = Vector2(826.99994, 262.99997)
+
+[node name="enemigo_debil6" parent="." unique_id=530462474 instance=ExtResource("8_e307b")]
+position = Vector2(905.00006, 449.99997)
+
+[node name="enemigo_debil7" parent="." unique_id=141362996 instance=ExtResource("8_e307b")]
+position = Vector2(722.99994, 589.99994)
+
+[node name="enemigo_debil8" parent="." unique_id=1600547531 instance=ExtResource("8_e307b")]
+position = Vector2(475.99997, 500.99997)
+
+[node name="CofreEvento4" parent="." unique_id=373667542 instance=ExtResource("10_o0x7m")]
+position = Vector2(985, 402)
+
+[node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
+position = Vector2(456, 559)
