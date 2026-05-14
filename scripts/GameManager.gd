@@ -18,6 +18,9 @@ var esta_en_descontrol = false
 var tiempo_dano_frenesi: float = 0.0
 var en_combate: bool = false
 
+var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
+var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
+
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
