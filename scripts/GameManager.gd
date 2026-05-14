@@ -17,6 +17,8 @@ var penalizacion_energia: int = 0 # var para la penalizacion de energia en event
 var esta_en_descontrol = false
 var tiempo_dano_frenesi: float = 0.0
 var en_combate: bool = false
+var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
+var escena_combate: Node = null #para que funcione close combate con esta var
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
@@ -216,3 +218,20 @@ func morir_definitivamente():
 	
 	# 3. Recargamos la escena principal (Volvés a aparecer en el inicio)
 	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+
+func finalizar_combate(victoria: bool):
+	var posicion_enemigo = enemigo_actual_datos["posicion"]
+	# vuelve al mapa
+	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	# esperamos un frame para que cargue el mapa
+	await get_tree().create_timer(0.2).timeout
+	if victoria:
+		# marca enemigo como derrotado
+		enemigos_derrotados.append(
+			enemigo_actual_datos["nombre_en_escena"]
+		)
+		# instanciamos el corazón
+		var nuevo_corazon = corazon_escena.instantiate()
+		get_tree().current_scene.add_child(nuevo_corazon)
+		nuevo_corazon.global_position = posicion_enemigo
+		print("Corazón looteado.")

@@ -8,6 +8,7 @@ var is_digging = false # variable para cavar
 
 #Chape
 func _ready() -> void:
+	add_to_group("player")
 	# Si venimos de ganar un combate, el GameManager tendrá nuestra última posición
 	if GameManager.posicion_jugador_en_mapa != Vector2.ZERO:
 		global_position = GameManager.posicion_jugador_en_mapa
