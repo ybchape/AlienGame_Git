@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="11_ueh2r"]
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
 [ext_resource type="Script" uid="uid://c5a6jio1uu4km" path="res://Escenas/escena_combate/barra_vida_jugador.gd" id="13_3vxs2"]
+[ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -777,3 +778,5 @@ position = Vector2(985, 402)
 
 [node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
 position = Vector2(456, 559)
+
+[node name="Teclas" parent="." unique_id=2008442961 instance=ExtResource("14_3vxs2")]

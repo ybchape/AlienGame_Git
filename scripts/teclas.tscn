@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dfrncfo6ei71i"]
+
+[node name="Teclas" type="CanvasLayer" unique_id=2008442961]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1269157702]
+offset_left = 885.0
+offset_top = 10.0
+offset_right = 1137.0
+offset_bottom = 128.0
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1229681947]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 21.0
+offset_right = 242.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "* Movimientos: WASD
+* Romper bloque: E"
