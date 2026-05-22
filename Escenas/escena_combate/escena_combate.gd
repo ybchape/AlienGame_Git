@@ -1,5 +1,5 @@
 extends Control
-var molde_carta = preload("res://escenas/carta/carta_ui.tscn")
+var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var mano_visual = $ManoCartas
 @onready var label_energia = $LabelEnergia
 @onready var barra_vida_enemigo = $BarraVidaEnemigo

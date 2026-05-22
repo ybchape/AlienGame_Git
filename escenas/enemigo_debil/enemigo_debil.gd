@@ -3,6 +3,9 @@ extends CharacterBody2D
 var vida_maxima = 100
 var reduccion_frenesi = 15
 
+const ESCENA_COMBATE = preload("uid://df0wos767uxby") #ruta de la escena con los codigos de godot raros
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Lo metemos en un grupo para que el jugador lo identifique al chocar
@@ -37,11 +40,11 @@ func _preparar_combate():
 		"frenesi": reduccion_frenesi,
 		"Daño_fijo": 8,
 		"daño_poder": 15,
-		"textura": preload("res://assets/icon.svg"),
+		"textura": preload("res://Assets/icon.svg"),
 		"posicion": global_position # guarda la posicion del enemigo	
 	}
 	#Cambio a la escena de combate
-	get_tree().change_scene_to_file("res://escenas/escena_combate/escena_combate.tscn")
+	get_tree().change_scene_to_packed(ESCENA_COMBATE)
 
 func _otorgar_recompensa():
 # Reducimos el frenesí biológico obligatoriamente al ganar
