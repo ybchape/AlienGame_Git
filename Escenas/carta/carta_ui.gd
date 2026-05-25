@@ -23,9 +23,9 @@ func configurar(datos: Dictionary):
 	# El nombre que pusiste en el diccionario (ej: "Golpe de Chatarra")
 	# debe ser igual al nombre del archivo en tu carpeta de Arte.
 	var ruta = "res://Assets/cartas/" + datos["nombre"] + ".png"
-	if FileAccess.file_exists(ruta):
+	if ResourceLoader.exists(ruta):
 		# Godot carga la misma imagen para todas las cartas que tengan ese nombre
-		texture_normal = load(ruta)
+		texture_normal = ResourceLoader.load(ruta)
 	else:
 		print("Falta el arte para: ", datos["nombre"])
 		
