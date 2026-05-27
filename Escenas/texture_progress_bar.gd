@@ -8,6 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	value = GameManager.frenesi_actual
-	max_value = GameManager.frenesi_maximo #Cambiamos el valor de la barra de frenesi
+	value = RunManager.frenesi_actual
+	max_value = RunManager.frenesi_maximo #Cambiamos el valor de la barra de frenesi
 	pass

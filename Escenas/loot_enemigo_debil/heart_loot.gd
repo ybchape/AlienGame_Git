@@ -9,7 +9,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
 		# accede directamente a la vida del GameManager
 		# clamp para no pasarse de la vida maxima (100)
-		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 5, 0, GameManager.vida_maxima)
+		RunManager.vida_jugador = clamp(RunManager.vida_jugador + 5, 0, RunManager.vida_maxima)
 		
-		print("Corazón recolectado.", GameManager.vida_jugador)
+		print("Corazón recolectado.", RunManager.vida_jugador)
 		queue_free() # desaparece el corazon
