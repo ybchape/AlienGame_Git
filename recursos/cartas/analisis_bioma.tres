@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://bi33x01ts37m7"]
 
 [ext_resource type="Texture2D" uid="uid://c4ifv4b37iwx2" path="res://Assets/cartas/Análisis de Bioma.png" id="1_heat2"]
-[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://Assets/recursos/cartas/recurso_carta.gd" id="2_p0p0b"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="2_p0p0b"]
 
 [resource]
 script = ExtResource("2_p0p0b")

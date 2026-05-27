@@ -75,29 +75,29 @@ func procesar_eleccion(id_evento, opcion):
 		"oxigeno":
 			if opcion == "A":
 				# clamp que limita el valor entre 0 y la vida maxima
-				RunManager.vida_jugador = clamp(RunManager.vida_jugador + 20,0, RunManager.vida_jugador)
-				print("Vida curada. Total: ", RunManager.vida_jugador)
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 20,0, RunManager.run_data.vida_jugador)
+				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA_2)
 		# Evento: "Radiación Extraña"
 		"radiacion_1":
 			if opcion == "A":
 				# ademas del daño doble, aplica penalizacion de escudo
-				RunManager.bonus_doble_dano = true
-				RunManager.penalizacion_escudo = 5
+				RunManager.run_data.bonus_doble_dano = true
+				RunManager.run_data.penalizacion_escudo = 5
 				print ("Evento:  Se aplica el doble dano y la penalizacion de escudo -5")
 			else:
-				RunManager.penalizacion_energia = 1
+				RunManager.run_data.penalizacion_energia = 1
 				print ("Combatiendo con -1 enegia")
 
 		# Evento: "Radiación Alienígena"
 		"radiacion_2":
 			if opcion == "A":
 				# +20 frenesi
-				RunManager.frenesi_actual = clamp(RunManager.frenesi_actual + 20,0,RunManager.frenesi_maximo)
+				RunManager.run_data.frenesi_actual = clamp(RunManager.run_data.frenesi_actual + 20,0,RunManager.run_data.frenesi_maximo)
 			else:
 				# +5 vida
-				RunManager.vida_jugador = clamp(RunManager.vida_jugador + 5,0,RunManager.vida_maxima)
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 5,0,RunManager.run_data.vida_maxima)
 
 	# Reanuda el juego
 	get_tree().paused = false
@@ -109,12 +109,12 @@ func _ready() -> void:
 
 # Función para que cualquier objeto pueda alterar el frenesí
 func actualizar_frenesi(cantidad: float):
-	RunManager.frenesi_actual += cantidad
-	RunManager.frenesi_actual = clamp(RunManager.frenesi_actual, 0, RunManager.frenesi_maximo)
+	RunManager.run_data.frenesi_actual += cantidad
+	RunManager.run_data.frenesi_actual = clamp(RunManager.run_data.frenesi_actual, 0, RunManager.run_data.frenesi_maximo)
 	#Le avisa al juego si entraste en modo Descontrol(frenesi)
-	esta_en_descontrol = (RunManager.frenesi_actual >= RunManager.frenesi_maximo)
+	esta_en_descontrol = (RunManager.run_data.frenesi_actual >= RunManager.run_data.frenesi_maximo)
 	
-	print("Frenesí biológico en: ", RunManager.frenesi_actual)
+	print("Frenesí biológico en: ", RunManager.run_data.frenesi_actual)
 	
 func morir_por_frenesi():
 	print("El virus de descontroló")
@@ -122,17 +122,17 @@ func morir_por_frenesi():
 
 	# Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: RecursoCarta):
-	if RunManager.mazo_actual.size() < RunManager.MAZO_MAXIMO:
+	if RunManager.run_data.mazo_actual.size() < RunManager.MAZO_MAXIMO:
 		RunManager.agregar_carta(nueva_carta)
-		print("Nueva carta añadida al mazo. Total actual: ", RunManager.mazo_actual.size())
+		print("Nueva carta añadida al mazo. Total actual: ", RunManager.run_data.mazo_actual.size())
 	else:
 		print("Mazo lleno. Alcanzaste el límite máximo de ", RunManager.MAZO_MAXIMO, " cartas.")
 
 #Eminimar carta cuando se necesite
 func eliminar_carta(indice: int):
-	if RunManager.mazo_actual.size() > RunManager.MAZO_MINIMO:
+	if RunManager.run_data.mazo_actual.size() > RunManager.MAZO_MINIMO:
 		RunManager.eliminar_carta(indice)
-		print("Carta eliminada del mazo. Total actual: ", RunManager.mazo_actual.size())
+		print("Carta eliminada del mazo. Total actual: ", RunManager.run_data.mazo_actual.size())
 	else:
 		print("Acción bloqueada: Tu mazo no puede tener menos de ", RunManager.MAZO_MINIMO, " cartas.")
 
@@ -178,19 +178,19 @@ func _process(delta: float) -> void:
 		
 		# Cada 2 segundos en el mapa, pierdes 5 de vida (podés ajustar estos números)
 		if tiempo_dano_frenesi >= 2.0: 
-			RunManager.vida_jugador -= 5
+			RunManager.run_data.vida_jugador -= 5
 			tiempo_dano_frenesi = 0.0
-			print("El virus te daña mientras exploras. Vida actual: ", RunManager.vida_jugador)
+			print("El virus te daña mientras exploras. Vida actual: ", RunManager.run_data.vida_jugador)
 			
-			if RunManager.vida_jugador <= 0:
+			if RunManager.run_data.vida_jugador <= 0:
 				morir_definitivamente()
 
 func morir_definitivamente():
 	print("¡Has muerto! Tus sistemas colapsaron.")
 	
 	# 1. RESETEAMOS TODAS LAS VARIABLES GLOBALES PARA EVITAR BUGS Y BUCLES
-	RunManager.vida_jugador = RunManager.vida_maxima
-	RunManager.frenesi_actual = 0.0
+	RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
+	RunManager.run_data.frenesi_actual = 0.0
 	esta_en_descontrol = false
 	tiempo_dano_frenesi = 0.0
 	RunManager.reiniciar_modificadores_temporales()

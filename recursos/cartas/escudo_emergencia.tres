@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://c7b1hkdue8x06"]
 
 [ext_resource type="Texture2D" uid="uid://cpd3tldxh8xai" path="res://Assets/cartas/Escudo de Emergencia.png" id="1_r3iy3"]
-[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://Assets/recursos/cartas/recurso_carta.gd" id="2_4nwhg"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="2_4nwhg"]
 
 [resource]
 script = ExtResource("2_4nwhg")
