@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 GameManager="*uid://duweayaxlsq5q"
+RunManager="*uid://c4wvjknjt5j1p"
 
 [display]
 

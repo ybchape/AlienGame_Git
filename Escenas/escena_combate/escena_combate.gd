@@ -34,20 +34,20 @@ func _ready() -> void:
 	
 	# aplica eventos
 	# penalizacion de energia
-	energia_actual = 3 - GameManager.penalizacion_energia
+	energia_actual = 3 - RunManager.run_data.penalizacion_energia
 	# reset energia a 3
-	GameManager.penalizacion_energia = 0
+	RunManager.run_data.penalizacion_energia = 0
 	
 	# 1. Cargar datos del enemigo
 	sprite_enemigo.texture = GameManager.enemigo_actual_datos["textura"]
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]
 	
-	barra_vida_jugador.max_value = GameManager.vida_maxima 
-	barra_vida_jugador.value = GameManager.vida_jugador
+	barra_vida_jugador.max_value = RunManager.run_data.vida_maxima 
+	barra_vida_jugador.value = RunManager.run_data.vida_jugador
 	
 	# 2. Preparar mano (Mezclar y Robar 5)
-	mazo_principal = GameManager.mazo_jugador.duplicate()
+	mazo_principal = RunManager.run_data.mazo_actual.duplicate()
 	mazo_principal.shuffle() #mescla las cartas
 	# Limpia el descarte por seguridad
 	mazo_descarte.clear()
@@ -82,24 +82,24 @@ func repartir_cartas(cantidad):
 
 func _jugar_carta(nodo, datos):
 	#Calculamos el costo de la carta
-	var coste_real = datos["coste"]
+	var coste_real = datos.coste
 	
 	#Si la barra está llena y es una carta de Ataque, es gratis
-	if GameManager.esta_en_descontrol and datos.get("tipo") == "Ataque":
+	if GameManager.esta_en_descontrol and datos.tipo == "Ataque":
 		coste_real = 0
 		print("¡Frenesí Biológico! Ataque a coste 0.")
 	
-	# Cambiamos datos["coste"] por coste_real en la validación y resta
+	# Cambiamos datos.coste por coste_real en la validación y resta
 	if energia_actual >= coste_real:
 		energia_actual -= coste_real
 		
 		# 1. Aplicar DAÑO al enemigo
-		if datos.has("daño") and datos["daño"] > 0:
-			var dano_a_realizar = datos["daño"]
+		if datos.daño > 0:
+			var dano_a_realizar = datos.daño
 			# efecto de evento doble daño
-			if GameManager.bonus_doble_dano:
+			if RunManager.run_data.bonus_doble_dano:
 				dano_a_realizar*= 2 #aplica el multiplicador de daño x2
-				GameManager.bonus_doble_dano = false
+				RunManager.run_data.bonus_doble_dano = false
 				print ("Doble daño aplicado y agotado")
 			
 			if escudo_enemigo_actual >= dano_a_realizar:
@@ -110,15 +110,15 @@ func _jugar_carta(nodo, datos):
 				barra_vida_enemigo.value -= dano_sobrante # Le restás a su vida
 		
 		# 2. Aplicar ESCUDO a ti misma
-		if datos.has("escudo") and datos["escudo"] > 0:
+		if datos.escudo > 0:
 			# efecto evento penalizacion de escudo
-			var escudo_final = datos["escudo"] - GameManager.penalizacion_escudo
+			var escudo_final = datos.escudo - RunManager.run_data.penalizacion_escudo
 			escudo_actual += max(0,escudo_final) # max(0) evita que el escudo quede en negativo
 			
 		# 3. Habilidad de ROBAR cartas
-		if datos.has("roba") and datos["roba"] > 0:
-			print("Usaste una habilidad. Robando ", datos["roba"], " carta(s) extra.")
-			repartir_cartas(datos["roba"]) # Llama a la función que ya tenés para sacar del mazo
+		if datos.roba > 0:
+			print("Usaste una habilidad. Robando ", datos.roba, " carta(s) extra.")
+			repartir_cartas(datos.roba) # Llama a la función que ya tenés para sacar del mazo
 		
 		# La carta jugada va al descarte
 		mazo_descarte.append(datos)
@@ -154,7 +154,7 @@ func actualizar_ui():
 	label_escudo.text = "Escudo: " + str(escudo_actual)
 	label_escudo_enemigo.text = "Escudo Enemigo: " + str(escudo_enemigo_actual)
 	#barras de salud
-	barra_vida_jugador.value = GameManager.vida_jugador
+	barra_vida_jugador.value = RunManager.run_data.vida_jugador
 
 func turno_del_enemigo():
 	print("Turno del enemigo...")
@@ -213,17 +213,17 @@ func turno_del_enemigo():
 		else:
 			var dano_restante = dano_enemigo - escudo_actual
 			escudo_actual = 0
-			GameManager.vida_jugador -= dano_restante
+			RunManager.run_data.vida_jugador -= dano_restante
 			print("Daño recibido tras escudo: ", dano_restante)
 			
 			# --- ACÁ AGREGAMOS LA CONDICIÓN DE DERROTA ---
-			if GameManager.vida_jugador <= 0:
+			if RunManager.run_data.vida_jugador <= 0:
 				print("¡Derrota! Tu vida llegó a 0.")
 				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
 				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
 				# reset de escudo para los eventos
-		if GameManager.penalizacion_escudo >0: 
-			GameManager.penalizacion_escudo = 0
+		if RunManager.run_data.penalizacion_escudo >0: 
+			RunManager.run_data.penalizacion_escudo = 0
  
 	# ACTUALIZAMOS QUÉ VA A HACER EL PRÓXIMO TURNO
 	planear_proxima_accion()
@@ -256,9 +256,9 @@ func iniciar_nuevo_turno_jugador():
 	
 	# riesgo del frenesi (pierdo vida)
 	if GameManager.esta_en_descontrol:
-		GameManager.vida_jugador -= 5
-		print("El virus te consume: -5 PV. Vida restante: ", GameManager.vida_jugador)
-		if GameManager.vida_jugador <=0:
+		RunManager.run_data.vida_jugador -= 5
+		print("El virus te consume: -5 PV. Vida restante: ", RunManager.run_data.vida_jugador)
+		if RunManager.run_data.vida_jugador <=0:
 			mostrar_resultado(false)
 			return
 	
@@ -281,14 +281,14 @@ func _on_button_pressed() -> void:
 # Pantalla de victoria/Derrota
 func mostrar_resultado(gano: bool):
 	# reset de eventos
-	GameManager.penalizacion_escudo = 0
-	GameManager.bonus_doble_dano = false
+	RunManager.run_data.penalizacion_escudo = 0
+	RunManager.run_data.bonus_doble_dano = false
 	victoria = gano
 	panel_final.visible = true
 
 	if gano:
 		# Recuperamos vida
-		GameManager.vida_jugador = clamp(GameManager.vida_jugador + 8,0, GameManager.vida_maxima)
+		RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 8,0, RunManager.run_data.vida_maxima)
 		
 		#Redusimos el frenesi
 		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
@@ -318,7 +318,7 @@ func _on_button_final_pressed() -> void:
 	GameManager.en_combate = false
 	if victoria:
 		if GameManager.enemigos_derrotados.size() >= GameManager.total_enemigos_en_mapa:
-			GameManager.vida_jugador = GameManager.vida_maxima
+			RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
 			GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
 			GameManager.enemigos_derrotados.clear() # Limpiamos la lista negra
 			GameManager.bloques_destruidos.clear() 
@@ -332,8 +332,8 @@ func _on_button_final_pressed() -> void:
 			
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
-		GameManager.vida_jugador = GameManager.vida_maxima
-		GameManager.frenesi_actual = 0.0
+		RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
+		RunManager.run_data.frenesi_actual = 0.0
 		GameManager.esta_en_descontrol = false
 		GameManager.bloques_destruidos.clear()
 		GameManager.eventos_completados.clear()

@@ -1,28 +1,26 @@
 extends Node
-#Guarda los datos del enemigo que tocaste para que la pantalla de combate sepa qué mostrar
 
+# Enemigos
+#Guarda los datos del enemigo que tocaste para que la pantalla de combate sepa qué mostrar
 var enemigo_actual_datos = {}
-var frenesi_actual: float = 0.0
-var frenesi_maximo: float = 100.0
-var vida_jugador: int = 100
+var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
+
+# Vision
 var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
 var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
-var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta 
-var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
-var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
-var vida_maxima: int = 100 #new variable eventos
-var penalizacion_escudo: int = 0 # var para el efecto de escudo en los eventos
-var bonus_doble_dano = false
-var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
+var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta ek radio de vision
+
+# modificadores
 var esta_en_descontrol = false
 var tiempo_dano_frenesi: float = 0.0
+
+# Mapa
+var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 var en_combate: bool = false
 var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
 var escena_combate: Node = null #para que funcione close combate con esta var
-
 var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
 var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
-
 var total_enemigos_en_mapa: int = 8
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
@@ -77,29 +75,29 @@ func procesar_eleccion(id_evento, opcion):
 		"oxigeno":
 			if opcion == "A":
 				# clamp que limita el valor entre 0 y la vida maxima
-				vida_jugador = clamp(vida_jugador + 20,0, vida_jugador)
-				print("Vida curada. Total: ", vida_jugador)
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 20,0, RunManager.run_data.vida_jugador)
+				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
-				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 10, "roba": 0})
+				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA_2)
 		# Evento: "Radiación Extraña"
 		"radiacion_1":
 			if opcion == "A":
 				# ademas del daño doble, aplica penalizacion de escudo
-				bonus_doble_dano = true
-				penalizacion_escudo = 5
+				RunManager.run_data.bonus_doble_dano = true
+				RunManager.run_data.penalizacion_escudo = 5
 				print ("Evento:  Se aplica el doble dano y la penalizacion de escudo -5")
 			else:
-				penalizacion_energia = 1
+				RunManager.run_data.penalizacion_energia = 1
 				print ("Combatiendo con -1 enegia")
 
 		# Evento: "Radiación Alienígena"
 		"radiacion_2":
 			if opcion == "A":
 				# +20 frenesi
-				frenesi_actual = clamp(frenesi_actual + 20,0,frenesi_maximo)
+				RunManager.run_data.frenesi_actual = clamp(RunManager.run_data.frenesi_actual + 20,0,RunManager.run_data.frenesi_maximo)
 			else:
 				# +5 vida
-				vida_jugador = clamp(vida_jugador + 5,0,vida_maxima)
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 5,0,RunManager.run_data.vida_maxima)
 
 	# Reanuda el juego
 	get_tree().paused = false
@@ -109,51 +107,34 @@ func procesar_eleccion(id_evento, opcion):
 func _ready() -> void:
 	pass # Replace with function body.
 
-# --- LÍMITES DEL MAZO ---
-const MAZO_MINIMO = 5
-const MAZO_MAXIMO = 15
-#El mazo inicial que va a tener el jugador
-var mazo_jugador = [
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
-	{"nombre": "Golpe de Chatarra", "tipo": "Ataque", "coste": 1, "daño": 12, "escudo": 0, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
-	{"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 8, "roba": 0},
-	{"nombre": "Instinto de Presa", "tipo": "Poder", "coste": 2, "daño": 25, "escudo": 0, "roba": 0},
-	{"nombre": "Análisis de Bioma", "tipo": "Capacidad", "coste": 0, "daño": 0, "escudo": 0, "roba": 1}
-]
-
 # Función para que cualquier objeto pueda alterar el frenesí
 func actualizar_frenesi(cantidad: float):
-	frenesi_actual += cantidad
-	frenesi_actual = clamp(frenesi_actual, 0, frenesi_maximo)
+	RunManager.run_data.frenesi_actual += cantidad
+	RunManager.run_data.frenesi_actual = clamp(RunManager.run_data.frenesi_actual, 0, RunManager.run_data.frenesi_maximo)
 	#Le avisa al juego si entraste en modo Descontrol(frenesi)
-	esta_en_descontrol = (frenesi_actual >= frenesi_maximo)
+	esta_en_descontrol = (RunManager.run_data.frenesi_actual >= RunManager.run_data.frenesi_maximo)
 	
-	print("Frenesí biológico en: ", frenesi_actual)
+	print("Frenesí biológico en: ", RunManager.run_data.frenesi_actual)
 	
 func morir_por_frenesi():
 	print("El virus de descontroló")
 	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
 
 	# Agregar carta cuando se necesite
-func agregar_carta(nueva_carta: Dictionary):
-	if mazo_jugador.size() < MAZO_MAXIMO:
-		mazo_jugador.append(nueva_carta)
-		print("Nueva carta añadida al mazo. Total actual: ", mazo_jugador.size())
+func agregar_carta(nueva_carta: RecursoCarta):
+	if RunManager.run_data.mazo_actual.size() < RunManager.MAZO_MAXIMO:
+		RunManager.agregar_carta(nueva_carta)
+		print("Nueva carta añadida al mazo. Total actual: ", RunManager.run_data.mazo_actual.size())
 	else:
-		print("Mazo lleno. Alcanzaste el límite máximo de ", MAZO_MAXIMO, " cartas.")
+		print("Mazo lleno. Alcanzaste el límite máximo de ", RunManager.MAZO_MAXIMO, " cartas.")
 
 #Eminimar carta cuando se necesite
 func eliminar_carta(indice: int):
-	if mazo_jugador.size() > MAZO_MINIMO:
-		mazo_jugador.remove_at(indice)
-		print("Carta eliminada del mazo. Total actual: ", mazo_jugador.size())
+	if RunManager.run_data.mazo_actual.size() > RunManager.MAZO_MINIMO:
+		RunManager.eliminar_carta(indice)
+		print("Carta eliminada del mazo. Total actual: ", RunManager.run_data.mazo_actual.size())
 	else:
-		print("Acción bloqueada: Tu mazo no puede tener menos de ", MAZO_MINIMO, " cartas.")
+		print("Acción bloqueada: Tu mazo no puede tener menos de ", RunManager.MAZO_MINIMO, " cartas.")
 
 # Funcion global para cavar/romper bloques
 func romper_bloque(player_position: Vector2, direccion: String):
@@ -197,24 +178,22 @@ func _process(delta: float) -> void:
 		
 		# Cada 2 segundos en el mapa, pierdes 5 de vida (podés ajustar estos números)
 		if tiempo_dano_frenesi >= 2.0: 
-			vida_jugador -= 5
+			RunManager.run_data.vida_jugador -= 5
 			tiempo_dano_frenesi = 0.0
-			print("El virus te daña mientras exploras. Vida actual: ", vida_jugador)
+			print("El virus te daña mientras exploras. Vida actual: ", RunManager.run_data.vida_jugador)
 			
-			if vida_jugador <= 0:
+			if RunManager.run_data.vida_jugador <= 0:
 				morir_definitivamente()
 
 func morir_definitivamente():
 	print("¡Has muerto! Tus sistemas colapsaron.")
 	
 	# 1. RESETEAMOS TODAS LAS VARIABLES GLOBALES PARA EVITAR BUGS Y BUCLES
-	vida_jugador = vida_maxima
-	frenesi_actual = 0.0
+	RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
+	RunManager.run_data.frenesi_actual = 0.0
 	esta_en_descontrol = false
 	tiempo_dano_frenesi = 0.0
-	penalizacion_escudo = 0
-	penalizacion_energia = 0
-	bonus_doble_dano = false
+	RunManager.reiniciar_modificadores_temporales()
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
 	GameManager.eventos_completados = []
