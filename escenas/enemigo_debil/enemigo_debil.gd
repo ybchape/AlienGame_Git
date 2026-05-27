@@ -4,7 +4,7 @@ var vida_maxima = 100
 var reduccion_frenesi = 15
 
 const ESCENA_COMBATE = preload("uid://df0wos767uxby") #ruta de la escena con los codigos de godot raros
-
+								 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

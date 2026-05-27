@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://75fsqne8d60u"]
+
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="1_lyc5p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_au7e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lyc5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnccb"]
+size = Vector2(129, 130)
+
+[node name="enemigo_medio" type="CharacterBody2D" unique_id=215366626]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1698520232]
+sprite_frames = SubResource("SpriteFrames_au7e4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=800401469]
+shape = SubResource("RectangleShape2D_cnccb")
