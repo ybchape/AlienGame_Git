@@ -48,7 +48,9 @@ var eventos_disponibles = [
 		"op_a_txt": "Mutar (+20 Frenesí)",
 		"op_b_txt": "Analizar (+5 PV)",
 		"id": "radiacion_2"
-	}
+	},
+	{
+		
 ]
 var eventos_pendientes = []
 
@@ -77,7 +79,7 @@ func procesar_eleccion(id_evento, opcion):
 		"oxigeno":
 			if opcion == "A":
 				# clamp que limita el valor entre 0 y la vida maxima
-				vida_jugador = clamp(vida_jugador + 20,0, vida_jugador)
+				vida_jugador = clamp(vida_jugador + 20,0, vida_maxima)
 				print("Vida curada. Total: ", vida_jugador)
 			else:
 				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 10, "roba": 0})
