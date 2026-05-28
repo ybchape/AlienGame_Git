@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var vida_maxima: int = 200
+var vida_maxima: int = 180
 var reduccion_frenesi: int = 50 # El jefe baja mucho más frenesí
 
 const ESCENA_COMBATE =preload("uid://df0wos767uxby")
@@ -27,9 +27,10 @@ func _preparar_combate():
 		"tipo_enemigo": "jefe",
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
-		"Daño_fijo": 15,          # El golpe básico del jefe
-		"daño_especial": 22,      # El golpe devastador del jefe
+		"Daño_fijo": 24,          # El golpe básico del jefe
+		"daño_especial": 32,      # El golpe devastador del jefe
 		"textura": preload("res://Assets/icon.svg"), 
 		"posicion": global_position 
 	}
 	get_tree().change_scene_to_packed(ESCENA_COMBATE)
+	

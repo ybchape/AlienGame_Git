@@ -16,6 +16,13 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var label_resultado = $CapaFinal/Panel/Label
 @onready var boton_final = $CapaFinal/Panel/Continuar
 
+#NODOS PARA RECOMPENZA
+@onready var btn_carta_1 = $CapaFinal/Panel/BtnCarta1
+@onready var btn_carta_2 = $CapaFinal/Panel/BtnCarta2
+
+var carta_opcion_1: RecursoCarta
+var carta_opcion_2: RecursoCarta
+
 var victoria = false
 
 var energia_actual = 3
@@ -57,6 +64,8 @@ func _ready() -> void:
 	
 	repartir_cartas(4)
 	actualizar_ui()
+	
+	
 	
 func robar_una_carta():
 	# Si el mazo está vacío, pasamos el descarte al mazo y mezclamos
@@ -174,7 +183,7 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El enemigo débil ataca por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 7
+				escudo_enemigo_actual += 8
 				print("El enemigo débil se protege.")
 			else: 
 				#Ejecuta el poder
@@ -187,7 +196,7 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El enemigo medio ataca por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 12 # Se pone más escudo que el débil
+				escudo_enemigo_actual += 15 # Se pone más escudo que el débil
 				print("El enemigo medio se protege.")
 			else:
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
@@ -199,7 +208,7 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El Jefe ataca normal por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 10
+				escudo_enemigo_actual += 25
 				print("El Jefe se pone un mega escudo.")
 			else:
 				# ATAQUE ESPECIAL
@@ -274,6 +283,12 @@ func iniciar_nuevo_turno_jugador():
 	# 4. Actualizamos todo visualmente
 	actualizar_ui()
 
+	# Conectamos los botones nuevos por código
+	btn_carta_1.pressed.connect(_on_btn_carta_1_pressed)
+	btn_carta_2.pressed.connect(_on_btn_carta_2_pressed)
+	btn_carta_1.visible = false
+	btn_carta_2.visible = false
+	
 func _on_button_pressed() -> void:
 	if es_turno_jugador: # Solo funciona si es tu turno
 		terminar_turno()
@@ -285,8 +300,12 @@ func mostrar_resultado(gano: bool):
 	RunManager.run_data.bonus_doble_dano = false
 	victoria = gano
 	panel_final.visible = true
-
+	btn_carta_1.visible = false 
+	btn_carta_2.visible = false 
+	boton_final.visible = true
 	if gano:
+		var tipo_enemigo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
+		
 		# Recuperamos vida
 		RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 8,0, RunManager.run_data.vida_maxima)
 		
@@ -304,8 +323,24 @@ func mostrar_resultado(gano: bool):
 			label_resultado.text = "¡VICTORIA TOTAL! \n Eliminaste la amenaza del mapa."
 			boton_final.text = "Volver a Jugar"
 		else:
-			label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
-			boton_final.text = "Volver al Mapa"
+			# Agregamos este 'if' para separar al débil de los demás
+			if tipo_enemigo == "debil":
+				label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
+				boton_final.text = "Volver al Mapa"
+			else:
+				# Solo entra acá si es Enemigo Medio o Jefe
+				label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
+				boton_final.visible = false # Ocultamos el "Volver al Mapa"
+				btn_carta_1.visible = true  # Mostramos las cartas
+				btn_carta_2.visible = true  
+				
+				# Pedimos las cartas al RunManager
+				var opciones = RunManager.obtener_opciones_recompensa()
+				carta_opcion_1 = opciones[0]
+				carta_opcion_2 = opciones[1]
+				
+				btn_carta_1.text = carta_opcion_1.name + "\n(Coste: " + str(carta_opcion_1.coste) + ")"
+				btn_carta_2.text = carta_opcion_2.name + "\n(Coste: " + str(carta_opcion_2.coste) + ")"
 	else:
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"
@@ -332,12 +367,25 @@ func _on_button_final_pressed() -> void:
 			
 	else:
 		# Si perdió: reinicia vida y vuelve al inicio
-		RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
-		RunManager.run_data.frenesi_actual = 0.0
-		GameManager.esta_en_descontrol = false
-		GameManager.bloques_destruidos.clear()
-		GameManager.eventos_completados.clear()
-		GameManager.enemigos_derrotados.clear()
+		#RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
+		#RunManager.run_data.frenesi_actual = 0.0
+		#GameManager.esta_en_descontrol = false
+		#GameManager.bloques_destruidos.clear()
+		#GameManager.eventos_completados.clear()
+		#GameManager.enemigos_derrotados.clear()
 		# Reseteamos la posición para que aparezca en el spawn inicial
-		GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
-		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+		#GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
+		GameManager.morir_definitivamente()
+		#get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+
+
+func _on_btn_carta_1_pressed() -> void:
+	RunManager.agregar_carta(carta_opcion_1)
+	print("Se añadió la carta: ", carta_opcion_1.name)
+	_on_button_final_pressed()
+
+
+func _on_btn_carta_2_pressed() -> void:
+	RunManager.agregar_carta(carta_opcion_2)
+	print("Se añadió la carta: ", carta_opcion_2.name)
+	_on_button_final_pressed()

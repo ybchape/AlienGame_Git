@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var vida_maxima: int = 55
+var vida_maxima: int = 75
 var reduccion_frenesi: int = 25
 
 const ESCENA_COMBATE = preload("uid://df0wos767uxby")
@@ -33,9 +33,10 @@ func _preparar_combate():
 		"tipo_enemigo": "medio", # Clave para que la escena de combate sepa cómo actúa
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
-		"Daño_fijo": 10,          
-		"daño_poder": 16,         
+		"Daño_fijo": 18,          
+		"daño_poder": 25,         
 		"textura": preload("res://Assets/icon.svg"), # Cambiar por el arte de Lucía
 		"posicion": global_position 
 	}
 	get_tree().change_scene_to_packed(ESCENA_COMBATE)
+	
