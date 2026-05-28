@@ -725,7 +725,7 @@ tile_set = SubResource("TileSet_iupgd")
 script = ExtResource("8_sqmix")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(85, 602)
+position = Vector2(777, 607)
 
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(132, 201)
@@ -735,13 +735,13 @@ visible = false
 color = Color(0.0060222126, 0.0056541427, 0.004727708, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
-position = Vector2(108, 368)
+position = Vector2(798, 547)
 
 [node name="CofreEvento2" parent="." unique_id=300009697 instance=ExtResource("10_o0x7m")]
-position = Vector2(256, 189)
+position = Vector2(755, 544)
 
 [node name="CofreEvento3" parent="." unique_id=741794274 instance=ExtResource("10_o0x7m")]
-position = Vector2(475, 120)
+position = Vector2(721, 544)
 
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("11_ueh2r")]
 
@@ -776,9 +776,9 @@ position = Vector2(722.99994, 589.99994)
 position = Vector2(475.99997, 500.99997)
 
 [node name="CofreEvento4" parent="." unique_id=373667542 instance=ExtResource("10_o0x7m")]
-position = Vector2(985, 402)
+position = Vector2(674, 607)
 
 [node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
-position = Vector2(456, 559)
+position = Vector2(679, 545)
 
 [node name="Teclas" parent="." unique_id=2008442961 instance=ExtResource("14_3vxs2")]

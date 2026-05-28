@@ -24,6 +24,7 @@ var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
 var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
 
 var total_enemigos_en_mapa: int = 8
+var penalizacion_tiempo_aspiradora: float = 1.0 #(significa al 100%)
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
@@ -50,6 +51,19 @@ var eventos_disponibles = [
 		"id": "radiacion_2"
 	},
 	{
+		"titulo": "Necrosis Celular",
+		"texto": "Una de tus extremidades mutadas comienza a supurar un líquido negro. Sientes un dolor agudo, pero la vieja estructura celular muerta finalmente se desprende, despejando tu sistema.",
+		"op_a_txt": "Extirpar tejido (Elimina una carta de tu mazo)",
+		"op_b_txt": "Ignorar (No pasa nada)",
+		"id": "necrosis_celular"
+	},
+	{
+	"titulo": "Derrumbe de Capas Subterráneas",
+	"texto": "Al quitar un bloque con la aspiradora, las vibraciones provocan un micro-seísmo. El suelo cede y caes a un túnel inferior infestado de esporas extrañas.",
+	"op_a_txt": "Tratar de estabilizarte (Soportar el impacto)",
+	"op_b_txt": "Dejarse caer (No hay otra opción)",
+	"id": "derrumbe_capas"
+}
 		
 ]
 var eventos_pendientes = []
@@ -75,6 +89,24 @@ func abrir_ventana_evento():
 # Función para procesar la elección del jugador
 func procesar_eleccion(id_evento, opcion):
 	match id_evento:
+		"derrumbe_capas":
+			# ambas opciones aplican el efecto del derrumbe ya que es Negativo + Positivo directo
+			# efecto negativo: Aumenta el tiempo para romper bloques un 20%
+			penalizacion_tiempo_aspiradora = 1.2 
+			print("Evento: Tu aspiradora ahora es un 20% más lenta debido a la fatiga.")
+			# efecto positivo: revela Enemigos Medios y Boss en el mapa/HUD
+			revelar_enemigos_importantes()
+			# Reanudamos el juego
+			get_tree().paused = false
+		# Evento: "Necrosis celular"
+		"necrosis_celular":
+			if opcion == "A":
+				# call a una ui para elegirque carta borrar (el sistema no esta creado todavia)
+				abrir_interfaz_eliminar_carta()
+			else:
+				print("Decidiste ignorar la necrosis. El virus se mantiene estable.")
+				# Si ignora, reanudamos el juego directamente aquí
+				get_tree().paused = false
 		#Evento: "Suministros de Oxígeno"
 		"oxigeno":
 			if opcion == "A":
@@ -243,3 +275,32 @@ func finalizar_combate(victoria: bool):
 		get_tree().current_scene.add_child(nuevo_corazon)
 		nuevo_corazon.global_position = posicion_enemigo
 		print("Corazón looteado.")
+
+func abrir_interfaz_eliminar_carta():
+	# Instancia una pantalla temporal para mostrar el mazo (a implementar)
+	# print para robar si funciona la logica por consola:
+	print("--- ELIGE UNA CARTA PARA ELIMINAR (Mazo Actual: ", mazo_jugador.size(), " cartas) ---")
+	
+	# Muestra el mazo en la consola 
+	for i in range(mazo_jugador.size()):
+		print("[Index: ", i, "] -> ", mazo_jugador[i]["nombre"])
+	
+	# Eejemplo de prueba (esto se va cuando tengamos la pantalla del mazo de cartas)
+	# elimina la primera carta básica de "Golpe de Chatarra" que encuentre (índice 0)
+	if mazo_jugador.size() > MAZO_MINIMO:
+		eliminar_carta(0) 
+	else:
+		print("Acción cancelada de forma segura: Tu mazo ya está en el límite mínimo.")
+
+	# despausa el juego
+	get_tree().paused = false
+
+ # new func para revelar enemigo (eventos)
+func revelar_enemigos_importantes():
+	print("Revelando enemigos en el mapa")
+	# Busca a todos los enemigos en el mapa usando el grupo "enemigos".
+	var enemigos_en_mapa = get_tree().get_nodes_in_group("enemigos")
+	for enemigo in enemigos_en_mapa:
+		# Verifica el tipo de enemigo (debil, medio o boss)
+		if enemigo.has_method("_preparar_combate") or "boss" in enemigo.name.to_lower():
+			print("Amenaza detectada y marcada en coordenadas: ", enemigo.global_position)
