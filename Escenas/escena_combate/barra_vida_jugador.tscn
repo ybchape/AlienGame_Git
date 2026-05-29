@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dshk7pfsops8k"]
 
-[ext_resource type="Texture2D" uid="uid://cb3jjbnbg7gnl" path="res://Assets/Pepe1.png" id="1_wwngc"]
-[ext_resource type="Texture2D" uid="uid://d0c13ypdt04ge" path="res://Assets/Pepe3.png" id="2_0yicl"]
-[ext_resource type="Texture2D" uid="uid://dx0t3tw7jsrlo" path="res://Assets/Pepe2.png" id="3_0cxbp"]
+[ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="1_wwngc"]
+[ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="2_0yicl"]
+[ext_resource type="Texture2D" uid="uid://5w8nxrlhugr2" path="res://Assets/barra/barra_roja.png" id="3_0cxbp"]
 
 [node name="BarraVidaJugador" type="TextureProgressBar" unique_id=1267389558]
 offset_left = 130.0
@@ -12,6 +12,6 @@ offset_bottom = 269.0
 nine_patch_stretch = true
 stretch_margin_right = 4
 stretch_margin_bottom = 3
-texture_under = ExtResource("1_wwngc")
+texture_under = ExtResource("3_0cxbp")
 texture_over = ExtResource("2_0yicl")
-texture_progress = ExtResource("3_0cxbp")
+texture_progress = ExtResource("1_wwngc")
