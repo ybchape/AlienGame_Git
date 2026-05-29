@@ -339,8 +339,34 @@ func mostrar_resultado(gano: bool):
 				carta_opcion_1 = opciones[0]
 				carta_opcion_2 = opciones[1]
 				
-				btn_carta_1.text = carta_opcion_1.name + "\n(Coste: " + str(carta_opcion_1.coste) + ")"
-				btn_carta_2.text = carta_opcion_2.name + "\n(Coste: " + str(carta_opcion_2.coste) + ")"
+				# Limpiamos cartas visuales anteriores (por si peleaste antes)
+				for nodo in btn_carta_1.get_children():
+					nodo.queue_free()
+				for nodo in btn_carta_2.get_children():
+					nodo.queue_free()
+				
+				# QUITAMOS EL TEXTO
+				btn_carta_1.text = ""
+				btn_carta_2.text = ""
+				
+				# --- INSTANCIAMOS LA CARTA 1 ---
+				var visual_carta_1 = molde_carta.instantiate()
+				btn_carta_1.add_child(visual_carta_1) # La metemos adentro del botón
+				visual_carta_1.configurar(carta_opcion_1) # Le pasamos los datos
+				
+				# TRUCO DE GODOT: Hacemos que la carta visual ignore el mouse 
+				# para que el clic pase de largo y active el botón que está atrás
+				visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				
+				# --- INSTANCIAMOS LA CARTA 2 ---
+				var visual_carta_2 = molde_carta.instantiate()
+				btn_carta_2.add_child(visual_carta_2)
+				visual_carta_2.configurar(carta_opcion_2)
+				visual_carta_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				
+				# Ajustamos la posición para que queden centradas en el botón (opcional)
+				visual_carta_1.position = Vector2.ZERO
+				visual_carta_2.position = Vector2.ZERO
 	else:
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"

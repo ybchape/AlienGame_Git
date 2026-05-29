@@ -242,15 +242,15 @@ offset_bottom = 525.0
 layout_mode = 0
 offset_left = 284.42233
 offset_top = 282.0
-offset_right = 436.50925
-offset_bottom = 492.0
+offset_right = 454.42233
+offset_bottom = 527.0
 
 [node name="BtnCarta2" type="Button" parent="CapaFinal/Panel" unique_id=671437083]
 layout_mode = 0
 offset_left = 579.708
 offset_top = 281.0
-offset_right = 731.7949
-offset_bottom = 491.0
+offset_right = 749.708
+offset_bottom = 526.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]
