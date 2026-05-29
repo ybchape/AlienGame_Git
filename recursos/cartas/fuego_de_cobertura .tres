@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://kfvh6v8uydks"]
+
+[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_40wf2"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_xgg7d"]
+
+[resource]
+script = ExtResource("1_xgg7d")
+name = "Fuego de Cobertura "
+tipo = "Ataque"
+"daño" = 4
+escudo = 4
+ruta = ExtResource("1_40wf2")
+descripcion = "Causa 4 de Daño y otorga 4 de Escudo."
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

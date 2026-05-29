@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://h0gjlipiwrql"]
+
+[ext_resource type="Texture2D" uid="uid://c0tsfmbbw80o0" path="res://Assets/cartas/Instinto de Presa.png" id="1_e6k8e"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_loww7"]
+
+[resource]
+script = ExtResource("1_loww7")
+name = "Niebla Tóxica "
+tipo = "Capacidad"
+"daño" = 0
+ruta = ExtResource("1_e6k8e")
+descripcion = "Aplica Debilidad al enemigo por 1 turno. Reduse a la mitad el ataque."
+aplica_debilidad = 1
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

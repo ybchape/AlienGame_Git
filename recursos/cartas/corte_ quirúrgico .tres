@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://dpuo3hofeasu7"]
+
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_4onkg"]
+[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_s6c46"]
+
+[resource]
+script = ExtResource("1_4onkg")
+name = "Corte Quirúrgico "
+tipo = "Ataque"
+"daño" = 6
+ruta = ExtResource("1_s6c46")
+descripcion = "Causa 6 de Daño. Si el enemigo ya está afectado por Veneno, causa 14 de Daño"
+dano_extra_veneno = 8
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://1v576eitecph"]
+
+[ext_resource type="Texture2D" uid="uid://c0tsfmbbw80o0" path="res://Assets/cartas/Instinto de Presa.png" id="1_6ctge"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_54qir"]
+
+[resource]
+script = ExtResource("1_54qir")
+name = "Metabolismo Acelerado"
+tipo = "Poder"
+coste = 2
+"daño" = 0
+ruta = ExtResource("1_6ctge")
+descripcion = "Empiezas cada turno con 4 de Energía"
+es_poder_permanente = true
+energia_base_extra = 1
+metadata/_custom_type_script = "uid://b70c27dsawkxg"
