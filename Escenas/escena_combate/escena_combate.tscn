@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c64uvr0n2ft6e" path="res://Assets/mazo_cartas.png" id="5_vytjj"]
 [ext_resource type="Texture2D" uid="uid://cd6kn8rdewks8" path="res://Assets/mazo_descarte.png" id="6_qcod8"]
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="6_ql2e5"]
-[ext_resource type="Texture2D" uid="uid://d0c13ypdt04ge" path="res://Assets/Pepe3.png" id="7_ql2e5"]
-[ext_resource type="Texture2D" uid="uid://dx0t3tw7jsrlo" path="res://Assets/Pepe2.png" id="8_43djd"]
-[ext_resource type="Texture2D" uid="uid://cb3jjbnbg7gnl" path="res://Assets/Pepe1.png" id="8_i8q3o"]
+[ext_resource type="Texture2D" uid="uid://5w8nxrlhugr2" path="res://Assets/barra/barra_roja.png" id="7_43djd"]
+[ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="8_vytjj"]
+[ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="9_qcod8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q732s"]
 atlas = ExtResource("1_j4tvv")
@@ -198,9 +198,9 @@ max_value = 20.0
 nine_patch_stretch = true
 stretch_margin_right = 4
 stretch_margin_bottom = 3
-texture_under = ExtResource("8_i8q3o")
-texture_over = ExtResource("7_ql2e5")
-texture_progress = ExtResource("8_43djd")
+texture_under = ExtResource("7_43djd")
+texture_over = ExtResource("8_vytjj")
+texture_progress = ExtResource("9_qcod8")
 
 [node name="BarraVidaJugador" parent="." unique_id=1267389558 instance=ExtResource("6_ql2e5")]
 layout_mode = 1
