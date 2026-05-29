@@ -209,8 +209,11 @@ offset_bottom = 20.168
 
 [node name="Panel" type="Panel" parent="CapaFinal" unique_id=1114242252]
 visible = false
-offset_right = 1170.0
-offset_bottom = 678.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 1176.0
+offset_bottom = 683.0
+scale = Vector2(1.0125787, 1)
 
 [node name="Label" type="Label" parent="CapaFinal/Panel" unique_id=1185618341]
 layout_mode = 0
@@ -228,5 +231,28 @@ offset_bottom = 586.0
 theme_override_font_sizes/font_size = 39
 text = "Continuar"
 
+[node name="ContenedorRecompensas" type="HBoxContainer" parent="CapaFinal/Panel" unique_id=95970038]
+layout_mode = 0
+offset_left = 229.11798
+offset_top = 230.0
+offset_right = 795.9875
+offset_bottom = 525.0
+
+[node name="BtnCarta1" type="Button" parent="CapaFinal/Panel" unique_id=1905507804]
+layout_mode = 0
+offset_left = 284.42233
+offset_top = 282.0
+offset_right = 454.42233
+offset_bottom = 527.0
+
+[node name="BtnCarta2" type="Button" parent="CapaFinal/Panel" unique_id=671437083]
+layout_mode = 0
+offset_left = 579.708
+offset_top = 281.0
+offset_right = 749.708
+offset_bottom = 526.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]
+[connection signal="pressed" from="CapaFinal/Panel/BtnCarta1" to="." method="_on_btn_carta_1_pressed"]
+[connection signal="pressed" from="CapaFinal/Panel/BtnCarta2" to="." method="_on_btn_carta_2_pressed"]

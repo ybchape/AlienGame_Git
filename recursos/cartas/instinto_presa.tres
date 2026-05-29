@@ -10,4 +10,5 @@ tipo = "Poder"
 coste = 2
 "daño" = 25
 ruta = ExtResource("1_t1gut")
+descripcion = "Causa 25 de daño"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

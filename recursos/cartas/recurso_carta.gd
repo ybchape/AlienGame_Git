@@ -8,3 +8,6 @@ extends Resource
 @export var escudo: int = 0
 @export var roba: int = 0
 @export var ruta: Texture
+
+#Chape
+@export_multiline var descripcion: String = ""

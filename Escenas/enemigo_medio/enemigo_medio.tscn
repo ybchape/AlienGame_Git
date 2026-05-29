@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://75fsqne8d60u"]
+
+[ext_resource type="Script" uid="uid://ch5vpwoa28i30" path="res://Escenas/enemigo_medio/enemigo_medio.gd" id="1_au7e4"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="1_lyc5p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_au7e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lyc5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnccb"]
+size = Vector2(129, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkut5"]
+size = Vector2(140, 140.00003)
+
+[node name="enemigo_medio" type="CharacterBody2D" unique_id=1338420025 groups=["enemigos"]]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_au7e4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=42869644]
+sprite_frames = SubResource("SpriteFrames_au7e4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=471727795]
+shape = SubResource("RectangleShape2D_cnccb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=471071977]
+scale = Vector2(1.004347, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=862349647]
+position = Vector2(-3.8743015e-06, 4.1723247e-06)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_jkut5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

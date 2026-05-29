@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://dgd7526w7vtu5"]
+
+[ext_resource type="Texture2D" uid="uid://cpd3tldxh8xai" path="res://Assets/cartas/Escudo de Emergencia.png" id="1_bur1l"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_rx44b"]
+
+[resource]
+script = ExtResource("1_rx44b")
+name = "Espuma Selladora"
+tipo = "Capacidad"
+coste = 2
+"daño" = 0
+escudo = 18
+ruta = ExtResource("1_bur1l")
+descripcion = "Otorga 18 de escudo por 2 turnos"
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

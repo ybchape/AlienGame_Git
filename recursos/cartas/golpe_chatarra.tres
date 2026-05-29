@@ -8,4 +8,5 @@ script = ExtResource("1_mk686")
 name = "Golpe de Chatarra"
 tipo = "Ataque"
 ruta = ExtResource("1_117uj")
+descripcion = "Causa 12 de daño"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

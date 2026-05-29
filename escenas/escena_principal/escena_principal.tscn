@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
 [ext_resource type="Script" uid="uid://c5a6jio1uu4km" path="res://Escenas/escena_combate/barra_vida_jugador.gd" id="13_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
+[ext_resource type="PackedScene" uid="uid://75fsqne8d60u" path="res://Escenas/enemigo_medio/enemigo_medio.tscn" id="16_wm4p1"]
+[ext_resource type="PackedScene" uid="uid://dhoio2h8bquc0" path="res://Escenas/jefe_enemigo/jefe_enemigo.tscn" id="17_divhv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -782,3 +784,9 @@ position = Vector2(985, 402)
 position = Vector2(456, 559)
 
 [node name="Teclas" parent="." unique_id=2008442961 instance=ExtResource("14_3vxs2")]
+
+[node name="enemigo_medio" parent="." unique_id=1338420025 instance=ExtResource("16_wm4p1")]
+position = Vector2(258, 401)
+
+[node name="jefe_enemigo" parent="." unique_id=1110556000 instance=ExtResource("17_divhv")]
+position = Vector2(258.00003, 366)

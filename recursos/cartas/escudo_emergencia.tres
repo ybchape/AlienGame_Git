@@ -10,4 +10,5 @@ tipo = "Capacidad"
 "daño" = 0
 escudo = 8
 ruta = ExtResource("1_r3iy3")
+descripcion = "Otorga 8 de escudo"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"
