@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
 [ext_resource type="Script" uid="uid://c5a6jio1uu4km" path="res://Escenas/escena_combate/barra_vida_jugador.gd" id="13_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
+[ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="16_w0r4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -725,7 +726,7 @@ tile_set = SubResource("TileSet_iupgd")
 script = ExtResource("8_sqmix")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(777, 607)
+position = Vector2(769, 603)
 
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(132, 201)
@@ -782,3 +783,7 @@ position = Vector2(674, 607)
 position = Vector2(679, 545)
 
 [node name="Teclas" parent="." unique_id=2008442961 instance=ExtResource("14_3vxs2")]
+
+[node name="NaveAlien" type="Sprite2D" parent="." unique_id=1388931880]
+position = Vector2(83, 603)
+texture = ExtResource("16_w0r4x")

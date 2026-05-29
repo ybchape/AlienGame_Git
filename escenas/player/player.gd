@@ -50,7 +50,9 @@ func get_input():
 			last_direction = "down" if input_direction.y > 0 else "up"
 
 		update_animation("walk")
-		velocity = input_direction * speed
+		# Multiplica la velocidad base por el modificador de velocidad del evento
+		var velocidad_final = speed * GameManager.multiplicador_velocidad_laberinto
+		velocity = input_direction * velocidad_final
 
 func _unhandled_key_input(event: InputEvent):
 	# Tecla "espacio" para romper bloque

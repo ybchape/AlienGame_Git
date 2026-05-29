@@ -25,6 +25,7 @@ var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
 
 var total_enemigos_en_mapa: int = 8
 var penalizacion_tiempo_aspiradora: float = 1.0 #(significa al 100%)
+var multiplicador_velocidad_laberinto: float = 1.0 # 1.0 es la velocidad normal del player
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
@@ -59,12 +60,18 @@ var eventos_disponibles = [
 	},
 	{
 	"titulo": "Derrumbe de Capas Subterráneas",
-	"texto": "Al quitar un bloque con la aspiradora, las vibraciones provocan un micro-seísmo. El suelo cede y caes a un túnel inferior infestado de esporas extrañas.",
-	"op_a_txt": "Tratar de estabilizarte (Soportar el impacto)",
-	"op_b_txt": "Dejarse caer (No hay otra opción)",
+	"texto": "Las vibraciones de tus pasos hacen que el suelo baboso ceda debido a una bolsa de gas vírico. Caes a un túnel inferior completamente a oscuras e infestado de esporas.",
+	"op_a_txt": "Soportar el impacto (Caer al sub-laberinto: +20% Frenesí / Revela Boss y Medios)",
+	"op_b_txt": "Agarrarse de las paredes (Evitar la caída con cuidado / No pasa nada)",
 	"id": "derrumbe_capas"
+},
+{
+"titulo": "Fósil Robotizado Antiguo",
+	"texto": "Desentierras los restos semienterrados de us los restos semienterrados de una baliza corporativa cubierta de membrana alienígena. Logras piratear sus celdas de energía para sobrecargar los propulsores de tu traje, aunque el pulso electromagnético daña tus sistemas de combate.",
+	"op_a_txt": "Sobrecarga Motriz (+30% velocidad al caminar / Añade carta 'Interferencia')",
+	"op_b_txt": "Ignorar (Dejar la tecnología en paz)",
+	"id": "fosil_antiguo"
 }
-		
 ]
 var eventos_pendientes = []
 
@@ -89,14 +96,50 @@ func abrir_ventana_evento():
 # Función para procesar la elección del jugador
 func procesar_eleccion(id_evento, opcion):
 	match id_evento:
+		# Evento: "Fósil Robotizado Antiguo"
+		"fosil_antiguo":
+			if opcion == "A":
+				# Aumenta la velocidad de movimiento un 20%
+				multiplicador_velocidad_laberinto = 1.2
+
+				# Añade la maldición
+				var carta_maldicion = {"nombre": "Interferencia", "tipo": "Maldición", "coste": 99, "daño": 0, "escudo": 0, "roba": 0}
+				agregar_carta(carta_maldicion)
+				print("Evento: Sobrecarga motriz activa (+20% velocidad). Mazo infectado.")
+			else:
+				print("Decidiste ignorar el fósil antiguo.")
+			get_tree().paused = false
+	
+		# Evento: "Derrumbe de capas subtrráneas"
 		"derrumbe_capas":
-			# ambas opciones aplican el efecto del derrumbe ya que es Negativo + Positivo directo
-			# efecto negativo: Aumenta el tiempo para romper bloques un 20%
-			penalizacion_tiempo_aspiradora = 1.2 
-			print("Evento: Tu aspiradora ahora es un 20% más lenta debido a la fatiga.")
-			# efecto positivo: revela Enemigos Medios y Boss en el mapa/HUD
+			# Ambas opciones aplican el derrumbe (caer por el suelo baboso)
+			# efecto negativo: aumenta el frenesí un 20% 
+			actualizar_frenesi(20.0) 
+			print("Evento: Caíste por el suelo baboso. El virus se altera (+20% Frenesí).")
+
+			# efecto positivo: El estruendo revela Enemigos Medios y Boss en el HUD
 			revelar_enemigos_importantes()
-			# Reanudamos el juego
+			get_tree().paused = false
+
+		# Evento: "Fósil Robotizado Antiguo"
+		"fosil_antiguo":
+			if opcion == "A":
+				# BENEFICIO: La linterna se expande al máximo de forma fija en este loop
+				#bonus_vision_laberinto = true#
+				
+				# DESVENTAJA: Añade la carta maldición "Interferencia" a tu mazo
+				var carta_maldicion = {
+					"nombre": "Interferencia", 
+					"tipo": "Maldición", 
+					"coste": 99, 
+					"daño": 0, 
+					"escudo": 0, 
+					"roba": 0
+				}
+				agregar_carta(carta_maldicion)
+				print("Evento: Mapas descargados. Linterna al máximo, mazo infectado.")
+			else:
+				print("Decidiste ignorar el fósil antiguo.")
 			get_tree().paused = false
 		# Evento: "Necrosis celular"
 		"necrosis_celular":
@@ -105,8 +148,9 @@ func procesar_eleccion(id_evento, opcion):
 				abrir_interfaz_eliminar_carta()
 			else:
 				print("Decidiste ignorar la necrosis. El virus se mantiene estable.")
-				# Si ignora, reanudamos el juego directamente aquí
+				# Si ignora, reanudamos el juego directamente aca.
 				get_tree().paused = false
+
 		#Evento: "Suministros de Oxígeno"
 		"oxigeno":
 			if opcion == "A":
@@ -115,6 +159,7 @@ func procesar_eleccion(id_evento, opcion):
 				print("Vida curada. Total: ", vida_jugador)
 			else:
 				agregar_carta({"nombre": "Escudo de Emergencia", "tipo": "Capacidad", "coste": 1, "daño": 0, "escudo": 10, "roba": 0})
+
 		# Evento: "Radiación Extraña"
 		"radiacion_1":
 			if opcion == "A":
