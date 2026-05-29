@@ -1,7 +1,7 @@
 extends Control
 var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var mano_visual = $ManoCartas
-@onready var label_energia = $LabelEnergia
+@onready var label_energia = $TextureRect3/LabelEnergia
 @onready var barra_vida_enemigo = $BarraVidaEnemigo
 @onready var barra_vida_jugador = $BarraVidaJugador
 @onready var sprite_enemigo = $SpriteEnemigo
