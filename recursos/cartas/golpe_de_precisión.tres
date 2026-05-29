@@ -10,4 +10,5 @@ tipo = "Ataque"
 "daño" = 7
 roba = 1
 ruta = ExtResource("1_2in76")
+descripcion = "Causa 7 de daño y roba una carta"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

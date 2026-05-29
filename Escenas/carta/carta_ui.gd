@@ -1,7 +1,7 @@
 extends TextureButton
 @onready var label_nombre = $Titulo
 @onready var label_coste =$Label
-
+@onready var label_descripcion =$LabelDescripcion
 
 var datos_carta: RecursoCarta
 var arrastrando = false
@@ -19,6 +19,12 @@ func configurar(datos: RecursoCarta):
 	# Escribimos el título y el coste
 	label_nombre.text = str(datos["tipo"])
 	label_coste.text = str(datos["coste"])
+	
+	#cargamos la desripccion
+	if datos.descripcion != null:
+		label_descripcion.text = str(datos.descripcion)
+	else:
+		label_descripcion.text = ""
 	
 	# El nombre que pusiste en el diccionario (ej: "Golpe de Chatarra")
 	# debe ser igual al nombre del archivo en tu carpeta de Arte.

@@ -10,4 +10,5 @@ tipo = "Capacidad"
 coste = 0
 "daño" = 0
 ruta = ExtResource("1_m6nn5")
+descripcion = "Gana 2 de energía pero perdes 3 de vida"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

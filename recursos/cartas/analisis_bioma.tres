@@ -11,4 +11,5 @@ coste = 0
 "daño" = 0
 roba = 1
 ruta = ExtResource("1_heat2")
+descripcion = "Roba 1 carta"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"
