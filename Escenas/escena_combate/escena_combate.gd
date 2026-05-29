@@ -20,6 +20,9 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var btn_carta_1 = $CapaFinal/Panel/BtnCarta1
 @onready var btn_carta_2 = $CapaFinal/Panel/BtnCarta2
 
+#Aturdir
+var jugador_aturdido:bool = false
+
 var carta_opcion_1: RecursoCarta
 var carta_opcion_2: RecursoCarta
 
@@ -65,7 +68,11 @@ func _ready() -> void:
 	repartir_cartas(4)
 	actualizar_ui()
 	
-	
+	# Conectamos los botones nuevos por código
+	btn_carta_1.pressed.connect(_on_btn_carta_1_pressed)
+	btn_carta_2.pressed.connect(_on_btn_carta_2_pressed)
+	btn_carta_1.visible = false
+	btn_carta_2.visible = false
 	
 func robar_una_carta():
 	# Si el mazo está vacío, pasamos el descarte al mazo y mezclamos
@@ -200,7 +207,8 @@ func turno_del_enemigo():
 				print("El enemigo medio se protege.")
 			else:
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
-				print("El enemigo medio usa Poder por: ", dano_enemigo)
+				print("El enemigo medio usa Poder por: ", dano_enemigo, " y te ATURDE!")
+				jugador_aturdido = true
 		
 		"jefe":
 			# IA DEL JEFE (Ataques especiales)
@@ -261,6 +269,18 @@ func planear_proxima_accion():
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
+	
+	#cHEQUEO DE STUN/ATURNIR
+	if jugador_aturdido:
+		print("¡Estás aturdida! Pierdes tu turno.")
+		label_intencion.text = "😵 Aturdido"
+		jugador_aturdido = false # Te curas del stun para el próximo
+		
+		# Esperamos 1.5 segundos para que leas qué pasó
+		await get_tree().create_timer(1.5).timeout 
+		terminar_turno() # Le devuelve el turno al enemigo
+		return # Crucial: sale de la función para no darte cartas ni energía
+	
 	es_turno_jugador = true # Abrimos el candado
 	
 	# riesgo del frenesi (pierdo vida)
@@ -283,11 +303,7 @@ func iniciar_nuevo_turno_jugador():
 	# 4. Actualizamos todo visualmente
 	actualizar_ui()
 
-	# Conectamos los botones nuevos por código
-	btn_carta_1.pressed.connect(_on_btn_carta_1_pressed)
-	btn_carta_2.pressed.connect(_on_btn_carta_2_pressed)
-	btn_carta_1.visible = false
-	btn_carta_2.visible = false
+
 	
 func _on_button_pressed() -> void:
 	if es_turno_jugador: # Solo funciona si es tu turno
