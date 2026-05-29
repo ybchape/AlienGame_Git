@@ -96,9 +96,9 @@ func obtener_opciones_recompensa() -> Array:
 		SET_DE_CARTAS.INSTINTO_PRESA
 	]
 	
-	# Guardamos solo las cartas nuevas
+	# Guardamos solo las cartas nuevas y que no estan en el mazo
 	for carta in SET_DE_CARTAS.values():
-		if not carta in cartas_basicas:
+		if not carta in cartas_basicas and not carta in run_data.mazo_actual:
 			opciones_disponibles.append(carta)
 	
 	# Mezclamos las cartas premium
