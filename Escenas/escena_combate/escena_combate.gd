@@ -10,6 +10,11 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var label_escudo =$LabelEscudo
 @onready var label_escudo_enemigo = $LabelEscudoEnemigo
 @onready var label_intencion = $LabelIntencion
+@onready var label_veneno_enemigo = $LabelVenenoEnemigo
+
+#vida referencia
+@onready var label_vida_jugador = $BarraVidaJugador/LabelVidaJugador
+@onready var label_vida_enemigo = $BarraVidaEnemigo/LabelVidaEnemigo
 
 #Pantalla de victoria/derrota
 @onready var panel_final = $CapaFinal/Panel # Asegurate que la ruta sea correcta
@@ -253,16 +258,31 @@ func terminar_turno():
 
 func actualizar_ui():
 	# Actualiza el texto de energía
-	label_energia.text = "Energía: " + str(energia_actual) + "/3"
+	label_energia.text = str(energia_actual) + "/3"
 	# Muestra cuántas cartas quedan para robar (Mazo a la izquierda)
 	label_mazo.text = "Mazo: " + str(mazo_principal.size())
 	# Muestra cuántas cartas ya usaste o descartaste (Descarte a la derecha)
 	label_descarte.text = "Descarte: " + str(mazo_descarte.size())
 	label_escudo.text = "Escudo: " + str(escudo_actual)
 	label_escudo_enemigo.text = "Escudo Enemigo: " + str(escudo_enemigo_actual)
+	
+	#veneno enemigo
+	if enemigo_veneno_turnos > 0:
+		label_veneno_enemigo.text = "🧪" + str(enemigo_veneno_dano) + " [Turno: " + str(enemigo_veneno_turnos) + " ]"
+		label_veneno_enemigo.visible = true
+	else:
+		label_veneno_enemigo.visible = false # Se esconde si no está bajo el efecto
+	
 	#barras de salud
 	barra_vida_jugador.value = RunManager.run_data.vida_jugador
-
+	
+	#Texto de vida
+	# Jugador: Mostramos Vida Actual / Vida Máxima (ej. "45/100")
+	label_vida_jugador.text = str(int(RunManager.run_data.vida_jugador)) + "/" + str(int(RunManager.run_data.vida_maxima))
+	
+	# Enemigo: Mostramos Vida Actual / Vida Máxima
+	label_vida_enemigo.text = str(int(barra_vida_enemigo.value)) + "/" + str(int(barra_vida_enemigo.max_value))
+	
 func turno_del_enemigo():
 	print("Turno del enemigo...")
 	
@@ -271,6 +291,9 @@ func turno_del_enemigo():
 		barra_vida_enemigo.value -= enemigo_veneno_dano
 		enemigo_veneno_turnos -= 1
 		print("El enemigo sufre ", enemigo_veneno_dano, " por veneno.")
+		
+		actualizar_ui()
+		
 		if barra_vida_enemigo.value <= 0:
 			mostrar_resultado(true)
 			return
@@ -367,7 +390,7 @@ func planear_proxima_accion():
 	# Mostramos la intención visualmente con Emojis
 	if proxima_accion_enemigo == 0:
 		var dano = GameManager.enemigo_actual_datos["Daño_fijo"]
-		label_intencion.text = "⚔️ Daño: " + str(dano)
+		label_intencion.text = "⚔️" + str(dano)
 		
 	elif proxima_accion_enemigo == 1:
 		# Calculamos cuánto escudo se va a poner según quién sea
@@ -378,23 +401,23 @@ func planear_proxima_accion():
 			cantidad_escudo = 15
 		elif tipo == "jefe":
 			cantidad_escudo = 25
-		label_intencion.text = "🛡️ Escudo: " + str(cantidad_escudo)
+		label_intencion.text = "🛡️" + str(cantidad_escudo)
 	
 	#Es la acción de PODER
 	else:
 		if tipo == "medio":
 			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
-			label_intencion.text = "🔥 Poder: " + str(dano_poder) + " + 😵 Aturdir"
+			label_intencion.text = "🔥" + str(dano_poder) + " + 😵 Aturdir"
 			
 		elif tipo == "jefe":
 			# El jefe tiene una variable distinta llamada "daño_especial"
 			var dano_especial = GameManager.enemigo_actual_datos.get("daño_especial", 0)
-			label_intencion.text = "🔥 Poder: " + str(dano_especial)
+			label_intencion.text = "🔥" + str(dano_especial)
 			
 		else:
 			# Para el enemigo débil
 			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
-			label_intencion.text = "🔥 Poder: " + str(dano_poder)
+			label_intencion.text = "🔥" + str(dano_poder)
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
@@ -411,7 +434,7 @@ func iniciar_nuevo_turno_jugador():
 		await get_tree().create_timer(1.5).timeout
 		
 		# 3. Devolvemos el texto a la normalidad mostrando tu escudo actual
-		label_escudo.text = "🛡️ Escudo: " + str(escudo_actual)
+		label_escudo.text = "🛡️" + str(escudo_actual)
 
 		terminar_turno() # Le devuelve el turno al enemigo
 		return # Crucial: sale de la función para no darte cartas ni energía
