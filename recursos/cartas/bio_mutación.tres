@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://cafln321vsbki"]
+
+[ext_resource type="Texture2D" uid="uid://c0tsfmbbw80o0" path="res://Assets/cartas/Instinto de Presa.png" id="1_8dqyx"]
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_abui4"]
+
+[resource]
+script = ExtResource("1_abui4")
+name = "Bio-Mutación"
+tipo = "Poder"
+coste = 2
+"daño" = 0
+ruta = ExtResource("1_8dqyx")
+descripcion = "Todos tus ataques basicos causan +3 de daño"
+es_poder_permanente = true
+buff_dano_basico = 3
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

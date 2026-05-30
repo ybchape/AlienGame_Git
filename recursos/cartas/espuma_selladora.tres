@@ -12,4 +12,5 @@ coste = 2
 escudo = 18
 ruta = ExtResource("1_bur1l")
 descripcion = "Otorga 18 de escudo por 2 turnos"
+retiene_escudo = true
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

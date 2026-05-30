@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://d4dfy563sxeay"]
+
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_nrcrh"]
+[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_psnou"]
+
+[resource]
+script = ExtResource("1_nrcrh")
+name = "Tajo Infectado "
+tipo = "Ataque"
+coste = 2
+"daño" = 6
+ruta = ExtResource("1_psnou")
+descripcion = "Causa 6 de daño. Aplica Veneno, causando 4 de daño por 3 turnos "
+aplica_veneno = 4
+turnos_veneno = 3
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

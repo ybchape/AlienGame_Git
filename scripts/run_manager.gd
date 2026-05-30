@@ -14,9 +14,19 @@ const MAZO_MAXIMO = 15
 	
 	#Nuevas cartas
 	GOLPE_DE_PRECISION = preload("uid://drry24tyuk0r4"),
+	TAJO_INFECTADO = preload("uid://d4dfy563sxeay"),
 	ESPUMA_SELLADORA = preload("uid://dgd7526w7vtu5"),
 	INYECCION_DE_ADRENALINA = preload("uid://cvx33pnx04v40"),
 	SOBRECARGA_DE_NUCLEA = preload("uid://cbimiemxdu6qf"), #TE DA 2 DE ENERGUIA PERO TE QUITA 3 DE VIDA.
+	CORTE_QUIRURGICO = preload("uid://dpuo3hofeasu7"),
+	BIO_MUTACION = preload("uid://cafln321vsbki"),
+	METABOLISMO_ACELERADO = preload("uid://1v576eitecph"),
+	EXTRACCION_SANGRIENTA = preload("uid://nsp1d5nge70o"),
+	IMPACTO_DE_PRECISION = preload("uid://dfjojwunc3hhs"),
+	GOLPE_DE_IMPETU = preload("uid://bwdvtt3xdklvw"),
+	NIEBLA_TOXICA = preload("uid://h0gjlipiwrql"),
+	FUEGO_DE_COBERTURA = preload("uid://kfvh6v8uydks"),
+	SIMBIOSIS_PARASITARIA = preload("uid://kyjcmvt601h0"),
 }
 
 var run_data: RunData

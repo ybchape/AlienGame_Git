@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://bwdvtt3xdklvw"]
+
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_4qu7o"]
+[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_fjunb"]
+
+[resource]
+script = ExtResource("1_4qu7o")
+name = "Golpe de Ímpetu "
+tipo = "Ataque"
+"daño" = 6
+ruta = ExtResource("1_fjunb")
+descripcion = "Causa 6 de Daño. Si es la primera carta que juegas , aumenta 1 de Energía 
+
+"
+ganancia_energia = 1
+energia_si_primera = 1
+metadata/_custom_type_script = "uid://b70c27dsawkxg"

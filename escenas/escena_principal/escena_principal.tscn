@@ -16,11 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dshk7pfsops8k" path="res://Escenas/escena_combate/barra_vida_jugador.tscn" id="12_lrpe2"]
 [ext_resource type="Script" uid="uid://c5a6jio1uu4km" path="res://Escenas/escena_combate/barra_vida_jugador.gd" id="13_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
-[ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="15_qqym4"]
-[ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="16_227ys"]
 [ext_resource type="PackedScene" uid="uid://75fsqne8d60u" path="res://Escenas/enemigo_medio/enemigo_medio.tscn" id="16_wm4p1"]
 [ext_resource type="PackedScene" uid="uid://dhoio2h8bquc0" path="res://Escenas/jefe_enemigo/jefe_enemigo.tscn" id="17_divhv"]
-[ext_resource type="Texture2D" uid="uid://5w8nxrlhugr2" path="res://Assets/barra/barra_roja.png" id="17_k7mn6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -1035,9 +1032,6 @@ offset_left = 16.0
 offset_top = 41.0
 offset_right = 164.0
 offset_bottom = 81.0
-texture_under = ExtResource("17_k7mn6")
-texture_over = ExtResource("16_227ys")
-texture_progress = ExtResource("15_qqym4")
 script = ExtResource("13_3vxs2")
 
 [node name="enemigo_debil2" parent="." unique_id=1639336850 instance=ExtResource("8_e307b")]

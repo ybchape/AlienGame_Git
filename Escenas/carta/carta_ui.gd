@@ -17,8 +17,10 @@ func configurar(datos: RecursoCarta):
 	# 'datos' es el diccionario que viene del GameManager
 	datos_carta = datos 
 	# Escribimos el título y el coste
-	label_nombre.text = str(datos["tipo"])
-	label_coste.text = str(datos["coste"])
+	label_nombre.text = str(datos.tipo)
+	label_coste.text = str(datos.coste)
+	#label_nombre.text = str(datos["tipo"])
+	#label_coste.text = str(datos["coste"])
 	
 	#cargamos la desripccion
 	if datos.descripcion != null:
@@ -85,3 +87,30 @@ func volver_a_mano():
 		mano.remove_child(self)
 		mano.add_child(self)
 		mano.move_child(self, mi_lugar_en_la_mano)
+		
+#Actualiza los nuevos datos por las bonificaciones de las cartas ejemplo 1 +2= muestra 3
+func actualizar_buffs(buff_dano_basico: int, cartas_en_mano: int):
+	var dano_final = datos_carta.daño
+	var tiene_buff = false
+
+	# 1. Chequeamos la Bio-Mutación
+	if datos_carta.name == "Golpe de Chatarra" or datos_carta.name == "Instinto de Presa":
+		dano_final += buff_dano_basico
+		if buff_dano_basico > 0:
+			tiene_buff = true
+
+	# 2. Chequeamos el Impacto de Precisión
+	if datos_carta.name == "Impacto de Precisión" and cartas_en_mano == 1:
+		dano_final += datos_carta.dano_extra_ultima_carta
+		tiene_buff = true
+
+	# 3. Reescribimos la descripción desde cero para no pisar números viejos
+	if datos_carta.descripcion != null:
+		label_descripcion.text = str(datos_carta.descripcion).replace(str(datos_carta.daño), str(dano_final))
+
+	# 4. Cambiamos el color si está potenciada, o la devolvemos a la normalidad
+	if tiene_buff:
+		label_descripcion.add_theme_color_override("font_color", Color.GREEN_YELLOW)
+	else:
+		label_descripcion.remove_theme_color_override("font_color")
+	

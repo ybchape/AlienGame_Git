@@ -12,4 +12,6 @@ escudo = 10
 roba = 1
 ruta = ExtResource("1_nsorn")
 descripcion = "Gana 10 de escudo durante todo el combate y roba 1 carta "
+es_poder_permanente = true
+buff_escudo_basico = 2
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

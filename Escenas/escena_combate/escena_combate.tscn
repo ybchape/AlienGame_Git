@@ -75,8 +75,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 18.0
-offset_bottom = 25.0
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)
@@ -94,19 +96,19 @@ texture = ExtResource("2_6mo4l")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=157460346]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 17.0
-offset_right = 58.0
-offset_bottom = 57.0
+offset_left = 167.0
+offset_top = 398.0
+offset_right = 207.0
+offset_bottom = 438.0
 texture = ExtResource("4_43djd")
 
 [node name="LabelEnergia" type="Label" parent="TextureRect3" unique_id=585249389]
 layout_mode = 0
-offset_left = -16.0
-offset_top = 6.0
-offset_right = 56.0
-offset_bottom = 29.0
-text = "Energia 3"
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 38.0
+offset_bottom = 32.0
+text = "3/3"
 
 [node name="ManoCartas" type="HBoxContainer" parent="." unique_id=488136199]
 layout_mode = 1
@@ -135,10 +137,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = 242.0
-offset_right = 82.0
-offset_bottom = 313.0
+offset_left = 40.0
+offset_top = 148.0
+offset_right = 110.0
+offset_bottom = 219.0
 grow_vertical = 2
 texture = ExtResource("5_vytjj")
 
@@ -151,10 +153,10 @@ offset_bottom = 48.0
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=916427663]
 layout_mode = 0
-offset_left = 1072.0
-offset_top = 569.0
-offset_right = 1142.0
-offset_bottom = 640.0
+offset_left = 1030.0
+offset_top = 473.0
+offset_right = 1100.0
+offset_bottom = 544.0
 texture = ExtResource("6_qcod8")
 
 [node name="LabelDescarte" type="Label" parent="TextureRect2" unique_id=882443210]
@@ -171,22 +173,23 @@ offset_bottom = 24.996
 layout_mode = 0
 offset_left = 250.0
 offset_top = 119.0
-offset_right = 290.0
+offset_right = 424.0
 offset_bottom = 142.0
 
 [node name="LabelEscudoEnemigo" type="Label" parent="." unique_id=672741919]
+visible = false
 layout_mode = 0
-offset_left = 827.0
-offset_top = 41.0
-offset_right = 867.0
-offset_bottom = 64.0
+offset_left = 646.0
+offset_top = 119.0
+offset_right = 820.0
+offset_bottom = 142.0
 
 [node name="LabelIntencion" type="Label" parent="." unique_id=653673964]
 layout_mode = 0
-offset_left = 713.0
-offset_top = 85.0
-offset_right = 753.0
-offset_bottom = 108.0
+offset_left = 632.0
+offset_top = 119.0
+offset_right = 806.0
+offset_bottom = 142.0
 
 [node name="BarraVidaEnemigo" type="TextureProgressBar" parent="." unique_id=1844885709]
 layout_mode = 0
@@ -202,6 +205,16 @@ texture_under = ExtResource("7_43djd")
 texture_over = ExtResource("8_vytjj")
 texture_progress = ExtResource("9_qcod8")
 
+[node name="LabelVidaEnemigo" type="Label" parent="BarraVidaEnemigo" unique_id=720178427]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 8.0
+offset_right = 99.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 12
+text = "100/100 "
+vertical_alignment = 1
+
 [node name="BarraVidaJugador" parent="." unique_id=1267389558 instance=ExtResource("6_ql2e5")]
 layout_mode = 1
 anchors_preset = -1
@@ -213,6 +226,16 @@ offset_left = -75.056
 offset_top = -19.832
 offset_right = 74.944
 offset_bottom = 20.168
+
+[node name="LabelVidaJugador" type="Label" parent="BarraVidaJugador" unique_id=893256710]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 8.0
+offset_right = 99.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 12
+text = "100/100"
+vertical_alignment = 1
 
 [node name="CapaFinal" type="CanvasLayer" parent="." unique_id=1700847043]
 
@@ -260,6 +283,14 @@ offset_left = 579.708
 offset_top = 281.0
 offset_right = 749.708
 offset_bottom = 526.0
+
+[node name="LabelVenenoEnemigo" type="Label" parent="." unique_id=48964576]
+visible = false
+layout_mode = 0
+offset_left = 737.0
+offset_top = 204.0
+offset_right = 777.0
+offset_bottom = 227.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]
