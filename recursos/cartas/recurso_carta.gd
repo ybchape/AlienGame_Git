@@ -27,4 +27,5 @@ extends Resource
 @export var aplica_debilidad: int = 0           # Para Niebla Tóxica
 @export var energia_si_primera: int = 0         # Para Golpe de Ímpetu
 @export var cura_por_ataque: int = 0            # Para Simbiosis Parasitaria
-@export var buff_escudo_basico: int = 0          # NUEVO: Para Inyección de Adrenalina
+@export var buff_escudo_basico: int = 0         # Para Inyección de Adrenalina
+@export var aturde_enemigo: bool = false        # Para tu nueva carta de aturdimiento

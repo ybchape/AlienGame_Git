@@ -25,6 +25,10 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var btn_carta_1 = $CapaFinal/Panel/BtnCarta1
 @onready var btn_carta_2 = $CapaFinal/Panel/BtnCarta2
 
+#Max y Min Escudo
+var escudo_maximo_jugador = 0
+var escudo_maximo_enemigo = 0
+
 #ESTADOS DE COMBATE 
 var jugador_aturdido:bool = false
 var enemigo_veneno_turnos: int = 0
@@ -33,6 +37,7 @@ var enemigo_debil_turnos: int = 0
 var turnos_retener_escudo: int = 0
 #var retener_escudo: bool = false
 var cartas_jugadas_este_turno: int = 0
+var enemigo_aturdido: bool = false
 
 # Elementos permanentes de combate
 var buff_dano_basico_actual: int = 0
@@ -68,6 +73,7 @@ func _ready() -> void:
 	energia_extra_base = 0
 	escudo_fijo_por_turno = 0 # NUEVO
 	jugador_aturdido = false
+	enemigo_aturdido = false
 	
 	# --- AVISAMOS AL JUEGO QUE EMPEZÓ EL COMBATE ---
 	GameManager.en_combate = true
@@ -214,7 +220,11 @@ func _jugar_carta(nodo, datos):
 				# Escudos normales (Espuma Selladora, Escudo de Emergencia)
 				var escudo_final = datos.escudo - RunManager.run_data.penalizacion_escudo
 				escudo_actual += max(0,escudo_final)
-
+			
+			#GUARDAMOS EL MÁXIMO HISTÓRICO DEL TURNO
+			if escudo_actual > escudo_maximo_jugador:
+				escudo_maximo_jugador = escudo_actual
+			
 		if datos.retiene_escudo:
 			turnos_retener_escudo = 1 # 1 significa: "Sobrevive hasta el PRÓXIMO turno" # Espuma Selladora (dura 1 turno)
 		
@@ -226,6 +236,10 @@ func _jugar_carta(nodo, datos):
 			enemigo_debil_turnos += datos.aplica_debilidad
 			
 			planear_proxima_accion()
+		#Aturdir al enemigo
+		if datos.aturde_enemigo:
+			enemigo_aturdido = true
+			print("¡Aturdiste al enemigo!")
 		# 3. Habilidad de ROBAR cartas
 		#if datos.roba > 0:
 		#	print("Usaste una habilidad. Robando ", datos.roba, " carta(s) extra.")
@@ -273,8 +287,19 @@ func actualizar_ui():
 	label_mazo.text = "Mazo: " + str(mazo_principal.size())
 	# Muestra cuántas cartas ya usaste o descartaste (Descarte a la derecha)
 	label_descarte.text = "Descarte: " + str(mazo_descarte.size())
-	label_escudo.text = "Escudo: " + str(escudo_actual)
-	label_escudo_enemigo.text = "Escudo Enemigo: " + str(escudo_enemigo_actual)
+	
+	#Escudo
+	if escudo_maximo_jugador > 0:
+		label_escudo.text = "🛡️ Escudo: " + str(escudo_actual) + " / " + str(escudo_maximo_jugador)
+	else:
+		label_escudo.text = "🛡️ Escudo: 0"
+		
+	if proxima_accion_enemigo == 1:
+		label_intencion.text = "🛡️ " + str(escudo_enemigo_actual) + " / " + str(escudo_maximo_enemigo)
+	
+	
+	#label_escudo.text = "Escudo: " + str(escudo_actual)
+	#label_escudo_enemigo.text = "Escudo Enemigo: " + str(escudo_enemigo_actual)
 	
 	#veneno enemigo
 	if enemigo_veneno_turnos > 0:
@@ -307,6 +332,10 @@ func actualizar_ui():
 	
 func turno_del_enemigo():
 	print("Turno del enemigo...")
+	escudo_enemigo_actual = 0 
+	escudo_maximo_enemigo = 0
+	
+	escudo_enemigo_actual = 0
 	
 	# VENENO (Se aplica antes de que el enemigo haga nada)
 	if enemigo_veneno_turnos > 0:
@@ -319,11 +348,24 @@ func turno_del_enemigo():
 		if barra_vida_enemigo.value <= 0:
 			mostrar_resultado(true)
 			return
+	#CHEQUEO DE ATURDIMIENTO DEL ENEMIGO
+	if enemigo_aturdido:
+		print("El enemigo está aturdido y pierde su turno.")
+		label_intencion.text = "😵 Aturdido"
+		enemigo_aturdido = false # Se cura del stun para su próximo turno
+		
+		# Planea qué hará en el próximo turno y te devuelve el control a vos
+		planear_proxima_accion()
+		actualizar_ui()
+		await get_tree().create_timer(1.2).timeout
+		iniciar_nuevo_turno_jugador()
+		return
 	
 	# Leemos qué tipo de enemigo es (si no tiene tipo, asumimos "debil")
 	var tipo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
 	var dano_enemigo = 0
-	escudo_enemigo_actual = 0
+	
+	#escudo_enemigo_actual = 0
 	
 	# Usamos la acción que ya planeó antes
 	var decision = proxima_accion_enemigo
@@ -335,8 +377,8 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El enemigo débil ataca por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 8
-				print("El enemigo débil se protege.")
+				#escudo_enemigo_actual += 8
+				print("El enemigo débil se queda en guardia.")
 			else: 
 				#Ejecuta el poder
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
@@ -348,8 +390,8 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El enemigo medio ataca por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 15 # Se pone más escudo que el débil
-				print("El enemigo medio se protege.")
+				#escudo_enemigo_actual += 15 # Se pone más escudo que el débil
+				print("El enemigo medio se queda en guardia.")
 			else:
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
 				print("El enemigo medio usa Poder por: ", dano_enemigo, " y te ATURDE!")
@@ -361,12 +403,14 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El Jefe ataca normal por: ", dano_enemigo)
 			elif decision == 1:
-				escudo_enemigo_actual += 25
-				print("El Jefe se pone un mega escudo.")
+				#escudo_enemigo_actual += 25
+				print("El Jefe se queda en guardia detrás de su mega escudo.")
 			else:
 				# ATAQUE ESPECIAL
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_especial"]
-				print("¡EL JEFE USA SU ATAQUE ESPECIAL por: ", dano_enemigo, "!")
+				print("¡EL JEFE USA SU ATAQUE ESPECIAL por: ", dano_enemigo, "y te aturde")
+				jugador_aturdido = true
+				
 				
 	# REDUCCIÓN DE DAÑO POR DEBILIDAD (Niebla Tóxica)
 	if dano_enemigo > 0 and enemigo_debil_turnos > 0:
@@ -434,7 +478,10 @@ func planear_proxima_accion():
 			cantidad_escudo = 15
 		elif tipo == "jefe":
 			cantidad_escudo = 25
-		label_intencion.text = "🛡️" + str(cantidad_escudo)
+		
+		escudo_enemigo_actual = cantidad_escudo
+		escudo_maximo_enemigo = cantidad_escudo
+		label_intencion.text = "🛡️" + str(escudo_enemigo_actual) + " / " + str(escudo_maximo_enemigo)
 	
 	#Es la acción de PODER
 	else:
@@ -452,10 +499,10 @@ func planear_proxima_accion():
 			var dano_especial = GameManager.enemigo_actual_datos.get("daño_especial", 0)
 			if enemigo_debil_turnos > 0 and dano_especial > 0:
 				var dano_reducido = int(dano_especial / 2)
-				label_intencion.text = "🔥 Poder: " + str(dano_reducido)
+				label_intencion.text = "🔥" + str(dano_reducido) + " + 😵 Aturdir"
 				label_intencion.add_theme_color_override("font_color", Color.MEDIUM_TURQUOISE)
 			else:
-				label_intencion.text = "🔥" + str(dano_especial)
+				label_intencion.text = "🔥" + str(dano_especial) + " + 😵 Aturdir"
 			
 		else:
 			# Para el enemigo débil
@@ -471,6 +518,15 @@ func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
 	
 	cartas_jugadas_este_turno = 0
+	
+	#Tu escudo baja a 0 ANTES de chequear si estás aturdida
+	if turnos_retener_escudo > 0:
+		print("Tu escudo se mantiene por la Espuma Selladora.")
+		turnos_retener_escudo -= 1
+		escudo_maximo_jugador = escudo_actual 
+	else:
+		escudo_actual = 0
+		escudo_maximo_jugador = 0
 	
 	#cHEQUEO DE STUN/ATURNIR
 	if jugador_aturdido:
@@ -496,17 +552,11 @@ func iniciar_nuevo_turno_jugador():
 		if RunManager.run_data.vida_jugador <=0:
 			mostrar_resultado(false)
 			return
-	
-	# LÓGICA LÓGICA ESCUDO (Normal, Espuma Selladora y Permanente)
-	if turnos_retener_escudo > 0:
-		print("Tu escudo se mantiene por la Espuma Selladora.")
-		turnos_retener_escudo -= 1 # Le restamos un turno de vida
-	else:
-		escudo_actual = 0 # Si se acabó la Espuma, el escudo vuelve a cero
 		
 	# Te inyectamos el escudo automático de la Adrenalina
 	if escudo_fijo_por_turno > 0:
 		escudo_actual += escudo_fijo_por_turno
+		escudo_maximo_jugador += escudo_fijo_por_turno
 		print("Adrenalina: Regeneras ", escudo_fijo_por_turno, " de escudo.")
 		
 	# LÓGICA METABOLISMO ACELERADO (energia)
@@ -558,8 +608,32 @@ func mostrar_resultado(gano: bool):
 			if tipo_enemigo == "debil":
 				label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
 				boton_final.text = "Volver al Mapa"
+			
+			#SI ES EL JEFE FINAL
+			elif tipo_enemigo == "jefe":
+				label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa de élite:"
+				boton_final.visible = false # Ocultamos el botón de volver hasta que elija
+				btn_carta_1.visible = true  # Mostramos el primer slot
+				btn_carta_2.visible = false # ¡OCULTAMOS el segundo slot porque es una sola carta!
+				
+				# Limpiamos cartas visuales anteriores por seguridad
+				for nodo in btn_carta_1.get_children(): nodo.queue_free()
+				for nodo in btn_carta_2.get_children(): nodo.queue_free()
+				btn_carta_1.text = ""
+				btn_carta_2.text = ""
+				
+				# Cargamos la carta de Stun directamente desde tus archivos
+				# (Asegurate de que esta ruta coincida con el nombre y carpeta de tu .tres)
+				carta_opcion_1 = preload("uid://c235mt3xp01k5")
+				
+				# Instanciamos la carta en el botón 1
+				var visual_carta_1 = molde_carta.instantiate()
+				btn_carta_1.add_child(visual_carta_1)
+				visual_carta_1.configurar(carta_opcion_1)
+				visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				visual_carta_1.position = Vector2.ZERO
 			else:
-				# Solo entra acá si es Enemigo Medio o Jefe
+				# Solo entra acá si es Enemigo Medio
 				label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
 				boton_final.visible = false # Ocultamos el "Volver al Mapa"
 				btn_carta_1.visible = true  # Mostramos las cartas
