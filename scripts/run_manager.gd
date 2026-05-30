@@ -23,7 +23,10 @@ const MAZO_MAXIMO = 15
 	#METABOLISMO_ACELERADO = preload("uid://1v576eitecph"),
 	#EXTRACCION_SANGRIENTA = preload("uid://nsp1d5nge70o"),
 	#IMPACTO_DE_PRECISION = preload("uid://dfjojwunc3hhs"),
-	GOLPE_DE_IMPETU = preload("uid://bwdvtt3xdklvw"),
+	#GOLPE_DE_IMPETU = preload("uid://bwdvtt3xdklvw"),
+	#NIEBLA_TOXICA = preload("uid://h0gjlipiwrql"),
+	#FUEGO_DE_COBERTURA = preload("uid://kfvh6v8uydks"),
+	SIMBIOSIS_PARASITARIA = preload("uid://kyjcmvt601h0"),
 }
 
 var run_data: RunData

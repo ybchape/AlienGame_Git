@@ -224,7 +224,8 @@ func _jugar_carta(nodo, datos):
 			enemigo_veneno_turnos = datos.turnos_veneno
 		if datos.aplica_debilidad > 0:
 			enemigo_debil_turnos += datos.aplica_debilidad
-		
+			
+			planear_proxima_accion()
 		# 3. Habilidad de ROBAR cartas
 		#if datos.roba > 0:
 		#	print("Usaste una habilidad. Robando ", datos.roba, " carta(s) extra.")
@@ -407,12 +408,23 @@ func planear_proxima_accion():
 	# Ahora TODOS (débil, medio, jefe) eligen entre 3 opciones
 	# 0 = Ataque Normal, 1 = Escudo, 2 = Poder
 	proxima_accion_enemigo = randi() % 3 
-		
-	# Mostramos la intención visualmente con Emojis
+	
+	# 1. Reseteamos el color por defecto (para que vuelva a la normalidad si se le pasa el efecto)
+	label_intencion.remove_theme_color_override("font_color")
+	
+	# --- ATAQUE NORMAL ---
 	if proxima_accion_enemigo == 0:
-		var dano = GameManager.enemigo_actual_datos["Daño_fijo"]
-		label_intencion.text = "⚔️" + str(dano)
+		var dano = GameManager.enemigo_actual_datos.get("Daño_fijo", 0)
 		
+		# Si está debilitado, calculamos la mitad y cambiamos color
+		if enemigo_debil_turnos > 0:
+			var dano_reducido = int(dano / 2)
+			label_intencion.text = "⚔️" + str(dano_reducido)
+			label_intencion.add_theme_color_override("font_color", Color.MEDIUM_TURQUOISE)
+		else:
+			label_intencion.text = "⚔️" + str(dano)
+	
+	#	Escudo
 	elif proxima_accion_enemigo == 1:
 		# Calculamos cuánto escudo se va a poner según quién sea
 		var cantidad_escudo = 0
@@ -428,17 +440,32 @@ func planear_proxima_accion():
 	else:
 		if tipo == "medio":
 			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
-			label_intencion.text = "🔥" + str(dano_poder) + " + 😵 Aturdir"
-			
+			if enemigo_debil_turnos > 0 and dano_poder > 0:
+				var dano_reducido = int(dano_poder / 2)
+				label_intencion.text = "🔥" + str(dano_reducido) + " + 😵 Aturdir"
+				label_intencion.add_theme_color_override("font_color", Color.MEDIUM_TURQUOISE)
+			else:
+				label_intencion.text = "🔥" + str(dano_poder) + " + 😵 Aturdir"
+		
 		elif tipo == "jefe":
 			# El jefe tiene una variable distinta llamada "daño_especial"
 			var dano_especial = GameManager.enemigo_actual_datos.get("daño_especial", 0)
-			label_intencion.text = "🔥" + str(dano_especial)
+			if enemigo_debil_turnos > 0 and dano_especial > 0:
+				var dano_reducido = int(dano_especial / 2)
+				label_intencion.text = "🔥 Poder: " + str(dano_reducido)
+				label_intencion.add_theme_color_override("font_color", Color.MEDIUM_TURQUOISE)
+			else:
+				label_intencion.text = "🔥" + str(dano_especial)
 			
 		else:
 			# Para el enemigo débil
 			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
-			label_intencion.text = "🔥" + str(dano_poder)
+			if enemigo_debil_turnos > 0 and dano_poder > 0:
+				var dano_reducido = int(dano_poder / 2)
+				label_intencion.text = "🔥: " + str(dano_reducido)
+				label_intencion.add_theme_color_override("font_color", Color.MEDIUM_TURQUOISE)
+			else:
+				label_intencion.text = "🔥: " + str(dano_poder)
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
@@ -511,8 +538,8 @@ func mostrar_resultado(gano: bool):
 		var tipo_enemigo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
 		
 		# Recuperamos vida
-		RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 8,0, RunManager.run_data.vida_maxima)
-		
+		#RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 8,0, RunManager.run_data.vida_maxima)
+		#Esto lo hacen los corazones de coral
 		#Redusimos el frenesi
 		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
 		GameManager.actualizar_frenesi(-reduccion)
