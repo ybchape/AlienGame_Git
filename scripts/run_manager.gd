@@ -14,8 +14,8 @@ const MAZO_MAXIMO = 15
 	
 	#Nuevas cartas
 	GOLPE_DE_PRECISION = preload("uid://drry24tyuk0r4"),
-	ESPUMA_SELLADORA = preload("uid://dgd7526w7vtu5"),
-	INYECCION_DE_ADRENALINA = preload("uid://cvx33pnx04v40"),
+	#ESPUMA_SELLADORA = preload("uid://dgd7526w7vtu5"),
+	#INYECCION_DE_ADRENALINA = preload("uid://cvx33pnx04v40"),
 	SOBRECARGA_DE_NUCLEA = preload("uid://cbimiemxdu6qf"), #TE DA 2 DE ENERGUIA PERO TE QUITA 3 DE VIDA.
 }
 

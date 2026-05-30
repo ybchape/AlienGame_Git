@@ -20,9 +20,22 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var btn_carta_1 = $CapaFinal/Panel/BtnCarta1
 @onready var btn_carta_2 = $CapaFinal/Panel/BtnCarta2
 
-#Aturdir
+#ESTADOS DE COMBATE 
 var jugador_aturdido:bool = false
+var enemigo_veneno_turnos: int = 0
+var enemigo_veneno_dano: int = 0
+var enemigo_debil_turnos: int = 0
+var turnos_retener_escudo: int = 0
+#var retener_escudo: bool = false
+var cartas_jugadas_este_turno: int = 0
 
+# Elementos permanentes de combate
+var buff_dano_basico_actual: int = 0
+var cura_por_ataque_actual: int = 0
+var energia_extra_base: int = 0
+var escudo_fijo_por_turno: int = 0
+
+#Eleccion de cartas enemigo medio
 var carta_opcion_1: RecursoCarta
 var carta_opcion_2: RecursoCarta
 
@@ -39,6 +52,18 @@ var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	# Reseteo de estados por si venimos de otra pelea
+	enemigo_veneno_turnos = 0
+	enemigo_veneno_dano = 0
+	enemigo_debil_turnos = 0
+	turnos_retener_escudo = 0 # NUEVO
+	buff_dano_basico_actual = 0
+	cura_por_ataque_actual = 0
+	energia_extra_base = 0
+	escudo_fijo_por_turno = 0 # NUEVO
+	jugador_aturdido = false
+	
 	# --- AVISAMOS AL JUEGO QUE EMPEZÓ EL COMBATE ---
 	GameManager.en_combate = true
 	
@@ -68,9 +93,12 @@ func _ready() -> void:
 	repartir_cartas(4)
 	actualizar_ui()
 	
-	# Conectamos los botones nuevos por código
-	btn_carta_1.pressed.connect(_on_btn_carta_1_pressed)
-	btn_carta_2.pressed.connect(_on_btn_carta_2_pressed)
+	# Conectamos los botones (con chequeo para evitar los errores rojos)
+	if not btn_carta_1.pressed.is_connected(_on_btn_carta_1_pressed):
+		btn_carta_1.pressed.connect(_on_btn_carta_1_pressed)
+		
+	if not btn_carta_2.pressed.is_connected(_on_btn_carta_2_pressed):
+		btn_carta_2.pressed.connect(_on_btn_carta_2_pressed)
 	btn_carta_1.visible = false
 	btn_carta_2.visible = false
 	
@@ -109,9 +137,42 @@ func _jugar_carta(nodo, datos):
 	if energia_actual >= coste_real:
 		energia_actual -= coste_real
 		
+		#verificamos si ya jugamos 1 carta, le sumamos 1
+		var es_primera_carta = (cartas_jugadas_este_turno == 0)
+		cartas_jugadas_este_turno += 1
+		
+		#PODERES PERMANENTES (Solo se aplican 1 vez)
+		if datos.es_poder_permanente:
+			buff_dano_basico_actual += datos.buff_dano_basico
+			energia_extra_base += datos.energia_base_extra
+			cura_por_ataque_actual += datos.cura_por_ataque
+			
+			
+		energia_actual += datos.ganancia_energia
+		if es_primera_carta:
+			energia_actual += datos.energia_si_primera
+		
+		if datos.curacion > 0:
+			RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + datos.curacion, 0, RunManager.run_data.vida_maxima)
+			
+		if datos.dano_a_jugador > 0:
+			RunManager.run_data.vida_jugador -= datos.dano_a_jugador
+			if RunManager.run_data.vida_jugador <= 0:
+				mostrar_resultado(false)
+				return
+		
 		# 1. Aplicar DAÑO al enemigo
 		if datos.daño > 0:
 			var dano_a_realizar = datos.daño
+			
+			#Efecto de cartas
+			if enemigo_veneno_turnos > 0:
+				dano_a_realizar += datos.dano_extra_veneno
+			if mano_visual.get_child_count() == 1:
+				dano_a_realizar += datos.dano_extra_ultima_carta
+			if datos.name == "Golpe de Chatarra" or datos.name == "Instinto de Presa":
+				dano_a_realizar += buff_dano_basico_actual
+			
 			# efecto de evento doble daño
 			if RunManager.run_data.bonus_doble_dano:
 				dano_a_realizar*= 2 #aplica el multiplicador de daño x2
@@ -124,20 +185,50 @@ func _jugar_carta(nodo, datos):
 				var dano_sobrante = dano_a_realizar - escudo_enemigo_actual
 				escudo_enemigo_actual = 0 # Rompiste su escudo
 				barra_vida_enemigo.value -= dano_sobrante # Le restás a su vida
-		
+			
+			if cura_por_ataque_actual > 0:
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + cura_por_ataque_actual, 0, RunManager.run_data.vida_maxima)
+			
 		# 2. Aplicar ESCUDO a ti misma
 		if datos.escudo > 0:
-			# efecto evento penalizacion de escudo
-			var escudo_final = datos.escudo - RunManager.run_data.penalizacion_escudo
-			escudo_actual += max(0,escudo_final) # max(0) evita que el escudo quede en negativo
-			
+			if datos.es_poder_permanente:
+				# INYECCIÓN DE ADRENALINA: Se convierte en un motor fijo por turno
+				escudo_fijo_por_turno += datos.escudo
+				escudo_actual += datos.escudo # Te da los primeros 10 en este mismo turno
+				print("Motor de escudo activado: +", datos.escudo, " por turno.")
+			else:
+				# Escudos normales (Espuma Selladora, Escudo de Emergencia)
+				var escudo_final = datos.escudo - RunManager.run_data.penalizacion_escudo
+				escudo_actual += max(0,escudo_final)
+
+		if datos.retiene_escudo:
+			turnos_retener_escudo = 1 # 1 significa: "Sobrevive hasta el PRÓXIMO turno" # Espuma Selladora (dura 1 turno)
+		
+		# --- APLICAR ESTADOS AL ENEMIGO ---
+		if datos.aplica_veneno > 0:
+			enemigo_veneno_dano += datos.aplica_veneno
+			enemigo_veneno_turnos = datos.turnos_veneno
+		if datos.aplica_debilidad > 0:
+			enemigo_debil_turnos += datos.aplica_debilidad
+		
 		# 3. Habilidad de ROBAR cartas
-		if datos.roba > 0:
-			print("Usaste una habilidad. Robando ", datos.roba, " carta(s) extra.")
-			repartir_cartas(datos.roba) # Llama a la función que ya tenés para sacar del mazo
+		#if datos.roba > 0:
+		#	print("Usaste una habilidad. Robando ", datos.roba, " carta(s) extra.")
+		#	repartir_cartas(datos.roba) # Llama a la función que ya tenés para sacar del mazo
+		
+		var total_a_robar = datos.roba
+		if datos.robo_si_vida_baja > 0 and RunManager.run_data.vida_jugador < 50:
+			total_a_robar += datos.robo_si_vida_baja
+			
+		if total_a_robar > 0:
+			repartir_cartas(total_a_robar)
 		
 		# La carta jugada va al descarte
-		mazo_descarte.append(datos)
+		if not datos.es_poder_permanente:
+			mazo_descarte.append(datos)# Las normales van al descarte
+		else:
+			print("Carta de Poder consumida por el resto del combate.")	
+		
 		nodo.queue_free() #Quita la carta de la mano
 		actualizar_ui()
 		
@@ -174,6 +265,15 @@ func actualizar_ui():
 
 func turno_del_enemigo():
 	print("Turno del enemigo...")
+	
+	# VENENO (Se aplica antes de que el enemigo haga nada)
+	if enemigo_veneno_turnos > 0:
+		barra_vida_enemigo.value -= enemigo_veneno_dano
+		enemigo_veneno_turnos -= 1
+		print("El enemigo sufre ", enemigo_veneno_dano, " por veneno.")
+		if barra_vida_enemigo.value <= 0:
+			mostrar_resultado(true)
+			return
 	
 	# Leemos qué tipo de enemigo es (si no tiene tipo, asumimos "debil")
 	var tipo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
@@ -222,6 +322,13 @@ func turno_del_enemigo():
 				# ATAQUE ESPECIAL
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_especial"]
 				print("¡EL JEFE USA SU ATAQUE ESPECIAL por: ", dano_enemigo, "!")
+				
+	# REDUCCIÓN DE DAÑO POR DEBILIDAD (Niebla Tóxica)
+	if dano_enemigo > 0 and enemigo_debil_turnos > 0:
+		dano_enemigo = int(dano_enemigo / 2)
+		enemigo_debil_turnos -= 1
+		print("Enemigo debilitado, daño reducido a: ", dano_enemigo)
+				
 # --- LÓGICA DE RECIBIR EL DAÑO (Es igual para todos) ---
 	if dano_enemigo > 0:
 		if escudo_actual >= dano_enemigo:
@@ -233,12 +340,13 @@ func turno_del_enemigo():
 			RunManager.run_data.vida_jugador -= dano_restante
 			print("Daño recibido tras escudo: ", dano_restante)
 			
-			# --- ACÁ AGREGAMOS LA CONDICIÓN DE DERROTA ---
-			if RunManager.run_data.vida_jugador <= 0:
-				print("¡Derrota! Tu vida llegó a 0.")
-				mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
-				return # El return es crucial: evita que el código siga y te pase de turno estando muerta
-				# reset de escudo para los eventos
+		# --- ACÁ AGREGAMOS LA CONDICIÓN DE DERROTA ---
+		if RunManager.run_data.vida_jugador <= 0:
+			print("¡Derrota! Tu vida llegó a 0.")
+			mostrar_resultado(false) # Llamamos al panel en lugar de cambiar de escena
+			return # El return es crucial: evita que el código siga y te pase de turno estando muerta
+				
+		# reset de escudo para los eventos
 		if RunManager.run_data.penalizacion_escudo >0: 
 			RunManager.run_data.penalizacion_escudo = 0
  
@@ -259,25 +367,52 @@ func planear_proxima_accion():
 	# Mostramos la intención visualmente con Emojis
 	if proxima_accion_enemigo == 0:
 		var dano = GameManager.enemigo_actual_datos["Daño_fijo"]
-		label_intencion.text = "⚔️ Atacará (" + str(dano) + ")"
+		label_intencion.text = "⚔️ Daño: " + str(dano)
+		
 	elif proxima_accion_enemigo == 1:
-		label_intencion.text = "🛡️"
+		# Calculamos cuánto escudo se va a poner según quién sea
+		var cantidad_escudo = 0
+		if tipo == "debil":
+			cantidad_escudo = 8
+		elif tipo == "medio":
+			cantidad_escudo = 15
+		elif tipo == "jefe":
+			cantidad_escudo = 25
+		label_intencion.text = "🛡️ Escudo: " + str(cantidad_escudo)
+	
+	#Es la acción de PODER
 	else:
-		# Buscamos el daño de poder
-		var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
-		label_intencion.text = "🔥 (" + str(dano_poder) + ")"
+		if tipo == "medio":
+			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
+			label_intencion.text = "🔥 Poder: " + str(dano_poder) + " + 😵 Aturdir"
+			
+		elif tipo == "jefe":
+			# El jefe tiene una variable distinta llamada "daño_especial"
+			var dano_especial = GameManager.enemigo_actual_datos.get("daño_especial", 0)
+			label_intencion.text = "🔥 Poder: " + str(dano_especial)
+			
+		else:
+			# Para el enemigo débil
+			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
+			label_intencion.text = "🔥 Poder: " + str(dano_poder)
 
 func iniciar_nuevo_turno_jugador():
 	print("--- Inicio de tu turno ---")
 	
+	cartas_jugadas_este_turno = 0
+	
 	#cHEQUEO DE STUN/ATURNIR
 	if jugador_aturdido:
 		print("¡Estás aturdida! Pierdes tu turno.")
-		label_intencion.text = "😵 Aturdido"
+		label_escudo.text = "😵 Aturdido"
 		jugador_aturdido = false # Te curas del stun para el próximo
 		
-		# Esperamos 1.5 segundos para que leas qué pasó
-		await get_tree().create_timer(1.5).timeout 
+		# 2. Esperamos 1.5 segundos para que leas el aviso
+		await get_tree().create_timer(1.5).timeout
+		
+		# 3. Devolvemos el texto a la normalidad mostrando tu escudo actual
+		label_escudo.text = "🛡️ Escudo: " + str(escudo_actual)
+
 		terminar_turno() # Le devuelve el turno al enemigo
 		return # Crucial: sale de la función para no darte cartas ni energía
 	
@@ -291,11 +426,20 @@ func iniciar_nuevo_turno_jugador():
 			mostrar_resultado(false)
 			return
 	
-	# 1. Los escudos viejos se limpian (regla de Slay the Spire)
-	escudo_actual = 0
-	
-	# 2. Se recupera la energía total
-	energia_actual = 3
+	# LÓGICA LÓGICA ESCUDO (Normal, Espuma Selladora y Permanente)
+	if turnos_retener_escudo > 0:
+		print("Tu escudo se mantiene por la Espuma Selladora.")
+		turnos_retener_escudo -= 1 # Le restamos un turno de vida
+	else:
+		escudo_actual = 0 # Si se acabó la Espuma, el escudo vuelve a cero
+		
+	# Te inyectamos el escudo automático de la Adrenalina
+	if escudo_fijo_por_turno > 0:
+		escudo_actual += escudo_fijo_por_turno
+		print("Adrenalina: Regeneras ", escudo_fijo_por_turno, " de escudo.")
+		
+	# LÓGICA METABOLISMO ACELERADO (energia)
+	energia_actual = 3 + energia_extra_base
 	
 	# 3. Robás tu nueva mano (en tu caso, 4 cartas como tenés configurado)
 	repartir_cartas(4)

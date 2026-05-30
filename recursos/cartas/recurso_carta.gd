@@ -23,7 +23,8 @@ extends Resource
 @export var es_poder_permanente: bool = false   # Para marcar cartas como Bio-Mutación
 @export var buff_dano_basico: int = 0           # Para Bio-Mutación (suma daño a ataques iniciales)
 @export var energia_base_extra: int = 0         # Para Metabolismo Acelerado
-@export var robo_si_vida_baja: int = 0          # Para Inyección de Adrenalina
+@export var robo_si_vida_baja: int = 0          # Para Inyección de Adrenalina, DESCARTADO
 @export var aplica_debilidad: int = 0           # Para Niebla Tóxica
 @export var energia_si_primera: int = 0         # Para Golpe de Ímpetu
 @export var cura_por_ataque: int = 0            # Para Simbiosis Parasitaria
+@export var buff_escudo_basico: int = 0          # NUEVO: Para Inyección de Adrenalina

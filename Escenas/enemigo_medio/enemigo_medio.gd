@@ -34,7 +34,7 @@ func _preparar_combate():
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
 		"Daño_fijo": 18,          
-		"daño_poder": 25,         
+		"daño_poder": 14,         
 		"textura": preload("res://Assets/icon.svg"), # Cambiar por el arte de Lucía
 		"posicion": global_position 
 	}

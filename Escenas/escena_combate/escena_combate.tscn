@@ -94,10 +94,10 @@ texture = ExtResource("2_6mo4l")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=157460346]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 17.0
-offset_right = 58.0
-offset_bottom = 57.0
+offset_left = 167.0
+offset_top = 398.0
+offset_right = 207.0
+offset_bottom = 438.0
 texture = ExtResource("4_43djd")
 
 [node name="LabelEnergia" type="Label" parent="TextureRect3" unique_id=585249389]
@@ -135,10 +135,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = 242.0
-offset_right = 82.0
-offset_bottom = 313.0
+offset_left = 40.0
+offset_top = 148.0
+offset_right = 110.0
+offset_bottom = 219.0
 grow_vertical = 2
 texture = ExtResource("5_vytjj")
 
@@ -151,10 +151,10 @@ offset_bottom = 48.0
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=916427663]
 layout_mode = 0
-offset_left = 1072.0
-offset_top = 569.0
-offset_right = 1142.0
-offset_bottom = 640.0
+offset_left = 1030.0
+offset_top = 473.0
+offset_right = 1100.0
+offset_bottom = 544.0
 texture = ExtResource("6_qcod8")
 
 [node name="LabelDescarte" type="Label" parent="TextureRect2" unique_id=882443210]
@@ -171,22 +171,23 @@ offset_bottom = 24.996
 layout_mode = 0
 offset_left = 250.0
 offset_top = 119.0
-offset_right = 290.0
+offset_right = 424.0
 offset_bottom = 142.0
 
 [node name="LabelEscudoEnemigo" type="Label" parent="." unique_id=672741919]
+visible = false
 layout_mode = 0
-offset_left = 827.0
-offset_top = 41.0
-offset_right = 867.0
-offset_bottom = 64.0
+offset_left = 646.0
+offset_top = 119.0
+offset_right = 820.0
+offset_bottom = 142.0
 
 [node name="LabelIntencion" type="Label" parent="." unique_id=653673964]
 layout_mode = 0
-offset_left = 713.0
-offset_top = 85.0
-offset_right = 753.0
-offset_bottom = 108.0
+offset_left = 632.0
+offset_top = 119.0
+offset_right = 806.0
+offset_bottom = 142.0
 
 [node name="BarraVidaEnemigo" type="TextureProgressBar" parent="." unique_id=1844885709]
 layout_mode = 0
