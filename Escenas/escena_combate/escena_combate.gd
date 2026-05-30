@@ -125,6 +125,10 @@ func robar_una_carta():
 	mano_visual.add_child(nueva_carta)
 	nueva_carta.configurar(datos)
 	
+	#SI HAY UN BUFF ACTIVO, LA CARTA NACE ACTUALIZADA
+	#if nueva_carta.has_method("actualizar_buffs"):
+	#	nueva_carta.actualizar_buffs(buff_dano_basico_actual)
+	#NO LO BORRE POR LAS DUDAS
 func repartir_cartas(cantidad):
 	for i in range(cantidad):
 		robar_una_carta()
@@ -152,6 +156,11 @@ func _jugar_carta(nodo, datos):
 			energia_extra_base += datos.energia_base_extra
 			cura_por_ataque_actual += datos.cura_por_ataque
 			
+			# AVISARLE A LAS CARTAS DE LA MANO QUE CAMBIEN
+			#for carta_en_mano in mano_visual.get_children():
+			#	if carta_en_mano.has_method("actualizar_buffs"):
+			#		carta_en_mano.actualizar_buffs(buff_dano_basico_actual)
+			#POR LAS DUDAS NO LO BORRE
 			
 		energia_actual += datos.ganancia_energia
 		if es_primera_carta:
@@ -282,6 +291,18 @@ func actualizar_ui():
 	
 	# Enemigo: Mostramos Vida Actual / Vida Máxima
 	label_vida_enemigo.text = str(int(barra_vida_enemigo.value)) + "/" + str(int(barra_vida_enemigo.max_value))
+	
+	#  ESCÁNER DINÁMICO DE CARTAS 
+	# Contamos cuántas cartas "vivas" hay en la mano (ignorando las que se están borrando)
+	var cartas_reales = 0
+	for c in mano_visual.get_children():
+		if not c.is_queued_for_deletion():
+			cartas_reales += 1
+			
+	# Le pasamos la información fresca a todas las cartas
+	for carta in mano_visual.get_children():
+		if not carta.is_queued_for_deletion() and carta.has_method("actualizar_buffs"):
+			carta.actualizar_buffs(buff_dano_basico_actual, cartas_reales)
 	
 func turno_del_enemigo():
 	print("Turno del enemigo...")

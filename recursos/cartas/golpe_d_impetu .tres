@@ -9,7 +9,7 @@ name = "Golpe de Ímpetu "
 tipo = "Ataque"
 "daño" = 6
 ruta = ExtResource("1_fjunb")
-descripcion = "Causa 6 de Daño. Si es la primera carta que juegas en este turno, recuperas 1 de Energía 
+descripcion = "Causa 6 de Daño. Si es la primera carta que juegas , aumenta 1 de Energía 
 
 "
 ganancia_energia = 1
