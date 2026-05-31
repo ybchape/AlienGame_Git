@@ -27,14 +27,14 @@ func _physics_process(_delta: float) -> void:
 		
 		# LÓGICA DE LA VISIÓN PROGRESIVA 
 		# Se verifica si se está desplazando
-		if velocity != Vector2.ZERO:
-			if GameManager.radio_vision_actual < GameManager.vision_maxima:
-				GameManager.radio_vision_actual += GameManager.velocidad_crecimiento
+		#if velocity != Vector2.ZERO:
+			#if GameManager.radio_vision_actual < GameManager.vision_maxima:
+				#GameManager.radio_vision_actual += GameManager.velocidad_crecimiento
 				# Se actualiza el nodo PointLight2D 
-				$PointLight2D.texture_scale = GameManager.radio_vision_actual
-	else:
-		velocity = Vector2.ZERO
-		move_and_slide()
+				#$PointLight2D.texture_scale = GameManager.radio_vision_actual
+	#else:
+		#velocity = Vector2.ZERO
+		#move_and_slide()
 
 func verificar_suelo():
 	if tilemap_suelo:
