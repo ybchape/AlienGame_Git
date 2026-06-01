@@ -11,8 +11,6 @@ func configurar(data):
 
 func _on_boton_a_pressed() -> void:
 	GameManager.procesar_eleccion(datos_del_evento.id, "A")
-	queue_free() # close ventana
 
 func _on_boton_b_pressed() -> void:
 	GameManager.procesar_eleccion(datos_del_evento.id, "B")
-	queue_free() # close ventana
