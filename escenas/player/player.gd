@@ -15,6 +15,8 @@ func _ready() -> void:
 #-------------------------------------------------------
 
 func _physics_process(_delta: float) -> void:
+	# le avisa constantemente al GameManager la pos del player
+	GameManager.posicion_jugador_en_mapa = global_position
 	if not is_digging:
 		get_input()
 		move_and_slide()

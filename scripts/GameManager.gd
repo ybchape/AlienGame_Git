@@ -341,17 +341,23 @@ func _confirmar_eliminacion_carta(indice: int, nodo_ui: CanvasLayer):
 	get_tree().paused = false
 
 func revelar_enemigos_importantes():
-	print("Buscando amenazas importantes en el laberinto para revelar en el HUD...")
+	print("--- [TEST] LLAMANDO A REVELAR_ENEMIGOS_IMPORTANTES ---")
 	
-	# busca todos los nodos que pertenezcan al grupo enemigos 
-	var enemigos = get_tree().get_nodes_in_group("enemigos")
+	# Test 1: Ver si hay enemigos en el grupo justo ahora
+	var test_enemigos = get_tree().get_nodes_in_group("enemigos")
+	print("-> [TEST] Cantidad de enemigos en el grupo EN ESTE INSTANTE: ", test_enemigos.size())
 	
-	for enemigo in enemigos:
-		# revela la posicion de un enemigo
-		if enemigo.has_method("mostrar_en_hud") or enemigo.has_node("Sprite2D"):
-			print("Amenaza revelada en la posición: ", enemigo.global_position)
-
-			# podemos hacer que el enemigo parpadee o genere un efecto de luz temporal,
-			# pero no creo que sirva
-			if enemigo.has_node("PointLight2D"):
-				enemigo.get_node("PointLight2D").enabled = true
+	var ruta_radar = "uid://punjuqndf6h"
+	
+	if ResourceLoader.exists(ruta_radar):
+		var radar_script = load(ruta_radar)
+		var nuevo_radar = Node.new()
+		nuevo_radar.set_script(radar_script)
+		nuevo_radar.name = "RadarSutilEnemigos"
+		
+		# Test 2: Cambiamos dónde lo metemos. 
+		# En vez de current_scene, lo metemos directo a la raíz del juego para que no lo tape nada
+		get_tree().root.add_child(nuevo_radar)
+		print("-> [TEST] Nodo radar agregado exitosamente al ROOT del juego.")
+	else:
+		print("-> [TEST] ERROR: El archivo no existe en la UID.")

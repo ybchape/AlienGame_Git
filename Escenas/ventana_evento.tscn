@@ -9,6 +9,7 @@ script = ExtResource("1_skbjx")
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
 offset_right = 1153.0
 offset_bottom = 649.0
+mouse_filter = 2
 
 [node name="Titulo" type="Label" parent="." unique_id=220602407]
 offset_left = 461.0
