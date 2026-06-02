@@ -23,7 +23,6 @@ var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
 var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
 var total_enemigos_en_mapa: int = 8
 # Sistema de eventos - variables de control
-var multiplicador_velocidad_laberinto: float = 1.0 # Evento 3 (Fósil)
 var enemigo_congelado_proximo_combate: bool = false # Evento 4 (Criostasis)
 var combates_con_persistencia: int = 0 # Evento 5 (Sangre Hirviente)
 var bonus_revelar_eventos: bool = false # Evento 6 (Satélite A)
@@ -151,6 +150,7 @@ func procesar_eleccion(id_evento: String, opcion: String):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("consola funcionando: El juego se inició correctamente")
 	pass # Replace with function body.
 
 # Función para que cualquier objeto pueda alterar el frenesí
@@ -319,13 +319,12 @@ func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):
 		if escena_carta_ui:
 			var instancia_carta = escena_carta_ui.instantiate()
 			instancia_carta.process_mode = Node.PROCESS_MODE_ALWAYS
-			instancia_carta.set_process_input(false)
-			instancia_carta.set_process_unhandled_input(false)
+			# Eliminamos las líneas que apagaban el input para que Godot no se tilde en la pausa
 			
 			cuadricula_cartas.add_child(instancia_carta)
 			instancia_carta.configurar(carta_recurso)
 			instancia_carta.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-			
+
 			# Conexión al hacer clic para eliminar
 			instancia_carta.pressed.connect(func():
 				_confirmar_eliminacion_carta(i, interfaz)
@@ -339,19 +338,3 @@ func _confirmar_eliminacion_carta(indice: int, nodo_ui: CanvasLayer):
 	
 	nodo_ui.queue_free()
 	get_tree().paused = false
-
-func revelar_enemigos_importantes():
-	print("Buscando amenazas importantes en el laberinto para revelar en el HUD...")
-	
-	# busca todos los nodos que pertenezcan al grupo enemigos 
-	var enemigos = get_tree().get_nodes_in_group("enemigos")
-	
-	for enemigo in enemigos:
-		# revela la posicion de un enemigo
-		if enemigo.has_method("mostrar_en_hud") or enemigo.has_node("Sprite2D"):
-			print("Amenaza revelada en la posición: ", enemigo.global_position)
-
-			# podemos hacer que el enemigo parpadee o genere un efecto de luz temporal,
-			# pero no creo que sirva
-			if enemigo.has_node("PointLight2D"):
-				enemigo.get_node("PointLight2D").enabled = true

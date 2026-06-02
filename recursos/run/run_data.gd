@@ -21,7 +21,6 @@ extends Resource
 @export var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
 
 #  Variables para el sistema de eventos
-@export var multiplicador_velocidad_laberinto: float = 1.0 # Evento 3 (Fósil Antiguo)
 @export var enemigo_congelado_proximo_combate: bool = false # Evento 4 (Criostasis Natural)
 @export var combates_con_persistencia: int = 0 # Evento 5 (Sangre Hirviente)
 @export var bonus_revelar_eventos: bool = false # Evento 6 (Satélite - Opción A)
