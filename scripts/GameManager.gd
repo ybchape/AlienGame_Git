@@ -13,6 +13,8 @@ var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta ek radio de
 # modificadores
 var esta_en_descontrol = false
 var tiempo_dano_frenesi: float = 0.0
+var modificador_velocidad: float = 1.0
+var sobrecarga_activa: bool = false # Controla si la sobrecarga del fósil está encendida
 
 # Mapa
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
@@ -142,11 +144,60 @@ func procesar_eleccion(id_evento: String, opcion: String):
 				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA)
-
 	# si no fue la opción A de necrosis, cse cierra la ui del evento común y despausa
 	if ventana_actual:
 		ventana_actual.queue_free()
 	get_tree().paused = false
+
+func activar_powerup_fosil():
+	print("¡Sobrecarga Motriz activada! Velocidad +20%")
+	modificador_velocidad = 1.2
+	sobrecarga_activa = true
+	
+	# carga el recurso .tres 
+	if has_node("/root/RunManager"):
+		var run_manager = get_node("/root/RunManager")
+		if "run_data" in run_manager and "mazo_actual" in run_manager.run_data:
+
+			var recurso_maldicion = load("res://recursos/cartas/analisis_bioma.tres")
+			
+			if recurso_maldicion:
+				run_manager.run_data.mazo_actual.append(recurso_maldicion)
+				print("Recurso de 'Interferencia' añadido con éxito al mazo.")
+			else:
+				print(" No se encontró el archivo de recurso .tres en la ruta especificada.")
+
+# muestra la carta grande mientras el player puede moverse
+	var capa_visual = CanvasLayer.new()
+	capa_visual.name = "BannerMaldicion"
+	get_tree().root.add_child(capa_visual)
+	
+	var sprite_carta = TextureRect.new()
+	sprite_carta.texture = load("res://Assets/cartas/Análisis de Bioma.jpg") 
+	
+	# 1. Definimos el tamaño de la carta
+	var tamano_carta = Vector2(200, 280)
+	sprite_carta.custom_minimum_size = tamano_carta
+	sprite_carta.size = tamano_carta
+	
+	sprite_carta.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	sprite_carta.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	
+	# 2. Metemos la carta dentro de la capa visual
+	capa_visual.add_child(sprite_carta)
+	
+	# 3. Calculamos el centro usando la capa visual (que ya está en el árbol de nodos)
+	var tamano_pantalla = capa_visual.get_viewport().get_visible_rect().size
+	sprite_carta.position = (tamano_pantalla / 2) - (tamano_carta / 2)
+	
+	print(" Sprite de 'Interferencia' mostrado en el CENTRO de la pantalla.")
+	
+	# 4. Espera 2.5 segundos sin frenar el juego
+	await get_tree().create_timer(2.5).timeout
+	
+	# 5. Borramos TODA la capa (así se lleva el sprite con ella)
+	capa_visual.queue_free()
+	print("-> [GAME MANAGER] El banner de la carta desapareció. La velocidad sigue activa.")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
