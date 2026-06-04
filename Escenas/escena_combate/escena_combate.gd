@@ -482,6 +482,7 @@ func planear_proxima_accion():
 	elif proxima_accion_enemigo == 1:
 		# Calculamos cuánto escudo se va a poner según quién sea
 		var cantidad_escudo = 0
+		#MAPA 1
 		if tipo == "debil":
 			cantidad_escudo = 8
 		elif tipo == "medio":

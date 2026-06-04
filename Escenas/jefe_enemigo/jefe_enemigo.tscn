@@ -18,7 +18,7 @@ animations = [{
 size = Vector2(128, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0830a"]
-size = Vector2(130, 131)
+size = Vector2(140, 140.00003)
 
 [node name="jefe_enemigo" type="CharacterBody2D" unique_id=1110556000]
 scale = Vector2(0.2, 0.2)
@@ -28,11 +28,14 @@ script = ExtResource("1_s5psy")
 sprite_frames = SubResource("SpriteFrames_i8y60")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565087171]
+visible = false
 shape = SubResource("RectangleShape2D_70efm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1310191]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=210433005]
+position = Vector2(4.1723247e-06, 1.4901158e-07)
+scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_0830a")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

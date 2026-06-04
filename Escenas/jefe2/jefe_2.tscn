@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bmm0d8lgx7bex"]
+
+[ext_resource type="Script" uid="uid://c78j7ml3eeum8" path="res://Escenas/jefe2/jefe_2.gd" id="1_1eucj"]
+[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="1_o1pt2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1eucj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o1pt2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7csc1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cix"]
+size = Vector2(140.00002, 140.00003)
+
+[node name="jefe2" type="CharacterBody2D" unique_id=707365897 groups=["enemigos"]]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_1eucj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=661233462]
+sprite_frames = SubResource("SpriteFrames_1eucj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150216705]
+visible = false
+shape = SubResource("RectangleShape2D_7csc1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2115339329]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=923244302]
+position = Vector2(4.768369e-06, 6.854533e-06)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_x3cix")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
