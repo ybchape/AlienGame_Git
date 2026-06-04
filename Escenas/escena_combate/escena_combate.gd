@@ -381,7 +381,7 @@ func turno_del_enemigo():
 	var decision = proxima_accion_enemigo
 	
 	match tipo:
-		"debil":
+		"debil", "debil2":
 			# IA DEL ENEMIGO DÉBIL 
 			if decision == 0:
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
@@ -394,7 +394,7 @@ func turno_del_enemigo():
 				dano_enemigo = GameManager.enemigo_actual_datos["daño_poder"]
 				print("El enemigo débil usa Poder por: ", dano_enemigo)
 		
-		"medio":
+		"medio", "medio2":
 			# IA DEL ENEMIGO MEDIO
 			if decision == 0:
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
@@ -407,7 +407,7 @@ func turno_del_enemigo():
 				print("El enemigo medio usa Poder por: ", dano_enemigo, " y te ATURDE!")
 				jugador_aturdido = true
 		
-		"jefe":
+		"jefe", "jefe2":
 			# IA DEL JEFE (Ataques especiales)
 			if decision == 0:
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
@@ -490,13 +490,18 @@ func planear_proxima_accion():
 		elif tipo == "jefe":
 			cantidad_escudo = 25
 		
+		#MAPA2
+		elif tipo == "debil2": cantidad_escudo = 10
+		elif tipo == "medio2": cantidad_escudo = 16
+		elif tipo == "jefe2": cantidad_escudo = 26
+		
 		escudo_enemigo_actual = cantidad_escudo
 		escudo_maximo_enemigo = cantidad_escudo
 		label_intencion.text = "🛡️" + str(escudo_enemigo_actual) + " / " + str(escudo_maximo_enemigo)
 	
 	#Es la acción de PODER
 	else:
-		if tipo == "medio":
+		if tipo == "medio" or tipo == "medio2":
 			var dano_poder = GameManager.enemigo_actual_datos.get("daño_poder", 0)
 			if enemigo_debil_turnos > 0 and dano_poder > 0:
 				var dano_reducido = int(dano_poder / 2)
@@ -505,7 +510,7 @@ func planear_proxima_accion():
 			else:
 				label_intencion.text = "🔥" + str(dano_poder) + " + 😵 Aturdir"
 		
-		elif tipo == "jefe":
+		elif tipo == "jefe" or tipo == "jefe2":
 			# El jefe tiene una variable distinta llamada "daño_especial"
 			var dano_especial = GameManager.enemigo_actual_datos.get("daño_especial", 0)
 			if enemigo_debil_turnos > 0 and dano_especial > 0:
@@ -616,12 +621,12 @@ func mostrar_resultado(gano: bool):
 			boton_final.text = "Volver a Jugar"
 		else:
 			# Agregamos este 'if' para separar al débil de los demás
-			if tipo_enemigo == "debil":
+			if tipo_enemigo == "debil" or tipo_enemigo == "debil2":
 				label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
 				boton_final.text = "Volver al Mapa"
 			
 			#SI ES EL JEFE FINAL
-			elif tipo_enemigo == "jefe":
+			elif tipo_enemigo == "jefe" or tipo_enemigo == "jefe2":
 				label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa de élite:"
 				boton_final.visible = false # Ocultamos el botón de volver hasta que elija
 				btn_carta_1.visible = true  # Mostramos el primer slot
@@ -644,7 +649,7 @@ func mostrar_resultado(gano: bool):
 				visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				visual_carta_1.position = Vector2.ZERO
 			else:
-				# Solo entra acá si es Enemigo Medio
+				# Solo entra acá si es Enemigo Medio 1 y 2
 				label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
 				boton_final.visible = false # Ocultamos el "Volver al Mapa"
 				btn_carta_1.visible = true  # Mostramos las cartas

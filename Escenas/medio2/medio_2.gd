@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var vida_maxima = 40
-var reduccion_frenesi = 15
+var vida_maxima = 80
+var reduccion_frenesi = 25
 
 const ESCENA_COMBATE = preload("uid://df0wos767uxby") #ruta de la escena con los codigos de godot raros
 
@@ -34,8 +34,8 @@ func _preparar_combate():
 		"tipo_enemigo": "medio2", # Clave para que la escena de combate sepa cómo actúa
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
-		"Daño_fijo": 18,          
-		"daño_poder": 14,         
+		"Daño_fijo": 20,          
+		"daño_poder": 18,         
 		"textura": preload("res://Assets/icon.svg"), # Cambiar por el arte de Lucía
 		"posicion": global_position 
 	}
