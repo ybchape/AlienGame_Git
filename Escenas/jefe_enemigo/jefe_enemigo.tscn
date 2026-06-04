@@ -20,7 +20,7 @@ size = Vector2(128, 125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0830a"]
 size = Vector2(140, 140.00003)
 
-[node name="jefe_enemigo" type="CharacterBody2D" unique_id=1110556000]
+[node name="jefe_enemigo" type="CharacterBody2D" unique_id=1110556000 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_s5psy")
 
