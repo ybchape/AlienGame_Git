@@ -306,11 +306,17 @@ func finalizar_combate(victoria: bool):
 		enemigos_derrotados.append(
 			enemigo_actual_datos["nombre_en_escena"]
 		)
-		# instanciamos el corazón
-		var nuevo_corazon = corazon_escena.instantiate()
-		get_tree().current_scene.add_child(nuevo_corazon)
-		nuevo_corazon.global_position = posicion_enemigo
-		print("Corazón looteado.")
+		
+		# new logica de loot heart
+		# busca el tipo de enemigo "tipo_enemigo". Si NO es "jefe", loot corazón.
+		if enemigo_actual_datos.get("tipo_enemigo") != "jefe":
+			var nuevo_corazon = corazon_escena.instantiate()
+			get_tree().current_scene.add_child(nuevo_corazon)
+			nuevo_corazon.global_position = posicion_enemigo
+			print("Corazón looteado (Enemigo común derrotado).")
+		else:
+			# si es el boss ("jefe"), ignora el instanciar el corazón
+			print("Combate ganado contra el Jefe: ¡No se lootea corazón!")
 
 # func para el evento de necrosis
 func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):
