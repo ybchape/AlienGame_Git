@@ -1098,10 +1098,31 @@ position = Vector2(433, 128.00002)
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
-position = Vector2(108, 368)
+position = Vector2(178, 540)
+
+[node name="CofreEvento2" parent="." unique_id=1010072102 instance=ExtResource("10_o0x7m")]
+position = Vector2(167, 515)
 
 [node name="CofreEvento3" parent="." unique_id=741794274 instance=ExtResource("10_o0x7m")]
-position = Vector2(539, 203)
+position = Vector2(180, 569)
+
+[node name="CofreEvento4" parent="." unique_id=373667542 instance=ExtResource("10_o0x7m")]
+position = Vector2(253, 563)
+
+[node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
+position = Vector2(218, 539)
+
+[node name="CofreEvento6" parent="." unique_id=1864061129 instance=ExtResource("10_o0x7m")]
+position = Vector2(215, 569)
+
+[node name="CofreEvento9" parent="." unique_id=46581425 instance=ExtResource("10_o0x7m")]
+position = Vector2(341, 551)
+
+[node name="CofreEvento7" parent="." unique_id=116290778 instance=ExtResource("10_o0x7m")]
+position = Vector2(302, 565)
+
+[node name="CofreEvento8" parent="." unique_id=1514931302 instance=ExtResource("10_o0x7m")]
+position = Vector2(258, 535)
 
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("11_ueh2r")]
 
@@ -1119,12 +1140,6 @@ position = Vector2(121, 557)
 
 [node name="enemigo_debil6" parent="." unique_id=530462474 instance=ExtResource("8_e307b")]
 position = Vector2(905.00006, 449.99997)
-
-[node name="CofreEvento4" parent="." unique_id=373667542 instance=ExtResource("10_o0x7m")]
-position = Vector2(985, 402)
-
-[node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
-position = Vector2(680, 329)
 
 [node name="Teclas" parent="." unique_id=2008442961 instance=ExtResource("14_3vxs2")]
 

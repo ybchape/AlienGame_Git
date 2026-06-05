@@ -71,7 +71,8 @@ func get_input():
 			last_direction = "down" if input_direction.y > 0 else "up"
 
 		update_animation("walk")
-		velocity = input_direction * speed
+		# ultiplica la velocidad base por el modificador de velocidad del GameManager
+		velocity = input_direction * (speed * GameManager.modificador_velocidad)
 
 func _unhandled_key_input(event: InputEvent):
 	# Tecla "E" para romper bloque

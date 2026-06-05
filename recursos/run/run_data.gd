@@ -19,3 +19,10 @@ extends Resource
 @export var bonus_doble_dano = false
 @export var penalizacion_escudo: int = 0 # var para el efecto de escudo en los eventos
 @export var penalizacion_energia: int = 0 # var para la penalizacion de energia en eventos
+
+#  Variables para el sistema de eventos
+@export var enemigo_congelado_proximo_combate: bool = false # Evento 4 (Criostasis Natural)
+@export var combates_con_persistencia: int = 0 # Evento 5 (Sangre Hirviente)
+@export var bonus_revelar_eventos: bool = false # Evento 6 (Satélite - Opción A)
+@export var sobrecarga_robo_primer_turno: bool = false # Evento 6 (Satélite - Opción B)
+@export var barajar_al_final_del_turno: bool = false # Evento 7 (Núcleo de Fisión)
