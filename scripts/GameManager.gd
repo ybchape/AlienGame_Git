@@ -6,7 +6,7 @@ var enemigo_actual_datos = {}
 var enemigos_derrotados = [] # Lista de nombres de enemigos vencidos
 
 # Vision
-var radio_vision_actual: float = 0.7  # Tamaño inicial de la luz
+var radio_vision_actual: float = 0.7 # Tamaño inicial de la luz
 var vision_maxima: float = 2.0        # El límite de cuánto puede crecer
 var velocidad_crecimiento: float = 0.0002 # Qué tan rápido aumenta ek radio de vision
 

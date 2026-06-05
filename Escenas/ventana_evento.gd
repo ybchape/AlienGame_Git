@@ -6,7 +6,6 @@ func configurar(data):
 	# le permite a la ventana procesar siempre
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	datos_del_evento = data
-	datos_del_evento = data
 	$Titulo.text = data.titulo
 	$Descripcion.text = data.texto
 	$BotonA.text = data.op_a_txt
@@ -23,7 +22,7 @@ func configurar(data):
 	$BotonB.pressed.connect(_on_boton_b_pressed)
 
 func _on_boton_a_pressed() -> void:
-	print("-> [INTERFAZ] Se hizo clic en el Botón A")
+	print("[UI] Se hizo clic en el Botón A")
 	
 	# verifica si el evento actual en pantalla es el del Fósil Antiguo
 	if datos_del_evento.id == "fosil_antiguo":
@@ -38,7 +37,7 @@ func _on_boton_a_pressed() -> void:
 		GameManager.procesar_eleccion(datos_del_evento.id, "A")
 
 func _on_boton_b_pressed() -> void:
-	print("Se hizo clic real en el Botón B")
+	print("Se hizo click en el Botón B")
 	
 	# si se ignora el fósil, simplemente despausa y cierra
 	if datos_del_evento.id == "fosil_antiguo":
