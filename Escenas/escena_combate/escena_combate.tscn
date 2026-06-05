@@ -83,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=609565988]
+[node name="player" type="AnimatedSprite2D" parent="." unique_id=609565988]
 position = Vector2(206.00002, 131.00002)
 scale = Vector2(9.71875, 10.406251)
 sprite_frames = SubResource("SpriteFrames_43djd")

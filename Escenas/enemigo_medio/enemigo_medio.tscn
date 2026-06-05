@@ -28,6 +28,7 @@ script = ExtResource("1_au7e4")
 sprite_frames = SubResource("SpriteFrames_au7e4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=471727795]
+visible = false
 shape = SubResource("RectangleShape2D_cnccb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=471071977]
