@@ -1093,14 +1093,10 @@ tile_set = SubResource("TileSet_6txvi")
 tile_set = SubResource("TileSet_iupgd")
 script = ExtResource("8_sqmix")
 
-[node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(100, 602)
-
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(433, 128.00002)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
-visible = false
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
@@ -1176,5 +1172,8 @@ script = ExtResource("20_kndw1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nave/PortalSalida" unique_id=1775735879]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kndw1")
+
+[node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
+position = Vector2(100, 602)
 
 [connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]
