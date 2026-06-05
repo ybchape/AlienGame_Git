@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://75fsqne8d60u" path="res://Escenas/enemigo_medio/enemigo_medio.tscn" id="16_wm4p1"]
 [ext_resource type="PackedScene" uid="uid://dhoio2h8bquc0" path="res://Escenas/jefe_enemigo/jefe_enemigo.tscn" id="17_divhv"]
+[ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="19_iey0q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -1070,6 +1071,9 @@ sources/1 = SubResource("TileSetAtlasSource_sqmix")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_divhv"]
 size = Vector2(47.496788, 47.499695)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kndw1"]
+size = Vector2(34, 29)
+
 [node name="Escena Principal" type="Node2D" unique_id=1789830397]
 
 [node name="Fondo" type="TileMapLayer" parent="." unique_id=1154688059]
@@ -1089,12 +1093,13 @@ tile_set = SubResource("TileSet_iupgd")
 script = ExtResource("8_sqmix")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(85, 602)
+position = Vector2(100, 602)
 
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(433, 128.00002)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
+visible = false
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
@@ -1159,3 +1164,13 @@ position = Vector2(295.75143, 567.2525)
 rotation = -1.566743
 shape = SubResource("RectangleShape2D_divhv")
 one_way_collision = true
+
+[node name="Nave" type="Sprite2D" parent="." unique_id=1105502669]
+position = Vector2(68, 603)
+texture = ExtResource("19_iey0q")
+
+[node name="PortalSalida" type="Area2D" parent="Nave" unique_id=1569546305]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nave/PortalSalida" unique_id=1775735879]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_kndw1")
