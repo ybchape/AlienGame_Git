@@ -19,6 +19,7 @@ var sobrecarga_activa: bool = false # Controla si la sobrecarga del fósil está
 # Mapa
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 var en_combate: bool = false
+var jefe_derrotado: bool = false
 var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
 var escena_combate: Node = null #para que funcione close combate con esta var
 var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
@@ -289,6 +290,7 @@ func morir_definitivamente():
 	posicion_jugador_en_mapa = Vector2.ZERO
 	GameManager.eventos_completados = []
 	GameManager.bloques_destruidos = []
+	GameManager.jefe_derrotado = false
 	# 2. Despausamos por si moriste por un evento
 	get_tree().paused = false
 	

@@ -600,13 +600,11 @@ func mostrar_resultado(gano: bool):
 	btn_carta_1.visible = false 
 	btn_carta_2.visible = false 
 	boton_final.visible = true
+	
 	if gano:
 		var tipo_enemigo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
 		
-		# Recuperamos vida
-		#RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 8,0, RunManager.run_data.vida_maxima)
-		#Esto lo hacen los corazones de coral
-		#Redusimos el frenesi
+		# Reducimos el frenesi
 		var reduccion = GameManager.enemigo_actual_datos.get("reduccion_frenesi",15)
 		GameManager.actualizar_frenesi(-reduccion)
 		
@@ -615,79 +613,79 @@ func mostrar_resultado(gano: bool):
 		if nombre_enemigo != "" and not nombre_enemigo in GameManager.enemigos_derrotados:
 			GameManager.enemigos_derrotados.append(nombre_enemigo)
 		
-		#Chequeamos si ganamos el juego
-		if GameManager.enemigos_derrotados.size() >= GameManager.total_enemigos_en_mapa:
-			label_resultado.text = "¡VICTORIA TOTAL! \n Eliminaste la amenaza del mapa."
-			boton_final.text = "Volver a Jugar"
-		else:
-			# Agregamos este 'if' para separar al débil de los demás
-			if tipo_enemigo == "debil" or tipo_enemigo == "debil2":
-				label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
-				boton_final.text = "Volver al Mapa"
+		# --- CORRECCIÓN: Ya no contamos enemigos, vamos directo a evaluar a quién mataste ---
+		
+		if tipo_enemigo == "debil" or tipo_enemigo == "debil2":
+			label_resultado.text = "¡EXPLORACIÓN EXITOSA! \n El enemigo fue derrotado"
+			boton_final.text = "Volver al Mapa"
 			
-			#SI ES EL JEFE FINAL
-			elif tipo_enemigo == "jefe" or tipo_enemigo == "jefe2":
-				label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa de élite:"
-				boton_final.visible = false # Ocultamos el botón de volver hasta que elija
-				btn_carta_1.visible = true  # Mostramos el primer slot
-				btn_carta_2.visible = false # ¡OCULTAMOS el segundo slot porque es una sola carta!
-				
-				# Limpiamos cartas visuales anteriores por seguridad
-				for nodo in btn_carta_1.get_children(): nodo.queue_free()
-				for nodo in btn_carta_2.get_children(): nodo.queue_free()
-				btn_carta_1.text = ""
-				btn_carta_2.text = ""
-				
-				# Cargamos la carta de Stun directamente desde tus archivos
-				# (Asegurate de que esta ruta coincida con el nombre y carpeta de tu .tres)
-				carta_opcion_1 = preload("uid://c235mt3xp01k5")
-				
-				# Instanciamos la carta en el botón 1
-				var visual_carta_1 = molde_carta.instantiate()
-				btn_carta_1.add_child(visual_carta_1)
-				visual_carta_1.configurar(carta_opcion_1)
-				visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
-				visual_carta_1.position = Vector2.ZERO
-			else:
-				# Solo entra acá si es Enemigo Medio 1 y 2
-				label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
-				boton_final.visible = false # Ocultamos el "Volver al Mapa"
-				btn_carta_1.visible = true  # Mostramos las cartas
-				btn_carta_2.visible = true  
-				
-				# Pedimos las cartas al RunManager
-				var opciones = RunManager.obtener_opciones_recompensa()
-				carta_opcion_1 = opciones[0]
-				carta_opcion_2 = opciones[1]
-				
-				# Limpiamos cartas visuales anteriores (por si peleaste antes)
-				for nodo in btn_carta_1.get_children():
-					nodo.queue_free()
-				for nodo in btn_carta_2.get_children():
-					nodo.queue_free()
-				
-				# QUITAMOS EL TEXTO
-				btn_carta_1.text = ""
-				btn_carta_2.text = ""
-				
-				# --- INSTANCIAMOS LA CARTA 1 ---
-				var visual_carta_1 = molde_carta.instantiate()
-				btn_carta_1.add_child(visual_carta_1) # La metemos adentro del botón
-				visual_carta_1.configurar(carta_opcion_1) # Le pasamos los datos
-				
-				# TRUCO DE GODOT: Hacemos que la carta visual ignore el mouse 
-				# para que el clic pase de largo y active el botón que está atrás
-				visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
-				
-				# --- INSTANCIAMOS LA CARTA 2 ---
-				var visual_carta_2 = molde_carta.instantiate()
-				btn_carta_2.add_child(visual_carta_2)
-				visual_carta_2.configurar(carta_opcion_2)
-				visual_carta_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
-				
-				# Ajustamos la posición para que queden centradas en el botón (opcional)
-				visual_carta_1.position = Vector2.ZERO
-				visual_carta_2.position = Vector2.ZERO
+		# --- SI ES EL JEFE 1 (Habilita la Nave) ---
+		elif tipo_enemigo == "jefe":
+			GameManager.jefe_derrotado = true # <--- LE AVISAMOS A LA NAVE
+			
+			label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa y dirígete a la NAVE DEL INICIO."
+			boton_final.visible = false 
+			btn_carta_1.visible = true  
+			btn_carta_2.visible = false 
+			
+			# Limpiamos y cargamos la carta Stun
+			for nodo in btn_carta_1.get_children(): nodo.queue_free()
+			for nodo in btn_carta_2.get_children(): nodo.queue_free()
+			btn_carta_1.text = ""
+			btn_carta_2.text = ""
+			
+			carta_opcion_1 = preload("uid://c235mt3xp01k5")
+			var visual_carta_1 = molde_carta.instantiate()
+			btn_carta_1.add_child(visual_carta_1)
+			visual_carta_1.configurar(carta_opcion_1)
+			visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			visual_carta_1.position = Vector2.ZERO
+			
+		# --- SI ES EL JEFE 2 (Ganas el juego entero) ---
+		elif tipo_enemigo == "jefe2":
+			label_resultado.text = "¡VICTORIA TOTAL! \n Has erradicado la amenaza del planeta."
+			boton_final.text = "Ver Final"
+			boton_final.visible = true # Mostramos el botón directo para salir
+			btn_carta_1.visible = false # No hay recompensa, es el fin
+			btn_carta_2.visible = false
+			# CORRECCIÓN: Borradas las líneas que intentaban instanciar una carta fantasma acá
+			
+		# --- ENEMIGO MEDIO 1 y 2 ---
+		else:
+			label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
+			boton_final.visible = false # Ocultamos el "Volver al Mapa"
+			btn_carta_1.visible = true  # Mostramos las cartas
+			btn_carta_2.visible = true  
+			
+			# Pedimos las cartas al RunManager
+			var opciones = RunManager.obtener_opciones_recompensa()
+			carta_opcion_1 = opciones[0]
+			carta_opcion_2 = opciones[1]
+			
+			# Limpiamos cartas visuales anteriores (por si peleaste antes)
+			for nodo in btn_carta_1.get_children():
+				nodo.queue_free()
+			for nodo in btn_carta_2.get_children():
+				nodo.queue_free()
+			
+			# QUITAMOS EL TEXTO
+			btn_carta_1.text = ""
+			btn_carta_2.text = ""
+			
+			# --- INSTANCIAMOS LA CARTA 1 ---
+			var visual_carta_1 = molde_carta.instantiate()
+			btn_carta_1.add_child(visual_carta_1) # La metemos adentro del botón
+			visual_carta_1.configurar(carta_opcion_1) # Le pasamos los datos
+			visual_carta_1.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			visual_carta_1.position = Vector2.ZERO
+			
+			# --- INSTANCIAMOS LA CARTA 2 ---
+			var visual_carta_2 = molde_carta.instantiate()
+			btn_carta_2.add_child(visual_carta_2)
+			visual_carta_2.configurar(carta_opcion_2)
+			visual_carta_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			visual_carta_2.position = Vector2.ZERO
+			
 	else:
 		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
 		boton_final.text = "Reintentar desde el Inicio"
@@ -698,33 +696,32 @@ func mostrar_resultado(gano: bool):
 func _on_button_final_pressed() -> void:
 	# Apagamos el interruptor antes de salir
 	GameManager.en_combate = false
+	
 	if victoria:
-		if GameManager.enemigos_derrotados.size() >= GameManager.total_enemigos_en_mapa:
+		var tipo_enemigo = GameManager.enemigo_actual_datos.get("tipo_enemigo", "debil")
+		
+		# --- SI MATA AL JEFE 2 (Se termina el juego) ---
+		if tipo_enemigo == "jefe2":
+			print("¡Victoria definitiva!")
+			# Acá limpiamos todo porque el juego terminó y vuelve a empezar
 			RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
 			GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
-			GameManager.enemigos_derrotados.clear() # Limpiamos la lista negra
+			GameManager.enemigos_derrotados.clear() 
 			GameManager.bloques_destruidos.clear() 
 			GameManager.eventos_completados.clear()
-			get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
-		
+			
+			# PANTALLA DE FINAL/CRÉDITOS
+			get_tree().change_scene_to_file("res://Escenas/PantallaVictoria/pantalla_victoria.tscn")
+			
+		# --- SI MATA A DÉBIL, MEDIO o JEFE 1 ---
 		else:
-			# genera el loot + cierra combate
+			# finalizar_combate(true) te devuelve al mapa.
+			
 			GameManager.finalizar_combate(true)
 			
-			
 	else:
-		# Si perdió: reinicia vida y vuelve al inicio
-		#RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
-		#RunManager.run_data.frenesi_actual = 0.0
-		#GameManager.esta_en_descontrol = false
-		#GameManager.bloques_destruidos.clear()
-		#GameManager.eventos_completados.clear()
-		#GameManager.enemigos_derrotados.clear()
-		# Reseteamos la posición para que aparezca en el spawn inicial
-		#GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
+		# Si perdió: reinicia vida y vuelve al inicio usando la función del GameManager
 		GameManager.morir_definitivamente()
-		#get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
-
 
 func _on_btn_carta_1_pressed() -> void:
 	RunManager.agregar_carta(carta_opcion_1)
