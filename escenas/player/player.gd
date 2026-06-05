@@ -2,9 +2,14 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray = $RayCast2D # Nodo para calcular la distancia de los bloques en base al rayo que tiene (flecha)
 
-var speed = 70.0
+var speed_normal = 70.0
+var speed_lento = 30.0
+var speed = speed_normal
 var last_direction = "down"
 var is_digging = false # variable para cavar
+
+@onready var tilemap_suelo: TileMapLayer = get_parent().get_node("Mapa")
+
 
 #Chape
 func _ready() -> void:
@@ -16,19 +21,35 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not is_digging:
+		verificar_suelo()
 		get_input()
 		move_and_slide()
 		
 		# LÓGICA DE LA VISIÓN PROGRESIVA 
 		# Se verifica si se está desplazando
-		if velocity != Vector2.ZERO:
-			if GameManager.radio_vision_actual < GameManager.vision_maxima:
-				GameManager.radio_vision_actual += GameManager.velocidad_crecimiento
+		#if velocity != Vector2.ZERO:
+			#if GameManager.radio_vision_actual < GameManager.vision_maxima:
+				#GameManager.radio_vision_actual += GameManager.velocidad_crecimiento
 				# Se actualiza el nodo PointLight2D 
-				$PointLight2D.texture_scale = GameManager.radio_vision_actual
+				#$PointLight2D.texture_scale = GameManager.radio_vision_actual
+	#else:
+		#velocity = Vector2.ZERO
+		#move_and_slide()
+
+func verificar_suelo():
+	if tilemap_suelo:
+		# Convierte la posición global de los pies del jugador a coordenadas de celda
+		var celda = tilemap_suelo.local_to_map(tilemap_suelo.to_local(global_position))
+		var data = tilemap_suelo.get_cell_tile_data(celda)
+		
+		# Si esta pisando un tile válido y tiene la propiedad "es_virus"
+		if data and data.get_custom_data("es_virus"):
+			speed = speed_lento
+		else:
+			speed = speed_normal
 	else:
-		velocity = Vector2.ZERO
-		move_and_slide()
+		speed = speed_normal
+
 
 func get_input():
 	# Detect movement
