@@ -711,7 +711,7 @@ func _on_button_final_pressed() -> void:
 			GameManager.eventos_completados.clear()
 			
 			# PANTALLA DE FINAL/CRÉDITOS
-			get_tree().change_scene_to_file("res://Escenas/PantallaVictoria/pantalla_victoria.tscn")
+			get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 			
 		# --- SI MATA A DÉBIL, MEDIO o JEFE 1 ---
 		else:
