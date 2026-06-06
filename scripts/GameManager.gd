@@ -34,74 +34,81 @@ var barajar_al_final_del_turno: bool = false # Evento 7 (Fisión)
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
+		"id": "cofre_trampa",
+		"titulo": "Un Contenedor Abandonado",
+		"descripcion": "Encuentras un cofre con el logo de una antigua expedición. Parece intacto.",
+		"opcion_a": "Abrir el contenedor",
+		"opcion_b": "Escanear por peligro"
+	},
+	{
+		"id": "necrosis_celular",
 		"titulo": "Necrosis Celular",
-		"texto": "Una de las extremidades mutadas del astronauta comienza a supurar un líquido negro. Se experimenta un dolor agudo, la estructura celular muerta se desprende, purgando el sistema biológico del personaje.",
-		"op_a_txt": "Extirpar tejido (Elimina una carta básica de tu mazo)",
-		"op_b_txt": "Ignorar",
-		"id": "necrosis_celular"
+		"descripcion": "Una de las extremidades mutadas del astronauta comienza a supurar un líquido negro. Se experimenta un dolor agudo, la estructura celular muerta se desprende, purgando el sistema biológico del personaje.",
+		"opcion_a": "Extirpar tejido (Elimina una carta básica de tu mazo)",
+		"opcion_b": "Ignorar"
 	},
 	{
-		"titulo": "Derrumbe de Capas Subterráneas",
-		"texto": "Las vibraciones de tus pasos hacen que el suelo baboso ceda debido a una bolsa de gas vírico. Caes a un túnel inferior completamente a oscuras e infestado de esporas.",
-		"op_a_txt": "Soportar el impacto (Caer al sub-laberinto: +20% Frenesí / Revela Amenazas)",
-		"op_b_txt": "Agarrarse de las paredes (Evitar la caída con cuidado / No pasa nada)",
-		"id": "derrumbe_capas"
+		"id": "derrumbe_capas",
+		"titulo": "Derrumbe de Capas",
+		"descripcion": "Las vibraciones de tus pasos hacen que el suelo baboso ceda debido a una bolsa de gas vírico. Caes a un túnel inferior completamente a oscuras e infestado de esporas.",
+		"opcion_a": "Soportar el impacto (Caer al sub-laberinto: +20% Frenesí / Revela Amenazas)",
+		"opcion_b": "Agarrarse de las paredes (Evitar la caída con cuidado / No pasa nada)"
 	},
 	{
-		"titulo": "Fósil Robotizado Antiguo",
-		"texto": "Desentierras los restos semienterrados de una baliza corporativa cubierta de membrana alienígena. Logras piratear sus celdas de energía para sobrecargar los propulsores de tu traje, aunque el pulso electromagnético daña tus sistemas de combate.",
-		"op_a_txt": "Sobrecarga Motriz (+30% velocidad al caminar / Añade carta 'Interferencia')",
-		"op_b_txt": "Ignorar (Dejar la tecnología en paz)",
-		"id": "fosil_antiguo"
+		"id": "fosil_antiguo",
+		"titulo": "Fósil Antiguo",
+		"descripcion": "Desentierras los restos semienterrados de una baliza corporativa cubierta de membrana alienígena. Logras piratear sus celdas de energía para sobrecargar los propulsores de tu traje, aunque el pulso electromagnético daña tus sistemas de combate.",
+		"opcion_a": "Sobrecarga Motriz (+20% velocidad al caminar / Añade carta 'Interferencia')",
+		"opcion_b": "Ignorar (Dejar la tecnología en paz)"
 	},
 	{
+		"id": "criostasis_natural",
 		"titulo": "Criostasis Natural",
-		"texto": "Tropiezas con una grieta de donde emana un gas criogénico alienígena. Tu metabolismo alterado absorbe el frío, ralentizando tus funciones vitales pero agudizando tus reflejos mecánicos.",
-		"op_a_txt": "Absorber el gas (Próximo combate: Enemigo salta turno 1 / Inicias con 2 Energía)",
-		"op_b_txt": "Evitar la grieta (No pasa nada)",
-		"id": "criostasis_natural"
+		"descripcion": "Tropiezas con una grieta de donde emana un gas criogénico alienígena. Tu metabolismo alterado absorbe el frío, ralentizando tus funciones vitales pero agudizando tus reflejos mecánicos.",
+		"opcion_a": "Absorber el gas (Próximo combate: Enemigo salta turno 1 / Inicias con 2 Energía)",
+		"opcion_b": "Evitar la grieta (No pasa nada)"
 	},
 	{
+		"id": "sangre_hirviente",
 		"titulo": "Sangre Hirviente",
-		"texto": "Tu virus detecta una amenaza ambiental invisible y hace que tu sangre hierva dentro del traje. Sientes que puedes soportar cualquier golpe, pero a un coste biológico altísimo.",
-		"op_a_txt": "Activar persistencia (No mueres por 2 combates / Frenesí al 80% al ganar)",
-		"op_b_txt": "Calmar el sistema (No arriesgarse)",
-		"id": "sangre_hirviente"
+		"descripcion": "Tu virus detecta una threat ambiental invisible y hace que tu sangre hierva dentro del traje. Sientes que puedes soportar cualquier golpe, pero a un coste biológico altísimo.",
+		"opcion_a": "Activar persistencia (No mueres por 2 combates / Frenesí al 80% al ganar)",
+		"opcion_b": "Calmar el sistema (No arriesgarse)"
 	},
 	{
-		"titulo": "Restos del Satélite de Comunicaciones",
-		"texto": "Encuentras una baliza de señal de la corporación que te abandonó. Sigue emitiendo datos encriptados. Puedes usar la terminal para descargar mapas topográficos o piratear el sistema de soporte vital del traje.",
-		"op_a_txt": "Datos de Navegación (Revela eventos ocultos en el HUD)",
-		"op_b_txt": "Sobrecarga Bio-eléctrica (Robas el doble de cartas en el turno 1 de este loop)",
-		"id": "satelite_comunicaciones"
+		"id": "satelite_comunicaciones",
+		"titulo": "Satélite de Comunicaciones",
+		"descripcion": "Encuentras una baliza de señal de la corporación que te abandonó. Sigue emitiendo datos encriptados. Puedes usar la terminal para descargar mapas topográficos o piratear el sistema de soporte vital del traje.",
+		"opcion_a": "Datos de Navegación (Revela eventos ocultos en el HUD)",
+		"opcion_b": "Sobrecarga Bio-eléctrica (Robas el doble de cartas en el turno 1 de este loop)"
 	},
 	{
-		"titulo": "Núcleo de Fisión Inestable",
-		"texto": "Entre los restos del accidente de tu nave, encuentras una batería de fisión dañada que gotea radiación. El virus en tu cuerpo reacciona con violencia ante la energía nuclear.",
-		"op_a_txt": "Absorber radiación (Ciclado rápido de mazo / Añade 2 cartas de 'Maldición por Quemadura')",
-		"op_b_txt": "Sellar el contenedor (Ignorar el peligro)",
-		"id": "nucleo_fision"
+		"id": "nucleo_fision",
+		"titulo": "Núcleo de Fisión",
+		"descripcion": "Entre los restos del accidente de tu nave, encuentras una batería de fisión dañada que gotea radiación. El virus en tu cuerpo reacciona con violencia ante la energía nuclear.",
+		"opcion_a": "Absorber radiación (Ciclado rápido de mazo / Añade 2 cartas de 'Maldición por Quemadura')",
+		"opcion_b": "Sellar el contenedor (Ignorar el peligro)"
 	},
 	{
-		"titulo": "Suministros de Oxígeno",
-		"texto": "Encuentras una cápsula antigua. ¿Qué extraes?",
-		"op_a_txt": "Tanque (Curar 20PV)",
-		"op_b_txt": "Escudo (Nueva Carta)",
-		"id": "oxigeno"
+		"id": "oxigeno",
+		"titulo": "Cápsula de Oxígeno",
+		"descripcion": "Encuentras una cápsula antigua. ¿Qué extraes?",
+		"opcion_a": "Tanque (Curar 20PV)",
+		"opcion_b": "Escudo (Nueva Carta)"
 	},
 	{
-		"titulo": "Radiación Extraña",
-		"texto": "Una grieta espacial emite partículas brillantes sobre tu traje.",
-		"op_a_txt": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
-		"op_b_txt": "Usar Escudo: Bloqueas la radiación (siguente ataque) pero gastas una carga de energía.",
-		"id": "radiacion_1"
+		"id": "radiacion_1",
+		"titulo": "Radiación Cósmica",
+		"descripcion": "Una grieta espacial emite partículas brillantes sobre tu traje.",
+		"opcion_a": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
+		"opcion_b": "Usar Escudo: Bloqueas la radiación (siguiente ataque) pero gastas una carga de energía."
 	},
 	{
-		"titulo": "Radiación Alienígena",
-		"texto": "Un brillo extraño emana de este contenedor.",
-		"op_a_txt": "Mutar (+20 Frenesí)",
-		"op_b_txt": "Analizar (+5 PV)",
-		"id": "radiacion_2"
+		"id": "radiacion_2",
+		"titulo": "Contenedor Irradiado",
+		"descripcion": "Un brillo extraño emana de este contenedor.",
+		"opcion_a": "Mutar (+20 Frenesí)",
+		"opcion_b": "Analizar (+5 PV)"
 	}
 ]
 var eventos_pendientes = []
@@ -144,6 +151,50 @@ func procesar_eleccion(id_evento: String, opcion: String):
 				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA)
+
+		# add evento "cofre trampa"
+		"cofre_trampa":
+			# si elige cualquier opción del evento, mostramos el diálogo intermedio
+			if opcion == "A" or opcion == "B":
+				if ventana_actual and ventana_actual.has_method("mostrar_texto_intermedio"):
+					ventana_actual.mostrar_texto_intermedio(
+						"¡Caíste en la trampa! ¡Ahora tienes que vencerme!", 
+						"Pelear", 
+						"combate_mimic"
+					)
+					return # Frena acá para que el jugador pueda leer la advertencia
+
+			# Cuando presiona el botón "Pelear" (que envía "combate_mimic"), ejecuta el core
+			# no importa si elige opcion A o B, el combate no se evita
+			en_combate = true
+			
+			# Seteamos las estadísticas del Mimic simulando que es un enemigo del mapa
+			enemigo_actual_datos = {
+				"nombre_en_escena": "mimic_evento", # Nombre para guardarlo como derrotado al ganar
+				"tipo_enemigo": "debil",           # Se comporta como débil para que suelte el corazón de loot
+				"vida": 40,
+				"frenesi": 15,
+				"Daño_fijo": 14,
+				"daño_poder": 20,
+				"textura": preload("res://Assets/icon.svg"),
+				"posicion": posicion_jugador_en_mapa
+			}
+
+			# close la ventana del evento y despausa antes del cambio de escena
+			if ventana_actual:
+				ventana_actual.queue_free()
+			get_tree().paused = false
+			
+			# Transición directa a la escena de combate sin pasar por el mapa
+			get_tree().change_scene_to_file("res://Escenas/escena_combate/escena_combate.tscn")
+			return # Frena el flujo para evitar que ejecute el código de cierre general de abajo
+# FIN EVENTO TRAMPA----------------------------------------------- 
+
+	# si no fue la opción A de necrosis o el texto intermedio del mimic, se cierra la ui y despausa
+	if ventana_actual:
+		ventana_actual.queue_free()
+	get_tree().paused = false
+
 	# si no fue la opción A de necrosis, cse cierra la ui del evento común y despausa
 	if ventana_actual:
 		ventana_actual.queue_free()
