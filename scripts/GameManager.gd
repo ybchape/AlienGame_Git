@@ -38,7 +38,7 @@ var eventos_disponibles = [
 		"titulo": "Un Contenedor Abandonado",
 		"descripcion": "Encuentras un cofre con el logo de una antigua expedición. Parece intacto.",
 		"opcion_a": "Abrir el contenedor",
-		"opcion_b": "Escanear por peligro"
+		"opcion_b": "Inspeccionar"
 	},
 	{
 		"id": "necrosis_celular",
