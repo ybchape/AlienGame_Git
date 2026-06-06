@@ -280,19 +280,23 @@ func _process(delta: float) -> void:
 func morir_definitivamente():
 	print("¡Has muerto! Tus sistemas colapsaron.")
 	
-	# 1. RESETEAMOS TODAS LAS VARIABLES GLOBALES PARA EVITAR BUGS Y BUCLES
-	RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
-	RunManager.run_data.frenesi_actual = 0.0
+	# 1. USAMOS LA FUNCIÓN DEL PROFE PARA REINICIAR MAZO Y VIDA:
+	RunManager.inicializar_run()
+	
+	# 2. Vaciamos la memoria del mapa para que reaparezcan los enemigos
+	enemigos_derrotados.clear()
+	bloques_destruidos.clear()
+	eventos_completados.clear()
+	
+	# 3. Reseteamos las variables del GameManager
 	esta_en_descontrol = false
 	tiempo_dano_frenesi = 0.0
-	RunManager.reiniciar_modificadores_temporales()
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
-	GameManager.eventos_completados = []
-	GameManager.bloques_destruidos = []
-	GameManager.jefe_derrotado = false
-	# 2. Despausamos por si moriste por un evento
+	jefe_derrotado = false
+	
 	get_tree().paused = false
+	
 	
 	# 3. Recargamos la escena GameOver (Volvés a aparecer en el inicio)
 	get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
@@ -300,7 +304,10 @@ func morir_definitivamente():
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]
 	# vuelve al mapa
-	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	if RunManager.run_data.loop_actual == 1:
+		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	elif RunManager.run_data.loop_actual == 2:
+		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
 	# esperamos un frame para que cargue el mapa
 	await get_tree().create_timer(0.2).timeout
 	if victoria:

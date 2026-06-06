@@ -703,13 +703,14 @@ func _on_button_final_pressed() -> void:
 		# --- SI MATA AL JEFE 2 (Se termina el juego) ---
 		if tipo_enemigo == "jefe2":
 			print("¡Victoria definitiva!")
+			
 			# Acá limpiamos todo porque el juego terminó y vuelve a empezar
-			RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
+			RunManager.inicializar_run()
 			GameManager.posicion_jugador_en_mapa = Vector2.ZERO 
 			GameManager.enemigos_derrotados.clear() 
 			GameManager.bloques_destruidos.clear() 
 			GameManager.eventos_completados.clear()
-			
+			GameManager.jefe_derrotado = false
 			# PANTALLA DE FINAL/CRÉDITOS
 			get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 			

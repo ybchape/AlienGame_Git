@@ -19,6 +19,9 @@ func _on_portal_salida_body_entered(body: Node2D) -> void:
 		if GameManager.jefe_derrotado == true:
 			print("¡Despegando! Viajando al Mapa 2...")
 			
+			# --- LÍNEA NUEVA: Llamamos a la función del profe para curarte y mantener el mazo ---
+			RunManager.pasar_al_siguiente_loop()
+			
 			# Limpiamos el progreso para arrancar frescos en el Mapa 2
 			GameManager.enemigos_derrotados.clear()
 			GameManager.bloques_destruidos.clear()
@@ -26,7 +29,7 @@ func _on_portal_salida_body_entered(body: Node2D) -> void:
 			GameManager.posicion_jugador_en_mapa = Vector2.ZERO # Reseteamos el spawn para el mapa 2
 			GameManager.jefe_derrotado = false # Apagamos el motor para el futuro
 			
-			
+			# Viaje a la segunda escena
 			get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
 			
 		else:
