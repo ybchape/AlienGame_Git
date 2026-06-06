@@ -644,12 +644,15 @@ func mostrar_resultado(gano: bool):
 		# --- SI ES EL JEFE 2 (Ganas el juego entero) ---
 		elif tipo_enemigo == "jefe2":
 			label_resultado.text = "¡VICTORIA TOTAL! \n Has erradicado la amenaza del planeta."
-			boton_final.text = "Ver Final"
-			boton_final.visible = true # Mostramos el botón directo para salir
-			btn_carta_1.visible = false # No hay recompensa, es el fin
-			btn_carta_2.visible = false
-			# CORRECCIÓN: Borradas las líneas que intentaban instanciar una carta fantasma acá
+			#boton_final.text = "Ver Final"
+			#boton_final.visible = true # Mostramos el botón directo para salir
+			#btn_carta_1.visible = false # No hay recompensa, es el fin
+			#btn_carta_2.visible = false
 			
+			RunManager.inicializar_run()
+			GameManager.enemigos_derrotados.clear()
+			GameManager.jefe_derrotado = false
+			get_tree().change_scene_to_file("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
 		# --- ENEMIGO MEDIO 1 y 2 ---
 		else:
 			label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"

@@ -216,7 +216,7 @@ func actualizar_frenesi(cantidad: float):
 	
 func morir_por_frenesi():
 	print("El virus de descontroló")
-	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
+	morir_definitivamente()
 
 # Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: RecursoCarta):
