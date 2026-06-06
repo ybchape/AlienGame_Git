@@ -34,6 +34,13 @@ var barajar_al_final_del_turno: bool = false # Evento 7 (Fisión)
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
 	{
+		"id": "santuario_sangre",
+		"titulo": "Santuario de Sangre",
+		"descripcion": "Ofrece tu vitalidad a cambio de poder. ¿Estás dispuesto a mutilar tu cuerpo para infligir más dolor?",
+		"opcion_a": "Ofrecer sangre (-5 PV / +3 daño permanente)",
+		"opcion_b": "Alejarse (Mantenerse intacto)"
+	},
+	{
 		"id": "cofre_trampa",
 		"titulo": "Un Contenedor Abandonado",
 		"descripcion": "Encuentras un cofre con el logo de una antigua expedición. Parece intacto.",
@@ -48,46 +55,11 @@ var eventos_disponibles = [
 		"opcion_b": "Ignorar"
 	},
 	{
-		"id": "derrumbe_capas",
-		"titulo": "Derrumbe de Capas",
-		"descripcion": "Las vibraciones de tus pasos hacen que el suelo baboso ceda debido a una bolsa de gas vírico. Caes a un túnel inferior completamente a oscuras e infestado de esporas.",
-		"opcion_a": "Soportar el impacto (Caer al sub-laberinto: +20% Frenesí / Revela Amenazas)",
-		"opcion_b": "Agarrarse de las paredes (Evitar la caída con cuidado / No pasa nada)"
-	},
-	{
 		"id": "fosil_antiguo",
 		"titulo": "Fósil Antiguo",
-		"descripcion": "Desentierras los restos semienterrados de una baliza corporativa cubierta de membrana alienígena. Logras piratear sus celdas de energía para sobrecargar los propulsores de tu traje, aunque el pulso electromagnético daña tus sistemas de combate.",
+		"descripcion": "lore para esto",
 		"opcion_a": "Sobrecarga Motriz (+20% velocidad al caminar / Añade carta 'Interferencia')",
-		"opcion_b": "Ignorar (Dejar la tecnología en paz)"
-	},
-	{
-		"id": "criostasis_natural",
-		"titulo": "Criostasis Natural",
-		"descripcion": "Tropiezas con una grieta de donde emana un gas criogénico alienígena. Tu metabolismo alterado absorbe el frío, ralentizando tus funciones vitales pero agudizando tus reflejos mecánicos.",
-		"opcion_a": "Absorber el gas (Próximo combate: Enemigo salta turno 1 / Inicias con 2 Energía)",
-		"opcion_b": "Evitar la grieta (No pasa nada)"
-	},
-	{
-		"id": "sangre_hirviente",
-		"titulo": "Sangre Hirviente",
-		"descripcion": "Tu virus detecta una threat ambiental invisible y hace que tu sangre hierva dentro del traje. Sientes que puedes soportar cualquier golpe, pero a un coste biológico altísimo.",
-		"opcion_a": "Activar persistencia (No mueres por 2 combates / Frenesí al 80% al ganar)",
-		"opcion_b": "Calmar el sistema (No arriesgarse)"
-	},
-	{
-		"id": "satelite_comunicaciones",
-		"titulo": "Satélite de Comunicaciones",
-		"descripcion": "Encuentras una baliza de señal de la corporación que te abandonó. Sigue emitiendo datos encriptados. Puedes usar la terminal para descargar mapas topográficos o piratear el sistema de soporte vital del traje.",
-		"opcion_a": "Datos de Navegación (Revela eventos ocultos en el HUD)",
-		"opcion_b": "Sobrecarga Bio-eléctrica (Robas el doble de cartas en el turno 1 de este loop)"
-	},
-	{
-		"id": "nucleo_fision",
-		"titulo": "Núcleo de Fisión",
-		"descripcion": "Entre los restos del accidente de tu nave, encuentras una batería de fisión dañada que gotea radiación. El virus en tu cuerpo reacciona con violencia ante la energía nuclear.",
-		"opcion_a": "Absorber radiación (Ciclado rápido de mazo / Añade 2 cartas de 'Maldición por Quemadura')",
-		"opcion_b": "Sellar el contenedor (Ignorar el peligro)"
+		"opcion_b": "Ignorar"
 	},
 	{
 		"id": "oxigeno",
@@ -133,6 +105,7 @@ func abrir_ventana_evento():
 
 # Función para procesar la elección del jugador
 func procesar_eleccion(id_evento: String, opcion: String):
+	print("-> [test] procesar_eleccion recibido! ID: ", id_evento, " | Opción: ", opcion)
 	# search  ventana que disparó el evento para poder interactuar con ella
 	var ventana_actual = get_tree().root.find_child("VentanaEvento", true, false)
 	
@@ -147,10 +120,28 @@ func procesar_eleccion(id_evento: String, opcion: String):
 		
 		"oxigeno":
 			if opcion == "A":
-				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 20, 0, RunManager.run_data.vida_maxima)
+				RunManager.run_data.vida_jugador = clamp(RunManager.run_data.vida_jugador + 5, 0, RunManager.run_data.vida_maxima)
 				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA)
+
+		# evento que otorga +2 de daño permanente
+		"santuario_sangre":
+			if opcion == "A":
+				# reduce la vida máxima en los datos de la Run actual
+				RunManager.run_data.vida_jugador -= 6
+
+				# safe por si la vida baja a 0 o menos para que muera
+				if RunManager.run_data.vida_jugador <= 0:
+					morir_definitivamente()
+					return
+
+				# suma el daño al nuevo export permanente de RunData
+				RunManager.run_data.dano_permanente_eventos += 3
+				
+				print("[SANTUARIO] Trato aceptado. Nueva vida actual: ", RunManager.run_data.vida_jugador, " | Daño Extra: +", RunManager.run_data.dano_permanente_eventos)
+			else:
+				print("[SANTUARIO] Decidiste ignorar la mejora.")
 
 		# add evento "cofre trampa"
 		"cofre_trampa":
