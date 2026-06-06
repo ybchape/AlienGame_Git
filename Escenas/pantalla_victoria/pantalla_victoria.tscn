@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://btsj66q5j2frf"]
+
+[ext_resource type="Script" uid="uid://c1h1xuliebhds" path="res://Escenas/pantalla_victoria/pantalla_victoria.gd" id="1_fecl1"]
+
+[node name="pantalla_victoria" type="Control" unique_id=936956785]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fecl1")
+
+[node name="Button" type="Button" parent="." unique_id=1729594336]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 490.0
+offset_right = 712.0
+offset_bottom = 558.0
+text = "Volver al menu principal"
+
+[node name="Label" type="Label" parent="." unique_id=724089649]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 151.0
+offset_right = 690.0
+offset_bottom = 272.0
+text = "GANASTE"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -29,8 +29,8 @@ func _preparar_combate():
 		"tipo_enemigo": "jefe2",
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
-		"Daño_fijo": 25,          # El golpe básico del jefe
-		"daño_especial": 28,      # El golpe devastador del jefe
+		"Daño_fijo": 10,          # El golpe básico del jefe
+		"daño_especial": 10,      # El golpe devastador del jefe
 		"textura": preload("res://Assets/icon.svg"), 
 		"posicion": global_position 
 	}

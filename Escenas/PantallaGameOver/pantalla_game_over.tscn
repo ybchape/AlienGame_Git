@@ -27,8 +27,7 @@ offset_top = 82.0
 offset_right = 1061.0
 offset_bottom = 265.0
 theme_override_font_sizes/font_size = 47
-text = "El Frenesí Biológico consumió tu cuerpo... 
-HAS MUERTO, Malo de mierda"
+text = "HAS MUERTO, Malo de mierda"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1034583121]
