@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
 [ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
-[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="2_6mo4l"]
 [ext_resource type="Texture2D" uid="uid://b4i1do57r0xxs" path="res://Assets/orbe_energia.png" id="4_43djd"]
 [ext_resource type="Texture2D" uid="uid://c64uvr0n2ft6e" path="res://Assets/mazo_cartas.png" id="5_vytjj"]
 [ext_resource type="Texture2D" uid="uid://cd6kn8rdewks8" path="res://Assets/mazo_descarte.png" id="6_qcod8"]
@@ -61,6 +60,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ql2e5"]
+
 [node name="escena_combate" type="Control" unique_id=1821735990]
 layout_mode = 3
 anchors_preset = 15
@@ -89,10 +90,10 @@ scale = Vector2(9.71875, 10.406251)
 sprite_frames = SubResource("SpriteFrames_43djd")
 frame_progress = 0.11214228
 
-[node name="SpriteEnemigo" type="Sprite2D" parent="." unique_id=1687600007]
+[node name="SpriteEnemigo" type="AnimatedSprite2D" parent="." unique_id=458065142]
 position = Vector2(893, 144)
-scale = Vector2(1.0195305, 1.1445313)
-texture = ExtResource("2_6mo4l")
+scale = Vector2(6, 6.735)
+sprite_frames = SubResource("SpriteFrames_ql2e5")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=157460346]
 layout_mode = 0
