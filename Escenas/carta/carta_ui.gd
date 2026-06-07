@@ -55,13 +55,14 @@ func _gui_input(event: InputEvent) -> void:
 			
 			# Esto evita que la carta "salte" antes de que el mouse se mueva.
 			global_position = get_global_mouse_position() + mouse_offset
-			
+
 		else:
+
 			# SOLTAR EL CLIC
 			arrastrando = false
 			z_index = 0
-			
-			if global_position.y < 200: 
+
+			if global_position.y < 200:
 				get_parent().get_parent()._jugar_carta(self, datos_carta)
 			else:
 				volver_a_mano()

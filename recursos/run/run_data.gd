@@ -11,6 +11,8 @@ extends Resource
 @export var vida_maxima: float = 100
 @export var frenesi_actual: float = 0.0
 @export var frenesi_maximo: float = 100.0
+@export var bonus_dano_permanente: int = 0
+@export var dano_permanente_eventos: int = 0
 
 # Modificadores permanentes
 @export var mejoras_permanentes: Array = [] # Todavía no tenemos creo / cuando se defina como, hablar sobre como estructurarlos

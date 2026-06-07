@@ -1126,6 +1126,18 @@ position = Vector2(388, 631)
 [node name="CofreEvento8" parent="." unique_id=1514931302 instance=ExtResource("10_o0x7m")]
 position = Vector2(248, 363)
 
+[node name="CofreEvento9" parent="." unique_id=139817212 instance=ExtResource("10_o0x7m")]
+position = Vector2(155, 599)
+
+[node name="CofreEvento10" parent="." unique_id=850378997 instance=ExtResource("10_o0x7m")]
+position = Vector2(197, 601)
+
+[node name="CofreEvento11" parent="." unique_id=1970793152 instance=ExtResource("10_o0x7m")]
+position = Vector2(122, 601)
+
+[node name="CofreEvento12" parent="." unique_id=152833937 instance=ExtResource("10_o0x7m")]
+position = Vector2(85, 566)
+
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("11_ueh2r")]
 
 [node name="barra_vida" type="CanvasLayer" parent="." unique_id=592275829]
