@@ -32,6 +32,10 @@ window/stretch/aspect="expand"
 
 enemigos=""
 
+[gui]
+
+theme/custom_font="uid://cmowv07e2ljex"
+
 [input]
 
 move_right={

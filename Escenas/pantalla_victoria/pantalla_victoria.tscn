@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://btsj66q5j2frf"]
 
+[ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_7gnli"]
 [ext_resource type="Script" uid="uid://c1h1xuliebhds" path="res://Escenas/pantalla_victoria/pantalla_victoria.gd" id="1_fecl1"]
 
 [node name="pantalla_victoria" type="Control" unique_id=936956785]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_7gnli")
 script = ExtResource("1_fecl1")
 
 [node name="Button" type="Button" parent="." unique_id=1729594336]
@@ -15,12 +17,13 @@ offset_right = 712.0
 offset_bottom = 558.0
 text = "Volver al menu principal"
 
-[node name="Label" type="Label" parent="." unique_id=724089649]
+[node name="Victoria" type="Label" parent="." unique_id=724089649]
 layout_mode = 0
 offset_left = 439.0
 offset_top = 151.0
 offset_right = 690.0
 offset_bottom = 272.0
+theme_override_font_sizes/font_size = 30
 text = "GANASTE"
 horizontal_alignment = 1
 
