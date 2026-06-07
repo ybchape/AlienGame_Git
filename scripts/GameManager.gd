@@ -19,6 +19,7 @@ var sobrecarga_activa: bool = false # Controla si la sobrecarga del fósil está
 # Mapa
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 var en_combate: bool = false
+var jefe_derrotado: bool = false
 var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
 var escena_combate: Node = null #para que funcione close combate con esta var
 var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
@@ -257,7 +258,7 @@ func actualizar_frenesi(cantidad: float):
 	
 func morir_por_frenesi():
 	print("El virus de descontroló")
-	get_tree().reload_current_scene() #Reinicia el juego si el frenesi llega a su máximo
+	morir_definitivamente()
 
 # Agregar carta cuando se necesite
 func agregar_carta(nueva_carta: RecursoCarta):
@@ -321,18 +322,23 @@ func _process(delta: float) -> void:
 func morir_definitivamente():
 	print("¡Has muerto! Tus sistemas colapsaron.")
 	
-	# 1. RESETEAMOS TODAS LAS VARIABLES GLOBALES PARA EVITAR BUGS Y BUCLES
-	RunManager.run_data.vida_jugador = RunManager.run_data.vida_maxima
-	RunManager.run_data.frenesi_actual = 0.0
+	# 1. USAMOS LA FUNCIÓN DEL PROFE PARA REINICIAR MAZO Y VIDA:
+	RunManager.inicializar_run()
+	
+	# 2. Vaciamos la memoria del mapa para que reaparezcan los enemigos
+	enemigos_derrotados.clear()
+	bloques_destruidos.clear()
+	eventos_completados.clear()
+	
+	# 3. Reseteamos las variables del GameManager
 	esta_en_descontrol = false
 	tiempo_dano_frenesi = 0.0
-	RunManager.reiniciar_modificadores_temporales()
 	en_combate = false
 	posicion_jugador_en_mapa = Vector2.ZERO
-	GameManager.eventos_completados = []
-	GameManager.bloques_destruidos = []
-	# 2. Despausamos por si moriste por un evento
+	jefe_derrotado = false
+	
 	get_tree().paused = false
+	
 	
 	# 3. Recargamos la escena GameOver (Volvés a aparecer en el inicio)
 	get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
@@ -340,7 +346,10 @@ func morir_definitivamente():
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]
 	# vuelve al mapa
-	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	if RunManager.run_data.loop_actual == 1:
+		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	elif RunManager.run_data.loop_actual == 2:
+		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
 	# esperamos un frame para que cargue el mapa
 	await get_tree().create_timer(0.2).timeout
 	if victoria:

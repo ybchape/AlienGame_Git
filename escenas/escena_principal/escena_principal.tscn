@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://dfrncfo6ei71i" path="res://scripts/teclas.tscn" id="14_3vxs2"]
 [ext_resource type="PackedScene" uid="uid://75fsqne8d60u" path="res://Escenas/enemigo_medio/enemigo_medio.tscn" id="16_wm4p1"]
 [ext_resource type="PackedScene" uid="uid://dhoio2h8bquc0" path="res://Escenas/jefe_enemigo/jefe_enemigo.tscn" id="17_divhv"]
+[ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="19_iey0q"]
+[ext_resource type="Script" uid="uid://cnqls0ftenfdy" path="res://Escenas/escena_principal/nave.gd" id="20_kndw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -1070,6 +1072,9 @@ sources/1 = SubResource("TileSetAtlasSource_sqmix")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_divhv"]
 size = Vector2(47.496788, 47.499695)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kndw1"]
+size = Vector2(34, 29)
+
 [node name="Escena Principal" type="Node2D" unique_id=1789830397]
 
 [node name="Fondo" type="TileMapLayer" parent="." unique_id=1154688059]
@@ -1088,9 +1093,6 @@ tile_set = SubResource("TileSet_6txvi")
 tile_set = SubResource("TileSet_iupgd")
 script = ExtResource("8_sqmix")
 
-[node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(85, 602)
-
 [node name="enemigo_debil" parent="." unique_id=2137432433 instance=ExtResource("8_e307b")]
 position = Vector2(433, 128.00002)
 
@@ -1098,25 +1100,31 @@ position = Vector2(433, 128.00002)
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
-position = Vector2(178, 540)
+position = Vector2(105, 296)
 
 [node name="CofreEvento2" parent="." unique_id=1010072102 instance=ExtResource("10_o0x7m")]
-position = Vector2(167, 515)
+position = Vector2(367, 491)
 
 [node name="CofreEvento3" parent="." unique_id=741794274 instance=ExtResource("10_o0x7m")]
-position = Vector2(180, 569)
+position = Vector2(532, 205)
 
 [node name="CofreEvento4" parent="." unique_id=373667542 instance=ExtResource("10_o0x7m")]
-position = Vector2(253, 563)
+position = Vector2(985, 405)
 
 [node name="CofreEvento5" parent="." unique_id=1590743408 instance=ExtResource("10_o0x7m")]
-position = Vector2(218, 539)
+position = Vector2(109, 358)
 
 [node name="CofreEvento6" parent="." unique_id=1864061129 instance=ExtResource("10_o0x7m")]
-position = Vector2(215, 569)
+position = Vector2(241, 311)
+
+[node name="CofreEvento9" parent="." unique_id=46581425 instance=ExtResource("10_o0x7m")]
+position = Vector2(425, 603)
+
+[node name="CofreEvento7" parent="." unique_id=116290778 instance=ExtResource("10_o0x7m")]
+position = Vector2(388, 631)
 
 [node name="CofreEvento8" parent="." unique_id=1514931302 instance=ExtResource("10_o0x7m")]
-position = Vector2(258, 535)
+position = Vector2(248, 363)
 
 [node name="CofreEvento9" parent="." unique_id=139817212 instance=ExtResource("10_o0x7m")]
 position = Vector2(155, 599)
@@ -1161,7 +1169,23 @@ position = Vector2(832, 239.99998)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1049953227]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=29064988]
-position = Vector2(295.75143, 567.2525)
+position = Vector2(296, 568.00006)
 rotation = -1.566743
 shape = SubResource("RectangleShape2D_divhv")
 one_way_collision = true
+
+[node name="Nave" type="Sprite2D" parent="." unique_id=1105502669]
+position = Vector2(68, 603)
+texture = ExtResource("19_iey0q")
+script = ExtResource("20_kndw1")
+
+[node name="PortalSalida" type="Area2D" parent="Nave" unique_id=1569546305]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nave/PortalSalida" unique_id=1775735879]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_kndw1")
+
+[node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
+position = Vector2(100, 602)
+
+[connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]

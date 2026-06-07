@@ -62,6 +62,16 @@ func inicializar_run():
 
 func pasar_al_siguiente_loop():
 	run_data.loop_actual += 1
+	# Curamos al jugador para el nuevo mapa
+	run_data.vida_jugador = run_data.vida_maxima
+	run_data.frenesi_actual = 0.0
+	
+	# Limpiar eventos
+	run_data.enemigo_congelado_proximo_combate = false
+	run_data.combates_con_persistencia = 0
+	run_data.bonus_revelar_eventos = false
+	run_data.sobrecarga_robo_primer_turno = false
+	run_data.barajar_al_final_del_turno = false
 	# Limpiar los modificadores temporales que sean necesarios
 	reiniciar_modificadores_temporales()
 
