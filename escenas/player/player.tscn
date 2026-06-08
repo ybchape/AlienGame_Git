@@ -339,8 +339,8 @@ metadata/_edit_group_ = true
 zoom = Vector2(3.5, 3.5)
 limit_left = 0
 limit_top = 0
-limit_right = 1087
-limit_bottom = 650
+limit_right = 1095
+limit_bottom = 655
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=141873817]
 position = Vector2(0, 1.0000002)
