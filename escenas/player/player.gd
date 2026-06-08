@@ -1,7 +1,9 @@
 extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray = $RayCast2D # Nodo para calcular la distancia de los bloques en base al rayo que tiene (flecha)
+@onready var filtro_rojo: ColorRect = $CanvasLayer/FiltroRojo 
 
+var tiempo_titileo = 0.0
 var speed_normal = 70.0
 var speed_lento = 30.0
 var speed = speed_normal
@@ -20,12 +22,13 @@ func _ready() -> void:
 		global_position = GameManager.posicion_jugador_en_mapa
 #-------------------------------------------------------
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not is_digging:
 		verificar_suelo()
 		get_input()
 		move_and_slide()
 		
+		manejar_titileo_frenesi(delta)
 		# LÓGICA DE LA VISIÓN PROGRESIVA 
 		# Se verifica si se está desplazando
 		#if velocity != Vector2.ZERO:
@@ -122,3 +125,19 @@ func ejecutar_cavar():
 func update_animation(state):
 	animated_sprite.play(state + "_" + last_direction)
 	#basta, estoy cansada! y triste :c
+	
+func manejar_titileo_frenesi(delta: float):
+	# Usamos tu variable global del GameManager que detecta el descontrol total
+	if GameManager.esta_en_descontrol: 
+		tiempo_titileo += delta * 12.0 # Velocidad del parpadeo (un toque más lento para que no moleste tanto a los ojos)
+		
+		# La onda matemática 'sin' genera valores entre -1 y 1. 
+		# Con esto la transformamos para que oscile suavemente entre 0.0 (transparente) y 0.35 (rojo suave)
+		var opacidad = (sin(tiempo_titileo) + 1.0) / 2.0 * 0.35 
+		
+		# Aplicamos el cambio al filtro
+		filtro_rojo.color.a = opacidad
+	else:
+		# Si ya no está en descontrol, la opacidad vuelve a 0 de forma limpia y progresiva
+		filtro_rojo.color.a = move_toward(filtro_rojo.color.a, 0.0, delta * 2.0)
+		tiempo_titileo = 0.0
