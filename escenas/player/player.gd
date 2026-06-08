@@ -11,6 +11,7 @@ var is_digging = false # variable para cavar
 @onready var tilemap_suelo: TileMapLayer = get_parent().get_node("Mapa")
 
 
+
 #Chape
 func _ready() -> void:
 	add_to_group("player")
