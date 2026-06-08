@@ -296,9 +296,9 @@ func actualizar_ui():
 	# Actualiza el texto de energía
 	label_energia.text = str(energia_actual) + "/3"
 	# Muestra cuántas cartas quedan para robar (Mazo a la izquierda)
-	label_mazo.text = "Mazo: " + str(mazo_principal.size())
+	label_mazo.text = " " + str(mazo_principal.size())
 	# Muestra cuántas cartas ya usaste o descartaste (Descarte a la derecha)
-	label_descarte.text = "Descarte: " + str(mazo_descarte.size())
+	label_descarte.text = " " + str(mazo_descarte.size())
 	
 	#Escudo
 	if escudo_maximo_jugador > 0:

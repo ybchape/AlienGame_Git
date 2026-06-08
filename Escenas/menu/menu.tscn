@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_6yuiv"]
 [ext_resource type="Script" uid="uid://dwkcjdfj8egyg" path="res://Escenas/menu/menu.gd" id="1_t3tbb"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="2_g4iwb"]
+[ext_resource type="Texture2D" uid="uid://fema1uiwst20" path="res://Assets/Space Background_2.png" id="3_ckcxl"]
 
 [node name="Menu" type="Control" unique_id=759156516]
 layout_mode = 3
@@ -12,6 +13,14 @@ offset_bottom = 648.0
 theme = ExtResource("1_6yuiv")
 script = ExtResource("1_t3tbb")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=744741400]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -271.0
+offset_right = 1157.0
+offset_bottom = 713.0
+texture = ExtResource("3_ckcxl")
+
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1644276055]
 layout_mode = 1
 anchors_preset = 8
@@ -19,10 +28,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = -118.0
-offset_right = 122.0
-offset_bottom = 129.0
+offset_left = -85.0
+offset_top = -89.5
+offset_right = 85.0
+offset_bottom = 89.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g4iwb")
@@ -41,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.5
-offset_top = -42.5
-offset_right = 41.5
-offset_bottom = 42.5
+offset_left = -63.0
+offset_top = -66.0
+offset_right = 65.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 

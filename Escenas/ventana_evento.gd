@@ -8,18 +8,18 @@ func configurar(data):
 	datos_del_evento = data
 	$Titulo.text = data.titulo
 	$Descripcion.text = data.descripcion
-	$BotonA.text = data.opcion_a
-	$BotonB.text = data.opcion_b
+	$VBoxContainer/BotonA.text = data.opcion_a
+	$VBoxContainer/BotonB.text = data.opcion_b
 
 	# desconecta las señales por si queda algo colgado
-	if $BotonA.pressed.is_connected(_on_boton_a_pressed):
-		$BotonA.pressed.disconnect(_on_boton_a_pressed)
-	if $BotonB.pressed.is_connected(_on_boton_b_pressed):
-		$BotonB.pressed.disconnect(_on_boton_b_pressed)
+	if $VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
+		$VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
+	if $VBoxContainer/BotonB.pressed.is_connected(_on_boton_b_pressed):
+		$VBoxContainer/BotonB.pressed.disconnect(_on_boton_b_pressed)
 
 	# conecta las señales a sus respectivas funciones nativas
-	$BotonA.pressed.connect(_on_boton_a_pressed)
-	$BotonB.pressed.connect(_on_boton_b_pressed)
+	$VBoxContainer/BotonA.pressed.connect(_on_boton_a_pressed)
+	$VBoxContainer/BotonB.pressed.connect(_on_boton_b_pressed)
 
 func _on_boton_a_pressed() -> void:
 	print("[UI] Se hizo clic en el Botón A")
@@ -52,18 +52,18 @@ func mostrar_texto_intermedio(nuevo_texto: String, texto_boton: String, nueva_op
 	$Descripcion.text = nuevo_texto 
 
 	# configura el Botón A para que sea el de avanzar al combate
-	$BotonA.text = texto_boton
+	$VBoxContainer/BotonA.text = texto_boton
 	
 	# Desconectamos la función nativa original antes de enlazar al GameManager
-	if $BotonA.pressed.is_connected(_on_boton_a_pressed):
-		$BotonA.pressed.disconnect(_on_boton_a_pressed)
+	if $VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
+		$VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
 	
-	if $BotonA.pressed.is_connected(GameManager.procesar_eleccion):
-		$BotonA.pressed.disconnect(GameManager.procesar_eleccion)
+	if $VBoxContainer/BotonA.pressed.is_connected(GameManager.procesar_eleccion):
+		$VBoxContainer/BotonA.pressed.disconnect(GameManager.procesar_eleccion)
 
 	# Este clic va a llamar a procesar_eleccion("cofre_trampa", "combate_mimic")
-	$BotonA.pressed.connect(GameManager.procesar_eleccion.bind("cofre_trampa", nueva_opcion_id))
+	$VBoxContainer/BotonA.pressed.connect(GameManager.procesar_eleccion.bind("cofre_trampa", nueva_opcion_id))
 
 # oculta el boton de la opcion b porque hay una sola opcion.
 	if has_node("BotonB"):
-		$BotonB.hide()
+		$VBoxContainer/BotonB.hide()
