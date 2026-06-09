@@ -28,7 +28,7 @@ const MAZO_MAXIMO = 15
 	FUEGO_DE_COBERTURA = preload("uid://kfvh6v8uydks"),
 	SIMBIOSIS_PARASITARIA = preload("uid://kyjcmvt601h0"),
 	#Interferencia = preload("uid://dq45i6roi44ui"),
-	#ESCUDO_EMERGENCIA_2 = preload("uid://g6vea8wrg53m"),
+	
 }
 
 var run_data: RunData
