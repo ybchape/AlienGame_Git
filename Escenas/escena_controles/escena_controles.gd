@@ -11,11 +11,16 @@ func _process(delta: float) -> void:
 	pass
 
 
-
-func _on_button_pressed() -> void:
-	# Al reintentar, hacemos lo mismo que al empezar: reseteo total
+func _on_play_pressed() -> void:
+# 1. IMPORTANTÍSIMO: Usamos la función de tu profe para empezar de cero
 	RunManager.inicializar_run()
+	
+	# 2. Limpiamos cualquier rastro de partidas anteriores en el GameManager
 	GameManager.enemigos_derrotados.clear()
 	GameManager.jefe_derrotado = false
-	# Recargamos la escena principal (El GameManager ya habrá limpiado los datos)
-	get_tree().change_scene_to_file("res://Escenas/menu/menu.tscn")
+	GameManager.posicion_jugador_en_mapa = Vector2.ZERO
+	
+	# 3. Vamos al Mapa 1
+	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	
+	
