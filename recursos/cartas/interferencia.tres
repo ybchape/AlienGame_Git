@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://dq45i6roi44ui"]
+
+[ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_ec232"]
+
+[resource]
+script = ExtResource("1_ec232")
+name = "Interferencia"
+tipo = "Capacidad"
+"daño" = 0
+metadata/_custom_type_script = "uid://b70c27dsawkxg"
