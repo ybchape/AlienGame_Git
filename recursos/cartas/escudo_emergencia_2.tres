@@ -8,6 +8,6 @@ script = ExtResource("1_fqpw2")
 name = "Escudo de Emergencia"
 tipo = "Capacidad"
 "daño" = 0
-escudo = 10
+escudo = 8
 ruta = ExtResource("1_m8mrj")
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

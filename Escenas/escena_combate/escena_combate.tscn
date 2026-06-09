@@ -133,6 +133,7 @@ offset_left = 445.0
 offset_top = 198.0
 offset_right = 693.0
 offset_bottom = 273.0
+theme = ExtResource("1_vytjj")
 theme_override_font_sizes/font_size = 24
 text = "Terminar turno"
 
@@ -247,10 +248,10 @@ vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="CapaFinal" unique_id=1114242252]
 visible = false
-offset_left = 6.0
-offset_top = 5.0
-offset_right = 1176.0
-offset_bottom = 683.0
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 1159.0
+offset_bottom = 668.0
 scale = Vector2(1.0125787, 1)
 theme = ExtResource("1_vytjj")
 
@@ -260,6 +261,7 @@ offset_left = 356.0
 offset_top = 142.0
 offset_right = 816.0
 offset_bottom = 372.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="Continuar" type="Button" parent="CapaFinal/Panel" unique_id=1182068289]
 layout_mode = 0
@@ -267,6 +269,7 @@ offset_left = 861.0
 offset_top = 486.0
 offset_right = 1085.0
 offset_bottom = 586.0
+theme = ExtResource("1_vytjj")
 theme_override_font_sizes/font_size = 39
 text = "Continuar"
 

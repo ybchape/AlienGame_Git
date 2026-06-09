@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://caoqksuxb610v"]
+
+[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="1_g5raj"]
+[ext_resource type="Script" uid="uid://jta3d5r8k1hq" path="res://Escenas/escena_controles/escena_controles.gd" id="1_hxpjq"]
+[ext_resource type="Texture2D" uid="uid://dnr1vnkdiry0g" path="res://Assets/wasd.png" id="2_03w24"]
+[ext_resource type="Texture2D" uid="uid://3q4dmjd00he2" path="res://Assets/mouse.png" id="3_hxpjq"]
+[ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="5_ad60u"]
+
+[node name="escena_controles" type="Control" unique_id=1467889936]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hxpjq")
+
+[node name="Label" type="Panel" parent="." unique_id=30040007]
+modulate = Color(0.34117648, 0.8039216, 0.6039216, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="movimiento" type="Label" parent="." unique_id=2108631323]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 58.0
+offset_right = 387.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("1_g5raj")
+theme_override_font_sizes/font_size = 57
+text = "Movimiento"
+horizontal_alignment = 1
+
+[node name="Wasd" type="Sprite2D" parent="." unique_id=1881737745]
+position = Vector2(261, 202)
+scale = Vector2(0.15651043, 0.21354166)
+texture = ExtResource("2_03w24")
+
+[node name="objetivo" type="Label" parent="." unique_id=1912674895]
+layout_mode = 0
+offset_left = 717.0
+offset_top = 57.0
+offset_right = 985.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("1_g5raj")
+theme_override_font_sizes/font_size = 57
+text = "Objetivo"
+horizontal_alignment = 1
+
+[node name="objetivo2" type="Label" parent="." unique_id=1227089361]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 192.0
+offset_right = 1115.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("1_g5raj")
+theme_override_font_sizes/font_size = 37
+text = "Recorre el mapa combatiendo para reducir el frenesi, lo veras en la primera barra.
+
+Una vez eleminado el jefe, vuelve a la nave"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="combate" type="Label" parent="." unique_id=1727810909]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 313.0
+offset_right = 385.0
+offset_bottom = 378.0
+theme_override_fonts/font = ExtResource("1_g5raj")
+theme_override_font_sizes/font_size = 57
+text = "Combate"
+horizontal_alignment = 1
+
+[node name="combate2" type="Label" parent="." unique_id=1272413105]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 412.0
+offset_right = 464.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("1_g5raj")
+theme_override_font_sizes/font_size = 37
+text = "Arrasta las cartas hacia arriba para combatir."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Mouse" type="Sprite2D" parent="." unique_id=146592651]
+position = Vector2(387.875, 335.625)
+scale = Vector2(0.51666665, 0.5099999)
+texture = ExtResource("3_hxpjq")
+
+[node name="Play" type="Button" parent="." unique_id=409570264]
+texture_filter = 1
+layout_mode = 0
+offset_left = 729.0
+offset_top = 519.0
+offset_right = 961.0
+offset_bottom = 608.0
+theme = ExtResource("5_ad60u")
+theme_override_font_sizes/font_size = 61
+text = "Jugar"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

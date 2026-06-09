@@ -1,7 +1,7 @@
 extends TextureButton
 @onready var label_nombre = $Titulo
 @onready var label_coste =$Label
-@onready var label_descripcion =$LabelDescripcion
+@onready var label_descripcion: Label = %LabelDescripcion
 
 var datos_carta: RecursoCarta
 var arrastrando = false

@@ -76,3 +76,5 @@ theme_override_font_sizes/font_size = 30
 text = "Salir"
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Controles" to="." method="_on_controles_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Salir" to="." method="_on_salir_pressed"]

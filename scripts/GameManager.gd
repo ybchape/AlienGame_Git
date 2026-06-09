@@ -351,7 +351,7 @@ func finalizar_combate(victoria: bool):
 	elif RunManager.run_data.loop_actual == 2:
 		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
 	# esperamos un frame para que cargue el mapa
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.3).timeout
 	if victoria:
 		# marca enemigo como derrotado
 		enemigos_derrotados.append(
@@ -362,12 +362,24 @@ func finalizar_combate(victoria: bool):
 		# busca el tipo de enemigo "tipo_enemigo". Si NO es "jefe", loot corazón.
 		if enemigo_actual_datos.get("tipo_enemigo") != "jefe":
 			var nuevo_corazon = corazon_escena.instantiate()
+			
+			# --- DETERMINAMOS CUÁNTO CURA SEGÚN EL ENEMIGO ---
+			var tipo = enemigo_actual_datos.get("tipo_enemigo", "debil")
+			
+			if tipo == "debil" or tipo == "debil2":
+				nuevo_corazon.cantidad_curacion = 5.0 # Recompensa chica
+			elif tipo == "medio" or tipo == "medio2":
+				nuevo_corazon.cantidad_curacion = 15.0 # ¡Recompensa grande por el esfuerzo!
+			
+			# Metemos el corazón en el mapa con su curación ya asignada
 			get_tree().current_scene.add_child(nuevo_corazon)
 			nuevo_corazon.global_position = posicion_enemigo
-			print("Corazón looteado (Enemigo común derrotado).")
+			
+			print("Corazón looteado. Tipo: ", tipo, " | Curación seteada en: ", nuevo_corazon.cantidad_curacion)
 		else:
-			# si es el boss ("jefe"), ignora el instanciar el corazón
 			print("Combate ganado contra el Jefe: ¡No se lootea corazón!")
+			
+
 
 # func para el evento de necrosis
 func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):

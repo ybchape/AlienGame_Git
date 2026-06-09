@@ -22,3 +22,10 @@ func _on_play_pressed() -> void:
 	
 	# 3. Vamos al Mapa 1
 	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+
+func _on_controles_pressed() -> void:
+	get_tree().change_scene_to_file("res://Escenas/escena_controles/escena_controles.tscn")
+
+
+func _on_salir_pressed() -> void:
+	get_tree().quit() # Cierra el juego

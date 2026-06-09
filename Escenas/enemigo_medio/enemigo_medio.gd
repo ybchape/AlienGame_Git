@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var vida_maxima: int = 75
-var reduccion_frenesi: int = 25
+var reduccion_frenesi: int = 20
 
 const ESCENA_COMBATE = preload("uid://df0wos767uxby")
 # Called when the node enters the scene tree for the first time.
