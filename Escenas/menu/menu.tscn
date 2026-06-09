@@ -1,27 +1,78 @@
 [gd_scene format=3 uid="uid://sclrwy33dcyb"]
 
+[ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_6yuiv"]
 [ext_resource type="Script" uid="uid://dwkcjdfj8egyg" path="res://Escenas/menu/menu.gd" id="1_t3tbb"]
+[ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="2_g4iwb"]
+[ext_resource type="Texture2D" uid="uid://fema1uiwst20" path="res://Assets/Space Background_2.png" id="3_ckcxl"]
 
 [node name="Menu" type="Control" unique_id=759156516]
 layout_mode = 3
 anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("1_6yuiv")
 script = ExtResource("1_t3tbb")
 
-[node name="Play" type="Button" parent="." unique_id=564598701]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=744741400]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 236.0
-offset_right = 642.0
-offset_bottom = 291.0
+offset_left = -6.0
+offset_top = -271.0
+offset_right = 1157.0
+offset_bottom = 713.0
+texture = ExtResource("3_ckcxl")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1644276055]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -89.5
+offset_right = 85.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g4iwb")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 6
+patch_margin_top = 8
+patch_margin_right = 6
+patch_margin_bottom = 8
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=1516348330]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -66.0
+offset_right = 65.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=564598701]
+texture_filter = 1
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Jugar"
 
-[node name="Controles" type="Button" parent="." unique_id=686486219]
-layout_mode = 0
-offset_left = 516.0
-offset_top = 313.0
-offset_right = 644.0
-offset_bottom = 394.0
+[node name="Controles" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=686486219]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Controles"
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[node name="Salir" type="Button" parent="NinePatchRect/VBoxContainer" unique_id=1308264149]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Salir"
+
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Play" to="." method="_on_play_pressed"]

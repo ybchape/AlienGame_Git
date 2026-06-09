@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://spnbsx21ipd3"]
 
 [ext_resource type="Script" uid="uid://bn0ju3p42s71u" path="res://Escenas/PantallaGameOver/pantalla_game_over.gd" id="1_oxi01"]
+[ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_u0jlm"]
+[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_mi02s"]
 
 [node name="PantallaGameOver" type="Control" unique_id=457905073]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_u0jlm")
 script = ExtResource("1_oxi01")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=194124353]
@@ -26,6 +31,7 @@ offset_left = 111.0
 offset_top = 82.0
 offset_right = 1061.0
 offset_bottom = 265.0
+theme_override_fonts/font = ExtResource("3_mi02s")
 theme_override_font_sizes/font_size = 47
 text = "HAS MUERTO, Malo de mierda"
 horizontal_alignment = 1

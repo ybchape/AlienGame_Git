@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://dhdwqh3syek5v"]
+
+[ext_resource type="StyleBox" uid="uid://b2mt4lt2n6727" path="res://recursos/estilo_ui/hover_button.tres" id="1_r32c8"]
+[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="1_y117x"]
+[ext_resource type="StyleBox" uid="uid://bje6bn3eid1bd" path="res://recursos/estilo_ui/normal_button.tres" id="2_y117x"]
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_y117x")
+Button/styles/hover = ExtResource("1_r32c8")
+Button/styles/normal = ExtResource("2_y117x")
