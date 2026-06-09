@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2v3nb00n3nvy"
-path="res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"
+uid="uid://cpd3tldxh8xai"
+path="res://.godot/imported/Escudo de Emergencia_0.1.png-b6dc3969fea63a19e4496d3624548310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Análisis de Bioma.png"
-dest_files=["res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"]
+source_file="res://Assets/cartas/Escudo de Emergencia_0.1.png"
+dest_files=["res://.godot/imported/Escudo de Emergencia_0.1.png-b6dc3969fea63a19e4496d3624548310.ctex"]
 
 [params]
 

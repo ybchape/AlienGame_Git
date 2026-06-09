@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2v3nb00n3nvy"
-path="res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"
+uid="uid://d3tkf4suksfpf"
+path="res://.godot/imported/Golpe de Chatarra_0.1.png-0393bb5470467832869ddd8597873286.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Análisis de Bioma.png"
-dest_files=["res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"]
+source_file="res://Assets/cartas/Golpe de Chatarra_0.1.png"
+dest_files=["res://.godot/imported/Golpe de Chatarra_0.1.png-0393bb5470467832869ddd8597873286.ctex"]
 
 [params]
 

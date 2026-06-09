@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2v3nb00n3nvy"
-path="res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"
+uid="uid://c0tsfmbbw80o0"
+path="res://.godot/imported/Instinto de Presa_0.1.png-f593b9adfdba9a6264e8c42d184fd143.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Análisis de Bioma.png"
-dest_files=["res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"]
+source_file="res://Assets/cartas/Instinto de Presa_0.1.png"
+dest_files=["res://.godot/imported/Instinto de Presa_0.1.png-f593b9adfdba9a6264e8c42d184fd143.ctex"]
 
 [params]
 

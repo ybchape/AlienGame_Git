@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://c235mt3xp01k5"]
 
-[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_ct6rd"]
+[ext_resource type="Texture2D" uid="uid://d3tkf4suksfpf" path="res://Assets/cartas/Golpe de Chatarra_0.1.png" id="1_ct6rd"]
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_wfho5"]
 
 [resource]

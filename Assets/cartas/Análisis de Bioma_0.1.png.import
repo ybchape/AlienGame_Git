@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2v3nb00n3nvy"
-path="res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"
+uid="uid://c4ifv4b37iwx2"
+path="res://.godot/imported/Análisis de Bioma_0.1.png-60e76e58539e95bead2e3e4d379ae869.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cartas/Análisis de Bioma.png"
-dest_files=["res://.godot/imported/Análisis de Bioma.png-994ba660ab75004623bcd3a0deab6204.ctex"]
+source_file="res://Assets/cartas/Análisis de Bioma_0.1.png"
+dest_files=["res://.godot/imported/Análisis de Bioma_0.1.png-60e76e58539e95bead2e3e4d379ae869.ctex"]
 
 [params]
 
