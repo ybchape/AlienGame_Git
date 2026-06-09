@@ -92,8 +92,8 @@ func _ready() -> void:
 		sprite_enemigo.flip_h = true
 
 		sprite_enemigo.play("idle")
-	elif GameManager.enemigo_actual_datos.has("textura"):
-		sprite_enemigo.texture = GameManager.enemigo_actual_datos["textura"]
+	elif GameManager.enemigo_actual_datos.has("sprite_frames"):
+		sprite_enemigo.texture = GameManager.enemigo_actual_datos["sprite_frames"]
 
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]
@@ -103,7 +103,7 @@ func _ready() -> void:
 	
 	# 2. Preparar mano (Mezclar y Robar 5)
 	mazo_principal = RunManager.run_data.mazo_actual.duplicate()
-	mazo_principal.shuffle() #mescla las cartas
+	mazo_principal.shuffle() #mezcla las cartas
 	# Limpia el descarte por seguridad
 	mazo_descarte.clear()
 	
@@ -262,7 +262,7 @@ func _jugar_carta(nodo, datos):
 		if is_instance_valid(nodo):
 			nodo.volver_a_mano()
 
-# --- NUEVA FUNCIÓN AUXILIAR PARA ANIMACIONES SIN INTERRUMPIR EL JUEGO ---
+# animaciones
 func _manejar_animacion_daño(murio: bool):
 	if murio:
 		sprite_enemigo.play("death")
@@ -273,7 +273,7 @@ func _manejar_animacion_daño(murio: bool):
 		# Al terminar la animación, chequeamos su pose si sigue vivo
 		if barra_vida_enemigo.value > 0:
 			if proxima_accion_enemigo == 1:
-				sprite_enemigo.play("block")
+				sprite_enemigo.play("block") #????????????
 			else:
 				sprite_enemigo.play("idle")
 

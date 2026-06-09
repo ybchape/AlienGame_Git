@@ -30,7 +30,7 @@ func _preparar_combate():
 		"reduccion_frenesi": reduccion_frenesi,
 		"Daño_fijo": 10,          # El golpe básico del jefe
 		"daño_especial": 10,      # El golpe devastador del jefe
-		"textura": preload("res://Assets/icon.svg"), 
+		"sprite_frames": $AnimatedSprite2D.sprite_frames,
 		"posicion": global_position 
 	}
 	get_tree().change_scene_to_packed(ESCENA_COMBATE)

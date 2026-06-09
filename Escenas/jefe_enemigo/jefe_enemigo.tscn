@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8f3lf")
 }],
-"loop": false,
+"loop": true,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -191,18 +191,16 @@ animations = [{
 size = Vector2(128, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0830a"]
-size = Vector2(155.00005, 145.00003)
+size = Vector2(90.00003, 100.00005)
 
 [node name="jefe_enemigo" type="CharacterBody2D" unique_id=1110556000 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_s5psy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1698093792]
-scale = Vector2(6, 6)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_i8y60")
-animation = &"death"
-frame = 6
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565087171]
 visible = false
@@ -211,8 +209,8 @@ shape = SubResource("RectangleShape2D_70efm")
 [node name="Area2D" type="Area2D" parent="." unique_id=1310191]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=210433005]
-position = Vector2(-177.49997, 2.4999962)
-scale = Vector2(0.9999995, 0.9999995)
+position = Vector2(-84.99999, 9.999995)
+scale = Vector2(0.99999934, 0.99999934)
 shape = SubResource("RectangleShape2D_0830a")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
