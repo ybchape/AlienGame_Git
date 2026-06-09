@@ -698,4 +698,7 @@ shape = SubResource("RectangleShape2D_kndw1")
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
 position = Vector2(90, 593)
 
+[node name="enemigo_debil3" parent="." unique_id=1707479955 instance=ExtResource("8_e307b")]
+position = Vector2(448.99997, 522.99994)
+
 [connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]
