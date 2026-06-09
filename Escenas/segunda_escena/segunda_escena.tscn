@@ -411,6 +411,9 @@ custom_data_layer_0/name = "es_virus"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i0iv3")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuyka"]
+size = Vector2(47.26584, 32.17386)
+
 [node name="segunda_escena" type="Node2D" unique_id=1254922206]
 
 [node name="Mapa" type="TileMapLayer" parent="." unique_id=1781433436]
@@ -445,4 +448,15 @@ script = ExtResource("8_y7pfq")
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("9_rnhka")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=833579615]
+visible = false
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1498860350]
+position = Vector2(330, 554)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=406852084]
+position = Vector2(6.0009155, 13.367004)
+rotation = -1.5732503
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_nuyka")
+one_way_collision = true
