@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+@onready var animated_sprite = $AnimatedSprite2D
 var vida_maxima: int = 75
 var reduccion_frenesi: int = 25
 
 const ESCENA_COMBATE = preload("uid://df0wos767uxby")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if animated_sprite:
+		animated_sprite.play("idle")
 	add_to_group("enemigos")
 	# Persistencia: Si ya lo mataste, no vuelve a aparecer
 	if name in GameManager.enemigos_derrotados:
