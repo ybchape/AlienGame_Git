@@ -365,7 +365,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5syym")
 }],
-"loop": false,
+"loop": true,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -458,7 +458,7 @@ script = ExtResource("1_0aa3b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1986544767]
 scale = Vector2(5.9999995, 5.9999995)
 sprite_frames = SubResource("SpriteFrames_j5e8a")
-animation = &"idle"
+animation = &"block"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1490993897]
 visible = false
