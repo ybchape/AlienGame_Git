@@ -4,7 +4,7 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var label_energia = $TextureRect3/LabelEnergia
 @onready var barra_vida_enemigo = $BarraVidaEnemigo
 @onready var barra_vida_jugador = $BarraVidaJugador
-@onready var sprite_enemigo = $SpriteEnemigo
+@onready var sprite_enemigo = $AnimatedSprite2D
 @onready var sprite_jugador = $player
 @onready var label_mazo = $TextureRect/LabelMazo
 @onready var label_descarte =$TextureRect2/LabelDescarte
@@ -394,7 +394,7 @@ func turno_del_enemigo():
 				print("El enemigo débil ataca por: ", dano_enemigo)
 
 				# play animacion attack1
-				sprite_enemigo.play("attack1")
+				sprite_enemigo.play("attack")
 
 				await get_tree().create_timer(0.6).timeout
 				sprite_enemigo.play("idle")
@@ -415,7 +415,7 @@ func turno_del_enemigo():
 				print("El enemigo débil usa Poder por: ", dano_enemigo)
 
 				# play animacion attack2
-				sprite_enemigo.play("attack2")
+				sprite_enemigo.play("attack1")
 				await sprite_enemigo.animation_finished
 				sprite_enemigo.play("idle")
 

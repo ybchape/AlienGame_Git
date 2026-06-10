@@ -1174,6 +1174,6 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kndw1")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(480, 327)
+position = Vector2(89, 588)
 
 [connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]

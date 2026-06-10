@@ -90,7 +90,7 @@ scale = Vector2(9.71875, 10.406251)
 sprite_frames = SubResource("SpriteFrames_43djd")
 frame_progress = 0.11214228
 
-[node name="SpriteEnemigo" type="AnimatedSprite2D" parent="." unique_id=458065142]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=458065142]
 position = Vector2(891, 149)
 scale = Vector2(6.0000005, 6.7350006)
 sprite_frames = SubResource("SpriteFrames_ql2e5")
