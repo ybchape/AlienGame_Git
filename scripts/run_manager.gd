@@ -27,6 +27,8 @@ const MAZO_MAXIMO = 15
 	NIEBLA_TOXICA = preload("uid://h0gjlipiwrql"),
 	FUEGO_DE_COBERTURA = preload("uid://kfvh6v8uydks"),
 	SIMBIOSIS_PARASITARIA = preload("uid://kyjcmvt601h0"),
+	#Interferencia = preload("uid://dq45i6roi44ui"),
+	
 }
 
 var run_data: RunData
@@ -51,6 +53,7 @@ func inicializar_run():
 	]
 	run_data.vida_jugador = 100
 	run_data.vida_maxima = 100
+	run_data.bonus_dano_permanente = 0
 	run_data.frenesi_actual = 0.0
 	run_data.frenesi_maximo = 100.0
 	run_data.mejoras_permanentes = []

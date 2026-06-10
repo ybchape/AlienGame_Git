@@ -63,18 +63,22 @@ var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	# cuando empieza el combate, el buff de daño base arranca con el valor de +3 daño
+	buff_dano_basico_actual = RunManager.run_data.dano_permanente_eventos
+
 	# Reseteo de estados por si venimos de otra pelea
 	enemigo_veneno_turnos = 0
 	enemigo_veneno_dano = 0
 	enemigo_debil_turnos = 0
-	turnos_retener_escudo = 0 # NUEVO
-	buff_dano_basico_actual = 0
+	turnos_retener_escudo = 0 
 	cura_por_ataque_actual = 0
 	energia_extra_base = 0
-	escudo_fijo_por_turno = 0 # NUEVO
+	escudo_fijo_por_turno = 0 
 	jugador_aturdido = false
 	enemigo_aturdido = false
+
+	# asignamos el buff del evento de +3 daño
+	buff_dano_basico_actual = RunManager.run_data.dano_permanente_eventos
 	
 	# --- AVISAMOS AL JUEGO QUE EMPEZÓ EL COMBATE ---
 	GameManager.en_combate = true
@@ -193,9 +197,11 @@ func _jugar_carta(nodo, datos):
 				dano_a_realizar += datos.dano_extra_veneno
 			if mano_visual.get_child_count() == 1:
 				dano_a_realizar += datos.dano_extra_ultima_carta
-			if datos.name == "Golpe de Chatarra" or datos.name == "Instinto de Presa":
+			# si la carta es de tipo Ataque, le suma el buff acumulado de la mejora
+			if datos.tipo == "Ataque":
 				dano_a_realizar += buff_dano_basico_actual
-			
+
+			# efecto de evento doble daño
 			if RunManager.run_data.bonus_doble_dano:
 				dano_a_realizar *= 2
 				RunManager.run_data.bonus_doble_dano = false
@@ -297,9 +303,9 @@ func actualizar_ui():
 	# Actualiza el texto de energía
 	label_energia.text = str(energia_actual) + "/3"
 	# Muestra cuántas cartas quedan para robar (Mazo a la izquierda)
-	label_mazo.text = "Mazo: " + str(mazo_principal.size())
+	label_mazo.text = " " + str(mazo_principal.size())
 	# Muestra cuántas cartas ya usaste o descartaste (Descarte a la derecha)
-	label_descarte.text = "Descarte: " + str(mazo_descarte.size())
+	label_descarte.text = " " + str(mazo_descarte.size())
 	
 	#Escudo
 	if escudo_maximo_jugador > 0:

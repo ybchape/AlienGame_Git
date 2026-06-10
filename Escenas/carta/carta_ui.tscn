@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqwp4s75vtwib"]
 
 [ext_resource type="Script" uid="uid://ybr722ogqjob" path="res://Escenas/carta/carta_ui.gd" id="1_06qds"]
-[ext_resource type="Texture2D" uid="uid://c0tsfmbbw80o0" path="res://Assets/cartas/Instinto de Presa.png" id="1_slt1n"]
+[ext_resource type="Texture2D" uid="uid://43s6ntlkohx1" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_slt1n"]
 
 [node name="CartaUI" type="TextureButton" unique_id=168635153]
 custom_minimum_size = Vector2(100, 140)
@@ -18,12 +18,12 @@ anchor_left = 0.18800001
 anchor_top = 0.86500007
 anchor_right = 0.18800001
 anchor_bottom = 0.86500007
-offset_left = -9.960001
-offset_top = -202.92502
-offset_right = 95.04
-offset_bottom = -172.92502
+offset_left = 1.039999
+offset_top = -203.92502
+offset_right = 106.04
+offset_bottom = -175.92502
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 14
 text = "Capacidad"
 horizontal_alignment = 1
 
@@ -34,24 +34,32 @@ anchor_left = 0.87600005
 anchor_top = 0.098000005
 anchor_right = 0.87600005
 anchor_bottom = 0.098000005
-offset_left = -4.9200134
-offset_top = -9.010002
-offset_right = 5.0799866
-offset_bottom = 7.989998
+offset_left = -2.9200134
+offset_top = -12.010002
+offset_right = 7.0799866
+offset_bottom = 4.989998
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 text = "2"
 horizontal_alignment = 1
 
-[node name="LabelDescripcion" type="Label" parent="." unique_id=2100065564]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=936864734]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 188.0
-offset_right = 163.0
-offset_bottom = 238.0
+offset_left = 12.0
+offset_top = 189.0
+offset_right = 160.0
+offset_bottom = 232.0
+
+[node name="LabelDescripcion" type="Label" parent="ScrollContainer" unique_id=2100065564]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(132, 10)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "holaaaaaaa holaaaaaaaaa"
+text = "holaaaaaaa holaaaaaaaaaayudaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3

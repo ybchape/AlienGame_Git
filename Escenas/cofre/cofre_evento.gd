@@ -26,8 +26,7 @@ func _on_body_entered(body):
 		#Guarmados la posicion del jugador para que no spawnee en el inicio
 		GameManager.posicion_jugador_en_mapa = body.global_position
 
-		
-# Desactiva colisiones para evitar que se ejecute varias veces
+		# Desactiva colisiones para evitar que se ejecute varias veces
 		set_deferred("monitoring", false)
 
 		# Cambia a la animación de open

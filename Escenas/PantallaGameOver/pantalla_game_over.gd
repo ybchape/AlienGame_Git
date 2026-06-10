@@ -18,4 +18,4 @@ func _on_button_pressed() -> void:
 	GameManager.enemigos_derrotados.clear()
 	GameManager.jefe_derrotado = false
 	# Recargamos la escena principal (El GameManager ya habrá limpiado los datos)
-	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	get_tree().change_scene_to_file("res://Escenas/menu/menu.tscn")
