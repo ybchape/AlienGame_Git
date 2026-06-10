@@ -111,6 +111,9 @@ func _ready() -> void:
 	barra_vida_jugador.max_value = RunManager.run_data.vida_maxima 
 	barra_vida_jugador.value = RunManager.run_data.vida_jugador
 	
+	#animacion del personaje
+	sprite_jugador.play("idle")
+	
 	# 2. Preparar mano (Mezclar y Robar 5)
 	mazo_principal = RunManager.run_data.mazo_actual.duplicate()
 	mazo_principal.shuffle() #mezcla las cartas

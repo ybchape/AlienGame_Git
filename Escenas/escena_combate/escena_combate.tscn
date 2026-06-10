@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://df0wos767uxby"]
 
 [ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
-[ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_vytjj"]
+[ext_resource type="Texture2D" uid="uid://di2bpwg3kqu7p" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/idle_alien.png" id="3_43djd"]
 [ext_resource type="Texture2D" uid="uid://b4i1do57r0xxs" path="res://Assets/orbe_energia.png" id="4_43djd"]
 [ext_resource type="Texture2D" uid="uid://c64uvr0n2ft6e" path="res://Assets/mazo_cartas.png" id="5_vytjj"]
 [ext_resource type="Texture2D" uid="uid://cd6kn8rdewks8" path="res://Assets/mazo_descarte.png" id="6_qcod8"]
@@ -11,53 +11,39 @@
 [ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="8_vytjj"]
 [ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="9_qcod8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q732s"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vytjj"]
+atlas = ExtResource("3_43djd")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_61bmk"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcod8"]
+atlas = ExtResource("3_43djd")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7gp4f"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_klpi0"]
+atlas = ExtResource("3_43djd")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ldtfy"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8q3o"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ql2e5"]
-atlas = ExtResource("1_j4tvv")
-region = Rect2(80, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5v6y"]
+atlas = ExtResource("3_43djd")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43djd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q732s")
+"texture": SubResource("AtlasTexture_vytjj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_61bmk")
+"texture": SubResource("AtlasTexture_qcod8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7gp4f")
+"texture": SubResource("AtlasTexture_klpi0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ldtfy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i8q3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ql2e5")
+"texture": SubResource("AtlasTexture_c5v6y")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -87,10 +73,10 @@ grow_vertical = 2
 color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)
 
 [node name="player" type="AnimatedSprite2D" parent="." unique_id=609565988]
-position = Vector2(206.00002, 131.00002)
-scale = Vector2(9.71875, 10.406251)
+position = Vector2(201.99998, 185)
+scale = Vector2(6.1875005, 5.5625)
 sprite_frames = SubResource("SpriteFrames_43djd")
-frame_progress = 0.11214228
+animation = &"idle"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=458065142]
 position = Vector2(891, 149)
@@ -177,10 +163,10 @@ offset_bottom = 112.996
 
 [node name="LabelEscudo" type="Label" parent="." unique_id=710440051]
 layout_mode = 0
-offset_left = 250.0
-offset_top = 119.0
-offset_right = 424.0
-offset_bottom = 142.0
+offset_left = 271.0
+offset_top = 124.0
+offset_right = 445.0
+offset_bottom = 147.0
 
 [node name="LabelEscudoEnemigo" type="Label" parent="." unique_id=672741919]
 layout_mode = 0
