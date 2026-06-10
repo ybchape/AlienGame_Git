@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
 [ext_resource type="Texture2D" uid="uid://dna1l3vs308e7" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/char_idle_down_anim_strip_6.png" id="1_j4tvv"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_vytjj"]
-[ext_resource type="Texture2D" uid="uid://bsaouyyk7aes6" path="res://Assets/icon.svg" id="2_6mo4l"]
 [ext_resource type="Texture2D" uid="uid://b4i1do57r0xxs" path="res://Assets/orbe_energia.png" id="4_43djd"]
 [ext_resource type="Texture2D" uid="uid://c64uvr0n2ft6e" path="res://Assets/mazo_cartas.png" id="5_vytjj"]
 [ext_resource type="Texture2D" uid="uid://cd6kn8rdewks8" path="res://Assets/mazo_descarte.png" id="6_qcod8"]

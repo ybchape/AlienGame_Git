@@ -39,6 +39,7 @@ var turnos_retener_escudo: int = 0
 #var retener_escudo: bool = false
 var cartas_jugadas_este_turno: int = 0
 var enemigo_aturdido: bool = false
+var enemigo_uso_poder_ultimo_turno: bool = false
 
 # Elementos permanentes de combate
 var buff_dano_basico_actual: int = 0
@@ -76,6 +77,7 @@ func _ready() -> void:
 	escudo_fijo_por_turno = 0 
 	jugador_aturdido = false
 	enemigo_aturdido = false
+	enemigo_uso_poder_ultimo_turno = false
 
 	# asignamos el buff del evento de +3 daño
 	buff_dano_basico_actual = RunManager.run_data.dano_permanente_eventos
@@ -510,6 +512,19 @@ func planear_proxima_accion():
 	# Ahora TODOS (débil, medio, jefe) eligen entre 3 opciones
 	# 0 = Ataque Normal, 1 = Escudo, 2 = Poder
 	proxima_accion_enemigo = randi() % 3 
+	
+	#  NUEVA LÓGICA ANTI-STUN INFINITO
+	if proxima_accion_enemigo == 2:
+		if enemigo_uso_poder_ultimo_turno == true:
+			# Si ya usó el poder, lo obligamos a elegir 0 (Ataque) o 1 (Escudo)
+			proxima_accion_enemigo = randi() % 2
+			enemigo_uso_poder_ultimo_turno = false 
+		else:
+			# Es la primera vez que lo usa, lo dejamos y lo recordamos
+			enemigo_uso_poder_ultimo_turno = true
+	else:
+		# Eligió ataque o escudo, así que limpiamos la memoria del poder
+		enemigo_uso_poder_ultimo_turno = false
 	
 	# 1. Reseteamos el color por defecto (para que vuelva a la normalidad si se le pasa el efecto)
 	label_intencion.remove_theme_color_override("font_color")
