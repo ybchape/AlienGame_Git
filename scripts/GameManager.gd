@@ -126,6 +126,11 @@ func procesar_eleccion(id_evento: String, opcion: String):
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA)
 
+		"fosil_antiguo":
+			if opcion == "A":
+				activar_powerup_fosil()
+			else:
+				print("Ignoraste el evento, aburridooo!")
 		# evento que otorga +2 de daño permanente
 		"santuario_sangre":
 			if opcion == "A":

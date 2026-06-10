@@ -62,6 +62,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ql2e5"]
+
 [node name="escena_combate" type="Control" unique_id=1821735990]
 layout_mode = 3
 anchors_preset = 15
@@ -91,10 +93,10 @@ scale = Vector2(9.71875, 10.406251)
 sprite_frames = SubResource("SpriteFrames_43djd")
 frame_progress = 0.11214228
 
-[node name="SpriteEnemigo" type="Sprite2D" parent="." unique_id=1687600007]
-position = Vector2(893, 144)
-scale = Vector2(1.0195305, 1.1445313)
-texture = ExtResource("2_6mo4l")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=458065142]
+position = Vector2(891, 149)
+scale = Vector2(6.0000005, 6.7350006)
+sprite_frames = SubResource("SpriteFrames_ql2e5")
 
 [node name="TextureRect3" type="TextureRect" parent="." unique_id=157460346]
 layout_mode = 0
@@ -182,7 +184,6 @@ offset_right = 424.0
 offset_bottom = 142.0
 
 [node name="LabelEscudoEnemigo" type="Label" parent="." unique_id=672741919]
-visible = false
 layout_mode = 0
 offset_left = 646.0
 offset_top = 119.0
@@ -301,6 +302,17 @@ offset_left = 737.0
 offset_top = 204.0
 offset_right = 777.0
 offset_bottom = 227.0
+
+[node name="PivoteBoss" type="Control" parent="." unique_id=202358787]
+layout_mode = 1
+anchor_left = 0.7569444
+anchor_top = 0.19444445
+anchor_right = 0.7569444
+anchor_bottom = 0.19444445
+offset_left = -78.0
+offset_top = -1.0
+offset_right = -38.0
+offset_bottom = 39.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]

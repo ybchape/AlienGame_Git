@@ -8,6 +8,7 @@ const ESCENA_COMBATE = preload("uid://df0wos767uxby") #ruta de la escena con los
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimatedSprite2D.play("idle")
 	# Lo metemos en un grupo para que el jugador lo identifique al chocar
 	add_to_group("enemigos")
 	
@@ -40,7 +41,7 @@ func _preparar_combate():
 		"frenesi": reduccion_frenesi,
 		"Daño_fijo": 14,
 		"daño_poder": 20,
-		"textura": preload("res://Assets/icon.svg"),
+		"sprite_frames": $AnimatedSprite2D.sprite_frames,
 		"posicion": global_position # guarda la posicion del enemigo	
 	}
 	#Cambio a la escena de combate
