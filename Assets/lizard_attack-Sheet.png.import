@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7vqcucitgn83"
-path="res://.godot/imported/Abomination Separate frame 21.png-765a2e64c3db47bffe5a688a2b016946.ctex"
+uid="uid://ccj3xird275kc"
+path="res://.godot/imported/lizard_attack-Sheet.png-c87c55f2ecf29abd4a1a3fd0da2ad33a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Abomination/Separated Frames/Abomination Separate frame 21.png"
-dest_files=["res://.godot/imported/Abomination Separate frame 21.png-765a2e64c3db47bffe5a688a2b016946.ctex"]
+source_file="res://Assets/lizard_attack-Sheet.png"
+dest_files=["res://.godot/imported/lizard_attack-Sheet.png-c87c55f2ecf29abd4a1a3fd0da2ad33a.ctex"]
 
 [params]
 

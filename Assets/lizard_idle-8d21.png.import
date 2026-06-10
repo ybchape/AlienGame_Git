@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3tw7y82ql680"
-path="res://.godot/imported/Abomination Separate frame 26.png-9a74c8639cc7b2cab4087cd6fe8e288b.ctex"
+uid="uid://dia8y82pg30ac"
+path="res://.godot/imported/lizard_idle-8d21.png-1e05825e1234f9cd52a86ea0052b3c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Abomination/Separated Frames/Abomination Separate frame 26.png"
-dest_files=["res://.godot/imported/Abomination Separate frame 26.png-9a74c8639cc7b2cab4087cd6fe8e288b.ctex"]
+source_file="res://Assets/lizard_idle-8d21.png"
+dest_files=["res://.godot/imported/lizard_idle-8d21.png-1e05825e1234f9cd52a86ea0052b3c12.ctex"]
 
 [params]
 

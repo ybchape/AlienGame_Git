@@ -1149,7 +1149,7 @@ position = Vector2(905.00006, 449.99997)
 position = Vector2(120.00001, 196)
 
 [node name="jefe_enemigo" parent="." unique_id=1110556000 instance=ExtResource("17_divhv")]
-position = Vector2(518, 361)
+position = Vector2(492, 360)
 
 [node name="enemigo_medio2" parent="." unique_id=870270010 instance=ExtResource("16_wm4p1")]
 position = Vector2(832, 239.99998)
@@ -1174,6 +1174,6 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kndw1")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(759, 228)
+position = Vector2(565, 337)
 
 [connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]

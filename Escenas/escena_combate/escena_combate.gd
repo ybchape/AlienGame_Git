@@ -85,15 +85,19 @@ func _ready() -> void:
 	# reset energia a 3
 	RunManager.run_data.penalizacion_energia = 0
 	
-# 1. Cargar datos del enemigo (add animaciones)
+	# 1. Cargar datos del enemigo (add animaciones)
 	if GameManager.enemigo_actual_datos.has("sprite_frames"):
 		sprite_enemigo.sprite_frames = GameManager.enemigo_actual_datos["sprite_frames"]
 		# flip izquierda
 		sprite_enemigo.flip_h = true
 
+		var pos_combate = sprite_enemigo.global_position
+		sprite_enemigo.offset = Vector2.ZERO
+		sprite_enemigo.global_position = pos_combate
+
 		sprite_enemigo.play("idle")
-	elif GameManager.enemigo_actual_datos.has("sprite_frames"):
-		sprite_enemigo.texture = GameManager.enemigo_actual_datos["sprite_frames"]
+	elif GameManager.enemigo_actual_datos.has("texture"):
+		sprite_enemigo.texture = GameManager.enemigo_actual_datos["texture"]
 
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]

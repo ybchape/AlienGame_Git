@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pn28ixevvy40"
-path="res://.godot/imported/Abomination Separate frame 10.png-895b64234b3ec1096bf5904de5e7342f.ctex"
+uid="uid://dj2pwp30ngwo6"
+path="res://.godot/imported/lizard_runSheet.png-b459662f04138d8c5bf98159cff8f2b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Abomination/Separated Frames/Abomination Separate frame 10.png"
-dest_files=["res://.godot/imported/Abomination Separate frame 10.png-895b64234b3ec1096bf5904de5e7342f.ctex"]
+source_file="res://Assets/lizard_runSheet.png"
+dest_files=["res://.godot/imported/lizard_runSheet.png-b459662f04138d8c5bf98159cff8f2b6.ctex"]
 
 [params]
 
