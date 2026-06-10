@@ -8,6 +8,7 @@ const ESCENA_COMBATE =preload("uid://df0wos767uxby")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimatedSprite2D.play("idle")
 	add_to_group("enemigos")
 	if name in GameManager.enemigos_derrotados:
 		queue_free()
@@ -31,7 +32,7 @@ func _preparar_combate():
 		"reduccion_frenesi": reduccion_frenesi,
 		"Daño_fijo": 20,          # El golpe básico del jefe
 		"daño_especial": 14,      # El golpe devastador del jefe
-		"textura": preload("res://Assets/icon.svg"), 
+		"sprite_frames":$AnimatedSprite2D.sprite_frames, 
 		"posicion": global_position 
 	}
 	get_tree().change_scene_to_packed(ESCENA_COMBATE)

@@ -8,6 +8,8 @@ const ESCENA_COMBATE = preload("uid://df0wos767uxby")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimatedSprite2D.play("idle")
+	# Lo metemos en un grupo para que el jugador lo identifique al chocar
 	add_to_group("enemigos")
 	# Persistencia: Si ya lo mataste, no vuelve a aparecer
 	if name in GameManager.enemigos_derrotados:
@@ -37,7 +39,7 @@ func _preparar_combate():
 		"reduccion_frenesi": reduccion_frenesi,
 		"Daño_fijo": 18,          
 		"daño_poder": 21,         
-		"textura": preload("res://Assets/icon.svg"), # Cambiar por el arte de Lucía
+		"sprite_frames": $AnimatedSprite2D.sprite_frames, # Cambiar por el arte de Lucía
 		"posicion": global_position 
 	}
 	get_tree().change_scene_to_packed(ESCENA_COMBATE)

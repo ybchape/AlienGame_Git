@@ -459,7 +459,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=551396991]
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_85yvu")
-animation = &"attack1"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595174343]
 position = Vector2(-2.4999948, 29.999989)

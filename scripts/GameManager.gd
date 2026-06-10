@@ -173,7 +173,7 @@ func procesar_eleccion(id_evento: String, opcion: String):
 				"frenesi": 15,
 				"Daño_fijo": 14,
 				"daño_poder": 20,
-				"textura": preload("res://Assets/icon.svg"),
+				"sprite_frames": $AnimatedSprite2D.sprite_frames,
 				"posicion": posicion_jugador_en_mapa
 			}
 

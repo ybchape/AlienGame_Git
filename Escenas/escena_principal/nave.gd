@@ -30,7 +30,7 @@ func _on_portal_salida_body_entered(body: Node2D) -> void:
 			GameManager.jefe_derrotado = false # Apagamos el motor para el futuro
 			
 			# Viaje a la segunda escena
-			get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
+			get_tree().call_deferred("change_scene_to_file","res://Escenas/segunda_escena/segunda_escena.tscn")
 			
 		else:
 			# Si toca la nave pero todavía no mató al jefe
