@@ -262,7 +262,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xyx88")
 }],
 "loop": false,
-"name": &"attack1",
+"name": &"attack",
 "speed": 8.0
 }, {
 "frames": [{
@@ -291,7 +291,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dhkq0")
 }],
 "loop": false,
-"name": &"attack2",
+"name": &"attack1",
 "speed": 8.0
 }, {
 "frames": [{
@@ -459,9 +459,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=551396991]
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_85yvu")
-animation = &"hurt"
-frame = 3
-frame_progress = 1.0
+animation = &"attack1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595174343]
 position = Vector2(-2.4999948, 29.999989)

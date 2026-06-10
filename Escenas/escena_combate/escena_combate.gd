@@ -395,6 +395,7 @@ func turno_del_enemigo():
 
 				# play animacion attack1
 				sprite_enemigo.play("attack1")
+
 				await get_tree().create_timer(0.6).timeout
 				sprite_enemigo.play("idle")
 
@@ -436,6 +437,23 @@ func turno_del_enemigo():
 			if decision == 0:
 				dano_enemigo = GameManager.enemigo_actual_datos["Daño_fijo"]
 				print("El Jefe ataca normal por: ", dano_enemigo)
+				
+					# play animacion attack1
+				sprite_enemigo.play("attack")
+
+				await get_tree().create_timer(0.6).timeout
+				sprite_enemigo.play("idle")
+
+			elif decision == 1:
+				#escudo_enemigo_actual += 8
+				print("El enemigo débil se queda en guardia.")
+				sprite_enemigo.play("block") # play animación block
+
+				# mantiene la animacion de escudo por un instante y back a idle
+				await get_tree().create_timer(0.6).timeout
+				if barra_vida_enemigo.value > 0:
+					sprite_enemigo.play("idle")
+#-------------------------
 			elif decision == 1:
 				#escudo_enemigo_actual += 25
 				print("El Jefe se queda en guardia detrás de su mega escudo.")
