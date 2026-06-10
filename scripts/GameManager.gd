@@ -145,6 +145,13 @@ func procesar_eleccion(id_evento: String, opcion: String):
 				print("Vida curada. Total: ", RunManager.run_data.vida_jugador)
 			else:
 				agregar_carta(RunManager.SET_DE_CARTAS.ESCUDO_EMERGENCIA)
+
+		"fosil_antiguo":
+			if opcion == "A":
+				activar_powerup_fosil()
+			else:
+				print("Ignoraste el evento, aburridooo!")
+
 	# si no fue la opción A de necrosis, cse cierra la ui del evento común y despausa
 	if ventana_actual:
 		ventana_actual.queue_free()
