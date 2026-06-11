@@ -19,6 +19,7 @@ var sobrecarga_activa: bool = false # Controla si la sobrecarga del fósil está
 # Mapa
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 var en_combate: bool = false
+var mimic_revelado: bool = false
 var jefe_derrotado: bool = false
 var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
 var escena_combate: Node = null #para que funcione close combate con esta var
@@ -151,41 +152,57 @@ func procesar_eleccion(id_evento: String, opcion: String):
 
 		# add evento "cofre trampa"
 		"cofre_trampa":
-			# si elige cualquier opción del evento, mostramos el diálogo intermedio
-			if opcion == "A" or opcion == "B":
-				if ventana_actual and ventana_actual.has_method("mostrar_texto_intermedio"):
-					ventana_actual.mostrar_texto_intermedio(
-						"¡Caíste en la trampa! ¡Ahora tienes que vencerme!", 
-						"Pelear", 
-						"combate_mimic"
-					)
-					return # Frena acá para que el jugador pueda leer la advertencia
+			# 1. Si es la primera vez que toca (A o B), le mostramos la trampa
+			if mimic_revelado == false:
+				if opcion == "A" or opcion == "B":
+					mimic_revelado = true # Activamos la memoria de la trampa
+					
+					if ventana_actual and ventana_actual.has_method("mostrar_texto_intermedio"):
+						ventana_actual.mostrar_texto_intermedio(
+							"¡Caíste en la trampa! ¡Ahora tienes que vencerme!", 
+							"Pelear", 
+							"combate_mimic"
+						)
+					return # Frenamos acá para que lea
+					
+			# 2. Si la trampa ya estaba revelada, CUALQUIER botón que toque inicia el combate
+			else:
+				mimic_revelado = false # Lo apagamos por si vuelve a jugar desde el menú
+				print("¡Combate trampa activado!")
+				en_combate = true
+				
+				# TRUCO NINJA---------------------------------------------------------------------------- PARA SABER QUE HICIMOS
+				# 1. Cargamos la escena de tu enemigo débil invisiblemente en memoria
+				var enemigo_temp = preload("res://Escenas/enemigo_debil/enemigo_debil.tscn").instantiate()
+				
+				# 2. Le "robamos" su archivo de animaciones
+				var animaciones_mimic = enemigo_temp.get_node("AnimatedSprite2D").sprite_frames
+				# ------------------------------------------
+				
+				# Seteamos las estadísticas del Mimic
+				enemigo_actual_datos = {
+					"nombre_en_escena": "mimic_evento", 
+					"tipo_enemigo": "debil",           
+					"vida": 40,
+					"frenesi": 15,
+					"Daño_fijo": 14,
+					"daño_poder": 20,
+					"posicion": posicion_jugador_en_mapa,
+					"sprite_frames": animaciones_mimic # <--- ACÁ PONEMOS LAS ANIMACIONES
+				}
 
-			# Cuando presiona el botón "Pelear" (que envía "combate_mimic"), ejecuta el core
-			# no importa si elige opcion A o B, el combate no se evita
-			en_combate = true
-			
-			# Seteamos las estadísticas del Mimic simulando que es un enemigo del mapa
-			enemigo_actual_datos = {
-				"nombre_en_escena": "mimic_evento", # Nombre para guardarlo como derrotado al ganar
-				"tipo_enemigo": "debil",           # Se comporta como débil para que suelte el corazón de loot
-				"vida": 40,
-				"frenesi": 15,
-				"Daño_fijo": 14,
-				"daño_poder": 20,
-				"sprite_frames": $AnimatedSprite2D.sprite_frames,
-				"posicion": posicion_jugador_en_mapa
-			}
+				# 3. Borramos el clon temporal de la memoria para no gastar recursos
+				enemigo_temp.free()
 
-			# close la ventana del evento y despausa antes del cambio de escena
-			if ventana_actual:
-				ventana_actual.queue_free()
-			get_tree().paused = false
-			
-			# Transición directa a la escena de combate sin pasar por el mapa
-			get_tree().change_scene_to_file("res://Escenas/escena_combate/escena_combate.tscn")
-			return # Frena el flujo para evitar que ejecute el código de cierre general de abajo
-# FIN EVENTO TRAMPA----------------------------------------------- 
+				# Cerramos la ventana del evento y despausamos
+				if ventana_actual:
+					ventana_actual.queue_free()
+				get_tree().paused = false
+				
+				# Viaje al combate seguro con call_deferred
+				get_tree().call_deferred("change_scene_to_file", "res://Escenas/escena_combate/escena_combate.tscn")
+				return
+# FIN EVENTO TRAMPA TRUCO NINJA---------------------------------------------------------------------------------------------------- 
 
 	# si no fue la opción A de necrosis o el texto intermedio del mimic, se cierra la ui y despausa
 	if ventana_actual:

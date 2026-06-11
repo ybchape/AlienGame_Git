@@ -102,8 +102,9 @@ func _ready() -> void:
 		sprite_enemigo.global_position = pos_combate
 
 		sprite_enemigo.play("idle")
-	elif GameManager.enemigo_actual_datos.has("texture"):
-		sprite_enemigo.texture = GameManager.enemigo_actual_datos["texture"]
+	#BORRADAS POR QUE SE ROMPE POR LAS DUDAS
+	#elif GameManager.enemigo_actual_datos.has("texture"):
+	#	sprite_enemigo.texture = GameManager.enemigo_actual_datos["texture"]
 
 	barra_vida_enemigo.max_value = GameManager.enemigo_actual_datos["vida"]
 	barra_vida_enemigo.value = GameManager.enemigo_actual_datos["vida"]
