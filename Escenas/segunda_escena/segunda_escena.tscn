@@ -453,7 +453,6 @@ script = ExtResource("8_y7pfq")
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("9_rnhka")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=833579615]
-visible = false
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1498860350]
