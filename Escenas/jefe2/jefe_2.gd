@@ -30,7 +30,7 @@ func _preparar_combate():
 		"tipo_enemigo": "jefe2",
 		"vida": vida_maxima, 
 		"reduccion_frenesi": reduccion_frenesi,
-		"Daño_fijo": 20,          # El golpe básico del jefe
+		"Daño_fijo": 16,          # El golpe básico del jefe
 		"daño_especial": 14,      # El golpe devastador del jefe
 		"sprite_frames":$AnimatedSprite2D.sprite_frames, 
 		"posicion": global_position 

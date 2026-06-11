@@ -18,9 +18,20 @@ func configurar(datos: RecursoCarta):
 	datos_carta = datos 
 	# Escribimos el título y el coste
 	label_nombre.text = str(datos.tipo)
-	label_coste.text = str(datos.coste)
+	
+	# LÓGICA DE FRENESÍ VISUAL 
+	if GameManager.esta_en_descontrol and datos.tipo == "Ataque":
+		label_coste.text = "0"
+		label_coste.add_theme_color_override("font_color", Color.GREEN_YELLOW)
+	else:
+		label_coste.text = str(datos.coste)
+		label_coste.remove_theme_color_override("font_color")
+	
+	#ESTO HAY QUE BORRAR SI ANDA-----------------
+	#label_coste.text = str(datos.coste)
 	#label_nombre.text = str(datos["tipo"])
 	#label_coste.text = str(datos["coste"])
+	#--------------------------------------------------
 	
 	#cargamos la desripccion
 	if datos.descripcion != null:
