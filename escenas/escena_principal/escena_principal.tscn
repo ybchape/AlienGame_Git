@@ -578,11 +578,11 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_afc6g")
 sources/1 = SubResource("TileSetAtlasSource_sqmix")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_227ys"]
+size = Vector2(5.5, 49.5)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qqym4"]
 bg_color = Color(0, 0.18039216, 0.6, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_227ys"]
-size = Vector2(1, 49.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_divhv"]
 size = Vector2(47.496788, 47.499695)
@@ -658,6 +658,10 @@ position = Vector2(832, 239.99998)
 [node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=1607368006]
 script = ExtResource("18_qqym4")
 
+[node name="colicionareas" type="CollisionShape2D" parent="StaticBody2D/Area2D" unique_id=1311918362]
+position = Vector2(267.75, 567)
+shape = SubResource("RectangleShape2D_227ys")
+
 [node name="Panel" type="Panel" parent="StaticBody2D/Area2D" unique_id=1477507694]
 texture_filter = 1
 offset_left = 222.0
@@ -677,10 +681,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 12
 text = "No se puede pasar por aca!"
 autowrap_mode = 2
-
-[node name="colicionareas" type="CollisionShape2D" parent="StaticBody2D/Area2D" unique_id=1311918362]
-position = Vector2(270, 567)
-shape = SubResource("RectangleShape2D_227ys")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=29064988]
 position = Vector2(296, 568.00006)
