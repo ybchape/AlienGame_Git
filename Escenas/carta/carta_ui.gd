@@ -61,11 +61,23 @@ func _gui_input(event: InputEvent) -> void:
 			# SOLTAR EL CLIC
 			arrastrando = false
 			z_index = 0
-
-			if global_position.y < 200:
-				get_parent().get_parent()._jugar_carta(self, datos_carta)
+				
+			# --- NUEVA COMPROBACIÓN DE SEGURIDAD ---
+			# Preguntamos si la escena "abuela" tiene la función de combate
+			if get_parent().get_parent().has_method("_jugar_carta"):
+				if global_position.y < 200:
+					get_parent().get_parent()._jugar_carta(self, datos_carta)
+				else:
+					volver_a_mano()
 			else:
+				# Si estamos en un evento (no hay combate), simplemente la devolvemos a su lugar
+				# para que no quede flotando si el jugador la intentó arrastrar por error.
 				volver_a_mano()
+			
+			#if global_position.y < 200:
+			#	get_parent().get_parent()._jugar_carta(self, datos_carta)
+			#else:
+			#	volver_a_mano()
 
 	if event is InputEventMouseMotion and arrastrando:
 		global_position = get_global_mouse_position() + mouse_offset

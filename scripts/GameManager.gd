@@ -19,6 +19,7 @@ var sobrecarga_activa: bool = false # Controla si la sobrecarga del fósil está
 # Mapa
 var posicion_jugador_en_mapa = Vector2.ZERO # Para recordar dónde estábamos
 var en_combate: bool = false
+var mimic_revelado: bool = false
 var jefe_derrotado: bool = false
 var corazon_escena = preload("res://Escenas/loot_enemigo_debil/heart_loot.tscn")
 var escena_combate: Node = null #para que funcione close combate con esta var
@@ -58,7 +59,7 @@ var eventos_disponibles = [
 	{
 		"id": "fosil_antiguo",
 		"titulo": "Fósil Antiguo",
-		"descripcion": "lore para esto",
+		"descripcion": "Encontraste un fosil ¡Descubre que te ofrece!",
 		"opcion_a": "Sobrecarga Motriz (+20% velocidad al caminar / Añade carta 'Interferencia')",
 		"opcion_b": "Ignorar"
 	},
@@ -128,7 +129,9 @@ func procesar_eleccion(id_evento: String, opcion: String):
 
 		"fosil_antiguo":
 			if opcion == "A":
-				activar_powerup_fosil()
+				if ventana_actual:
+					activar_powerup_fosil(ventana_actual)
+					return
 			else:
 				print("Ignoraste el evento, aburridooo!")
 		# evento que otorga +2 de daño permanente
@@ -151,41 +154,57 @@ func procesar_eleccion(id_evento: String, opcion: String):
 
 		# add evento "cofre trampa"
 		"cofre_trampa":
-			# si elige cualquier opción del evento, mostramos el diálogo intermedio
-			if opcion == "A" or opcion == "B":
-				if ventana_actual and ventana_actual.has_method("mostrar_texto_intermedio"):
-					ventana_actual.mostrar_texto_intermedio(
-						"¡Caíste en la trampa! ¡Ahora tienes que vencerme!", 
-						"Pelear", 
-						"combate_mimic"
-					)
-					return # Frena acá para que el jugador pueda leer la advertencia
+			# 1. Si es la primera vez que toca (A o B), le mostramos la trampa
+			if mimic_revelado == false:
+				if opcion == "A" or opcion == "B":
+					mimic_revelado = true # Activamos la memoria de la trampa
+					
+					if ventana_actual and ventana_actual.has_method("mostrar_texto_intermedio"):
+						ventana_actual.mostrar_texto_intermedio(
+							"¡Caíste en la trampa! ¡Ahora tienes que vencerme!", 
+							"Pelear", 
+							"combate_mimic"
+						)
+					return # Frenamos acá para que lea
+					
+			# 2. Si la trampa ya estaba revelada, CUALQUIER botón que toque inicia el combate
+			else:
+				mimic_revelado = false # Lo apagamos por si vuelve a jugar desde el menú
+				print("¡Combate trampa activado!")
+				en_combate = true
+				
+				# TRUCO NINJA---------------------------------------------------------------------------- PARA SABER QUE HICIMOS
+				# 1. Cargamos la escena de tu enemigo débil invisiblemente en memoria
+				var enemigo_temp = preload("res://Escenas/enemigo_debil/enemigo_debil.tscn").instantiate()
+				
+				# 2. Le "robamos" su archivo de animaciones
+				var animaciones_mimic = enemigo_temp.get_node("AnimatedSprite2D").sprite_frames
+				# ------------------------------------------
+				
+				# Seteamos las estadísticas del Mimic
+				enemigo_actual_datos = {
+					"nombre_en_escena": "mimic_evento", 
+					"tipo_enemigo": "debil",           
+					"vida": 40,
+					"frenesi": 15,
+					"Daño_fijo": 14,
+					"daño_poder": 20,
+					"posicion": posicion_jugador_en_mapa,
+					"sprite_frames": animaciones_mimic # <--- ACÁ PONEMOS LAS ANIMACIONES
+				}
 
-			# Cuando presiona el botón "Pelear" (que envía "combate_mimic"), ejecuta el core
-			# no importa si elige opcion A o B, el combate no se evita
-			en_combate = true
-			
-			# Seteamos las estadísticas del Mimic simulando que es un enemigo del mapa
-			enemigo_actual_datos = {
-				"nombre_en_escena": "mimic_evento", # Nombre para guardarlo como derrotado al ganar
-				"tipo_enemigo": "debil",           # Se comporta como débil para que suelte el corazón de loot
-				"vida": 40,
-				"frenesi": 15,
-				"Daño_fijo": 14,
-				"daño_poder": 20,
-				"sprite_frames": $AnimatedSprite2D.sprite_frames,
-				"posicion": posicion_jugador_en_mapa
-			}
+				# 3. Borramos el clon temporal de la memoria para no gastar recursos
+				enemigo_temp.free()
 
-			# close la ventana del evento y despausa antes del cambio de escena
-			if ventana_actual:
-				ventana_actual.queue_free()
-			get_tree().paused = false
-			
-			# Transición directa a la escena de combate sin pasar por el mapa
-			get_tree().change_scene_to_file("res://Escenas/escena_combate/escena_combate.tscn")
-			return # Frena el flujo para evitar que ejecute el código de cierre general de abajo
-# FIN EVENTO TRAMPA----------------------------------------------- 
+				# Cerramos la ventana del evento y despausamos
+				if ventana_actual:
+					ventana_actual.queue_free()
+				get_tree().paused = false
+				
+				# Viaje al combate seguro con call_deferred
+				get_tree().call_deferred("change_scene_to_file", "res://Escenas/escena_combate/escena_combate.tscn")
+				return
+# FIN EVENTO TRAMPA TRUCO NINJA---------------------------------------------------------------------------------------------------- 
 
 	# si no fue la opción A de necrosis o el texto intermedio del mimic, se cierra la ui y despausa
 	if ventana_actual:
@@ -197,55 +216,65 @@ func procesar_eleccion(id_evento: String, opcion: String):
 		ventana_actual.queue_free()
 	get_tree().paused = false
 
-func activar_powerup_fosil():
+func activar_powerup_fosil(interfaz_existente: CanvasLayer):
+	var recurso_carta = RunManager.SET_DE_CARTAS.INTERFERENCIA
+	
+	if not recurso_carta:
+		print("ERROR: No se encontró la carta INTERFERENCIA.")
+		interfaz_existente.queue_free()
+		get_tree().paused = false
+		return
+		
+	# 1. Preparamos la interfaz (igual que en necrosis)
+	var interfaz = interfaz_existente
+	interfaz.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Cambiamos los textos de la ventana
+	interfaz.get_node("Titulo").text = "SOBRECARGA MOTRIZ"
+	interfaz.get_node("Descripcion").text = "HAZ CLIC EN LA CARTA PARA AÑADIRLA A TU MAZO"
+	
+	# Ocultamos los botones A y B
+	interfaz.get_node("VBoxContainer/BotonA").hide()
+	interfaz.get_node("VBoxContainer/BotonB").hide()
+	
+	# 2. Instanciamos la carta interactiva
+	var panel_base = interfaz.get_node("Panel")
+	var escena_carta_ui = load("res://Escenas/carta/carta_ui.tscn")
+	
+	if escena_carta_ui:
+		var instancia_carta = escena_carta_ui.instantiate()
+		instancia_carta.process_mode = Node.PROCESS_MODE_ALWAYS
+		panel_base.add_child(instancia_carta)
+		
+		# Le pasamos los datos de Interferencia
+		instancia_carta.configurar(recurso_carta)
+		instancia_carta.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		
+		# Centramos la carta en el medio del panel gris
+		# (Ajustá el 200 y 280 si el tamaño de tus cartas es diferente)
+		var tamano_carta = Vector2(200, 280) 
+		var offset_hacia_abajo = Vector2(0, 100)
+		instancia_carta.position = (panel_base.size / 2) - (tamano_carta / 2 - offset_hacia_abajo)
+		
+		# 3. Conectamos el clic para confirmar y cerrar
+		instancia_carta.pressed.connect(func():
+			_confirmar_carta_fosil(recurso_carta, interfaz)
+		)
+
+# Func que ejecuta la recompensa cuando haces clic en la carta del Fósil
+func _confirmar_carta_fosil(carta_a_agregar: RecursoCarta, nodo_ui: CanvasLayer):
+	# 1. Aplicamos el buff de velocidad
 	print("¡Sobrecarga Motriz activada! Velocidad +20%")
 	modificador_velocidad = 1.2
 	sobrecarga_activa = true
 	
-	# carga el recurso .tres 
-	if has_node("/root/RunManager"):
-		var run_manager = get_node("/root/RunManager")
-		if "run_data" in run_manager and "mazo_actual" in run_manager.run_data:
-
-			var recurso_maldicion = load("res://recursos/cartas/analisis_bioma.tres")
-			
-			if recurso_maldicion:
-				run_manager.run_data.mazo_actual.append(recurso_maldicion)
-				print("Recurso de 'Interferencia' añadido con éxito al mazo.")
-			else:
-				print(" No se encontró el archivo de recurso .tres en la ruta especificada.")
-
-# muestra la carta grande mientras el player puede moverse
-	var capa_visual = CanvasLayer.new()
-	capa_visual.name = "BannerMaldicion"
-	get_tree().root.add_child(capa_visual)
+	# 2. Agregamos la carta al mazo
+	agregar_carta(carta_a_agregar)
+	print("Carta 'Interferencia' añadida con éxito.")
 	
-	var sprite_carta = TextureRect.new()
-	sprite_carta.texture = load("res://Assets/cartas/Análisis de Bioma.jpg") 
-	
-	# 1. Definimos el tamaño de la carta
-	var tamano_carta = Vector2(200, 280)
-	sprite_carta.custom_minimum_size = tamano_carta
-	sprite_carta.size = tamano_carta
-	
-	sprite_carta.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	sprite_carta.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	
-	# 2. Metemos la carta dentro de la capa visual
-	capa_visual.add_child(sprite_carta)
-	
-	# 3. Calculamos el centro usando la capa visual (que ya está en el árbol de nodos)
-	var tamano_pantalla = capa_visual.get_viewport().get_visible_rect().size
-	sprite_carta.position = (tamano_pantalla / 2) - (tamano_carta / 2)
-	
-	print(" Sprite de 'Interferencia' mostrado en el CENTRO de la pantalla.")
-	
-	# 4. Espera 2.5 segundos sin frenar el juego
-	await get_tree().create_timer(2.5).timeout
-	
-	# 5. Borramos TODA la capa (así se lleva el sprite con ella)
-	capa_visual.queue_free()
-	print("-> [GAME MANAGER] El banner de la carta desapareció. La velocidad sigue activa.")
+	# 3. Cerramos la ventana y despausamos el juego
+	nodo_ui.queue_free()
+	get_tree().paused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -401,8 +430,8 @@ func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):
 	interfaz.get_node("Titulo").text = "NECROSIS CELULAR"
 	interfaz.get_node("Descripcion").text = "ELIGE LA CARTA QUE QUIERES ELIMINAR"
 	
-	interfaz.get_node("BotonA").hide()
-	interfaz.get_node("BotonB").hide()
+	interfaz.get_node("VBoxContainer/BotonA").hide()
+	interfaz.get_node("VBoxContainer/BotonB").hide()
 
 	# usa el Panel gris de fondo para meter el scroll adentro
 	var panel_base = interfaz.get_node("Panel")

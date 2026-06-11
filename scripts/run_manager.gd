@@ -27,7 +27,7 @@ const MAZO_MAXIMO = 15
 	NIEBLA_TOXICA = preload("uid://h0gjlipiwrql"),
 	FUEGO_DE_COBERTURA = preload("uid://kfvh6v8uydks"),
 	SIMBIOSIS_PARASITARIA = preload("uid://kyjcmvt601h0"),
-	#Interferencia = preload("uid://dq45i6roi44ui"),
+	INTERFERENCIA = preload("uid://dq45i6roi44ui")
 	
 }
 
