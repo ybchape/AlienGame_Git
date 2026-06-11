@@ -605,7 +605,6 @@ script = ExtResource("8_sqmix")
 position = Vector2(433, 128.00002)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=524234211]
-visible = false
 color = Color(0.05642634, 0.061887756, 0.061887823, 1)
 
 [node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("10_o0x7m")]
