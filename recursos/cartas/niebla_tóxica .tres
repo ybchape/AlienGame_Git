@@ -9,6 +9,6 @@ name = "Niebla Tóxica "
 tipo = "Capacidad"
 "daño" = 0
 ruta = ExtResource("1_e6k8e")
-descripcion = "Aplica Debilidad al enemigo por 1 turno. Reduse a la mitad el ataque."
+descripcion = "Aplica Debilidad al enemigo por 1 turno. Reduce a la mitad el ataque."
 aplica_debilidad = 1
 metadata/_custom_type_script = "uid://b70c27dsawkxg"
