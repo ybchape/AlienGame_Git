@@ -458,9 +458,6 @@ scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_nuyka")
 one_way_collision = true
 
-[node name="CofreEvento" parent="." unique_id=1865883917 instance=ExtResource("11_d60p6")]
-position = Vector2(202, 462)
-
 [node name="CofreEvento2" parent="." unique_id=1542330296 instance=ExtResource("11_d60p6")]
 position = Vector2(231, 234)
 
@@ -496,9 +493,6 @@ position = Vector2(789, 525)
 
 [node name="CofreEvento4" parent="." unique_id=1245999957 instance=ExtResource("11_d60p6")]
 position = Vector2(471, 224)
-
-[node name="CofreEvento5" parent="." unique_id=880143004 instance=ExtResource("11_d60p6")]
-position = Vector2(1079, 478)
 
 [node name="debil10" parent="." unique_id=438156850 instance=ExtResource("4_radsq")]
 position = Vector2(638.99994, 412.99997)
