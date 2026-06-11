@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dj3akhn1x7ikj" path="res://Assets/heart_asset.png" id="2_j7o0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lc1at"]
-radius = 4.1231055
+radius = 6.0827627
 
 [node name="Heart" type="Area2D" unique_id=1310414262]
 script = ExtResource("1_gb16k")
