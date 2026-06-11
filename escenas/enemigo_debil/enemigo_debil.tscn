@@ -449,7 +449,7 @@ animations = [{
 size = Vector2(33.354664, 30.065586)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bphnh"]
-size = Vector2(140, 136)
+size = Vector2(130.99207, 105.00006)
 
 [node name="enemigo_debil" type="CharacterBody2D" unique_id=2137432433 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -469,8 +469,8 @@ shape = SubResource("RectangleShape2D_wrmih")
 [node name="Area2D" type="Area2D" parent="." unique_id=1864288977]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=152318019]
-position = Vector2(3.8743015e-06, 0)
-scale = Vector2(0.9924267, 0.9999998)
+position = Vector2(-4.999992, 27.499992)
+scale = Vector2(0.99242616, 0.99999934)
 shape = SubResource("RectangleShape2D_bphnh")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

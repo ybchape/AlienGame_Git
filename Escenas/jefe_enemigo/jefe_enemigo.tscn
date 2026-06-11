@@ -215,10 +215,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70efm"]
-size = Vector2(128, 125)
+size = Vector2(170.00002, 137.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0830a"]
-size = Vector2(37.500015, 35.00001)
+size = Vector2(42.500015, 32.50001)
 
 [node name="jefe_enemigo" type="CharacterBody2D" unique_id=1110556000 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -232,12 +232,14 @@ autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565087171]
-visible = false
+position = Vector2(5.000004, 6.2499943)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_70efm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1310191]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=210433005]
+position = Vector2(2.5000007, 7.5)
 scale = Vector2(5.999998, 5.999998)
 shape = SubResource("RectangleShape2D_0830a")
 

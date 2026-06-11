@@ -215,9 +215,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7csc1"]
+size = Vector2(170.00003, 140.00002)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cix"]
-size = Vector2(140.00002, 140.00003)
+size = Vector2(260.00018, 185.00015)
 
 [node name="jefe2" type="CharacterBody2D" unique_id=707365897 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -231,14 +232,15 @@ autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150216705]
-visible = false
+position = Vector2(5.960462e-07, 9.999992)
+scale = Vector2(0.9999995, 0.9999995)
 shape = SubResource("RectangleShape2D_7csc1")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2115339329]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=923244302]
-position = Vector2(4.768369e-06, 6.854533e-06)
-scale = Vector2(0.99999964, 0.99999964)
+position = Vector2(5.000004, 2.5000043)
+scale = Vector2(0.99999905, 0.99999905)
 shape = SubResource("RectangleShape2D_x3cix")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
