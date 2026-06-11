@@ -23,28 +23,14 @@ func configurar(data):
 
 func _on_boton_a_pressed() -> void:
 	print("[UI] Se hizo clic en el Botón A")
-
-	# verifica si el evento actual en pantalla es el del Fósil Antiguo
-	if datos_del_evento.id == "fosil_antiguo":
-		# devuelve el tiempo al juego para que el jugador se mueva al instante
-		get_tree().paused = false
-		# dispara la velocidad, el mazo y la carta flotante en el GameManager
-		GameManager.activar_powerup_fosil()
-		# cierra la ventana para limpiar la pantalla
-		queue_free()
-	else:
-		# si es otro evento (como el oxígeno o necrosis), corre la lógica comun
-		GameManager.procesar_eleccion(datos_del_evento.id, "A")
+	# Le mandamos TODA la responsabilidad al GameManager
+	GameManager.procesar_eleccion(datos_del_evento.id, "A")
+	
 
 func _on_boton_b_pressed() -> void:
 	print("Se hizo click en el Botón B")
-
-	# si se ignora el fósil, simplemente despausa y cierra
-	if datos_del_evento.id == "fosil_antiguo":
-		get_tree().paused = false
-		queue_free()
-	else:
-		GameManager.procesar_eleccion(datos_del_evento.id, "B")
+# Le mandamos TODA la responsabilidad al GameManager
+	GameManager.procesar_eleccion(datos_del_evento.id, "B")
 
 # fun para el dialogo del evento cofre trampa
 func mostrar_texto_intermedio(nuevo_texto: String, texto_boton: String, nueva_opcion_id: String):

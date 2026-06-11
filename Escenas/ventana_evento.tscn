@@ -9,7 +9,6 @@ process_mode = 3
 script = ExtResource("1_skbjx")
 
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
-modulate = Color(0.34080818, 0.80300325, 0.60218155, 1)
 offset_right = 1153.0
 offset_bottom = 649.0
 
