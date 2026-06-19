@@ -245,7 +245,7 @@ func _jugar_carta(nodo, datos):
 		
 		# APLICAR ESTADOS
 		if datos.aplica_veneno > 0:
-			enemigo_veneno_dano += datos.aplica_veneno
+			enemigo_veneno_dano = datos.aplica_veneno
 			enemigo_veneno_turnos = datos.turnos_veneno
 		if datos.aplica_debilidad > 0:
 			enemigo_debil_turnos += datos.aplica_debilidad
