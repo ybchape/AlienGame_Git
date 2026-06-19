@@ -3,8 +3,12 @@ extends CharacterBody2D
 var vida_maxima = 40
 var reduccion_frenesi = 15
 
+var jugador_objetivo: Node2D = null # Acá guardaremos al jugador cuando lo veamos
+var velocidad_persecucion: float = 20.0 # Qué tan rápido corre el enemigo
+
 const ESCENA_COMBATE = preload("uid://df0wos767uxby") #ruta de la escena con los codigos de godot raros
 
+@onready var timer_memoria = $TimerMemoria # Conectamos el reloj al script
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +24,23 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _physics_process(delta: float) -> void:
+	# Si tenemos un objetivo al cual perseguir...
+	if jugador_objetivo != null:
+		# Calculamos la dirección exacta en 360 grados hacia el jugador
+		var direccion = global_position.direction_to(jugador_objetivo.global_position)
+		
+		# Movemos al enemigo en esa dirección
+		velocity = direccion * velocidad_persecucion
+		
+		# Opcional: Para que la animación mire hacia donde camina
+		if velocity.x < 0:
+			$AnimatedSprite2D.flip_h = false # Mira a la izquierda
+		else:
+			$AnimatedSprite2D.flip_h = true # Mira a la derecha (ajustá esto según tus sprites)
+			
+		move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("ALERTA: Algo tocó el Area2D. Nombre del objeto: ", body.name)
@@ -57,3 +78,21 @@ func _otorgar_recompensa():
 	else:
 		#llamar a la funcion global de la mejora de pala
 		print("mejor pala")
+
+func _on_zona_deteccion_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	# Si te ve, te fija como objetivo
+	if body.name == "player" or body.is_in_group("player"):
+		jugador_objetivo = body
+		# Si volvió a entrar a tu zona, cancelamos el reloj de rendirse
+		timer_memoria.stop()
+
+
+func _on_zona_deteccion_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	# Si el jugador se sale de la zona, NO lo borramos todavía. ¡Arrancamos el reloj!
+	if body == jugador_objetivo:
+		timer_memoria.start()
+
+func _on_timer_memoria_timeout() -> void:
+# Pasaron los 2 segundos y no te volvió a ver. Ahora sí se rinde.
+	jugador_objetivo = null
+	velocity = Vector2.ZERO

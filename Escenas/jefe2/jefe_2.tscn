@@ -129,7 +129,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_peei4")
 }],
-"loop": true,
+"loop": 1,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -149,7 +149,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3elr7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"block",
 "speed": 8.0
 }, {
@@ -169,7 +169,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_286nf")
 }],
-"loop": false,
+"loop": 0,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -189,7 +189,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qgbim")
 }],
-"loop": true,
+"loop": 1,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -209,7 +209,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jn2d2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 8.0
 }]
@@ -219,6 +219,9 @@ size = Vector2(170.00003, 140.00002)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cix"]
 size = Vector2(260.00018, 185.00015)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7csc1"]
+radius = 260.04803
 
 [node name="jefe2" type="CharacterBody2D" unique_id=707365897 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -243,4 +246,17 @@ position = Vector2(5.000004, 2.5000043)
 scale = Vector2(0.99999905, 0.99999905)
 shape = SubResource("RectangleShape2D_x3cix")
 
+[node name="ZonaDeteccion" type="Area2D" parent="." unique_id=1166410614]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteccion" unique_id=515767295]
+position = Vector2(0, 1.9073486e-06)
+shape = SubResource("CircleShape2D_7csc1")
+
+[node name="TimerMemoria" type="Timer" parent="." unique_id=644152123]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_entered"]
+[connection signal="body_exited" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_exited"]
+[connection signal="timeout" from="TimerMemoria" to="." method="_on_timer_memoria_timeout"]
