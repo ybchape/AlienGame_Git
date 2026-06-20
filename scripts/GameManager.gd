@@ -32,6 +32,7 @@ var combates_con_persistencia: int = 0 # Evento 5 (Sangre Hirviente)
 var bonus_revelar_eventos: bool = false # Evento 6 (Satélite A)
 var sobrecarga_robo_primer_turno: bool = false # Evento 6 (Satélite B)
 var barajar_al_final_del_turno: bool = false # Evento 7 (Fisión)
+var camino_corto_desbloqueado: bool = false
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
@@ -413,6 +414,17 @@ func finalizar_combate(victoria: bool):
 		else:
 			print("Combate ganado contra el Jefe: ¡No se lootea corazón!")
 			
+		if victoria:
+	# marca enemigo como derrotado
+			enemigos_derrotados.append(
+				enemigo_actual_datos["nombre_en_escena"]
+			)
+	
+			# --- TRUCO CAMINO CORTO ---
+			# Si el enemigo derrotado era el jefe, abrimos el pasillo para los próximos loops
+			if enemigo_actual_datos.get("tipo_enemigo") == "jefe":
+				camino_corto_desbloqueado = true
+				print("[MAPA] ¡Jefe derrotado! Pasillo de escombros liberado para siempre.")
 
 
 # func para el evento de necrosis
