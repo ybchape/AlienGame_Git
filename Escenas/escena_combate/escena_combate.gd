@@ -12,13 +12,14 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var label_escudo_enemigo = $LabelEscudoEnemigo
 @onready var label_intencion = $LabelIntencion
 @onready var label_veneno_enemigo = $LabelVenenoEnemigo
+@onready var boton_terminar = $"Terminar turno"
 
 #vida referencia
 @onready var label_vida_jugador = $BarraVidaJugador/LabelVidaJugador
 @onready var label_vida_enemigo = $BarraVidaEnemigo/LabelVidaEnemigo
 
 #Pantalla de victoria/derrota
-@onready var panel_final = $CapaFinal/Panel # Asegurate que la ruta sea correcta
+@onready var panel_final = $CapaFinal/Panel 
 @onready var label_resultado = $CapaFinal/Panel/Label
 @onready var boton_final = $CapaFinal/Panel/Continuar
 
@@ -295,6 +296,7 @@ func _manejar_animacion_daño(murio: bool):
 
 func terminar_turno():
 	es_turno_jugador = false # Cerramos el candado del boton
+	boton_terminar.disabled = true
 	# 1. Las cartas que sobraron en la mano van al descarte
 	for carta in mano_visual.get_children():
 		mazo_descarte.append(carta.datos_carta)
@@ -632,6 +634,7 @@ func iniciar_nuevo_turno_jugador():
 		return # Crucial: sale de la función para no darte cartas ni energía
 	
 	es_turno_jugador = true # Abrimos el candado
+	boton_terminar.disabled = false
 	
 	# riesgo del frenesi (pierdo vida)
 	if GameManager.esta_en_descontrol:

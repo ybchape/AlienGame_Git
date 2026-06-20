@@ -449,7 +449,7 @@ animations = [{
 size = Vector2(30.000021, 50.00004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nt61"]
-size = Vector2(120.00007, 105.00008)
+size = Vector2(95.00007, 70.00006)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyw10"]
 radius = 220.0568
@@ -471,8 +471,8 @@ shape = SubResource("RectangleShape2D_qpnuk")
 [node name="Area2D" type="Area2D" parent="." unique_id=2028798194]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=868230697]
-position = Vector2(-5.0000014, 27.499994)
-scale = Vector2(0.9999992, 0.9999992)
+position = Vector2(-2.4999964, 24.999996)
+scale = Vector2(0.9999989, 0.9999989)
 shape = SubResource("RectangleShape2D_2nt61")
 
 [node name="ZonaDeteccion" type="Area2D" parent="." unique_id=1579611448]
