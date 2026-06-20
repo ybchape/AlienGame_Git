@@ -215,7 +215,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7csc1"]
-size = Vector2(30.000021, 140.00002)
+size = Vector2(25.000023, 45.00004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3cix"]
 size = Vector2(235.00023, 170.00018)
@@ -235,8 +235,8 @@ autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1150216705]
-position = Vector2(-4.9999986, 9.999985)
-scale = Vector2(0.9999992, 0.9999992)
+position = Vector2(-2.4999993, 22.499996)
+scale = Vector2(0.99999905, 0.99999905)
 shape = SubResource("RectangleShape2D_7csc1")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2115339329]
@@ -247,7 +247,6 @@ scale = Vector2(0.99999875, 0.99999875)
 shape = SubResource("RectangleShape2D_x3cix")
 
 [node name="ZonaDeteccion" type="Area2D" parent="." unique_id=1166410614]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteccion" unique_id=515767295]
 position = Vector2(0, 1.9073486e-06)

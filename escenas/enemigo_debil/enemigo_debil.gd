@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 		
 		# Opcional: Para que la animación mire hacia donde camina
 		if velocity.x < 0:
-			$AnimatedSprite2D.flip_h = false # Mira a la izquierda
+			$AnimatedSprite2D.flip_h = true # Mira a la izquierda
 		else:
-			$AnimatedSprite2D.flip_h = true # Mira a la derecha (ajustá esto según tus sprites)
+			$AnimatedSprite2D.flip_h = false # Mira a la derecha (ajustá esto según tus sprites)
 			
 		move_and_slide()
 
