@@ -446,7 +446,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpnuk"]
-size = Vector2(75.00004, 74.999985)
+size = Vector2(30.000021, 50.00004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2nt61"]
 size = Vector2(120.00007, 105.00008)
@@ -464,8 +464,8 @@ sprite_frames = SubResource("SpriteFrames_j5e8a")
 animation = &"block"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1490993897]
-position = Vector2(-2.500002, 27.499964)
-scale = Vector2(0.99999934, 0.99999934)
+position = Vector2(1.1920922e-06, 24.999996)
+scale = Vector2(0.99999905, 0.99999905)
 shape = SubResource("RectangleShape2D_qpnuk")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2028798194]

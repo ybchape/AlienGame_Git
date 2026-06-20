@@ -301,7 +301,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irkvx"]
-size = Vector2(130.00003, 130)
+size = Vector2(35.000015, 65.000046)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vj3o"]
 size = Vector2(140.00003, 140)
@@ -319,8 +319,8 @@ sprite_frames = SubResource("SpriteFrames_yie6e")
 animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1404662148]
-position = Vector2(-2.3841853e-06, -7.1525537e-06)
-scale = Vector2(0.9999997, 0.9999997)
+position = Vector2(2.499998, 2.4999998)
+scale = Vector2(0.9999992, 0.9999992)
 shape = SubResource("RectangleShape2D_irkvx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=785608758]
