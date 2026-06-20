@@ -20,7 +20,7 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 
 #Pantalla de victoria/derrota
 @onready var panel_final = $CapaFinal/Panel 
-@onready var label_resultado = $CapaFinal/Panel/Label
+@onready var label_resultado =  $CapaFinal/Panel/NinePatchRect/Label
 @onready var boton_final = $CapaFinal/Panel/Continuar
 
 #NODOS PARA RECOMPENZA
@@ -671,6 +671,16 @@ func mostrar_resultado(gano: bool):
 	RunManager.run_data.penalizacion_escudo = 0
 	RunManager.run_data.bonus_doble_dano = false
 	victoria = gano
+	
+	if gano == false:
+		# Hacemos una pausa de 1 segundo para que veas que tu barra llegó a 0
+		await get_tree().create_timer(1.0).timeout
+		
+		GameManager.en_combate = false
+		GameManager.morir_definitivamente()
+		return
+	
+	
 	panel_final.visible = true
 	btn_carta_1.visible = false 
 	btn_carta_2.visible = false 
@@ -698,7 +708,7 @@ func mostrar_resultado(gano: bool):
 		elif tipo_enemigo == "jefe":
 			GameManager.jefe_derrotado = true # <--- LE AVISAMOS A LA NAVE
 			
-			label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa y dirígete a la NAVE DEL INICIO."
+			label_resultado.text = "¡AMENAZA ELIMINADA! \n Dirígete a la NAVE DEL INICIO."
 			boton_final.visible = false 
 			btn_carta_1.visible = true  
 			btn_carta_2.visible = false 
@@ -718,7 +728,7 @@ func mostrar_resultado(gano: bool):
 			
 		# --- SI ES EL JEFE 2 (Ganas el juego entero) ---
 		elif tipo_enemigo == "jefe2":
-			label_resultado.text = "¡VICTORIA TOTAL! \n Has erradicado la amenaza del planeta."
+			label_resultado.text = "¡VICTORIA TOTAL! "
 			#boton_final.text = "Ver Final"
 			#boton_final.visible = true # Mostramos el botón directo para salir
 			#btn_carta_1.visible = false # No hay recompensa, es el fin
@@ -764,9 +774,10 @@ func mostrar_resultado(gano: bool):
 			visual_carta_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			visual_carta_2.position = Vector2.ZERO
 			
-	else:
-		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
-		boton_final.text = "Reintentar desde el Inicio"
+	
+		
+		#label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
+		#boton_final.text = "Reintentar"
 
 	actualizar_ui()
 

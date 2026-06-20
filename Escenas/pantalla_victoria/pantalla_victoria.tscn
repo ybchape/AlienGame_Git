@@ -2,7 +2,12 @@
 
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_7gnli"]
 [ext_resource type="Script" uid="uid://c1h1xuliebhds" path="res://Escenas/pantalla_victoria/pantalla_victoria.gd" id="1_fecl1"]
+[ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="3_hewyk"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_pp22j"]
+[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="3_xsgt7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hewyk"]
+texture = ExtResource("3_xsgt7")
 
 [node name="pantalla_victoria" type="Control" unique_id=936956785]
 layout_mode = 3
@@ -11,10 +16,10 @@ theme = ExtResource("1_7gnli")
 script = ExtResource("1_fecl1")
 
 [node name="Panel" type="Panel" parent="." unique_id=27745954]
-modulate = Color(0.34117648, 0.8039216, 0.6039216, 1)
 layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hewyk")
 
 [node name="Button" type="Button" parent="." unique_id=1729594336]
 layout_mode = 0
@@ -25,15 +30,30 @@ offset_bottom = 558.0
 theme_override_font_sizes/font_size = 40
 text = "Volver a jugar"
 
-[node name="Victoria" type="Label" parent="." unique_id=724089649]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1175236480]
 layout_mode = 0
-offset_left = 439.0
-offset_top = 151.0
-offset_right = 690.0
-offset_bottom = 272.0
+offset_left = 262.0
+offset_top = 69.0
+offset_right = 922.0
+offset_bottom = 293.0
+texture = ExtResource("3_hewyk")
+patch_margin_left = 4
+patch_margin_top = 7
+patch_margin_right = 4
+patch_margin_bottom = 7
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Victoria" type="Label" parent="NinePatchRect" unique_id=724089649]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 33.0
+offset_right = 638.0
+offset_bottom = 224.0
 theme_override_fonts/font = ExtResource("3_pp22j")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 163
 text = "GANASTE"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
