@@ -21,6 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+ 
 func _physics_process(delta: float) -> void:
 	# Si tenemos un objetivo al cual perseguir...
 	if jugador_objetivo != null:

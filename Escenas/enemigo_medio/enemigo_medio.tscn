@@ -307,7 +307,7 @@ size = Vector2(40.00003, 65.00007)
 size = Vector2(139.39444, 125.0003)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hut13"]
-radius = 230.05432
+radius = 249.99997
 
 [node name="enemigo_medio" type="CharacterBody2D" unique_id=1338420025 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)

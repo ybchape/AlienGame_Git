@@ -79,20 +79,21 @@ func _otorgar_recompensa():
 		#llamar a la funcion global de la mejora de pala
 		print("mejor pala")
 
-func _on_zona_deteccion_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	# Si te ve, te fija como objetivo
+func _on_timer_memoria_timeout() -> void:
+# Pasaron los 2 segundos y no te volvió a ver. Ahora sí se rinde.
+	jugador_objetivo = null
+	velocity = Vector2.ZERO
+
+
+func _on_zona_deteccion_body_entered(body: Node2D) -> void:
+		# Si te ve, te fija como objetivo
 	if body.name == "player" or body.is_in_group("player"):
 		jugador_objetivo = body
 		# Si volvió a entrar a tu zona, cancelamos el reloj de rendirse
 		timer_memoria.stop()
 
 
-func _on_zona_deteccion_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_zona_deteccion_body_exited(body: Node2D) -> void:
 	# Si el jugador se sale de la zona, NO lo borramos todavía. ¡Arrancamos el reloj!
 	if body == jugador_objetivo:
 		timer_memoria.start()
-
-func _on_timer_memoria_timeout() -> void:
-# Pasaron los 2 segundos y no te volvió a ver. Ahora sí se rinde.
-	jugador_objetivo = null
-	velocity = Vector2.ZERO

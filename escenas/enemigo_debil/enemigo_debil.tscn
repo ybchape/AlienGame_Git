@@ -487,6 +487,6 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_shape_entered" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_shape_entered"]
-[connection signal="body_shape_exited" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_shape_exited"]
+[connection signal="body_entered" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_entered"]
+[connection signal="body_exited" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_exited"]
 [connection signal="timeout" from="TimerMemoria" to="." method="_on_timer_memoria_timeout"]
