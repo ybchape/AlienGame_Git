@@ -21,6 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+ 
 func _physics_process(delta: float) -> void:
 	# Si tenemos un objetivo al cual perseguir...
 	if jugador_objetivo != null:
@@ -32,9 +33,9 @@ func _physics_process(delta: float) -> void:
 		
 		# Opcional: Para que la animación mire hacia donde camina
 		if velocity.x < 0:
-			$AnimatedSprite2D.flip_h = false # Mira a la izquierda
+			$AnimatedSprite2D.flip_h = true # Mira a la izquierda
 		else:
-			$AnimatedSprite2D.flip_h = true # Mira a la derecha (ajustá esto según tus sprites)
+			$AnimatedSprite2D.flip_h = false # Mira a la derecha (ajustá esto según tus sprites)
 			
 		move_and_slide()
 

@@ -375,7 +375,8 @@ func morir_definitivamente():
 	
 	
 	# 3. Recargamos la escena GameOver (Volvés a aparecer en el inicio)
-	get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+	PantallaDeTransicion.cambiar_escena("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+	#get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]

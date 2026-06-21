@@ -12,14 +12,15 @@ var molde_carta = preload("res://Escenas/carta/carta_ui.tscn")
 @onready var label_escudo_enemigo = $LabelEscudoEnemigo
 @onready var label_intencion = $LabelIntencion
 @onready var label_veneno_enemigo = $LabelVenenoEnemigo
+@onready var boton_terminar = $"Terminar turno"
 
 #vida referencia
 @onready var label_vida_jugador = $BarraVidaJugador/LabelVidaJugador
 @onready var label_vida_enemigo = $BarraVidaEnemigo/LabelVidaEnemigo
 
 #Pantalla de victoria/derrota
-@onready var panel_final = $CapaFinal/Panel # Asegurate que la ruta sea correcta
-@onready var label_resultado = $CapaFinal/Panel/Label
+@onready var panel_final = $CapaFinal/Panel 
+@onready var label_resultado =  $CapaFinal/Panel/NinePatchRect/Label
 @onready var boton_final = $CapaFinal/Panel/Continuar
 
 #NODOS PARA RECOMPENZA
@@ -295,6 +296,7 @@ func _manejar_animacion_daño(murio: bool):
 
 func terminar_turno():
 	es_turno_jugador = false # Cerramos el candado del boton
+	boton_terminar.disabled = true
 	# 1. Las cartas que sobraron en la mano van al descarte
 	for carta in mano_visual.get_children():
 		mazo_descarte.append(carta.datos_carta)
@@ -632,6 +634,7 @@ func iniciar_nuevo_turno_jugador():
 		return # Crucial: sale de la función para no darte cartas ni energía
 	
 	es_turno_jugador = true # Abrimos el candado
+	boton_terminar.disabled = false
 	
 	# riesgo del frenesi (pierdo vida)
 	if GameManager.esta_en_descontrol:
@@ -668,6 +671,16 @@ func mostrar_resultado(gano: bool):
 	RunManager.run_data.penalizacion_escudo = 0
 	RunManager.run_data.bonus_doble_dano = false
 	victoria = gano
+	
+	if gano == false:
+		# Hacemos una pausa de 1 segundo para que veas que tu barra llegó a 0
+		await get_tree().create_timer(1.0).timeout
+		
+		GameManager.en_combate = false
+		GameManager.morir_definitivamente()
+		return
+	
+	
 	panel_final.visible = true
 	btn_carta_1.visible = false 
 	btn_carta_2.visible = false 
@@ -695,7 +708,7 @@ func mostrar_resultado(gano: bool):
 		elif tipo_enemigo == "jefe":
 			GameManager.jefe_derrotado = true # <--- LE AVISAMOS A LA NAVE
 			
-			label_resultado.text = "¡AMENAZA ELIMINADA! \n Reclama tu recompensa y dirígete a la NAVE DEL INICIO."
+			label_resultado.text = "¡AMENAZA ELIMINADA! \n Dirígete a la NAVE DEL INICIO."
 			boton_final.visible = false 
 			btn_carta_1.visible = true  
 			btn_carta_2.visible = false 
@@ -715,7 +728,7 @@ func mostrar_resultado(gano: bool):
 			
 		# --- SI ES EL JEFE 2 (Ganas el juego entero) ---
 		elif tipo_enemigo == "jefe2":
-			label_resultado.text = "¡VICTORIA TOTAL! \n Has erradicado la amenaza del planeta."
+			label_resultado.text = "¡VICTORIA TOTAL! "
 			#boton_final.text = "Ver Final"
 			#boton_final.visible = true # Mostramos el botón directo para salir
 			#btn_carta_1.visible = false # No hay recompensa, es el fin
@@ -724,7 +737,8 @@ func mostrar_resultado(gano: bool):
 			RunManager.inicializar_run()
 			GameManager.enemigos_derrotados.clear()
 			GameManager.jefe_derrotado = false
-			get_tree().change_scene_to_file("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
+			PantallaDeTransicion.cambiar_escena("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
+			#get_tree().change_scene_to_file("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
 		# --- ENEMIGO MEDIO 1 y 2 ---
 		else:
 			label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
@@ -761,9 +775,10 @@ func mostrar_resultado(gano: bool):
 			visual_carta_2.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			visual_carta_2.position = Vector2.ZERO
 			
-	else:
-		label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
-		boton_final.text = "Reintentar desde el Inicio"
+	
+		
+		#label_resultado.text = "SISTEMAS CRÍTICOS... \n El enemigo te gano fracasado"
+		#boton_final.text = "Reintentar"
 
 	actualizar_ui()
 
@@ -787,7 +802,8 @@ func _on_button_final_pressed() -> void:
 			GameManager.eventos_completados.clear()
 			GameManager.jefe_derrotado = false
 			# PANTALLA DE FINAL/CRÉDITOS
-			get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+			PantallaDeTransicion.cambiar_escena("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+			#get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 			
 		# --- SI MATA A DÉBIL, MEDIO o JEFE 1 ---
 		else:
