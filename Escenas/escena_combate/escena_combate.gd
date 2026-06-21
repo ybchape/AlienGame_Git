@@ -737,7 +737,8 @@ func mostrar_resultado(gano: bool):
 			RunManager.inicializar_run()
 			GameManager.enemigos_derrotados.clear()
 			GameManager.jefe_derrotado = false
-			get_tree().change_scene_to_file("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
+			PantallaDeTransicion.cambiar_escena("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
+			#get_tree().change_scene_to_file("res://Escenas/pantalla_victoria/pantalla_victoria.tscn")
 		# --- ENEMIGO MEDIO 1 y 2 ---
 		else:
 			label_resultado.text = "¡AMENAZA ELIMINADA! \n Elige una recompensa:"
@@ -801,7 +802,8 @@ func _on_button_final_pressed() -> void:
 			GameManager.eventos_completados.clear()
 			GameManager.jefe_derrotado = false
 			# PANTALLA DE FINAL/CRÉDITOS
-			get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+			PantallaDeTransicion.cambiar_escena("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+			#get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 			
 		# --- SI MATA A DÉBIL, MEDIO o JEFE 1 ---
 		else:

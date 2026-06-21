@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 GameManager="*uid://duweayaxlsq5q"
 RunManager="*uid://c4wvjknjt5j1p"
+PantallaDeTransicion="*uid://ud5ft5kh6o2d"
 
 [display]
 
