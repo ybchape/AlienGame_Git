@@ -29,8 +29,8 @@ func _on_portal_salida_body_entered(body: Node2D) -> void:
 			GameManager.posicion_jugador_en_mapa = Vector2.ZERO # Reseteamos el spawn para el mapa 2
 			GameManager.jefe_derrotado = false # Apagamos el motor para el futuro
 			
-			# Viaje a la segunda escena
-			get_tree().call_deferred("change_scene_to_file","res://Escenas/segunda_escena/segunda_escena.tscn")
+			Transicion.viajar_a_siguiente_mapa("res://Escenas/segunda_escena/segunda_escena.tscn")
+			
 			
 		else:
 			# Si toca la nave pero todavía no mató al jefe

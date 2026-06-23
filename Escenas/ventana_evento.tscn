@@ -8,6 +8,12 @@
 process_mode = 3
 script = ExtResource("1_skbjx")
 
+[node name="FondoNegroTutorial" type="ColorRect" parent="." unique_id=958717352]
+visible = false
+offset_right = 1154.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 1)
+
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
 offset_right = 1153.0
 offset_bottom = 649.0
