@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bn0ju3p42s71u" path="res://Escenas/PantallaGameOver/pantalla_game_over.gd" id="1_oxi01"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_u0jlm"]
+[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="3_80mv6"]
+[ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="3_ksi6w"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_mi02s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+texture = ExtResource("3_80mv6")
 
 [node name="PantallaGameOver" type="Control" unique_id=457905073]
 layout_mode = 3
@@ -16,25 +21,50 @@ grow_vertical = 2
 theme = ExtResource("1_u0jlm")
 script = ExtResource("1_oxi01")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=194124353]
+[node name="Panel" type="Panel" parent="." unique_id=546529292]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.34117648, 0.15294118, 0.17254902, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=162625038]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=763153408]
 layout_mode = 0
-offset_left = 111.0
-offset_top = 82.0
-offset_right = 1061.0
-offset_bottom = 265.0
+offset_left = 180.0
+offset_top = 55.0
+offset_right = 1018.0
+offset_bottom = 354.0
+texture = ExtResource("3_ksi6w")
+patch_margin_left = 4
+patch_margin_top = 8
+patch_margin_right = 5
+patch_margin_bottom = 8
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=162625038]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 24.0
+offset_right = 785.0
+offset_bottom = 277.0
 theme_override_fonts/font = ExtResource("3_mi02s")
-theme_override_font_sizes/font_size = 47
-text = "HAS MUERTO, Malo de mierda"
+theme_override_font_sizes/font_size = 110
+text = "HAS MUERTO
+Malo de mierda"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=194124353]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Button" type="Button" parent="." unique_id=1034583121]
 layout_mode = 0

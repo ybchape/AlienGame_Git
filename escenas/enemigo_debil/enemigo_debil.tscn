@@ -261,7 +261,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xyx88")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 8.0
 }, {
@@ -290,7 +290,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dhkq0")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack1",
 "speed": 8.0
 }, {
@@ -313,7 +313,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0b4lk")
 }],
-"loop": false,
+"loop": 0,
 "name": &"block",
 "speed": 8.0
 }, {
@@ -348,7 +348,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qid1k")
 }],
-"loop": false,
+"loop": 0,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -365,7 +365,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5syym")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hurt",
 "speed": 8.0
 }, {
@@ -388,7 +388,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5fyoa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 8.0
 }, {
@@ -411,7 +411,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_itelr")
 }],
-"loop": false,
+"loop": 0,
 "name": &"jump",
 "speed": 8.0
 }, {
@@ -440,16 +440,19 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_du2jh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrmih"]
-size = Vector2(33.354664, 30.065586)
+size = Vector2(10.533054, 25.054686)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bphnh"]
-size = Vector2(130.99207, 105.00006)
+size = Vector2(95.725006, 80.00006)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
+radius = 239.99997
 
 [node name="enemigo_debil" type="CharacterBody2D" unique_id=2137432433 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -462,15 +465,28 @@ sprite_frames = SubResource("SpriteFrames_85yvu")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=595174343]
-position = Vector2(-2.4999948, 29.999989)
-scale = Vector2(2.8481767, 1.9956368)
+position = Vector2(2.980231e-07, 24.999987)
+scale = Vector2(2.8481765, 1.9956356)
 shape = SubResource("RectangleShape2D_wrmih")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1864288977]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=152318019]
-position = Vector2(-4.999992, 27.499992)
-scale = Vector2(0.99242616, 0.99999934)
+position = Vector2(-2.4999952, 24.999987)
+scale = Vector2(0.99242586, 0.99999905)
 shape = SubResource("RectangleShape2D_bphnh")
 
+[node name="ZonaDeteccion" type="Area2D" parent="." unique_id=2125353867]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaDeteccion" unique_id=279045792]
+position = Vector2(0, 24.999998)
+shape = SubResource("CircleShape2D_g4v7s")
+
+[node name="TimerMemoria" type="Timer" parent="." unique_id=882313302]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_entered"]
+[connection signal="body_exited" from="ZonaDeteccion" to="." method="_on_zona_deteccion_body_exited"]
+[connection signal="timeout" from="TimerMemoria" to="." method="_on_timer_memoria_timeout"]
