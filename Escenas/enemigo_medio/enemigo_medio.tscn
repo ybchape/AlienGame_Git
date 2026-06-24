@@ -301,13 +301,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnccb"]
-size = Vector2(85.000046, 90.00006)
+size = Vector2(40.00003, 65.00007)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkut5"]
-size = Vector2(139.39444, 125.0003)
+size = Vector2(104.54586, 120.0003)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hut13"]
-radius = 230.05432
+radius = 249.99997
 
 [node name="enemigo_medio" type="CharacterBody2D" unique_id=1338420025 groups=["enemigos"]]
 scale = Vector2(0.2, 0.2)
@@ -321,16 +321,16 @@ frame = 4
 frame_progress = 0.5726415
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=471727795]
-position = Vector2(2.499999, 8.940695e-07)
-scale = Vector2(0.99999917, 0.99999917)
+position = Vector2(1.1920922e-06, 2.500001)
+scale = Vector2(0.99999887, 0.99999887)
 shape = SubResource("RectangleShape2D_cnccb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=471071977]
 scale = Vector2(1.004347, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=862349647]
-position = Vector2(4.9783654, -2.499997)
-scale = Vector2(0.9999972, 0.9999973)
+position = Vector2(2.489182, -4.9999857)
+scale = Vector2(0.9999968, 0.99999696)
 shape = SubResource("RectangleShape2D_jkut5")
 
 [node name="ZonaDeteccion" type="Area2D" parent="." unique_id=2009387370]

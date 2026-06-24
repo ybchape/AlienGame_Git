@@ -3,10 +3,17 @@
 [ext_resource type="Script" uid="uid://b0gp7c0x78n0t" path="res://Escenas/ventana_evento.gd" id="1_skbjx"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="2_qmf0o"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="2_ys8wb"]
+[ext_resource type="AudioStream" uid="uid://ch05ikovx1mbf" path="res://Assets/sonidos/loading.wav" id="4_36jug"]
 
 [node name="VentanaEvento" type="CanvasLayer" unique_id=67165807]
 process_mode = 3
 script = ExtResource("1_skbjx")
+
+[node name="FondoNegroTutorial" type="ColorRect" parent="." unique_id=958717352]
+visible = false
+offset_right = 1154.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 1)
 
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
 offset_right = 1153.0
@@ -65,6 +72,10 @@ theme = ExtResource("2_ys8wb")
 theme_override_font_sizes/font_size = 20
 text = "Escudo (Nueva Carta)"
 autowrap_mode = 2
+
+[node name="MusicaEvento" type="AudioStreamPlayer" parent="." unique_id=1254993663]
+stream = ExtResource("4_36jug")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/BotonA" to="." method="_on_boton_a_pressed"]
 [connection signal="pressed" from="VBoxContainer/BotonB" to="." method="_on_boton_b_pressed"]

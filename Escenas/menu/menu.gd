@@ -1,9 +1,11 @@
 extends Control
 
+const SOUND_CLICK = preload("res://Assets/sonidos/start-level.wav")
+#@onready var sound_fx = $SoundFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$MusicaFondo.volume_linear = 0.4
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,6 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
+	
 # 1. IMPORTANTÍSIMO: Usamos la función de tu profe para empezar de cero
 	RunManager.inicializar_run()
 	
@@ -20,9 +23,11 @@ func _on_play_pressed() -> void:
 	GameManager.jefe_derrotado = false
 	GameManager.posicion_jugador_en_mapa = Vector2.ZERO
 	
+	
+	
 	# 3. Vamos al Mapa 1
 	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
-
+	GameManager.mostrar_tutorial_inicial()
 func _on_controles_pressed() -> void:
 	get_tree().change_scene_to_file("res://Escenas/escena_controles/escena_controles.tscn")
 

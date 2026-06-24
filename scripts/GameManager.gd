@@ -36,6 +36,7 @@ var camino_corto_desbloqueado: bool = false
 
 # ACA EMPIEZA EL CODIGO DE CORI!!!!!#
 var eventos_disponibles = [
+	
 	{
 		"id": "santuario_sangre",
 		"titulo": "Santuario de Sangre",
@@ -113,6 +114,10 @@ func procesar_eleccion(id_evento: String, opcion: String):
 	var ventana_actual = get_tree().root.find_child("VentanaEvento", true, false)
 	
 	match id_evento:
+		"tutorial_frenesi":
+			print("El jugador leyó el contexto del juego.")
+		
+				
 		"necrosis_celular":
 			if opcion == "A":
 				if ventana_actual:
@@ -280,7 +285,31 @@ func _confirmar_carta_fosil(carta_a_agregar: RecursoCarta, nodo_ui: CanvasLayer)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("consola funcionando: El juego se inició correctamente")
-	pass # Replace with function body.
+
+func mostrar_tutorial_inicial() -> void:
+	await get_tree().create_timer(0.2).timeout
+	
+	var intro_contexto = {
+		"id": "tutorial_frenesi",
+		"titulo": "¡ALERTA DE BIOCONTAMINACIÓN!",
+		"descripcion": "Sistemas del traje comprometidos. Un virus alienígena se ha filtrado en tu organismo.\n\nLa primera barra es el indicador de FRENESÍ que aumentará al explorar y mutar. Si llega al 100%, entrarás en DESCONTROL y perderás vida en el mapa poco a poco.",
+		"opcion_a": "Estabilizar traje y comenzar",
+		"opcion_b": ""
+	}
+	
+	var interfaz = load("res://Escenas/ventana_evento.tscn").instantiate()
+	get_tree().root.add_child(interfaz)
+	
+	# PRENDEMOS EL FONDO SOLO PARA ESTA OCASIÓN 
+	if interfaz.has_node("FondoNegroTutorial"):
+		interfaz.get_node("FondoNegroTutorial").show()
+	
+	interfaz.configurar(intro_contexto)
+	
+	if interfaz.has_node("VBoxContainer/BotonB"):
+		interfaz.get_node("VBoxContainer/BotonB").hide()
+		
+	get_tree().paused = true
 
 # Función para que cualquier objeto pueda alterar el frenesí
 func actualizar_frenesi(cantidad: float):
@@ -376,7 +405,8 @@ func morir_definitivamente():
 	
 	
 	# 3. Recargamos la escena GameOver (Volvés a aparecer en el inicio)
-	get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+	PantallaDeTransicion.cambiar_escena("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
+	#get_tree().change_scene_to_file("res://Escenas/PantallaGameOver/pantalla_game_over.tscn")
 
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]

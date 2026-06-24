@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://5w8nxrlhugr2" path="res://Assets/barra/barra_roja.png" id="7_43djd"]
 [ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="8_vytjj"]
 [ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="9_qcod8"]
+[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="11_vytjj"]
+[ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="12_qcod8"]
+[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="13_klpi0"]
+[ext_resource type="AudioStream" uid="uid://dx874axw4805l" path="res://Assets/sonidos/battle.wav" id="14_c5v6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vytjj"]
 atlas = ExtResource("3_43djd")
@@ -48,6 +52,9 @@ animations = [{
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ql2e5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57qmd"]
+texture = ExtResource("11_vytjj")
 
 [node name="escena_combate" type="Control" unique_id=1821735990]
 layout_mode = 3
@@ -114,7 +121,7 @@ offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="." unique_id=908103992]
+[node name="Terminar turno" type="Button" parent="." unique_id=908103992]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 198.0
@@ -240,14 +247,41 @@ offset_right = 1159.0
 offset_bottom = 668.0
 scale = Vector2(1.0125787, 1)
 theme = ExtResource("1_vytjj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_57qmd")
 
-[node name="Label" type="Label" parent="CapaFinal/Panel" unique_id=1185618341]
+[node name="NinePatchRect" type="NinePatchRect" parent="CapaFinal/Panel" unique_id=224953056]
 layout_mode = 0
-offset_left = 356.0
-offset_top = 142.0
-offset_right = 816.0
-offset_bottom = 372.0
+offset_left = 297.26083
+offset_top = 76.0
+offset_right = 856.22974
+offset_bottom = 281.0
+texture = ExtResource("12_qcod8")
+region_rect = Rect2(-0.35113907, 0.2568817, 32.566456, 31.755672)
+patch_margin_left = 5
+patch_margin_top = 7
+patch_margin_right = 5
+patch_margin_bottom = 8
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Label" type="Label" parent="CapaFinal/Panel/NinePatchRect" unique_id=1185618341]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.776398
+offset_top = 16.0
+offset_right = -17.776367
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("13_klpi0")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Continuar" type="Button" parent="CapaFinal/Panel" unique_id=1182068289]
 layout_mode = 0
@@ -261,24 +295,24 @@ text = "Continuar"
 
 [node name="ContenedorRecompensas" type="HBoxContainer" parent="CapaFinal/Panel" unique_id=95970038]
 layout_mode = 0
-offset_left = 229.11798
-offset_top = 230.0
-offset_right = 795.9875
-offset_bottom = 525.0
+offset_left = 225.16766
+offset_top = 295.0
+offset_right = 792.0372
+offset_bottom = 590.0
 
 [node name="BtnCarta1" type="Button" parent="CapaFinal/Panel" unique_id=1905507804]
 layout_mode = 0
-offset_left = 284.42233
-offset_top = 282.0
-offset_right = 454.42233
-offset_bottom = 527.0
+offset_left = 280.47202
+offset_top = 325.0
+offset_right = 450.47202
+offset_bottom = 570.0
 
 [node name="BtnCarta2" type="Button" parent="CapaFinal/Panel" unique_id=671437083]
 layout_mode = 0
-offset_left = 579.708
-offset_top = 281.0
-offset_right = 749.708
-offset_bottom = 526.0
+offset_left = 584.6459
+offset_top = 324.0
+offset_right = 754.6459
+offset_bottom = 569.0
 
 [node name="LabelVenenoEnemigo" type="Label" parent="." unique_id=48964576]
 visible = false
@@ -299,7 +333,11 @@ offset_top = -1.0
 offset_right = -38.0
 offset_bottom = 39.0
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="MusicaCombate" type="AudioStreamPlayer" parent="." unique_id=1078793499]
+stream = ExtResource("14_c5v6y")
+autoplay = true
+
+[connection signal="pressed" from="Terminar turno" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/BtnCarta1" to="." method="_on_btn_carta_1_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/BtnCarta2" to="." method="_on_btn_carta_2_pressed"]
