@@ -2,6 +2,9 @@ extends CanvasLayer
 
 var datos_del_evento
 
+func _ready() -> void:
+	$MusicaEvento.volume_linear = 0.3
+
 func configurar(data):
 	# le permite a la ventana procesar siempre
 	process_mode = Node.PROCESS_MODE_ALWAYS
