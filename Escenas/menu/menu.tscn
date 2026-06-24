@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwkcjdfj8egyg" path="res://Escenas/menu/menu.gd" id="1_t3tbb"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="2_g4iwb"]
 [ext_resource type="Texture2D" uid="uid://fema1uiwst20" path="res://Assets/Space Background_2.png" id="3_ckcxl"]
+[ext_resource type="AudioStream" uid="uid://d1ohkhe71rgjb" path="res://Assets/sonidos/menu.wav" id="5_gm05d"]
 
 [node name="Menu" type="Control" unique_id=759156516]
 layout_mode = 3
@@ -74,6 +75,10 @@ texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Salir"
+
+[node name="MusicaFondo" type="AudioStreamPlayer" parent="." unique_id=1130185748]
+stream = ExtResource("5_gm05d")
+autoplay = true
 
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Controles" to="." method="_on_controles_pressed"]

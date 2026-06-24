@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dnr1vnkdiry0g" path="res://Assets/wasd.png" id="2_03w24"]
 [ext_resource type="Texture2D" uid="uid://3q4dmjd00he2" path="res://Assets/mouse.png" id="3_hxpjq"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="5_ad60u"]
+[ext_resource type="AudioStream" uid="uid://ch05ikovx1mbf" path="res://Assets/sonidos/loading.wav" id="6_ad60u"]
 
 [node name="escena_controles" type="Control" unique_id=1467889936]
 layout_mode = 3
@@ -103,5 +104,9 @@ offset_bottom = 608.0
 theme = ExtResource("5_ad60u")
 theme_override_font_sizes/font_size = 61
 text = "Jugar"
+
+[node name="FondoMusica" type="AudioStreamPlayer" parent="." unique_id=1584760341]
+stream = ExtResource("6_ad60u")
+autoplay = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

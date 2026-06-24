@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://b3o3q0w2arqto" path="res://Escenas/escena_principal/area_2d.gd" id="18_qqym4"]
 [ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="19_iey0q"]
 [ext_resource type="Script" uid="uid://cnqls0ftenfdy" path="res://Escenas/escena_principal/nave.gd" id="20_kndw1"]
+[ext_resource type="AudioStream" uid="uid://2xon4r54vx1j" path="res://Assets/sonidos/slow-travel.wav" id="22_227ys"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -704,6 +705,10 @@ position = Vector2(82, 587)
 
 [node name="enemigo_debil3" parent="." unique_id=1707479955 instance=ExtResource("8_e307b")]
 position = Vector2(448.99997, 522.99994)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=154008]
+stream = ExtResource("22_227ys")
+autoplay = true
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_exited"]

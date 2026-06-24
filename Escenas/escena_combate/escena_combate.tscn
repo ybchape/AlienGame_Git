@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="11_vytjj"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="12_qcod8"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="13_klpi0"]
+[ext_resource type="AudioStream" uid="uid://dx874axw4805l" path="res://Assets/sonidos/battle.wav" id="14_c5v6y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vytjj"]
 atlas = ExtResource("3_43djd")
@@ -331,6 +332,10 @@ offset_left = -78.0
 offset_top = -1.0
 offset_right = -38.0
 offset_bottom = 39.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1078793499]
+stream = ExtResource("14_c5v6y")
+autoplay = true
 
 [connection signal="pressed" from="Terminar turno" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CapaFinal/Panel/Continuar" to="." method="_on_button_final_pressed"]
