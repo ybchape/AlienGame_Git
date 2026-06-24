@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://crn8opvpshj4f" path="res://Assets/asset_rock.png" id="1_sd47l"]
 [ext_resource type="Script" uid="uid://ctvc1n4lk2373" path="res://Escenas/obstaculos_escombros.gd" id="1_vi5ah"]
-[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_d6mdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nce0q"]
 size = Vector2(22, 20)
@@ -24,22 +23,3 @@ shape = SubResource("RectangleShape2D_nce0q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D" unique_id=559665943]
 position = Vector2(-4, -1)
 shape = SubResource("RectangleShape2D_vi5ah")
-
-[node name="Label" type="Label" parent="." unique_id=1861686585]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -77.5
-offset_top = -24.5
-offset_right = 77.5
-offset_bottom = 24.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_d6mdq")
-theme_override_font_sizes/font_size = 16
-text = "Camino bloqueado. 
-Derrota al boss."

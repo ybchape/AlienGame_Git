@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="19_iey0q"]
 [ext_resource type="Script" uid="uid://cnqls0ftenfdy" path="res://Escenas/escena_principal/nave.gd" id="20_kndw1"]
 [ext_resource type="PackedScene" uid="uid://cb4abyrhfa2ot" path="res://Escenas/obstaculos_escombros.tscn" id="21_qqym4"]
+[ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="22_227ys"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awcrs"]
 texture = ExtResource("1_px6n3")
@@ -667,27 +668,44 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kndw1")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(85, 592)
+position = Vector2(83, 591)
 
 [node name="enemigo_debil3" parent="." unique_id=1707479955 instance=ExtResource("8_e307b")]
 position = Vector2(448.99997, 522.99994)
 
 [node name="Escombros2" parent="." unique_id=1112711112 instance=ExtResource("21_qqym4")]
 position = Vector2(215, 532)
+mostrar_texto = false
 
 [node name="Escombros3" parent="." unique_id=1734823893 instance=ExtResource("21_qqym4")]
 position = Vector2(215, 544)
+mostrar_texto = false
 
 [node name="Escombros4" parent="." unique_id=864929766 instance=ExtResource("21_qqym4")]
 position = Vector2(215, 553)
+mostrar_texto = false
 
 [node name="Escombros5" parent="." unique_id=1418022701 instance=ExtResource("21_qqym4")]
 position = Vector2(215, 563)
+mostrar_texto = false
 
 [node name="Escombros6" parent="." unique_id=2056498352 instance=ExtResource("21_qqym4")]
 position = Vector2(216, 573)
+mostrar_texto = false
 
 [node name="Escombros" parent="." unique_id=1795874612 instance=ExtResource("21_qqym4")]
 position = Vector2(216, 583)
+
+[node name="TextoInterfazPrincipal" type="Label" parent="." unique_id=1351405704]
+visible = false
+texture_filter = 1
+offset_left = 170.0
+offset_top = 545.0
+offset_right = 297.0
+offset_bottom = 584.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("22_227ys")
+text = "Camino bloqueado. 
+Derrota al boss."
 
 [connection signal="body_entered" from="Nave/PortalSalida" to="Nave" method="_on_portal_salida_body_entered"]
