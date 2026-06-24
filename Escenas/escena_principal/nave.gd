@@ -1,9 +1,12 @@
 extends Sprite2D
 
+var deteccion_activa: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+# Esperamos medio segundo antes de activar los motores de detección
+	await get_tree().create_timer(0.5).timeout
+	deteccion_activa = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,8 +15,11 @@ func _process(delta: float) -> void:
 
 
 func _on_portal_salida_body_entered(body: Node2D) -> void:
+	# Si la escena se está cargando y todavía no pasó el medio segundo, ignoramos el toque
+	if not deteccion_activa:
+		return
 	# 1. Verificamos si el que tocó la nave es el jugador
-	if body.name == "player":
+	if body.name == "player" or body.is_in_group("player"):
 		
 		# 2. Verificamos si la llave del Jefe 1 ya fue activada
 		if GameManager.jefe_derrotado == true:
