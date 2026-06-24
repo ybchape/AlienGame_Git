@@ -7,6 +7,8 @@ func _ready() -> void:
 	$MusicaTransicion.volume_linear = 0.3
 
 func viajar_a_siguiente_mapa(ruta_siguiente_mapa: String) -> void:
+	#  Le damos play a la música justo cuando empieza la transición
+	$MusicaTransicion.play()
 	#Hacemos visible la capa y nos aseguramos de que el texto empiece oculto
 	show()
 	texto_carga.hide()
@@ -29,3 +31,4 @@ func viajar_a_siguiente_mapa(ruta_siguiente_mapa: String) -> void:
 	#Ocultamos el texto y toda la transición para poder jugar el Mapa 2
 	texto_carga.hide()
 	hide()
+	$MusicaTransicion.stop()

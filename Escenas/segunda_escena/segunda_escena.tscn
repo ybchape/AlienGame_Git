@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cxq1q2xhblhbj" path="res://Escenas/segunda_escena/area_2d.gd" id="9_radsq"]
 [ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="9_rnhka"]
 [ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="11_d60p6"]
+[ext_resource type="AudioStream" uid="uid://2xon4r54vx1j" path="res://Assets/sonidos/slow-travel.wav" id="12_d60p6"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuyka"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -529,6 +530,10 @@ position = Vector2(638.99994, 412.99997)
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("2_nuyka")]
 position = Vector2(73, 600)
+
+[node name="MusicaFondo2" type="AudioStreamPlayer" parent="." unique_id=2141571978]
+stream = ExtResource("12_d60p6")
+autoplay = true
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_exited"]
