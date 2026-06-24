@@ -65,6 +65,8 @@ var es_turno_jugador = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	$MusicaCombate.volume_linear = 0.1
 	# cuando empieza el combate, el buff de daño base arranca con el valor de +3 daño
 	buff_dano_basico_actual = RunManager.run_data.dano_permanente_eventos
 

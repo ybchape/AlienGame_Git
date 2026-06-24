@@ -3,6 +3,9 @@ extends CanvasLayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var texto_carga: Label = $TextoCarga # <-- Vinculamos el texto nuevo
 
+func _ready() -> void:
+	$MusicaTransicion.volume_linear = 0.3
+
 func viajar_a_siguiente_mapa(ruta_siguiente_mapa: String) -> void:
 	#Hacemos visible la capa y nos aseguramos de que el texto empiece oculto
 	show()

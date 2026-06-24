@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bd3pff3mpiifx" path="res://transición.gd" id="1_cq6nu"]
 [ext_resource type="Texture2D" uid="uid://dskquiyg656vh" path="res://Assets/nave_alien.png" id="2_stsmu"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_stsmu"]
+[ext_resource type="AudioStream" uid="uid://dmdg8qlgo2wbw" path="res://Assets/sonidos/start-level.wav" id="4_r5stl"]
 
 [sub_resource type="Animation" id="Animation_r5stl"]
 resource_name = "transicion_nave"
@@ -93,3 +94,6 @@ offset_bottom = 187.0
 theme_override_fonts/font = ExtResource("3_stsmu")
 theme_override_font_sizes/font_size = 45
 text = "Cargando segundo mapa..."
+
+[node name="MusicaTransicion" type="AudioStreamPlayer" parent="." unique_id=245834004]
+stream = ExtResource("4_r5stl")

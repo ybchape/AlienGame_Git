@@ -1,11 +1,11 @@
 extends Control
 
 const SOUND_CLICK = preload("res://Assets/sonidos/start-level.wav")
-@onready var sound_fx = $SoundFX
+#@onready var sound_fx = $SoundFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$MusicaFondo.volume_linear = 0.4
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

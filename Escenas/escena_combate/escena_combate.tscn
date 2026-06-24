@@ -333,7 +333,7 @@ offset_top = -1.0
 offset_right = -38.0
 offset_bottom = 39.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1078793499]
+[node name="MusicaCombate" type="AudioStreamPlayer" parent="." unique_id=1078793499]
 stream = ExtResource("14_c5v6y")
 autoplay = true
 
