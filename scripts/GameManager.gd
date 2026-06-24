@@ -410,9 +410,9 @@ func morir_definitivamente():
 
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]
+	var tipo = enemigo_actual_datos.get("tipo_enemigo", "").to_lower()
 	
 	if victoria:
-		# print temporal para ver si funciona
 		print("[DEBUG] Datos del enemigo derrotado en combate: ", enemigo_actual_datos)
 		
 		# marca enemigo como derrotado
@@ -421,37 +421,45 @@ func finalizar_combate(victoria: bool):
 		)
 
 		# logica del boss
-		# procesa si es el boss para asegurarse de guardar el desbloqueo ANTES del cambio de escena
-		var tipo = enemigo_actual_datos.get("tipo_enemigo", "").to_lower()
 		if tipo == "jefe" or tipo == "jefe_enemigo" or tipo == "boss":
 			camino_corto_desbloqueado = true
 			print("¡Jefe derrotado! Pasillo de escombros liberado para siempre.")
-		
-		# new logica de loot heart
-		# busca el tipo de enemigo "tipo_enemigo". Si NO es "jefe", loot corazón.
-		if tipo != "jefe" and tipo != "jefe_enemigo" and tipo != "boss":
-			var nuevo_corazon = corazon_escena.instantiate()
-			
-			# --- DETERMINAMOS CUÁNTO CURA SEGÚN EL ENEMIGO ---
-			if tipo == "debil" or tipo == "debil2":
-				nuevo_corazon.cantidad_curacion = 5.0 # Recompensa chica
-			elif tipo == "medio" or tipo == "medio2":
-				nuevo_corazon.cantidad_curacion = 15.0 # ¡Recompensa grande por el esfuerzo!
-			
-			# Metemos el corazón en el mapa con su curación ya asignada
-			get_tree().current_scene.add_child(nuevo_corazon)
-			nuevo_corazon.global_position = posicion_enemigo
-			
-			print("Corazón looteado. Tipo: ", tipo, " | Curación seteada en: ", nuevo_corazon.cantidad_curacion)
 		else:
-			print("Combate ganado contra el Jefe: ¡No se lootea corazón!")
+			print("Combate ganado: Se programó el loot de corazón.")
 
-	# --- CAMBIO DE ESCENA AL FINAL ---
-	# Cambiamos de mapa al final de procesar toda la lógica para que los datos viajen limpios
+	#  sceme change
 	if RunManager.run_data.loop_actual == 1:
 		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
 	elif RunManager.run_data.loop_actual == 2:
 		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
+
+	# wait loot
+	if victoria and tipo != "jefe" and tipo != "jefe_enemigo" and tipo != "boss":
+		# se frena hasta que el motor avise que cargo una escena nueva
+		await get_tree().node_added
+
+		# await para que se inicie como current_scene
+		await get_tree().process_frame
+
+		# valida que no sea null para que se instancie si o si
+		if get_tree().current_scene != null:
+			var nuevo_corazon = corazon_escena.instantiate()
+
+			# determina cuanto cra de vida segun el tipo de enemigo
+			if tipo == "debil" or tipo == "debil2":
+				nuevo_corazon.cantidad_curacion = 5.0
+			elif tipo == "medio" or tipo == "medio2":
+				nuevo_corazon.cantidad_curacion = 15.0
+
+			get_tree().current_scene.add_child(nuevo_corazon)
+			nuevo_corazon.global_position = posicion_enemigo
+
+			#prints de prueba para chequear que funcione todo ok
+			print("Corazón looteado con éxito en el mapa actual. Tipo: ", tipo)
+		else:
+			print("No se pudo instanciar el corazón porque current_scene sigue siendo null.")
+	elif victoria:
+		print("WIN contra el Jefe: ¡No se lootea corazón!")
 
 # func para el evento de necrosis
 func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):
