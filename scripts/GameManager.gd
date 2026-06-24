@@ -410,27 +410,29 @@ func morir_definitivamente():
 
 func finalizar_combate(victoria: bool):
 	var posicion_enemigo = enemigo_actual_datos["posicion"]
-	# vuelve al mapa
-	if RunManager.run_data.loop_actual == 1:
-		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
-	elif RunManager.run_data.loop_actual == 2:
-		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
-	# esperamos un frame para que cargue el mapa
-	await get_tree().create_timer(0.3).timeout
+	
 	if victoria:
+		# print temporal para ver si funciona
+		print("[DEBUG] Datos del enemigo derrotado en combate: ", enemigo_actual_datos)
+		
 		# marca enemigo como derrotado
 		enemigos_derrotados.append(
 			enemigo_actual_datos["nombre_en_escena"]
 		)
+
+		# logica del boss
+		# procesa si es el boss para asegurarse de guardar el desbloqueo ANTES del cambio de escena
+		var tipo = enemigo_actual_datos.get("tipo_enemigo", "").to_lower()
+		if tipo == "jefe" or tipo == "jefe_enemigo" or tipo == "boss":
+			camino_corto_desbloqueado = true
+			print("¡Jefe derrotado! Pasillo de escombros liberado para siempre.")
 		
 		# new logica de loot heart
 		# busca el tipo de enemigo "tipo_enemigo". Si NO es "jefe", loot corazón.
-		if enemigo_actual_datos.get("tipo_enemigo") != "jefe":
+		if tipo != "jefe" and tipo != "jefe_enemigo" and tipo != "boss":
 			var nuevo_corazon = corazon_escena.instantiate()
 			
 			# --- DETERMINAMOS CUÁNTO CURA SEGÚN EL ENEMIGO ---
-			var tipo = enemigo_actual_datos.get("tipo_enemigo", "debil")
-			
 			if tipo == "debil" or tipo == "debil2":
 				nuevo_corazon.cantidad_curacion = 5.0 # Recompensa chica
 			elif tipo == "medio" or tipo == "medio2":
@@ -443,19 +445,13 @@ func finalizar_combate(victoria: bool):
 			print("Corazón looteado. Tipo: ", tipo, " | Curación seteada en: ", nuevo_corazon.cantidad_curacion)
 		else:
 			print("Combate ganado contra el Jefe: ¡No se lootea corazón!")
-			
-		if victoria:
-	# marca enemigo como derrotado
-			enemigos_derrotados.append(
-				enemigo_actual_datos["nombre_en_escena"]
-			)
-	
-			# --- TRUCO CAMINO CORTO ---
-			# Si el enemigo derrotado era el jefe, abrimos el pasillo para los próximos loops
-			if enemigo_actual_datos.get("tipo_enemigo") == "jefe":
-				camino_corto_desbloqueado = true
-				print("[MAPA] ¡Jefe derrotado! Pasillo de escombros liberado para siempre.")
 
+	# --- CAMBIO DE ESCENA AL FINAL ---
+	# Cambiamos de mapa al final de procesar toda la lógica para que los datos viajen limpios
+	if RunManager.run_data.loop_actual == 1:
+		get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	elif RunManager.run_data.loop_actual == 2:
+		get_tree().change_scene_to_file("res://Escenas/segunda_escena/segunda_escena.tscn")
 
 # func para el evento de necrosis
 func abrir_interfaz_eliminar_carta(interfaz_existente: CanvasLayer):

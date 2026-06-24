@@ -96,4 +96,6 @@ func _on_zona_deteccion_body_entered(body: Node2D) -> void:
 func _on_zona_deteccion_body_exited(body: Node2D) -> void:
 	# Si el jugador se sale de la zona, NO lo borramos todavía. ¡Arrancamos el reloj!
 	if body == jugador_objetivo:
-		timer_memoria.start()
+		# Verificamos que el timer siga en el mundo antes de usarlo
+		if timer_memoria.is_inside_tree():
+			timer_memoria.start()

@@ -637,7 +637,7 @@ offset_bottom = 125.0
 script = ExtResource("13_3vxs2")
 
 [node name="enemigo_debil2" parent="." unique_id=1639336850 instance=ExtResource("8_e307b")]
-position = Vector2(369, 502)
+position = Vector2(382, 465)
 
 [node name="enemigo_debil6" parent="." unique_id=530462474 instance=ExtResource("8_e307b")]
 position = Vector2(905.00006, 449.99997)
@@ -680,10 +680,10 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_kndw1")
 
 [node name="player" parent="." unique_id=479222579 instance=ExtResource("7_htiw2")]
-position = Vector2(82, 587)
+position = Vector2(102, 580)
 
 [node name="enemigo_debil3" parent="." unique_id=1707479955 instance=ExtResource("8_e307b")]
-position = Vector2(132, 539)
+position = Vector2(152, 593)
 
 [node name="Escombros2" parent="." unique_id=1112711112 instance=ExtResource("21_qqym4")]
 position = Vector2(215, 532)
