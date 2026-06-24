@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bf1687fvjbupi" path="res://Escenas/escena_combate/escena_combate.gd" id="1_6mo4l"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_vytjj"]
 [ext_resource type="Texture2D" uid="uid://di2bpwg3kqu7p" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/idle_alien.png" id="3_43djd"]
+[ext_resource type="Texture2D" uid="uid://c4ugtjuu1g15l" path="res://Assets/noche1.png" id="3_kdh7u"]
 [ext_resource type="Texture2D" uid="uid://b4i1do57r0xxs" path="res://Assets/orbe_energia.png" id="4_43djd"]
 [ext_resource type="Texture2D" uid="uid://c64uvr0n2ft6e" path="res://Assets/mazo_cartas.png" id="5_vytjj"]
 [ext_resource type="Texture2D" uid="uid://cd6kn8rdewks8" path="res://Assets/mazo_descarte.png" id="6_qcod8"]
@@ -66,18 +67,12 @@ grow_vertical = 2
 theme = ExtResource("1_vytjj")
 script = ExtResource("1_6mo4l")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1630362063]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -10.0
-offset_right = 11.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(4.3317675e-07, 0.34218508, 0.34291098, 1)
+[node name="background" type="TextureRect" parent="." unique_id=1580282492]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("3_kdh7u")
+expand_mode = 1
 
 [node name="player" type="AnimatedSprite2D" parent="." unique_id=609565988]
 position = Vector2(201.99998, 185)

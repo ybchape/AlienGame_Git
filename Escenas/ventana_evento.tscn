@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nm0nir20bxx2"]
 
 [ext_resource type="Script" uid="uid://b0gp7c0x78n0t" path="res://Escenas/ventana_evento.gd" id="1_skbjx"]
+[ext_resource type="Texture2D" uid="uid://crx1r3q3bxwh3" path="res://Assets/pared castillo.png" id="2_kynit"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="2_qmf0o"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="2_ys8wb"]
 [ext_resource type="AudioStream" uid="uid://ch05ikovx1mbf" path="res://Assets/sonidos/loading.wav" id="4_36jug"]
@@ -8,6 +9,11 @@
 [node name="VentanaEvento" type="CanvasLayer" unique_id=67165807]
 process_mode = 3
 script = ExtResource("1_skbjx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1209258308]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_kynit")
 
 [node name="FondoNegroTutorial" type="ColorRect" parent="." unique_id=958717352]
 visible = false
@@ -23,23 +29,32 @@ offset_bottom = 649.0
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -158.0
-offset_top = 97.0
-offset_right = 134.0
-offset_bottom = 144.0
+offset_left = -185.0
+offset_top = 87.0
+offset_right = 156.0
+offset_bottom = 139.0
 grow_horizontal = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_qmf0o")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "Suministros de Oxígeno"
 horizontal_alignment = 1
 
 [node name="Descripcion" type="Label" parent="." unique_id=1928107382]
-offset_left = 369.0
-offset_top = 192.0
-offset_right = 733.0
-offset_bottom = 215.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -78.0
+offset_right = 226.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_qmf0o")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 25
 text = "Encuentras una cápsula antigua. ¿Qué extraes?"
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -50,10 +65,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -179.0
-offset_top = 93.0
-offset_right = 160.0
-offset_bottom = 247.0
+offset_left = -169.0
+offset_top = 110.0
+offset_right = 169.5
+offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25

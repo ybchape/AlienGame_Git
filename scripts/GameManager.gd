@@ -292,7 +292,7 @@ func mostrar_tutorial_inicial() -> void:
 	var intro_contexto = {
 		"id": "tutorial_frenesi",
 		"titulo": "¡ALERTA DE BIOCONTAMINACIÓN!",
-		"descripcion": "Sistemas del traje comprometidos. Un virus alienígena se ha filtrado en tu organismo.\n\nLa primera barra es el indicador de FRENESÍ que aumentará al explorar y mutar. Si llega al 100%, entrarás en DESCONTROL y perderás vida en el mapa poco a poco.",
+		"descripcion": "Un virus alienígena se ha filtrado en tu organismo.\nLa primera barra es el indicador de FRENESÍ que aumentará al explorar. Si llega al 100%, entrarás en DESCONTROL y perderás vida poco a poco.",
 		"opcion_a": "Estabilizar traje y comenzar",
 		"opcion_b": ""
 	}
