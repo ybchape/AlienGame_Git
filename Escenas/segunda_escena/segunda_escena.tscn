@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dbiofe565cpj5" path="res://Escenas/frenesi.tscn" id="9_rnhka"]
 [ext_resource type="PackedScene" uid="uid://dibx5oqgeqcct" path="res://Escenas/cofre/cofre_evento.tscn" id="11_d60p6"]
 [ext_resource type="AudioStream" uid="uid://2xon4r54vx1j" path="res://Assets/sonidos/slow-travel.wav" id="12_d60p6"]
+[ext_resource type="PackedScene" uid="uid://cb4abyrhfa2ot" path="res://Escenas/obstaculos_escombros.tscn" id="13_s4k5j"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nuyka"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -454,9 +455,11 @@ script = ExtResource("8_y7pfq")
 [node name="CanvasLayer" parent="." unique_id=1166767327 instance=ExtResource("9_rnhka")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=833579615]
+visible = false
 color = Color(0.015686275, 0.023529412, 0.023529412, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1498860350]
+visible = false
 position = Vector2(330, 554)
 
 [node name="Area2D" type="Area2D" parent="StaticBody2D" unique_id=1403351162]
@@ -534,6 +537,18 @@ position = Vector2(73, 600)
 [node name="MusicaFondo2" type="AudioStreamPlayer" parent="." unique_id=2141571978]
 stream = ExtResource("12_d60p6")
 autoplay = true
+
+[node name="Escombros" parent="." unique_id=1795874612 instance=ExtResource("13_s4k5j")]
+position = Vector2(329, 549)
+desbloqueado_por = "Jefe 2"
+
+[node name="Escombros2" parent="." unique_id=595711244 instance=ExtResource("13_s4k5j")]
+position = Vector2(329, 565)
+desbloqueado_por = "Jefe 2"
+
+[node name="Escombros3" parent="." unique_id=104919207 instance=ExtResource("13_s4k5j")]
+position = Vector2(329, 581)
+desbloqueado_por = "Jefe 2"
 
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="StaticBody2D/Area2D" to="StaticBody2D/Area2D" method="_on_body_exited"]
