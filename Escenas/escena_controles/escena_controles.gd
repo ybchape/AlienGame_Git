@@ -22,5 +22,6 @@ func _on_play_pressed() -> void:
 	
 	# 3. Vamos al Mapa 1
 	get_tree().change_scene_to_file("res://Escenas/escena_principal/escena_principal.tscn")
+	GameManager.mostrar_tutorial_inicial()
 	
 	
