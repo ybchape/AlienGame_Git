@@ -26,6 +26,7 @@ var escena_combate: Node = null #para que funcione close combate con esta var
 var bloques_destruidos = [] # Guardaremos las coordenadas (x, y) de los azulejos
 var eventos_completados = [] # Guardaremos los nombres de los eventos ya usados
 var total_enemigos_en_mapa: int = 8
+var camino_segundo_loop_desbloqueado: bool = false
 # Sistema de eventos - variables de control
 var enemigo_congelado_proximo_combate: bool = false # Evento 4 (Criostasis)
 var combates_con_persistencia: int = 0 # Evento 5 (Sangre Hirviente)
@@ -421,9 +422,12 @@ func finalizar_combate(victoria: bool):
 		)
 
 		# logica del boss
-		if tipo == "jefe" or tipo == "jefe_enemigo" or tipo == "boss":
+		if tipo == "jefe" or tipo == "boss":
 			camino_corto_desbloqueado = true
-			print("¡Jefe derrotado! Pasillo de escombros liberado para siempre.")
+			print("¡Jefe 1 derrotado! Pasillo de escombros del Mapa 1 liberado.")
+		elif tipo == "jefe2" or tipo == "boss2":
+			camino_segundo_loop_desbloqueado = true
+			print("¡Jefe 2 derrotado! Pasillo de escombros del Mapa 2 liberado.")
 		else:
 			print("Combate ganado: Se programó el loot de corazón.")
 
