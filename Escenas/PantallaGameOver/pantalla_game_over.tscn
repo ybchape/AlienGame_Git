@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bn0ju3p42s71u" path="res://Escenas/PantallaGameOver/pantalla_game_over.gd" id="1_oxi01"]
 [ext_resource type="Theme" uid="uid://dhdwqh3syek5v" path="res://recursos/estilo_ui/tema_pixel_art.tres" id="1_u0jlm"]
-[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="3_80mv6"]
+[ext_resource type="Texture2D" uid="uid://crx1r3q3bxwh3" path="res://Assets/pared castillo.png" id="3_80mv6"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="3_ksi6w"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_mi02s"]
 

@@ -54,7 +54,7 @@ var eventos_disponibles = [
 	{
 		"id": "necrosis_celular",
 		"titulo": "Necrosis Celular",
-		"descripcion": "Una de las extremidades mutadas del astronauta comienza a supurar un líquido negro. Se experimenta un dolor agudo, la estructura celular muerta se desprende, purgando el sistema biológico del personaje.",
+		"descripcion": "Una de las extremidades mutadas del astronauta comienza a supurar un líquido negro.",
 		"opcion_a": "Extirpar tejido (Elimina una carta básica de tu mazo)",
 		"opcion_b": "Ignorar"
 	},
@@ -76,8 +76,8 @@ var eventos_disponibles = [
 		"id": "radiacion_1",
 		"titulo": "Radiación Cósmica",
 		"descripcion": "Una grieta espacial emite partículas brillantes sobre tu traje.",
-		"opcion_a": "Exponerse: Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
-		"opcion_b": "Usar Escudo: Bloqueas la radiación (siguiente ataque) pero gastas una carga de energía."
+		"opcion_a": "Tu siguiente ataque infligirá el doble de daño, pero pierdes 5 de defensa.",
+		"opcion_b": "Bloqueas la radiación (siguiente ataque) pero gastas una carga de energía."
 	},
 	{
 		"id": "radiacion_2",

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1h1xuliebhds" path="res://Escenas/pantalla_victoria/pantalla_victoria.gd" id="1_fecl1"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="3_hewyk"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="3_pp22j"]
-[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="3_xsgt7"]
+[ext_resource type="Texture2D" uid="uid://crx1r3q3bxwh3" path="res://Assets/pared castillo.png" id="3_xsgt7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hewyk"]
 texture = ExtResource("3_xsgt7")

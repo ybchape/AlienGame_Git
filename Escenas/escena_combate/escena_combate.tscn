@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://5w8nxrlhugr2" path="res://Assets/barra/barra_roja.png" id="7_43djd"]
 [ext_resource type="Texture2D" uid="uid://f7t6c2ren25i" path="res://Assets/barra/barra_borde.png" id="8_vytjj"]
 [ext_resource type="Texture2D" uid="uid://c6wx14jia7284" path="res://Assets/barra/barra_gris.png" id="9_qcod8"]
-[ext_resource type="Texture2D" uid="uid://drwl17nfn8w06" path="res://Assets/pixelart_starfield.png" id="11_vytjj"]
+[ext_resource type="Texture2D" uid="uid://crx1r3q3bxwh3" path="res://Assets/pared castillo.png" id="12_kdh7u"]
 [ext_resource type="Texture2D" uid="uid://pqvkg46pnd8m" path="res://Assets/UI_icono.png" id="12_qcod8"]
 [ext_resource type="FontFile" uid="uid://cmowv07e2ljex" path="res://Assets/fuentes/Abaddon Light.ttf" id="13_klpi0"]
 [ext_resource type="AudioStream" uid="uid://dx874axw4805l" path="res://Assets/sonidos/battle.wav" id="14_c5v6y"]
@@ -55,7 +55,7 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_ql2e5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57qmd"]
-texture = ExtResource("11_vytjj")
+texture = ExtResource("12_kdh7u")
 
 [node name="escena_combate" type="Control" unique_id=1821735990]
 layout_mode = 3
