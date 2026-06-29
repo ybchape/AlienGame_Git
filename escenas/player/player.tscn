@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1pbkxegjy001" path="res://Escenas/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://di2bpwg3kqu7p" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/idle_alien.png" id="2_8w2jf"]
+[ext_resource type="Texture2D" uid="uid://cvlx635kdop6a" path="res://Assets/espora.png" id="2_f0w31"]
 [ext_resource type="Texture2D" uid="uid://djarkt827iata" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/idle_abajo.png" id="2_f5kae"]
 [ext_resource type="Texture2D" uid="uid://cjbwh78n7g8hu" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/idle_izquierda.png" id="3_4i20l"]
 [ext_resource type="Texture2D" uid="uid://bbve7i7wrnequ" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/arriba_alien.png" id="5_f0w31"]
@@ -9,6 +10,23 @@
 [ext_resource type="Texture2D" uid="uid://bn7mr87fmy084" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/izquierda_alien.png" id="7_ni5xh"]
 [ext_resource type="Texture2D" uid="uid://cfqmn05crh6et" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/derecha_alien.png" id="8_v4gb1"]
 [ext_resource type="Texture2D" uid="uid://b7orddsacmx3o" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Char_Sprites/camina_arriba_alien_2.png" id="9_8w2jf"]
+
+[sub_resource type="Gradient" id="Gradient_ni5xh"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yf5fn"]
+gradient = SubResource("Gradient_ni5xh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v4gb1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 400, 1)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, -5, 0)
+scale_min = 0.5
+scale_max = 1.1999999
+color = Color(0.54509807, 0.8627451, 0.20392157, 1)
+color_ramp = SubResource("GradientTexture1D_yf5fn")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v8j0"]
 atlas = ExtResource("2_f5kae")
@@ -177,7 +195,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k6xhv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_down",
 "speed": 10.0
 }, {
@@ -194,7 +212,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f0w31")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_left",
 "speed": 10.0
 }, {
@@ -211,7 +229,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l7dyv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_right",
 "speed": 10.0
 }, {
@@ -228,7 +246,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5yrs0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_up",
 "speed": 10.0
 }, {
@@ -254,7 +272,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qxxhn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 10.0
 }, {
@@ -271,7 +289,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cgqnw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 10.0
 }, {
@@ -288,7 +306,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x5g35")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 10.0
 }, {
@@ -314,7 +332,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h0et7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 10.0
 }]
@@ -341,6 +359,14 @@ limit_left = 0
 limit_top = 0
 limit_right = 1095
 limit_bottom = 655
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Camera2D" unique_id=1037392812]
+z_index = 10
+amount = 150
+texture = ExtResource("2_f0w31")
+lifetime = 4.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_v4gb1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=141873817]
 position = Vector2(0, 1.0000002)
