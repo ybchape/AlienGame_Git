@@ -1,29 +1,71 @@
 extends CanvasLayer
 
 var datos_del_evento
+var tamano_maximo_panel: Vector2
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	$MusicaEvento.volume_linear = 0.3
-
+	
+	# Guarda cuánto mide el panel configurado en el editor antes de achicarlo
+	tamano_maximo_panel = $Panel.size
+	_preparar_fade_in()
+	
+func _preparar_fade_in() -> void:
+# Usa 0.01 en vez de 0.0 para que Godot no destruya el layout de los botones
+	$Panel.scale = Vector2(0.01, 0.01)
+	
+	if has_node("FondoNegroTutorial"):
+		$FondoNegroTutorial.modulate.a = 0.0
+		
+func animar_apertura():
+	var tween = create_tween().set_parallel(true)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	
+	var tiempo_apertura = 0.4
+	
+	# Fuerza que empiece en el tamaño microscópico antes de agrandarse
+	$Panel.scale = Vector2(0.01, 0.01)
+	
+	# Anima de vuelta a la escala original (1.0) con el rebote elástico
+	tween.tween_property($Panel, "scale", Vector2.ONE, tiempo_apertura).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+	# El fondo negro hace su Fade In suave normalmente
+	if has_node("FondoNegroTutorial") and $FondoNegroTutorial.visible:
+		tween.tween_property($FondoNegroTutorial, "modulate:a", 1.0, tiempo_apertura)
+	
 func configurar(data):
-	# le permite a la ventana procesar siempre
+	# Le permite a la ventana procesar siempre aunque el juego esté pausado
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	datos_del_evento = data
-	$Titulo.text = data.titulo
-	$Descripcion.text = data.descripcion
-	$VBoxContainer/BotonA.text = data.opcion_a
-	$VBoxContainer/BotonB.text = data.opcion_b
+	
+	
+	$Panel/Titulo.text = data.titulo
+	$Panel/Descripcion.text = data.descripcion
+	$Panel/VBoxContainer/BotonA.text = data.opcion_a
+	$Panel/VBoxContainer/BotonB.text = data.opcion_b
 
-	# desconecta las señales por si queda algo colgado
-	if $VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
-		$VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
-	if $VBoxContainer/BotonB.pressed.is_connected(_on_boton_b_pressed):
-		$VBoxContainer/BotonB.pressed.disconnect(_on_boton_b_pressed)
+	# Desconecta las señales previas por seguridad usando las nuevas rutas
+	if $Panel/VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
+		$Panel/VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
+	if $Panel/VBoxContainer/BotonB.pressed.is_connected(_on_boton_b_pressed):
+		$Panel/VBoxContainer/BotonB.pressed.disconnect(_on_boton_b_pressed)
 
-	# conecta las señales a sus respectivas funciones nativas
-	$VBoxContainer/BotonA.pressed.connect(_on_boton_a_pressed)
-	$VBoxContainer/BotonB.pressed.connect(_on_boton_b_pressed)
+	# Conecta las señales a sus respectivas funciones nativas
+	$Panel/VBoxContainer/BotonA.pressed.connect(_on_boton_a_pressed)
+	$Panel/VBoxContainer/BotonB.pressed.connect(_on_boton_b_pressed)
 
+	# VALIDACIÓN EXCLUSIVA PARA EL TUTORIAL:
+	# Oculta el BotonB únicamente si el título coincide con el del tutorial
+	if data.titulo == "¡ALERTA DE BIOCONTAMINACIÓN!":
+		$Panel/VBoxContainer/BotonB.hide()
+	else:
+		# En cualquier otro evento, nos aseguramos de que vuelva a estar visible
+		$Panel/VBoxContainer/BotonB.show()
+
+	# Lanzamos la animación elástica desde el centro con la interfaz ya acomodada
+	animar_apertura()
+	
 func _on_boton_a_pressed() -> void:
 	print("[UI] Se hizo clic en el Botón A")
 	# Le mandamos TODA la responsabilidad al GameManager
@@ -37,22 +79,16 @@ func _on_boton_b_pressed() -> void:
 
 # fun para el dialogo del evento cofre trampa
 func mostrar_texto_intermedio(nuevo_texto: String, texto_boton: String, nueva_opcion_id: String):
-	# cambia el texto principal de la descripción por la del cofre trampa
-	$Descripcion.text = nuevo_texto 
-
-	# configura el Botón A para que sea el de avanzar al combate
-	$VBoxContainer/BotonA.text = texto_boton
+	$Panel/Descripcion.text = nuevo_texto 
+	$Panel/VBoxContainer/BotonA.text = texto_boton
 	
-	# Desconectamos la función nativa original antes de enlazar al GameManager
-	if $VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
-		$VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
+	if $Panel/VBoxContainer/BotonA.pressed.is_connected(_on_boton_a_pressed):
+		$Panel/VBoxContainer/BotonA.pressed.disconnect(_on_boton_a_pressed)
 	
-	if $VBoxContainer/BotonA.pressed.is_connected(GameManager.procesar_eleccion):
-		$VBoxContainer/BotonA.pressed.disconnect(GameManager.procesar_eleccion)
+	if $Panel/VBoxContainer/BotonA.pressed.is_connected(GameManager.procesar_eleccion):
+		$Panel/VBoxContainer/BotonA.pressed.disconnect(GameManager.procesar_eleccion)
 
-	# Este clic va a llamar a procesar_eleccion("cofre_trampa", "combate_mimic")
-	$VBoxContainer/BotonA.pressed.connect(GameManager.procesar_eleccion.bind("cofre_trampa", nueva_opcion_id))
+	$Panel/VBoxContainer/BotonA.pressed.connect(GameManager.procesar_eleccion.bind("cofre_trampa", nueva_opcion_id))
 
-# oculta el boton de la opcion b porque hay una sola opcion.
-	if has_node("BotonB"):
-		$VBoxContainer/BotonB.hide()
+	if has_node("Panel/VBoxContainer/BotonB"):
+		$Panel/VBoxContainer/BotonB.hide()

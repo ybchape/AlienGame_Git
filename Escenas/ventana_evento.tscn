@@ -24,14 +24,16 @@ color = Color(0, 0, 0, 1)
 [node name="Panel" type="Panel" parent="." unique_id=1710600898]
 offset_right = 1153.0
 offset_bottom = 649.0
+pivot_offset = Vector2(576, 324)
 
-[node name="Titulo" type="Label" parent="." unique_id=220602407]
+[node name="Titulo" type="Label" parent="Panel" unique_id=220602407]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -185.0
+offset_left = -185.5
 offset_top = 87.0
-offset_right = 156.0
+offset_right = 155.5
 offset_bottom = 139.0
 grow_horizontal = 2
 size_flags_horizontal = 4
@@ -40,16 +42,17 @@ theme_override_font_sizes/font_size = 35
 text = "Suministros de Oxígeno"
 horizontal_alignment = 1
 
-[node name="Descripcion" type="Label" parent="." unique_id=1928107382]
+[node name="Descripcion" type="Label" parent="Panel" unique_id=1928107382]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -78.0
-offset_right = 226.0
-offset_bottom = -9.0
+offset_left = -220.5
+offset_top = -78.5
+offset_right = 225.5
+offset_bottom = -9.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -59,28 +62,29 @@ text = "Encuentras una cápsula antigua. ¿Qué extraes?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1621292364]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1621292364]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -169.0
-offset_top = 110.0
-offset_right = 169.5
-offset_bottom = 264.0
+offset_left = -169.5
+offset_top = 109.5
+offset_right = 169.0
+offset_bottom = 263.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
 
-[node name="BotonA" type="Button" parent="VBoxContainer" unique_id=1807839197]
+[node name="BotonA" type="Button" parent="Panel/VBoxContainer" unique_id=1807839197]
 layout_mode = 2
 theme = ExtResource("2_ys8wb")
 theme_override_font_sizes/font_size = 20
 text = "Tanque (Curar 20PV)"
 autowrap_mode = 2
 
-[node name="BotonB" type="Button" parent="VBoxContainer" unique_id=2104049422]
+[node name="BotonB" type="Button" parent="Panel/VBoxContainer" unique_id=2104049422]
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_ys8wb")
@@ -92,5 +96,5 @@ autowrap_mode = 2
 stream = ExtResource("4_36jug")
 autoplay = true
 
-[connection signal="pressed" from="VBoxContainer/BotonA" to="." method="_on_boton_a_pressed"]
-[connection signal="pressed" from="VBoxContainer/BotonB" to="." method="_on_boton_b_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/BotonA" to="." method="_on_boton_a_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/BotonB" to="." method="_on_boton_b_pressed"]
