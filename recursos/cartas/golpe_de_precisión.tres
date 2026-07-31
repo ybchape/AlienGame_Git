@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://drry24tyuk0r4"]
 
+[ext_resource type="Texture2D" uid="uid://bhr3wi3djvt5i" path="res://Assets/cartas/carta_7_nuevo.png" id="1_2in76"]
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_h0p36"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h0p36"]
-load_path = "res://.godot/imported/carta_10_nuevo.png-52f10b821cab4df49a41d467a7d60453.ctex"
 
 [resource]
 script = ExtResource("1_h0p36")
@@ -11,6 +9,6 @@ name = "Golpe de Precisión"
 tipo = "Ataque"
 "daño" = 7
 roba = 1
-ruta = SubResource("CompressedTexture2D_h0p36")
+ruta = ExtResource("1_2in76")
 descripcion = "Causa 7 de daño y roba una carta"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"
