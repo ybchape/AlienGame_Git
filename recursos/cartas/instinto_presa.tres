@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://djby3b8r4clho"]
 
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_1l4si"]
-[ext_resource type="Texture2D" uid="uid://c8pydpnn67lun" path="res://Assets/cartas/Instinto de Presa.png" id="1_t1gut"]
+[ext_resource type="Texture2D" uid="uid://udjad8yfbmct" path="res://Assets/cartas/carta_5_nuevo.png" id="1_yfsu5"]
 
 [resource]
 script = ExtResource("1_1l4si")
@@ -9,6 +9,6 @@ name = "Instinto de Presa"
 tipo = "Poder"
 coste = 2
 "daño" = 25
-ruta = ExtResource("1_t1gut")
+ruta = ExtResource("1_yfsu5")
 descripcion = "Causa 25 de daño"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

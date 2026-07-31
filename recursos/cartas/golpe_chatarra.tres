@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://buccpoqsgoy3v"]
 
-[ext_resource type="Texture2D" uid="uid://43s6ntlkohx1" path="res://Assets/cartas/Golpe de Chatarra.png" id="1_117uj"]
+[ext_resource type="Texture2D" uid="uid://cvjnpbjg75hl" path="res://Assets/cartas/carta_27_nuevo.png" id="1_4mtxh"]
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_mk686"]
 
 [resource]
 script = ExtResource("1_mk686")
 name = "Golpe de Chatarra"
 tipo = "Ataque"
-ruta = ExtResource("1_117uj")
+ruta = ExtResource("1_4mtxh")
 descripcion = "Causa 12 de daño"
 metadata/_custom_type_script = "uid://b70c27dsawkxg"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://h0gjlipiwrql"]
 
-[ext_resource type="Texture2D" uid="uid://c2v3nb00n3nvy" path="res://Assets/cartas/Análisis de Bioma.png" id="1_e6k8e"]
+[ext_resource type="Texture2D" uid="uid://tes24ig1pygo" path="res://Assets/cartas/carta_16_nuevo.png" id="1_e6k8e"]
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_loww7"]
 
 [resource]
