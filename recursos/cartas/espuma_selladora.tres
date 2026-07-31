@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RecursoCarta" format=3 uid="uid://dgd7526w7vtu5"]
 
-[ext_resource type="Texture2D" uid="uid://mxrejesavrg5" path="res://Assets/cartas/carta_14.png" id="1_bur1l"]
+[ext_resource type="Texture2D" uid="uid://bcdqb65stwu0n" path="res://Assets/cartas/carta_17_nuevo.png" id="1_bur1l"]
 [ext_resource type="Script" uid="uid://b70c27dsawkxg" path="res://recursos/cartas/recurso_carta.gd" id="1_rx44b"]
 
 [resource]
